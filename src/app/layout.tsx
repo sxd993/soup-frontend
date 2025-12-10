@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AppProviders } from "./providers/AppProviders";
+import { Header } from "@/widgets";
 
 export const metadata: Metadata = {
   title: "Студия Уникальных Проектов",
@@ -14,8 +15,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body>
         <AppProviders>
+          <Header />
           {children}
         </AppProviders>
       </body>
