@@ -1,4 +1,5 @@
 import { ContractorsSection } from "@/widgets/Home/ContractorsSection";
+import { ContestsSection } from "@/widgets/Home/ContestsSection";
 import { HeroSection } from "@/widgets/Home/HeroSection";
 
 
@@ -7,6 +8,7 @@ export default function HomePage() {
     <div>
       <HeroSection />
       <ContractorsSection />
+      <ContestsSection />
     </div>
   );
 }

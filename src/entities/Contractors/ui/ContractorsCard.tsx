@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { RightArrow } from "@/shared/ui/icons/RighArrow";
 import { ContactorsTypes } from "../model/ContactorsTypes";
 
@@ -13,9 +14,11 @@ export const ContractorsCard = ({ contractor }: ContractorsCardProps) => {
                 <h3 className="text-2xl font-semibold leading-tight text-gray-900">
                     {contractor.title}
                 </h3>
-                <button className="w-7 h-7 bg-primary rounded-full flex items-center justify-center">
-                    <RightArrow />
-                </button>
+                <Link href="#">
+                    <button className="w-7 h-7 bg-primary hover:bg-accent transition-all duration-300 rounded-full flex items-center justify-center">
+                        <RightArrow />
+                    </button>
+                </Link>
             </div>
 
             {/* Бейджы услуг */}
@@ -24,7 +27,7 @@ export const ContractorsCard = ({ contractor }: ContractorsCardProps) => {
                 {contractor.bages.map((badge) => (
                     <span
                         key={badge}
-                        className="rounded-full bg-[#EBE7DF] px-4 py-1 text-xs font-medium leading-[150%] tracking-normal text-secondary"
+                        className="rounded-full bg-[#EBE7DF] hover:bg-accent-tertiary transition-all duration-300 px-4 py-1 text-xs font-medium leading-[150%] tracking-normal text-secondary"
                     >
                         {badge}
                     </span>

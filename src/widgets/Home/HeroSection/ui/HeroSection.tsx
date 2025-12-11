@@ -1,11 +1,13 @@
 import { RightArrow } from '@/shared/ui/index'
+import { IMAGES } from '@/shared/config'
 import Link from 'next/link'
+
 export const HeroSection = () => {
   return (
     <div
-      className="rounded-[40px] bg-center overflow-hidden -mt-[90px]"
+      className="rounded-[40px] bg-cover bg-center overflow-hidden -mt-[90px]"
       style={{
-        backgroundImage: "url('/main.jpg')",
+        backgroundImage: `url('${IMAGES.hero.background}')`,
       }}
     >
       {/* Общий контейнер */}
@@ -19,7 +21,7 @@ export const HeroSection = () => {
               <span className="whitespace-nowrap">для благоустройства</span>
             </h1>
             {/* Кнопка */}
-            <Link href="/" className="bg-white text-secondary font-semibold text-base px-10 py-3 rounded-[50px]">
+            <Link href="/" className="bg-white hover:bg-accent-tertiary transition-all duration-300 text-secondary font-semibold text-base px-10 py-3 rounded-[50px]">
               Смотреть всех
             </Link>
           </div>
@@ -30,7 +32,7 @@ export const HeroSection = () => {
             {/* Верхняя часть: метка "Реклама" и кнопка */}
             <div className="flex items-start justify-between">
               <span className="text-white opacity-50 font-medium text-xs">Реклама</span>
-              <button className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+              <button className="w-8 h-8 bg-white hover:bg-accent-tertiary transition-all duration-300 rounded-full flex items-center justify-center">
                 <RightArrow />
               </button>
             </div>
@@ -45,7 +47,7 @@ export const HeroSection = () => {
               <div
                 className="w-[200px] h-[100px] bg-cover bg-center"
                 style={{
-                  backgroundImage: "url('/hero_marketing.jpg')",
+                  backgroundImage: `url('${IMAGES.hero.advertisement}')`,
                 }}
               >
               </div>
