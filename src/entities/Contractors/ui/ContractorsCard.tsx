@@ -13,7 +13,9 @@ export const ContractorsCard = ({ contractor }: ContractorsCardProps) => {
                 <h3 className="text-2xl font-semibold leading-tight text-gray-900">
                     {contractor.title}
                 </h3>
-                <RightArrow />
+                <button className="w-7 h-7 bg-primary rounded-full flex items-center justify-center">
+                    <RightArrow />
+                </button>
             </div>
 
             {/* Бейджы услуг */}

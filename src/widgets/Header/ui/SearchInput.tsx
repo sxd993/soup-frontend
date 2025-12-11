@@ -2,6 +2,7 @@
 
 import { SearchIcon } from '@/shared/ui/index'
 
+// Компонент поля поиска для мобильных устройств
 export const SearchInput = () => {
   return (
     <div className="relative block md:hidden">

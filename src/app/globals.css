@@ -21,6 +21,13 @@ body {
   margin: 0 auto;
 }
 
+@media (max-width: 1199px) {
+  body {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
 header > div:first-child > div:last-child a {
   position: relative;
   text-decoration: none !important;

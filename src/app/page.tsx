@@ -1,16 +1,11 @@
 import { ContractorsSection } from "@/widgets/Home/ContractorsSection";
+import { HeroSection } from "@/widgets/Home/HeroSection";
 
 
 export default function HomePage() {
   return (
     <div>
-      <div
-        className="max-w-7xl mx-auto h-[600px] rounded-[40px] bg-center overflow-hidden -mt-[90px]"
-        style={{
-          backgroundImage: "url('/main.jpg')",
-        }}
-      >
-      </div>
+      <HeroSection />
       <ContractorsSection />
     </div>
   );
