@@ -10,8 +10,8 @@ import { SearchInput } from './SearchInput'
 
 export const Header = () => {
   return (
-    <div className="px-8">
-      <header className="w-full lg:max-w-6xl mx-auto flex justify-between items-center mt-10 rounded-[50px] bg-white px-[3%] relative z-20">
+    <div className="px-15">
+      <header className="w-full flex justify-between items-center mt-10 rounded-[50px] bg-white pl-2 pr-5  relative z-20">
       <div className="flex items-center">
         <MainIcon className="py-3" />
         <NavigationLinks />
