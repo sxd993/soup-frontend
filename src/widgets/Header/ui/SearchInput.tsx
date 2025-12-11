@@ -1,6 +1,6 @@
 'use client'
 
-import { SearchIcon } from '@/shared/index'
+import { SearchIcon } from '@/shared/ui/index'
 
 export const SearchInput = () => {
   return (

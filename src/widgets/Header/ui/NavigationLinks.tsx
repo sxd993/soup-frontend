@@ -3,7 +3,7 @@ import { NAVIGATION_LINKS } from '../constants'
 
 export const NavigationLinks = () => {
   return (
-    <div className="hidden md:flex ml-5 gap-7">
+    <div className="hidden md:flex lg:pl-5 gap-7 text-center items-center text-nowrap">
       {NAVIGATION_LINKS.map((link) => (
         <Link
           key={link.label}

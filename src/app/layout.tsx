@@ -23,7 +23,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="max-w-[1200px] mx-auto">
+      <body>
         <AppProviders>
           <Header />
           {children}

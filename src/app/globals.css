@@ -17,6 +17,8 @@
 body {
   font-family: var(--font-family-sans);
   background-color: var(--color-background);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 header > div:first-child > div:last-child a {
