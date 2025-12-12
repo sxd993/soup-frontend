@@ -9,7 +9,7 @@ export const ViewAllButton = ({ href, text }: ViewAllButtonProps) => {
     return (
         <Link 
             href={href} 
-            className="text-accent-senary font-semibold bg-primary hover:bg-accent transition-all duration-300 text-base px-8 py-2.5 rounded-[50px]"
+            className="text-accent-senary font-semibold bg-primary hover:bg-accent transition-all duration-300 text-base lg:px-8 px-7 lg:py-2.5 py-3 rounded-[50px]"
         >
             {text}
         </Link>

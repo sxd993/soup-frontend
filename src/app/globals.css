@@ -58,3 +58,19 @@ header input[type="text"] {
 header input[type="text"]::placeholder {
   color: #000000 !important;
 }
+
+@keyframes fade-out-in {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.group:hover .fade-out-in {
+  animation: fade-out-in 0.3s ease-in-out;
+}

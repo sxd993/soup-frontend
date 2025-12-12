@@ -21,6 +21,7 @@ export const NEWS: NewsItem[] = [
     {
         id: 'field-under-bridge',
         image: 'https://s3.twcstorage.ru/4b615622-soup/news/%D1%84%D1%83%D1%82%D0%B1%20%D0%BF%D0%BE%D0%BB%D0%B5.svg',
+        hoverImage: 'https://s3.twcstorage.ru/4b615622-soup/news/%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%BA%D0%B0_%D1%83%D0%B2%D0%B5%D0%BB.png',
         imageAlt: 'Футбольное поле под мостом с оранжевыми строениями',
         badge: 'Спортивные комплексы',
         title: '«Бруснике» пришлось потратить очень много времени на благоустройство',
@@ -28,6 +29,7 @@ export const NEWS: NewsItem[] = [
     {
         id: 'residential-reed',
         image: 'https://s3.twcstorage.ru/4b615622-soup/news/%D0%BF%D0%BE%D0%BB%D0%B5.svg',
+        hoverImage: 'https://s3.twcstorage.ru/4b615622-soup/news/%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%BA%D0%B0_%D1%83%D0%B2%D0%B5%D0%BB.png',
         imageAlt: 'Жилые дома рядом с тростниковым полем и водой',
         badge: 'ЖК',
         title: 'Монотонность, серость и тревожность этого пространства',
@@ -35,9 +37,9 @@ export const NEWS: NewsItem[] = [
     {
         id: 'courtyard-terraces',
         image: 'https://s3.twcstorage.ru/4b615622-soup/news/%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%BA%D0%B0%20%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B0%D1%8F.svg',
+        hoverImage: 'https://s3.twcstorage.ru/4b615622-soup/news/%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%BA%D0%B0_%D1%83%D0%B2%D0%B5%D0%BB.png',
         imageAlt: 'Двор с зелёными насаждениями, бассейном и деревянными террасами',
         badge: 'Архитектура',
         title: '«Бруснике» пришлось потратить очень много времени на благоустройство',
     },
 ];
-
