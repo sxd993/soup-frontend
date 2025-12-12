@@ -31,13 +31,13 @@ export const NewsSection = () => {
                     />
 
                     {/* Оверлей */}
-                    <div className="absolute bottom-10 left-5 right-5 max-w-[320px]">
+                    <div className="absolute bottom-10 left-5 right-5 max-w-[367px]">
                         <div className="flex flex-col gap-3">
                             <span className="w-fit px-3 py-1 text-[11px] font-semibold bg-[#EBE7DF] text-secondary rounded-full border border-accent-quaternary">
                                 {first.badge}
                             </span>
 
-                            <div className="rounded-2xl bg-white p-6 pb-15 shadow-sm">
+                            <div className="rounded-2xl bg-white p-6 pr-20 pb-10 shadow-sm">
                                 <h3 className="text-[20px] font-semibold leading-snug">
                                     {first.title}
                                 </h3>

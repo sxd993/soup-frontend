@@ -1,10 +1,15 @@
 import { SectionTitle, ViewAllButton } from "@/shared/ui"
-import Image from 'next/image';
-
+import { BlogCard } from "./BlogCard";
+import { BLOGS } from "../model/blogs";
+import { TopBlogCardSection } from "./TopBlogCardSection";
 
 export const InterestingSection = () => {
+
+    const firstBlog = BLOGS[0];
+    const otherBlogs = BLOGS.slice(1);
+
     return (
-        <section className="min-h-[397px]">
+        <section className="mb-15">
             {/* Шапка секции*/}
             <div className="flex items-center justify-between mt-25 mb-10">
                 <SectionTitle title="Интересное в блогах" />
@@ -12,36 +17,13 @@ export const InterestingSection = () => {
             </div>
             {/* Основной контент секции*/}
             <div>
-                {/* Выделенный блог*/}
-                <div className="flex gap-5">
-                    {/* Изображение */}
-                    <Image
-                        width={797}
-                        height={500}
-                        src={'https://s3.twcstorage.ru/4b615622-soup/blogs/Shapka.svg'} alt="Shapka"
-                    />
-                    {/* Карточка блога */}
-                    <div className="flex-1">
-                        {/* Контейнер карточки */}
-                        <div className="flex flex-col w-full h-full">
-                            {/* Лого, Название и дата */}
-                            <div className="flex">
-                                <div></div>
-                                <div></div>
-                            </div>
-                            {/* Заголовок */}
-                            <div></div>
-                            {/* Описание */}
-                            <div></div>
-                            {/* Социальные взаимодействия */}
-                            <div></div>
-                        </div>
-                    </div>
-
-                </div>
+                {/* Верхние статьи*/}
+                <TopBlogCardSection firstBlog={firstBlog} />
                 {/* Нижние статьи*/}
-                <div>
-
+                <div className="grid grid-cols-3 content-between mt-8 w-full h-full gap-5">
+                    {otherBlogs.map((blog) => (
+                        <BlogCard key={blog.id} blog={blog} />
+                    ))}
                 </div>
             </div>
         </section>
