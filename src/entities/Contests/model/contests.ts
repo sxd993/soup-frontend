@@ -1,20 +1,19 @@
 import { ContestsTypes } from './ContestsTypes';
-import { IMAGES } from '@/shared/config';
 
 export const CONTESTS: ContestsTypes[] = [
     {
         title: 'Green Roof Challenge 2025',
         link: 'aenguild.org',
-        image: IMAGES.contests.first,
+        image: 'https://s3.twcstorage.ru/4b615622-soup/contests/first.png',
     },
     {
         title: 'Конкурс визуальной рекламы «Знак»',
         link: 'конкурсзнак.рф',
-        image: IMAGES.contests.second,
+        image: 'https://s3.twcstorage.ru/4b615622-soup/contests/second.png',
     },
     {
         title: 'Конкурс «Малоэтажный стандарт» 2025/26',
         link: 'ardexpert.ru',
-        image: IMAGES.contests.third,
+        image: 'https://s3.twcstorage.ru/4b615622-soup/contests/third.png',
     },
 ];
