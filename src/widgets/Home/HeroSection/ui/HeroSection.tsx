@@ -1,6 +1,7 @@
 import { RightArrow } from '@/shared/ui/index'
 import { IMAGES } from '@/shared/config'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export const HeroSection = () => {
   return (
@@ -11,11 +12,11 @@ export const HeroSection = () => {
       }}
     >
       {/* Общий контейнер */}
-      <div className="flex py-[7%] px-12 mt-20">
+      <div className="flex py-[7%] justify-between px-12 mt-20">
         {/* Левая часть */}
-        <div className="flex-1 flex items-center justify-center">
-          <div className="flex flex-col gap-10 justify-start items-start">
-            <h1 className="text-white text-4xl lg:text-5xl font-semibold lg:font-bold leading-tight">
+        <div className="flex-1 flex items-center justify-center max-w-full">
+          <div className="flex flex-col gap-10 justify-center items-center sm:items-start sm:justify-start">
+            <h1 className="text-white text-center sm:text-left text-2xl md:text-3xl lg:text-5xl font-semibold lg:font-bold leading-tight">
               <span className="whitespace-nowrap">Найди подрядчика</span>
               <br />
               <span className="whitespace-nowrap">для благоустройства</span>
@@ -27,7 +28,7 @@ export const HeroSection = () => {
           </div>
         </div>
         {/* Правая часть */}
-        <div className="flex-1 flex items-center justify-end">
+        <div className="hidden sm:flex flex-1 items-center justify-end">
           <div className="p-3 max-w-[200px] w-full bg-primary rounded-[20px] flex flex-col gap-4 relative">
             {/* Верхняя часть: метка "Реклама" и кнопка */}
             <div className="flex items-start justify-between">
@@ -44,17 +45,16 @@ export const HeroSection = () => {
             
             {/* Изображение */}
             <div className="rounded-[10px] overflow-hidden mt-2">
-              <div
-                className="w-[200px] h-[100px] bg-cover bg-center"
-                style={{
-                  backgroundImage: `url('${IMAGES.hero.advertisement}')`,
-                }}
-              >
+              <Image
+                src={IMAGES.hero.advertisement}
+                alt="Advertisement"
+                width={200}
+                height={295}
+              />
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   )
 }

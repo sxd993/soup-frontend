@@ -19,11 +19,11 @@ export const Header = () => {
         </div>
         {/* Правая часть: поиск, профиль и меню */}
         <div className="flex items-center gap-3 sm:ml-4">
-          <Link href="/search" className="hidden md:block">
-            <SearchIcon className="w-8 h-8 bg-[#EBE7DF] rounded-full" />
+          <Link href="/search" className="block sm:hidden md:block!">
+            <SearchIcon className="w-11 h-11 md:w-8 md:h-8 bg-[#EBE7DF] rounded-full" />
           </Link>
           <SearchInput />
-          <Link href="/profile">
+          <Link href="/profile" className="hidden sm:block">
             <PeopleIcon className="w-11 h-11 md:w-8 md:h-8 bg-background rounded-full" />
           </Link>
           {/* Меню только на мобильных */}

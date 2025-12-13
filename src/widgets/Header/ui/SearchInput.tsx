@@ -2,10 +2,10 @@
 
 import { SearchIcon } from '@/shared/ui/index'
 
-// Компонент поля поиска для мобильных устройств
+// Компонент поля поиска для sm breakpoint
 export const SearchInput = () => {
   return (
-    <div className="relative block md:hidden">
+    <div className="relative hidden sm:block md:hidden!">
       <SearchIcon className="absolute left-1 top-1/2 -translate-y-1/2 w-9 h-9" />
       <input
         type="text"
