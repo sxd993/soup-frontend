@@ -1,6 +1,6 @@
 'use client'
 
-import { SearchIcon } from '@/shared/ui/index'
+import { SearchIcon } from '@/shared/ui/icons/index'
 
 // Компонент поля поиска для sm breakpoint
 export const SearchInput = () => {

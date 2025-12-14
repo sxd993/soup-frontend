@@ -1,0 +1,8 @@
+export { MainIcon } from './Main'
+export { MainIcon2 } from './MainIcon2'
+export { SearchIcon } from './Search'
+export { PeopleIcon } from './People'
+export { MenuIcon } from './Menu'
+export { RightArrow } from './RighArrow'
+export { ViewAllButton } from '../ViewAllButton'
+export { SectionTitle } from '../SectionTitle'

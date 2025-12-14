@@ -2,3 +2,8 @@ export { CONTRACTORS } from "./Contractors/model/contractors";
 export { ContractorsCard } from "./Contractors/ui/ContractorsCard";
 export { CONTESTS } from "./Contests/model/contests";
 export { ContestsCard } from "./Contests/ui/ContestsCard";
+export { BLOGS } from "./Blogs/model/blogs";
+export { BlogCard } from "./Blogs/ui/BlogCard";
+export { TopBlogCardSection } from "./Blogs/ui/TopBlogCardSection";
+export { NEWS } from "./News/model/news";
+export { NewsCard } from "./News/ui/NewsCard";

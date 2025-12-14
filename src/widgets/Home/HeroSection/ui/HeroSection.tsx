@@ -1,4 +1,4 @@
-import { RightArrow } from '@/shared/ui/index'
+import { RightArrow } from '@/shared/ui/icons/index'
 import { IMAGES } from '@/shared/config'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -37,12 +37,12 @@ export const HeroSection = () => {
                 <RightArrow />
               </button>
             </div>
-            
+
             {/* Заголовок */}
             <h4 className="text-white text-sm font-semibold">
               Комплексное благоустройство <br /> территорий
             </h4>
-            
+
             {/* Изображение */}
             <div className="rounded-[10px] overflow-hidden mt-2">
               <Image
@@ -51,10 +51,10 @@ export const HeroSection = () => {
                 width={200}
                 height={295}
               />
-              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   )
 }

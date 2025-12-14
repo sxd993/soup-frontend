@@ -1,10 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { MainIcon } from '@/shared/ui/index'
-import { SearchIcon } from '@/shared/ui/index'
-import { PeopleIcon } from '@/shared/ui/index'
-import { MenuIcon } from '@/shared/ui/index'
+import { MainIcon } from '@/shared/ui/icons/index'
+import { SearchIcon } from '@/shared/ui/icons/index'
+import { PeopleIcon } from '@/shared/ui/icons/index'
+import { MenuIcon } from '@/shared/ui/icons/index'
 import { NavigationLinks } from './NavigationLinks'
 import { SearchInput } from './SearchInput'
 

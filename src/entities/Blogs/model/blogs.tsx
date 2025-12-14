@@ -1,4 +1,3 @@
-
 import { BlogsItems } from './types';
 import { MockLogo } from '../ui/MockLogo';
 

@@ -1,9 +1,7 @@
-import { SectionTitle, ViewAllButton } from "@/shared/ui"
-import { BlogCard } from "./BlogCard";
-import { BLOGS } from "../model/blogs";
-import { TopBlogCardSection } from "./TopBlogCardSection";
+import { BLOGS, BlogCard, TopBlogCardSection } from "@/entities"
+import { SectionTitle, ViewAllButton } from "@/shared/ui/icons"
 
-export const InterestingSection = () => {
+export const BlogsSection = () => {
 
     const firstBlog = BLOGS[0];
     const otherBlogs = BLOGS.slice(1);

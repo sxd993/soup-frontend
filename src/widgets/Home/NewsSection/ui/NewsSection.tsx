@@ -1,7 +1,6 @@
-import { SectionTitle, ViewAllButton } from "@/shared/ui"
+import { NEWS, NewsCard } from "@/entities"
 import { IMAGES } from "@/shared/config"
-import { NEWS } from "../model/news"
-import { NewsCard } from "./NewsCard"
+import { SectionTitle, ViewAllButton } from "@/shared/ui/icons"
 import Image from "next/image"
 
 export const NewsSection = () => {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AppProviders } from "./providers/AppProviders";
-import { Header } from "@/widgets";
+import { Footer, Header } from "@/widgets";
 
 export const metadata: Metadata = {
   title: "Студия Уникальных Проектов",
@@ -25,9 +25,12 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning>
         <AppProviders>
-          <Header />
-          {children}
+          <div className="max-w-[1200px] mx-auto p-4 lg:p-0">
+            <Header />
+            {children}
+          </div>
         </AppProviders>
+        <Footer />
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-import { SectionTitle, ViewAllButton } from "@/shared/ui"
+import { SectionTitle, ViewAllButton } from "@/shared/ui/icons"
 import { CONTESTS, ContestsCard } from "@/entities"
 
 export const ContestsSection = () => {

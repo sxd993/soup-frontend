@@ -1,8 +1,8 @@
 import { ContractorsSection } from "@/widgets/Home/ContractorsSection";
 import { ContestsSection } from "@/widgets/Home/ContestsSection";
 import { HeroSection } from "@/widgets/Home/HeroSection";
-import { NewsSection } from "@/widgets/Home/NewsSection/ui/NewsSection";
-import { InterestingSection } from "@/widgets/Home/InterestingSection";
+import { NewsSection } from "@/widgets/Home/NewsSection";
+import { BlogsSection } from "@/widgets/Home/BlogsSection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export default function HomePage() {
       <ContractorsSection />
       <NewsSection />
       <ContestsSection />
-      <InterestingSection />
+      <BlogsSection />
     </div>
   );
 }
