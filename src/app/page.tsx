@@ -3,6 +3,7 @@ import { ContestsSection } from "@/widgets/Home/ContestsSection";
 import { HeroSection } from "@/widgets/Home/HeroSection";
 import { NewsSection } from "@/widgets/Home/NewsSection";
 import { BlogsSection } from "@/widgets/Home/BlogsSection";
+import { FAQSection } from "@/widgets/Home/FAQ";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function HomePage() {
       <NewsSection />
       <ContestsSection />
       <BlogsSection />
+      <FAQSection />
     </div>
   );
 }

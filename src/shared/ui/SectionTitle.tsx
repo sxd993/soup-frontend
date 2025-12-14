@@ -1,5 +1,5 @@
 interface SectionTitleProps {
-    title: string;
+    title: string | React.ReactNode;
 }
 
 export const SectionTitle = ({ title }: SectionTitleProps) => {
