@@ -9,10 +9,16 @@ export const Footer = () => {
                     {/* Левая колонка */}
                     <div className="flex flex-col justify-between h-full">
                         <MainIcon2 />
+                        <div>
+                            <p>Политика конфиденциальности </p>
+                        </div>
                     </div>
                     {/* Средняя колонка */}
-                    <div className='text-white'>
-                        Контакты
+                    <div className='text-white flex flex-col justify-between h-full!'>
+                        <div>Контакты</div>
+                        <div>
+                            <p className='text-[#EBE7DF]'>Договор оферты </p>
+                        </div>
                     </div>
                     {/* Правая колонка */}
                     <div className='text-white'>
@@ -23,12 +29,8 @@ export const Footer = () => {
                             <li>Блоги</li>
                             <li>Разместить заказ</li>
                         </ul>
+                        <div>                    <p>Все права защищены </p></div>
                     </div>
-                </div>
-                <div className='flex justify-between items-center w-full text-[#EBE7DF] text-sm'>
-                    <p>Политика конфиденциальности </p>
-                    <p>Договор оферты </p>
-                    <p>Все права защищены </p>
                 </div>
             </div>
         </footer>
