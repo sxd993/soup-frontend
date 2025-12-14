@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { NAVIGATION_LINKS } from '../const'
+import { NAVIGATION_LINKS } from '../model/const'
 
 // Компонент навигационных ссылок
 export const NavigationLinks = () => {
