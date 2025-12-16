@@ -12,13 +12,22 @@ type NewsCardSmallProps = {
     featured?: boolean
     withZoom?: boolean
     href?: string
+    className?: string
 }
 
-export const NewsCardSmall = ({ item, fallbackImage, withZoom = false, href }: NewsCardSmallProps) => {
+export const NewsCardSmall = ({
+    item,
+    fallbackImage,
+    withZoom = false,
+    href,
+    className,
+}: NewsCardSmallProps) => {
     const { currentImage, handleMouseEnter, handleMouseLeave } = useNewsCardImage(item, withZoom)
+    const baseClasses = "flex flex-col h-full max-w-[275px] overflow-hidden"
+    const articleClassName = className ? `${baseClasses} ${className}` : baseClasses
 
     const card = (
-        <article className="flex flex-col h-full max-w-[400px] min-h-[350px] overflow-hidden">
+        <article className={articleClassName}>
             {/* Картинка */}
             <div
                 className="relative w-full aspect-square rounded-2xl overflow-hidden"

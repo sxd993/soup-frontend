@@ -1,7 +1,6 @@
-import { RightArrow } from '@/shared/ui/icons/index'
 import { IMAGES } from '@/shared/config'
 import Link from 'next/link'
-import Image from 'next/image'
+import { AdsBanner } from '@/widgets/AdsBanner/AdsBanner'
 
 export const HeroSection = () => {
   return (
@@ -29,30 +28,7 @@ export const HeroSection = () => {
         </div>
         {/* Правая часть */}
         <div className="hidden sm:flex flex-1 items-center justify-end">
-          <div className="p-3 max-w-[200px] w-full bg-primary rounded-[20px] flex flex-col gap-4 relative">
-            {/* Верхняя часть: метка "Реклама" и кнопка */}
-            <div className="flex items-start justify-between">
-              <span className="text-white opacity-50 font-medium text-xs">Реклама</span>
-              <button className="w-8 h-8 bg-white hover:bg-accent-tertiary transition-all duration-300 rounded-full flex items-center justify-center">
-                <RightArrow />
-              </button>
-            </div>
-
-            {/* Заголовок */}
-            <h4 className="text-white text-sm font-semibold">
-              Комплексное благоустройство <br /> территорий
-            </h4>
-
-            {/* Изображение */}
-            <div className="rounded-[10px] overflow-hidden mt-2">
-              <Image
-                src={IMAGES.hero.advertisement}
-                alt="Advertisement"
-                width={200}
-                height={295}
-              />
-            </div>
-          </div>
+          <AdsBanner />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { NewsSection } from "@/widgets/Home/NewsSection";
-import { FilterSection } from "@/widgets/News";
+import { FilterSection, BottomNewsSection } from "@/widgets/News";
 
 export const metadata: Metadata = {
     title: "Новости",
@@ -12,6 +12,7 @@ export default function NewsPage() {
         <div className="flex flex-col mt-10">
             <FilterSection />
             <NewsSection />
+            <BottomNewsSection />
         </div>
     )
 }
