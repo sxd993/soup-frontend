@@ -1,38 +1,75 @@
-import { MainIcon2 } from '@/shared/ui/icons';
+import Link from 'next/link'
+import { MainIcon2 } from '@/shared/ui/icons'
+import { FOOTER_LINKS, FOOTER_META_LINKS } from '../model/const'
 
 export const Footer = () => {
+  const [privacy, offer, rights] = FOOTER_META_LINKS
 
-    return (
-        <footer className="bg-[#2f2f2f] min-h-[500px] p-0!">
-            <div className='flex  flex-col justify-between min-h-[500px] items-center py-15 max-w-[1200px] mx-auto'>
-                <div className='flex  justify-between items-start w-full'>
-                    {/* Левая колонка */}
-                    <div className="flex flex-col justify-between h-full">
-                        <MainIcon2 />
-                        <div>
-                            <p>Политика конфиденциальности </p>
-                        </div>
-                    </div>
-                    {/* Средняя колонка */}
-                    <div className='text-white flex flex-col justify-between h-full!'>
-                        <div>Контакты</div>
-                        <div>
-                            <p className='text-[#EBE7DF]'>Договор оферты </p>
-                        </div>
-                    </div>
-                    {/* Правая колонка */}
-                    <div className='text-white'>
-                        <ul className='flex flex-col gap-6 font-semibold tracking-[1%] leading-[120%] text-base'>
-                            <li>Каталог</li>
-                            <li>Новости</li>
-                            <li>Конкурсы</li>
-                            <li>Блоги</li>
-                            <li>Разместить заказ</li>
-                        </ul>
-                        <div>                    <p>Все права защищены </p></div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    )
+  return (
+    <footer className="bg-secondary text-[#F5F2EB] mt-16">
+      <div className="max-w-[1200px] mx-auto px-4 lg:px-0 py-14 lg:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 items-start gap-12 lg:gap-20 text-left">
+          <div className="flex flex-col gap-6 flex-shrink-0 h-full">
+            <MainIcon2 />
+            {privacy ? (
+              <span
+                className="mt-auto text-[14px] font-normal leading-[150%]"
+                style={{ fontFamily: 'Roboto Flex, var(--font-family-sans)' }}
+              >
+                {privacy.label}
+              </span>
+            ) : null}
+          </div>
+
+          <div className="flex flex-col gap-4 justify-start items-start h-full">
+            <p
+              className="text-[18px] font-medium leading-[130%]"
+              style={{ fontFamily: 'Roboto Flex, var(--font-family-sans)' }}
+            >
+              Контакты
+            </p>
+            {offer ? (
+              <span
+                className="mt-auto text-[14px] font-normal leading-[150%]"
+                style={{ fontFamily: 'Roboto Flex, var(--font-family-sans)' }}
+              >
+                {offer.label}
+              </span>
+            ) : null}
+          </div>
+
+          <div className="flex flex-col gap-6 md:gap-8 h-full">
+            {FOOTER_LINKS.map((item) => (
+              <div key={item.label}>
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    className="text-[18px] font-medium leading-[130%] transition-colors hover:text-primary"
+                    style={{ fontFamily: 'Roboto Flex, var(--font-family-sans)' }}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span
+                    className="text-[18px] font-medium leading-[130%]"
+                    style={{ fontFamily: 'Roboto Flex, var(--font-family-sans)' }}
+                  >
+                    {item.label}
+                  </span>
+                )}
+              </div>
+            ))}
+            {rights ? (
+              <span
+                className="mt-auto text-[14px] font-normal leading-[150%]"
+                style={{ fontFamily: 'Roboto Flex, var(--font-family-sans)' }}
+              >
+                {rights.label}
+              </span>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
 }

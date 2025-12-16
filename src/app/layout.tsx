@@ -22,6 +22,10 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
           rel="stylesheet"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144,wght@400;500&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body suppressHydrationWarning>
         <AppProviders>
