@@ -1,29 +1,9 @@
-import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { NEWS, NewsCardBig, NewsCardSmall } from "@/entities"
 import { IMAGES } from "@/shared/config"
 
-type NewsPageParams = {
+export type NewsPageParams = {
     params: { id: string }
-}
-
-export async function generateStaticParams() {
-    return NEWS.map((item) => ({ id: item.id }))
-}
-
-export async function generateMetadata({ params }: NewsPageParams): Promise<Metadata> {
-    const current = NEWS.find((item) => item.id === params.id)
-
-    if (!current) {
-        return {
-            title: "Новость",
-        }
-    }
-
-    return {
-        title: `${current.title} | Новости`,
-        description: current.description,
-    }
 }
 
 export default function NewsDetailPage({ params }: NewsPageParams) {
