@@ -6,4 +6,5 @@ export { BLOGS } from "./Blogs/model/blogs";
 export { BlogCard } from "./Blogs/ui/BlogCard";
 export { TopBlogCardSection } from "./Blogs/ui/TopBlogCardSection";
 export { NEWS } from "./News/model/news";
-export { NewsCard } from "./News/ui/NewsCard";
+export { NewsCardSmall } from "./News/ui/NewsCardSmall";
+export { NewsCardBig } from "./News/ui/NewsCardBig";

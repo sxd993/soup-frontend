@@ -1,25 +1,41 @@
-import { NEWS, NewsCard } from "@/entities"
+'use client'
+
+import { NEWS, NewsCardSmall } from "@/entities"
 import { IMAGES } from "@/shared/config"
+import { useCurrentPath } from "@/shared/hooks/useCurrentPath"
+import { Badge } from "@/shared/ui/Badge"
 import { SectionTitle, ViewAllButton } from "@/shared/ui/icons"
 import Image from "next/image"
+import Link from "next/link"
 
 export const NewsSection = () => {
     const fallbackImage = IMAGES.hero.background
     const [first, ...rest] = NEWS
 
+    // Текущий путь
+    const currentPath = useCurrentPath()
+    const isNewsPage = currentPath === '/news'
+
     return (
         <section className="flex flex-col">
             {/* Шапка секции */}
-            <div className="flex justify-between w-full mt-25 mb-10">
-                <SectionTitle title="Новости" />
-                <ViewAllButton href="/news" text="Смотреть все" />
+            <div className={`flex justify-between w-full ${!isNewsPage ? 'mt-25 mb-10' : 'mb-5'}`}>
+                {!isNewsPage && (
+                    <div className="flex justify-between w-full">
+                        <SectionTitle title="Новости" />
+                        <ViewAllButton href="/news" text="Смотреть все" />
+                    </div>
+                )
+                }
             </div>
-
             {/* Контент */}
             <div className="flex flex-col md:flex-row gap-4.5 items-stretch">
 
                 {/* Левая колонка */}
-                <div className="relative w-[68%] min-h-[780px] overflow-hidden rounded-[40px] group">
+                <Link
+                    href={`/news/${first.id}`}
+                    className="relative w-[68%] min-h-[780px] overflow-hidden rounded-[40px] group block cursor-pointer"
+                >
                     <Image
                         src={first.image}
                         alt="News"
@@ -32,10 +48,7 @@ export const NewsSection = () => {
                     {/* Оверлей */}
                     <div className="absolute bottom-5 left-5 right-5 max-w-[367px]">
                         <div className="flex flex-col gap-5">
-                            <span className="w-fit px-4 py-1 text-[11px] font-medium bg-background hover:bg-accent-quaternary transition-all duration-300 text-secondary rounded-full border border-accent-quaternary">
-                                {first.badge}
-                            </span>
-
+                            <Badge badge={first.badge} />
                             <div className="rounded-[20px] bg-white p-5 pb-15 shadow-sm fade-out-in">
                                 <h3 className="lg:text-[22px] text-xl font-bold leading-snug text-accent-secondary">
                                     {first.title}
@@ -46,24 +59,23 @@ export const NewsSection = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-
-
+                </Link>
                 {/* Правая колонка */}
                 <div className="grid">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 content-between">
                         {rest.map((item, index) => (
-                            <NewsCard
+                            <NewsCardSmall
                                 key={item.id}
                                 item={item}
                                 fallbackImage={fallbackImage}
                                 withZoom={index === 0}
+                                href={`/news/${item.id}`}
                             />
                         ))}
                     </div>
                 </div>
 
             </div>
-        </section>
+        </section >
     )
 }

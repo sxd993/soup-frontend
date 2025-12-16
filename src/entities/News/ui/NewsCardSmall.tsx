@@ -1,20 +1,23 @@
 "use client"
 
+import Link from "next/link"
 import Image from "next/image"
 import { NewsItem } from "../model/types"
 import { useNewsCardImage } from "../model/useNewsCardImage"
+import { Badge } from "@/shared/ui/Badge"
 
-type NewsCardProps = {
+type NewsCardSmallProps = {
     item: NewsItem
     fallbackImage: string
     featured?: boolean
     withZoom?: boolean
+    href?: string
 }
 
-export const NewsCard = ({ item, fallbackImage, withZoom = false }: NewsCardProps) => {
+export const NewsCardSmall = ({ item, fallbackImage, withZoom = false, href }: NewsCardSmallProps) => {
     const { currentImage, handleMouseEnter, handleMouseLeave } = useNewsCardImage(item, withZoom)
 
-    return (
+    const card = (
         <article className="flex flex-col h-full max-w-[400px] min-h-[350px] overflow-hidden">
             {/* Картинка */}
             <div
@@ -29,17 +32,30 @@ export const NewsCard = ({ item, fallbackImage, withZoom = false }: NewsCardProp
                     className={`object-cover transition-all duration-300 ease-in-out ${withZoom ? 'hover:scale-117' : ''}`}
                 />
 
-                <span className="absolute top-4 left-3 px-4 py-1 text-[11px] font-medium bg-background hover:bg-accent-tertiary text-secondary rounded-full border border-accent-quaternary">
-                    {item.badge}
+                <span className="absolute top-4 left-3">
+                    <Badge badge={item.badge}/>
                 </span>
             </div>
 
             {/* Текст */}
             <div className="mt-3">
-                <h4 className="text-base lg:text-lg font-bold leading-tight text-secondary">
+                <h4 className="text-base font-semibold leading-[120%] text-secondary">
                     {item.title}
                 </h4>
             </div>
         </article>
+    )
+
+    if (!href) {
+        return card
+    }
+
+    return (
+        <Link
+            href={href}
+            className="block h-full transition-transform duration-200 hover:-translate-y-1 cursor-pointer"
+        >
+            {card}
+        </Link>
     )
 }

@@ -2,8 +2,10 @@ export interface NewsItem {
     id: string;
     image: string;
     imageAlt: string;
-    hoverImage?: string;
+    secondImage?: string;
     badge: string;
     title: string;
     description?: string;
+    date?: string;
+    content?: string[];
 }

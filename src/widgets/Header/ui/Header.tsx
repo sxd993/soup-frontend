@@ -7,14 +7,18 @@ import { PeopleIcon } from '@/shared/ui/icons/index'
 import { MenuIcon } from '@/shared/ui/icons/index'
 import { NavigationLinks } from './NavigationLinks'
 import { SearchInput } from './SearchInput'
+import { usePathname } from 'next/navigation'
 
 export const Header = () => {
+  const isHomePage = usePathname() === '/'
   return (
-    <div className="px-12">
-      <header className="w-full flex justify-between items-center mt-10 rounded-[50px] bg-white pr-5 relative z-20">
+    <div className={`${isHomePage && 'px-5'}`}>
+      <header className="w-full flex justify-between items-center mt-5 rounded-[50px] bg-white pr-5 relative z-20">
         {/* Левая часть: логотип и навигация */}
         <div className="flex items-center">
-          <MainIcon className="py-3" />
+          <Link href={'/'}>
+            <MainIcon className="py-3" />
+          </Link>
           <NavigationLinks />
         </div>
         {/* Правая часть: поиск, профиль и меню */}
