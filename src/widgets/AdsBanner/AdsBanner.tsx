@@ -6,7 +6,7 @@ import Image from "next/image"
 
 export const AdsBanner = () => {
     return (
-        <div className="p-3 max-w-[250px] w-full h-full bg-primary rounded-[20px] flex flex-col gap-4 relative">
+        <div className="p-3 max-w-[200px] w-full h-full bg-primary rounded-[20px] flex flex-col gap-4 relative">
             {/* Верхняя часть: метка "Реклама" и кнопка */}
             <div className="flex items-start justify-between">
                 <span className="text-white opacity-50 font-medium text-xs">Реклама</span>
@@ -21,12 +21,13 @@ export const AdsBanner = () => {
             </h4>
 
             {/* Изображение */}
-            <div className="rounded-[10px] overflow-hidden mt-2">
+            <div className="rounded-[10px] overflow-hidden mt-2 flex justify-center">
                 <Image
                     src={IMAGES.hero.advertisement}
                     alt="Advertisement"
                     width={200}
                     height={295}
+                    className="object-contain"
                 />
             </div>
         </div>

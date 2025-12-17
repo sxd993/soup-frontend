@@ -17,9 +17,14 @@ export const FAQSection = () => {
                 <div className="md:w-1/5">
                     <SectionTitle title={
                         <>
-                            Часто<br />
-                            задаваемые<br />
-                            вопросы
+                            <span className="block md:hidden whitespace-nowrap">
+                                Часто задаваемые вопросы
+                            </span>
+                            <span className="hidden md:block">
+                                Часто<br />
+                                задаваемые<br />
+                                вопросы
+                            </span>
                         </>
                     } />
                 </div>

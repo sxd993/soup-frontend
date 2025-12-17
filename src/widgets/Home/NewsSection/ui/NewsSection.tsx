@@ -11,6 +11,7 @@ import Link from "next/link"
 export const NewsSection = () => {
     const fallbackImage = IMAGES.hero.background
     const [first, ...rest] = NEWS
+    const mobileRest = rest.slice(0, 2)
 
     // Текущий путь
     const currentPath = useCurrentPath()
@@ -21,9 +22,11 @@ export const NewsSection = () => {
             {/* Шапка секции */}
             <div className={`flex justify-between w-full ${!isNewsPage ? 'mt-25 mb-10' : 'mb-5'}`}>
                 {!isNewsPage && (
-                    <div className="flex justify-between w-full">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 w-full">
                         <SectionTitle title="Новости" />
-                        <ViewAllButton href="/news" text="Смотреть все" />
+                        <div className="hidden sm:block">
+                            <ViewAllButton href="/news" text="Смотреть все" />
+                        </div>
                     </div>
                 )
                 }
@@ -34,7 +37,7 @@ export const NewsSection = () => {
                 {/* Левая колонка */}
                 <Link
                     href={`/news/${first.id}`}
-                    className="relative w-[68%] min-h-[780px] overflow-hidden rounded-[40px] group block cursor-pointer"
+                    className="relative w-full min-h-[780px] overflow-hidden rounded-[40px] group block cursor-pointer"
                 >
                     <Image
                         src={first.image}
@@ -61,8 +64,20 @@ export const NewsSection = () => {
                     </div>
                 </Link>
                 {/* Правая колонка */}
-                <div className="grid">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 content-between">
+                <div className="grid w-full">
+                    <div className="grid grid-cols-1 gap-5 sm:hidden justify-items-center">
+                        {mobileRest.map((item, index) => (
+                            <NewsCardSmall
+                                key={item.id}
+                                item={item}
+                                fallbackImage={fallbackImage}
+                                withZoom={index === 0}
+                                href={`/news/${item.id}`}
+                            />
+                        ))}
+                    </div>
+
+                    <div className="hidden sm:grid grid-cols-2 gap-5 content-between justify-items-center">
                         {rest.map((item, index) => (
                             <NewsCardSmall
                                 key={item.id}
@@ -76,6 +91,12 @@ export const NewsSection = () => {
                 </div>
 
             </div>
+
+            {!isNewsPage && (
+                <div className="mt-6 sm:hidden">
+                    <ViewAllButton href="/news" text="Смотреть все" />
+                </div>
+            )}
         </section >
     )
 }

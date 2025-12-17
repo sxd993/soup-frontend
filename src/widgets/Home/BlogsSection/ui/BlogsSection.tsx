@@ -5,24 +5,50 @@ export const BlogsSection = () => {
 
     const firstBlog = BLOGS[0];
     const otherBlogs = BLOGS.slice(1);
+    const mobileBlogs = BLOGS.slice(0, 3);
+    const smBlogs = BLOGS.slice(1, 3);
 
     return (
         <section className="mb-15">
             {/* Шапка секции*/}
-            <div className="flex items-center justify-between mt-25 mb-10">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-25 mb-10">
                 <SectionTitle title="Интересное в блогах" />
-                <ViewAllButton href="/contests" text="Все блоги" />
+                <div className="hidden sm:block">
+                    <ViewAllButton href="/contests" text="Все блоги" />
+                </div>
             </div>
             {/* Основной контент секции*/}
             <div>
-                {/* Верхние статьи*/}
-                <TopBlogCardSection firstBlog={firstBlog} />
-                {/* Нижние статьи*/}
-                <div className="grid grid-cols-3 content-between mt-8 w-full h-full gap-5">
-                    {otherBlogs.map((blog) => (
+                {/* Mobile: просто 3 карточки в одну колонку */}
+                <div className="grid grid-cols-1 gap-5 sm:hidden">
+                    {mobileBlogs.map((blog) => (
                         <BlogCard key={blog.id} blog={blog} />
                     ))}
                 </div>
+
+                {/* SM: TopBlog + 2 карточки снизу */}
+                <div className="hidden sm:block lg:hidden">
+                    <TopBlogCardSection firstBlog={firstBlog} />
+                    <div className="grid grid-cols-2 content-between mt-8 w-full h-full gap-5">
+                        {smBlogs.map((blog) => (
+                            <BlogCard key={blog.id} blog={blog} />
+                        ))}
+                    </div>
+                </div>
+
+                {/* MD+: TopBlog + 3 карточки снизу */}
+                <div className="hidden lg:block">
+                    <TopBlogCardSection firstBlog={firstBlog} />
+                    <div className="grid grid-cols-3 content-between mt-8 w-full h-full gap-5">
+                        {otherBlogs.map((blog) => (
+                            <BlogCard key={blog.id} blog={blog} />
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <div className="mt-6 sm:hidden">
+                <ViewAllButton href="/contests" text="Все блоги" />
             </div>
         </section>
     )

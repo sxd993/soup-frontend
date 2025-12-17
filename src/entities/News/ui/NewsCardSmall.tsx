@@ -23,7 +23,7 @@ export const NewsCardSmall = ({
     className,
 }: NewsCardSmallProps) => {
     const { currentImage, handleMouseEnter, handleMouseLeave } = useNewsCardImage(item, withZoom)
-    const baseClasses = "flex flex-col h-full max-w-[275px] overflow-hidden"
+    const baseClasses = "flex flex-col h-full max-w-[480px] overflow-hidden"
     const articleClassName = className ? `${baseClasses} ${className}` : baseClasses
 
     const card = (
