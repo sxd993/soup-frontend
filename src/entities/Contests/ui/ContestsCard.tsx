@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { RightArrow } from "@/shared/ui/icons/RighArrow";
+import Image from 'next/image';
 import { ContestsTypes } from "../model/ContestsTypes";
 
 type ContestsCardProps = {
@@ -11,9 +12,11 @@ export const ContestsCard = ({ contest }: ContestsCardProps) => {
         <div className="group flex flex-col justify-between gap-3 rounded-[20px] bg-white p-3 h-full">
             {/* Изображение и заголовок */}
             <div className="flex flex-col gap-3">
-                <img 
+                <Image 
                     src={contest.image} 
                     alt={contest.title}
+                    width={387}
+                    height={200}
                     className="rounded-[20px]"
                 />
                 <h3 className="lg:text-2xl text-sm lg:font-bold font-semibold leading-tight text-secondary">
@@ -22,7 +25,7 @@ export const ContestsCard = ({ contest }: ContestsCardProps) => {
             </div>
             {/* Ссылка и кнопка со стрелкой */}
             <div className="flex items-center justify-between">
-                <span className="text-sm text-accent-quinary lg:font-semibold font-regular">
+                <span className="text-sm text-accent-quinary lg:font-semibold font-normal leading-[120%]">
                     {contest.link}
                 </span>
                 <Link href="#">

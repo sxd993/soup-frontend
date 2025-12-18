@@ -6,14 +6,14 @@ export const Footer = () => {
   const [privacy, offer, rights] = FOOTER_META_LINKS
 
   return (
-    <footer className="bg-secondary text-[#F5F2EB] mt-16">
+    <footer className="bg-secondary text-white mt-16">
       <div className="max-w-[1200px] mx-auto px-4 lg:px-0 py-14 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-3 items-start gap-12 lg:gap-20 text-left">
-          <div className="flex flex-col gap-6 flex-shrink-0 h-full">
+          <div className="flex flex-col gap-6 shrink-0 h-full">
             <MainIcon2 />
             {privacy ? (
               <span
-                className="mt-auto text-[14px] font-normal leading-[150%]"
+                className="mt-70 text-sm text-[#EBE7DF]! font-normal leading-[120%]"
                 style={{ fontFamily: 'Roboto Flex, var(--font-family-sans)' }}
               >
                 {privacy.label}
@@ -30,7 +30,7 @@ export const Footer = () => {
             </p>
             {offer ? (
               <span
-                className="mt-auto text-[14px] font-normal leading-[150%]"
+                className="mt-auto text-sm text-[#EBE7DF]! font-normal leading-[120%]"
                 style={{ fontFamily: 'Roboto Flex, var(--font-family-sans)' }}
               >
                 {offer.label}
@@ -61,7 +61,7 @@ export const Footer = () => {
             ))}
             {rights ? (
               <span
-                className="mt-auto text-[14px] font-normal leading-[150%]"
+                className="mt-auto text-sm text-[#EBE7DF]! font-normal leading-[120%]"
                 style={{ fontFamily: 'Roboto Flex, var(--font-family-sans)' }}
               >
                 {rights.label}

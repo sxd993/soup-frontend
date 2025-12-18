@@ -1,7 +1,7 @@
 export { MainIcon } from './Main'
 export { MainIcon2 } from './MainIcon2'
 export { SearchIcon } from './Search'
-export { PeopleIcon } from './People'
+export { PeopleIcon } from './Person'
 export { MenuIcon } from './Menu'
 export { RightArrow } from './RighArrow'
 export { ArrowDown } from './ArrowDown'

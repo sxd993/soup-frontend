@@ -13,7 +13,7 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
     return (
         <>
             {/* Карточка блога */}
-            <article className="flex-1 border border-[#EFEFEF] rounded-2xl flex flex-col justify-between gap-2">
+            <article className="flex-1 border border-[#EFEFEF] rounded-2xl flex flex-col justify-between gap-3">
                 {/* Фотка для нижних блогов */}
                 {blog.image && (
                     <div>
@@ -36,9 +36,9 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
                 </div>
 
                 {/* Заголовок */}
-                <h3 className="text-xl font-semibold text-secondary leading-tight">{title}</h3>
+                <h3 className="text-xl font-semibold text-secondary leading-[110%]">{title}</h3>
                 {/* Описание */}
-                <p className="text-base text-secondary-quinary leading-relaxed">{description}</p>
+                <p className="text-base text-secondary-quinary leading-[140%]">{description}</p>
 
                 {/* Социальные взаимодействия */}
                 <div className="flex items-center gap-4 text-sm text-accent-quinary">

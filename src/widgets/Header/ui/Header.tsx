@@ -3,10 +3,10 @@
 import Link from 'next/link'
 import { MainIcon } from '@/shared/ui/icons/index'
 import { SearchIcon } from '@/shared/ui/icons/index'
-import { PeopleIcon } from '@/shared/ui/icons/index'
 import { MenuIcon } from '@/shared/ui/icons/index'
 import { NavigationLinks } from './NavigationLinks'
 import { SearchInput } from './SearchInput'
+import { PersonIcon } from '@/shared/ui/icons/Person'
 
 export const Header = () => {
   return (
@@ -21,11 +21,11 @@ export const Header = () => {
       {/* Правая часть: поиск, профиль и меню */}
       <div className="flex items-center gap-3 sm:ml-4">
         <Link href="/search" className="block sm:hidden md:block!">
-          <SearchIcon className="w-11 h-11 md:w-8 md:h-8 bg-[#EBE7DF] rounded-full" />
+          <SearchIcon />
         </Link>
         <SearchInput />
         <Link href="/profile" className="hidden sm:block">
-          <PeopleIcon className="w-11 h-11 md:w-8 md:h-8 bg-background rounded-full" />
+          <PersonIcon />
         </Link>
         {/* Меню только на мобильных */}
         <Link href="/menu" className="block md:hidden">

@@ -1,18 +1,15 @@
-
 import { IMAGES } from "@/shared/config"
-import { RightArrow } from "@/shared/ui/icons"
+import { RightArrowHome } from "@/shared/ui/icons/RightArrowHome"
 import Image from "next/image"
 
 
 export const AdsBanner = () => {
     return (
-        <div className="p-3 max-w-[200px] w-full h-full bg-primary rounded-[20px] flex flex-col gap-4 relative">
+        <div className="p-3 max-w-[220px] w-full h-full bg-primary rounded-[20px] flex flex-col gap-1 relative">
             {/* Верхняя часть: метка "Реклама" и кнопка */}
-            <div className="flex items-start justify-between">
-                <span className="text-white opacity-50 font-medium text-xs">Реклама</span>
-                <button className="w-8 h-8 bg-white hover:bg-accent-tertiary transition-all duration-300 rounded-full flex items-center justify-center">
-                    <RightArrow />
-                </button>
+            <div className="flex items-center justify-between">
+                <p className="text-white opacity-50 font-medium text-xs items-center">Реклама</p>
+                <RightArrowHome />
             </div>
 
             {/* Заголовок */}
