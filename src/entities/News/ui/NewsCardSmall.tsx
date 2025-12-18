@@ -27,7 +27,7 @@ export const NewsCardSmall = ({
         <article className='flex flex-col'>
             {/* Картинка */}
             <div
-                className="relative w-full aspect-square rounded-2xl overflow-hidden max-h-60"
+                className="relative w-full aspect-square rounded-2xl overflow-hidden max-h-48"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
@@ -45,7 +45,10 @@ export const NewsCardSmall = ({
 
             {/* Текст */}
             <div className="mt-3">
-                <h4 className="text-base font-bold leading-[120%] text-secondary text-wrap">
+                <h4
+                    className="text-lg font-bold leading-[120%] text-secondary text-wrap"
+                    style={{ fontFamily: 'Manrope, var(--font-family-sans)' }}
+                >
                     {item.title}
                 </h4>
             </div>

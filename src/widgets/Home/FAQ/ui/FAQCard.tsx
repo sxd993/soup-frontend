@@ -23,7 +23,10 @@ export const FAQCard = ({ item, isOpen, onToggle }: FAQCardProps) => {
                 className="flex items-start justify-between gap-4 cursor-pointer relative"
                 onClick={handleToggle}
             >
-                <h3 className="lg:text-[22px] font-bold text-secondary flex-1">
+                <h3
+                    className="text-[22px] font-bold leading-[105%] text-secondary flex-1 mb-3"
+                    style={{ fontFamily: 'Manrope, var(--font-family-sans)' }}
+                >
                     {item.question}
                 </h3>
                 <button

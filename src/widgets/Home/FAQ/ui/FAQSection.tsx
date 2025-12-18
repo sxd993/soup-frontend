@@ -15,18 +15,21 @@ export const FAQSection = () => {
         <section className="mb-15 mt-25">
             <div className="flex flex-col md:flex-row gap-10 md:gap-15">
                 <div className="md:w-1/5">
-                    <SectionTitle title={
-                        <>
-                            <span className="block md:hidden whitespace-nowrap">
-                                Часто задаваемые вопросы
-                            </span>
-                            <span className="hidden md:block">
-                                Часто<br />
-                                задаваемые<br />
-                                вопросы
-                            </span>
-                        </>
-                    } />
+                    <SectionTitle
+                        className="text-[28px] leading-[110%] font-bold"
+                        title={
+                            <>
+                                <span className="block md:hidden whitespace-nowrap">
+                                    Часто задаваемые<br />вопросы
+                                </span>
+                                <span className="hidden md:block">
+                                    Часто<br />
+                                    задаваемые<br />
+                                    вопросы
+                                </span>
+                            </>
+                        }
+                    />
                 </div>
 
                 <div className="md:w-4/5">

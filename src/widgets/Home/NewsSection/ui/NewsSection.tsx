@@ -37,13 +37,13 @@ export const NewsSection = () => {
                 {/* Левая колонка */}
                 <Link
                     href={`/news/${first.id}`}
-                    className="relative w-full min-h-[400px] overflow-hidden rounded-[40px] group block cursor-pointer"
+                    className="relative w-full min-h-[480px] overflow-hidden rounded-[40px] group block cursor-pointer"
                 >
                     <Image
                         src={first.image}
                         alt="News"
                         fill
-                        className="object-cover hover:scale-107 transition-all duration-300 ease-in-out max-h-[400px] lg:max-h-none"
+                        className="object-cover hover:scale-107 transition-all duration-300 ease-in-out max-h-[480px] lg:max-h-none"
                         placeholder="blur"
                         blurDataURL={fallbackImage}
                     />
@@ -56,7 +56,7 @@ export const NewsSection = () => {
                                 <h3 className="lg:text-[22px] text-xl font-bold leading-snug text-accent-secondary">
                                     {first.title}
                                 </h3>
-                                <p className="mt-2 text-[16px] font-medium text-secondary">
+                                <p className="mt-2 text-[16px] font-normal text-secondary">
                                     {first.description}
                                 </p>
                             </div>
