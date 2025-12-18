@@ -54,7 +54,7 @@ export default function NewsDetailPage({ params }: NewsPageParams) {
                 </article>
             </div>
 
-            <aside className="w-full lg:max-w-[360px] flex-shrink-0">
+            <aside className="w-full lg:max-w-[360px] shrink-0">
                 <h3 className="text-lg font-semibold text-secondary mb-4">Другие новости</h3>
                 <div className="grid gap-5">
                     {relatedNews.map((item, index) => (
