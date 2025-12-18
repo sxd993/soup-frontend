@@ -4,7 +4,7 @@ import { NAVIGATION_LINKS } from '../model/const'
 // Компонент навигационных ссылок
 export const NavigationLinks = () => {
   return (
-    <div className="hidden md:flex pl-5 gap-10 text-center items-center text-nowrap">
+    <div className="hidden lg:flex pl-5 gap-8 text-center items-center text-nowrap">
       {NAVIGATION_LINKS.map((link) => (
         <Link
           key={link.label}

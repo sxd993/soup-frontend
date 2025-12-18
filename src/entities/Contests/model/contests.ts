@@ -2,7 +2,7 @@ import { ContestsTypes } from './ContestsTypes';
 
 export const CONTESTS: ContestsTypes[] = [
     {
-        title: 'Green Roof Challenge 2025',
+        title: 'Конкурс Green Roof Challenge 2025',
         link: 'aenguild.org',
         image: 'https://s3.twcstorage.ru/4b615622-soup/contests/first.png',
     },

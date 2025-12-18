@@ -9,16 +9,17 @@ type ContestsCardProps = {
 
 export const ContestsCard = ({ contest }: ContestsCardProps) => {
     return (
-        <div className="group flex flex-col justify-between gap-3 rounded-[20px] bg-white p-3 h-full">
+        <div className="group flex flex-col justify-between gap-3 rounded-[20px] bg-white p-3">
             {/* Изображение и заголовок */}
             <div className="flex flex-col gap-3">
-                <Image 
-                    src={contest.image} 
-                    alt={contest.title}
-                    width={387}
-                    height={200}
-                    className="rounded-[20px]"
-                />
+                <div className='relative w-full aspect-square rounded-2xl overflow-hidden max-h-[159px]'>
+                    <Image
+                        src={contest.image}
+                        alt={contest.title}
+                        fill
+                        className="rounded-[20px]"
+                    />
+                </div>
                 <h3 className="lg:text-2xl text-sm lg:font-bold font-semibold leading-tight text-secondary">
                     {contest.title}
                 </h3>
@@ -34,6 +35,6 @@ export const ContestsCard = ({ contest }: ContestsCardProps) => {
                     </button>
                 </Link>
             </div>
-        </div>   
+        </div>
     );
 };

@@ -32,18 +32,18 @@ export const NewsSection = () => {
                 }
             </div>
             {/* Контент */}
-            <div className="flex flex-col md:flex-row gap-4.5 items-stretch">
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-4.5 items-stretch">
 
                 {/* Левая колонка */}
                 <Link
                     href={`/news/${first.id}`}
-                    className="relative w-full min-h-[780px] overflow-hidden rounded-[40px] group block cursor-pointer"
+                    className="relative w-full min-h-[400px] overflow-hidden rounded-[40px] group block cursor-pointer"
                 >
                     <Image
                         src={first.image}
                         alt="News"
                         fill
-                        className="object-cover hover:scale-107 transition-all duration-300 ease-in-out"
+                        className="object-cover hover:scale-107 transition-all duration-300 ease-in-out max-h-[400px] lg:max-h-none"
                         placeholder="blur"
                         blurDataURL={fallbackImage}
                     />
@@ -63,7 +63,7 @@ export const NewsSection = () => {
                         </div>
                     </div>
                 </Link>
-                {/* Правая колонка */}
+                {/*  колонка */}
                 <div className="grid w-full">
                     <div className="grid grid-cols-1 gap-5 sm:hidden justify-items-center">
                         {mobileRest.map((item, index) => (

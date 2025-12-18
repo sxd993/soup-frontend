@@ -20,17 +20,14 @@ export const NewsCardSmall = ({
     fallbackImage,
     withZoom = false,
     href,
-    className,
 }: NewsCardSmallProps) => {
     const { currentImage, handleMouseEnter, handleMouseLeave } = useNewsCardImage(item, withZoom)
-    const baseClasses = "flex flex-col h-full max-w-[480px] overflow-hidden"
-    const articleClassName = className ? `${baseClasses} ${className}` : baseClasses
 
     const card = (
-        <article className={articleClassName}>
+        <article className='flex flex-col'>
             {/* Картинка */}
             <div
-                className="relative w-full aspect-square rounded-2xl overflow-hidden"
+                className="relative w-full aspect-square rounded-2xl overflow-hidden max-h-60"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
@@ -48,7 +45,7 @@ export const NewsCardSmall = ({
 
             {/* Текст */}
             <div className="mt-3">
-                <h4 className="text-base font-semibold leading-[120%] text-secondary">
+                <h4 className="text-base font-bold leading-[120%] text-secondary text-wrap">
                     {item.title}
                 </h4>
             </div>
