@@ -1,5 +1,5 @@
 import { BlogsItems } from './types';
-import { MockLogo } from '../ui/MockLogo';
+import { MockLogo } from '../../../shared/ui/MockLogo';
 
 export const BLOGS: BlogsItems[] = [
     {

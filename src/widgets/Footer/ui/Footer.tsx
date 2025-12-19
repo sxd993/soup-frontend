@@ -7,7 +7,7 @@ export const Footer = () => {
 
   return (
     <footer className="bg-secondary text-white mt-16">
-      <div className="max-w-[1200px] mx-auto px-4 lg:px-0 pt-6 pb-14 lg:py-20">
+      <div className="max-w-[1200px] mx-auto px-10 lg:px-0 pt-6 pb-14 lg:py-20">
         {/* Мобилка */}
         <div className="flex flex-col gap-10 md:hidden">
           <MainIcon2 />

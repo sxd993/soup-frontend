@@ -1,5 +1,5 @@
-import { BlogsItems } from "../model/types";
-import { BlogCard } from "./BlogCard";
+import { BlogsItems } from "../../../../entities/Blogs/model/types";
+import { TopBlogCard } from "../../../../entities/Blogs/ui/TopBlogCard";
 import Image from "next/image";
 
 
@@ -19,7 +19,7 @@ export const TopBlogCardSection = ({ firstBlog }: TopBlogCardSectionProps) => {
                     className="max-w-full h-auto"
                 />
             </div>
-            <BlogCard blog={firstBlog} />
+            <TopBlogCard blog={firstBlog} />
         </div>
     )
 }
