@@ -13,7 +13,7 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
     return (
         <>
             {/* Карточка блога */}
-            <article className="flex-1 border border-[#EFEFEF] rounded-2xl flex flex-col justify-between gap-3">
+            <article className="flex-1 rounded-2xl flex flex-col justify-between gap-4">
                 <div className="flex items-center justify-between">
                     {/* Лого и название компании */}
                     <div className="flex items-center gap-2">

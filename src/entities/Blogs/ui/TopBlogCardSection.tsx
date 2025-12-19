@@ -9,7 +9,7 @@ interface TopBlogCardSectionProps {
 
 export const TopBlogCardSection = ({ firstBlog }: TopBlogCardSectionProps) => {
     return (
-        <div className="flex flex-col md:flex-row gap-5 items-center md:items-stretch">
+        <div className="flex flex-col lg:flex-row gap-5 items-center md:items-stretch">
             {/* Изображение */}
             <div className="w-full flex justify-center md:w-auto">
                 <Image

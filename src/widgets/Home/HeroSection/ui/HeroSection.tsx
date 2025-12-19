@@ -25,7 +25,7 @@ export const HeroSection = () => {
               <span className="whitespace-nowrap">для благоустройства</span>
             </h1>
             {/* Кнопка */}
-            <div className='flex-1 flex items-center mb-20 md:mb-0 lg:items-end'>
+            <div className='flex-1 flex items-start mb-20 md:mb-0 lg:items-end'>
               <Link href="/" className="bg-white hover:bg-accent-tertiary transition-all duration-300 text-secondary font-semibold text-base px-10 py-3 rounded-[50px]">
                 Смотреть всех
               </Link>

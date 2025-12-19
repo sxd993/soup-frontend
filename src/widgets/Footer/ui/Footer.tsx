@@ -102,7 +102,7 @@ export const Footer = () => {
             ))}
             {rights ? (
               <span
-                className="mt-auto text-sm text-[#EBE7DF] font-normal leading-[120%]"
+                className="mt-15 text-sm text-[#EBE7DF] font-normal leading-[120%]"
                 style={{ fontFamily: 'Roboto Flex, var(--font-family-sans)' }}
               >
                 {rights.label}
