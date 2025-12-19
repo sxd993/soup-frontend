@@ -10,7 +10,7 @@ export const BottomNewsSection = () => {
             <div className="h-full">
                 <AdsBanner />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 lg:col-span-3 gap-6 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:col-span-3 gap-6 items-stretch">
                 {NEWS.slice(1, 4).map((n, index) => (
                     <NewsCardSmall
                         key={n.id}

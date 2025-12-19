@@ -18,14 +18,13 @@ export const FAQCard = ({ item, isOpen, onToggle }: FAQCardProps) => {
     })
 
     return (
-        <div className={`bg-white py-4 px-5 relative ${borderRadius}`} style={cardStyle}>
+        <div className={`bg-white py-4.5 px-5 relative ${borderRadius}`} style={cardStyle}>
             <div
                 className="flex items-start justify-between gap-4 cursor-pointer relative"
                 onClick={handleToggle}
             >
                 <h3
-                    className="text-[22px] font-bold leading-[105%] text-secondary flex-1 mb-3"
-                    style={{ fontFamily: 'Manrope, var(--font-family-sans)' }}
+                    className={`text-[22px] font-bold leading-[105%] text-secondary flex-1`}
                 >
                     {item.question}
                 </h3>

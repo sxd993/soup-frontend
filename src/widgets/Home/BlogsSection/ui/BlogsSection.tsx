@@ -11,23 +11,23 @@ export const BlogsSection = () => {
     return (
         <section className="mb-15">
             {/* Шапка секции*/}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-25 mb-10">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mt-25 mb-10">
                 <SectionTitle title="Интересное в блогах" />
-                <div className="hidden sm:block">
+                <div className="hidden md:block">
                     <ViewAllButton href="/contests" text="Все блоги" />
                 </div>
             </div>
             {/* Основной контент секции*/}
             <div>
                 {/* Mobile: просто 3 карточки в одну колонку */}
-                <div className="grid grid-cols-1 gap-5 sm:hidden">
+                <div className="grid grid-cols-1 gap-5 md:hidden">
                     {mobileBlogs.map((blog) => (
                         <BlogCard key={blog.id} blog={blog} />
                     ))}
                 </div>
 
-                {/* SM: TopBlog + 2 карточки снизу */}
-                <div className="hidden sm:block lg:hidden">
+                {/* md: TopBlog + 2 карточки снизу */}
+                <div className="hidden md:block lg:hidden">
                     <TopBlogCardSection firstBlog={firstBlog} />
                     <div className="grid grid-cols-2 content-between mt-8 w-full h-full gap-5">
                         {smBlogs.map((blog) => (
@@ -47,7 +47,7 @@ export const BlogsSection = () => {
                 </div>
             </div>
 
-            <div className="mt-6 sm:hidden">
+            <div className="mt-6 md:hidden">
                 <ViewAllButton href="/contests" text="Все блоги" />
             </div>
         </section>

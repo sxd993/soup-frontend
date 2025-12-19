@@ -22,9 +22,9 @@ export const NewsSection = () => {
             {/* Шапка секции */}
             <div className={`flex justify-between w-full ${!isNewsPage ? 'mt-25 mb-10' : 'mb-5'}`}>
                 {!isNewsPage && (
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 w-full">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 w-full">
                         <SectionTitle title="Новости" />
-                        <div className="hidden sm:block">
+                        <div className="hidden md:block">
                             <ViewAllButton href="/news" text="Смотреть все" />
                         </div>
                     </div>
@@ -65,7 +65,7 @@ export const NewsSection = () => {
                 </Link>
                 {/*  колонка */}
                 <div className="grid w-full">
-                    <div className="grid grid-cols-1 gap-5 sm:hidden justify-items-center">
+                    <div className="grid grid-cols-1 gap-5 md:hidden justify-items-center">
                         {mobileRest.map((item, index) => (
                             <NewsCardSmall
                                 key={item.id}
@@ -77,7 +77,7 @@ export const NewsSection = () => {
                         ))}
                     </div>
 
-                    <div className="hidden sm:grid grid-cols-2 gap-5 content-between justify-items-center">
+                    <div className="hidden md:grid grid-cols-2 gap-5 content-between justify-items-center">
                         {rest.map((item, index) => (
                             <NewsCardSmall
                                 key={item.id}
@@ -93,7 +93,7 @@ export const NewsSection = () => {
             </div>
 
             {!isNewsPage && (
-                <div className="mt-6 sm:hidden">
+                <div className="mt-6 md:hidden">
                     <ViewAllButton href="/news" text="Смотреть все" />
                 </div>
             )}

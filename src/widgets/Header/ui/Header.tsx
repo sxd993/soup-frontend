@@ -19,16 +19,17 @@ export const Header = () => {
         <NavigationLinks />
       </div>
       {/* Правая часть: поиск, профиль и меню */}
-      <div className="flex items-center gap-3 sm:ml-4">
-        <Link href="/search" className="block sm:flex md:hidden">
-          <Search />
+      <div className="flex items-center gap-3 md:ml-4">
+        <Link href="/search" className="block md:hidden lg:block">
+          <Search className="bg-background rounded-[22px]" />
         </Link>
-        <SearchInput />
-        <Link href="/profile" className="hidden sm:block">
+        <div className="hidden md:block lg:hidden">
+          <SearchInput />
+        </div>
+        <Link href="/profile" className="hidden md:block">
           <Person />
         </Link>
-        {/* Меню только на мобильных */}
-        <Link href="/menu" className=" md:block hidden">
+        <Link href="/menu" className="block lg:hidden">
           <MenuIcon className="w-11 h-11 bg-background rounded-[22px]" />
         </Link>
       </div>

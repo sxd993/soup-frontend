@@ -18,14 +18,14 @@ export const HeroSection = () => {
       <div className="relative z-10 flex py-[5%] justify-between px-4 mt-20">
         {/* Контент + CTA */}
         <div className="flex-1 flex items-center justify-center lg:justify-center max-w-full">
-          <div className="h-full flex flex-col gap-6 justify-center items-center sm:items-start sm:justify-start">
-            <h1 className="text-white text-center sm:text-left text-2xl sm:text-4xl lg:text-5xl font-semibold lg:font-bold leading-tight">
+          <div className="h-full flex flex-col gap-6 justify-center items-center md:items-start md:justify-start">
+            <h1 className="text-white text-center md:text-left text-2xl md:text-4xl lg:text-5xl font-semibold lg:font-bold leading-tight">
               <span className="whitespace-nowrap">Найди подрядчика</span>
               <br />
               <span className="whitespace-nowrap">для благоустройства</span>
             </h1>
             {/* Кнопка */}
-            <div className='flex-1 flex items-center lg:items-end'>
+            <div className='flex-1 flex items-center mb-20 md:mb-0 lg:items-end'>
               <Link href="/" className="bg-white hover:bg-accent-tertiary transition-all duration-300 text-secondary font-semibold text-base px-10 py-3 rounded-[50px]">
                 Смотреть всех
               </Link>
@@ -35,7 +35,7 @@ export const HeroSection = () => {
           </div>
         </div>
         {/* Рекламный блок */}
-        <div className="hidden sm:flex flex-1 items-center justify-end">
+        <div className="hidden md:flex flex-1 items-center justify-end">
           <AdsBanner />
         </div>
       </div>

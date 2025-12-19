@@ -13,8 +13,8 @@ export const FAQSection = () => {
 
     return (
         <section className="mb-15 mt-25">
-            <div className="flex flex-col md:flex-row gap-10 md:gap-15">
-                <div className="md:w-1/5">
+            <div className="flex flex-col gap-10 md:gap-15">
+                <div className="lg:hidden">
                     <SectionTitle
                         className="text-[28px] leading-[110%] font-bold"
                         title={
@@ -22,30 +22,43 @@ export const FAQSection = () => {
                                 <span className="block md:hidden whitespace-nowrap">
                                     Часто задаваемые<br />вопросы
                                 </span>
-                                <span className="hidden md:block">
-                                    Часто<br />
-                                    задаваемые<br />
-                                    вопросы
+                                <span className="hidden md:inline whitespace-nowrap">
+                                    Часто задаваемые вопросы
                                 </span>
                             </>
                         }
                     />
                 </div>
 
-                <div className="md:w-4/5">
-                    <div className="flex flex-col">
-                        {FAQ_DATA.map((item, index) => {
-                            const props = cardProps[index]
-                            return (
-                                <div key={item.id} style={props.wrapperStyle}>
-                                    <FAQCard
-                                        item={item}
-                                        isOpen={props.isOpen}
-                                        onToggle={(isOpen) => handleToggle(index, isOpen)}
-                                    />
-                                </div>
-                            )
-                        })}
+                <div className="flex flex-col lg:flex-row gap-10 md:gap-15">
+                    <div className="hidden lg:block lg:w-1/5">
+                        <SectionTitle
+                            className="text-[28px] leading-[110%] font-bold"
+                            title={
+                                <span className="block">
+                                    Часто<br />
+                                    задаваемые<br />
+                                    вопросы
+                                </span>
+                            }
+                        />
+                    </div>
+
+                    <div className="lg:w-4/5">
+                        <div className="flex flex-col">
+                            {FAQ_DATA.map((item, index) => {
+                                const props = cardProps[index]
+                                return (
+                                    <div key={item.id} style={props.wrapperStyle}>
+                                        <FAQCard
+                                            item={item}
+                                            isOpen={props.isOpen}
+                                            onToggle={(isOpen) => handleToggle(index, isOpen)}
+                                        />
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -35,7 +35,7 @@ export const NEWS: NewsItem[] = [
         secondImage: 'https://s3.twcstorage.ru/4b615622-soup/news/%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D0%BA%D0%B0_%D1%83%D0%B2%D0%B5%D0%BB.png',
         imageAlt: 'Футбольное поле под мостом с оранжевыми строениями',
         badge: 'Спортивные комплексы',
-        title: '«Бруснике» пришлось потратить очень много времени на благоустройство dasdgasdgasgdgagdasgdgas lorem ipsumn dasd asd gfasdftg ashjdg ausdg yasg dhjagshj dgasjh gdhasjg djhasg hdgashjs gdgajhs gd',
+        title: '«Бруснике» пришлось потратить очень много времени на благоустройство',
         description: 'Футбольное поле под мостом превратили в уютный дворик с безопасным покрытием и подсветкой.',
         date: '9 ноября',
         content: [
