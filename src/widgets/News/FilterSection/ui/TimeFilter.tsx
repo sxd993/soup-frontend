@@ -1,24 +1,46 @@
 'use client';
 
-import { useFilters } from "../model/hooks/useFilters"
+import { useTimeFilters } from "../model/hooks/useFilters"
 import { SortIcon } from "@/shared/ui/icons/SortIcon"
+import { FilterMenu } from "./FilterMenu"
+import { TIME_BADGES } from "../model/const/timeBadges";
 
-const iconRotationClass = (isOpen: boolean) => `transition-transform ${isOpen ? "rotate-180" : ""}`
 
 export const TimeFilter = () => {
-    const { isTimeFilterOpen, toggleTimeFilter } = useFilters()
+    const {
+        isTimeFilterOpen,
+        toggleTimeFilter,
+        setTimeFilterOpen,
+        selectedTimeId,
+        setSelectedTime
+    } = useTimeFilters()
+    const selectedTime = TIME_BADGES.find((badge) => badge.id === selectedTimeId)
 
     return (
-        <div>
+        <div className="relative">
             <button
                 type="button"
                 className="flex gap-2 items-center"
                 aria-expanded={isTimeFilterOpen}
                 onClick={toggleTimeFilter}
             >
-                <p className="text-secondary font-semibold leading-[130%] text-sm">за все время</p>
-                <SortIcon className={iconRotationClass(isTimeFilterOpen)} />
+                <p className="text-secondary font-semibold leading-[130%] text-sm">
+                    {selectedTime?.title ?? "за все время"}
+                </p>
+                <SortIcon />
             </button>
+
+            {isTimeFilterOpen && (
+                <FilterMenu
+                    items={TIME_BADGES}
+                    selectedId={selectedTimeId}
+                    className="-right-20"
+                    onSelect={(id) => {
+                        setSelectedTime(id)
+                        setTimeFilterOpen(false)
+                    }}
+                />
+            )}
         </div>
     )
 }

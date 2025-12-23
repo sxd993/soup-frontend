@@ -1,9 +1,9 @@
-interface FiltersBadges {
+interface placeBadges {
     id: number,
     title: string
 }
 
-export const FILTERS_BADGES: FiltersBadges[] = [
+export const PLACE_BADGES: placeBadges[] = [
     {
         id: 1,
         title: 'Парки'
