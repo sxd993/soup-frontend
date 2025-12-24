@@ -5,7 +5,8 @@ import Image from "next/image"
 
 export const AdsBanner = () => {
     return (
-        <div className="p-3 max-w-[220px] w-full h-full bg-primary rounded-[20px] flex flex-col gap-1 relative">
+        <div className="px-8 py-4 bg-primary rounded-[20px] flex flex-col flex-1 justify-between">
+
             {/* Верхняя часть: метка "Реклама" и кнопка */}
             <div className="flex items-center justify-between">
                 <p className="text-white opacity-50 font-medium text-xs items-center">Реклама</p>
@@ -13,8 +14,13 @@ export const AdsBanner = () => {
             </div>
 
             {/* Заголовок */}
-            <h4 className="text-white text-sm font-semibold">
+            <h3 className="text-white text-xl font-bold leading-[115%]">
                 Комплексное благоустройство <br /> территорий
+            </h3>
+
+            {/* Описание */}
+            <h4 className="text-white text-sm font-semibold leading-[130%]">
+                Облагородим территорию вашего дома быстрее и лучше всех. Собственное производство
             </h4>
 
             {/* Изображение */}
@@ -22,9 +28,8 @@ export const AdsBanner = () => {
                 <Image
                     src={IMAGES.hero.advertisement}
                     alt="Advertisement"
-                    width={200}
-                    height={295}
-                    className="object-contain"
+                    width={288}
+                    height={261}
                 />
             </div>
         </div>
