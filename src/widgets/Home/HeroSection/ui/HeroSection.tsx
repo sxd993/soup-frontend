@@ -17,7 +17,7 @@ export const HeroSection = () => {
       {/* Общий контейнер */}
       <div className="relative z-10 flex py-[5%] justify-between px-4 mt-20">
         {/* Контент + CTA */}
-        <div className="w-full flex items-end justify-start max-w-full">
+        <div className="w-full flex items-end justify-center lg:justify-start max-w-full">
           <div className="h-full flex flex-col gap-6 justify-center items-center md:items-start md:justify-start">
             <h1 className="text-white text-center md:text-left text-2xl md:text-4xl lg:text-5xl font-semibold lg:font-bold leading-tight">
               <span className="whitespace-nowrap">Найди подрядчика</span>

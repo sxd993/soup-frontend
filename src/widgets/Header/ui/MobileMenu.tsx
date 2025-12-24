@@ -12,7 +12,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-10 bg-white md:bg-transparent lg:hidden">
+    <div className="fixed inset-0 z-10  md:bg-transparent lg:hidden">
       <div className="relative w-full bg-[#06352D] rounded-b-3xl md:px-20 px-5 md:pt-8 pt-3 pb-20 text-white">
         <div className="flex items-center justify-between">
           <MainIcon2 className="w-20 h-20 py-3" />
@@ -25,7 +25,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
             <CloseIcon />
           </button>
         </div>
-        <nav className="mt-15 flex flex-col text-lg font-semibold ml-3">
+        <nav className=" flex flex-col text-lg font-semibold ml-3">
           {MOBILE_MENU_LINKS.map((link) => (
             <Link
               key={link.label}
