@@ -1,13 +1,16 @@
 'use client'
 
-import { NEWS, NewsCardBig } from "@/entities"
+import { NEWS, NewsCardSmall } from "@/entities"
+import { IMAGES } from "@/shared/config"
 import { useCurrentPath } from "@/shared/hooks/useCurrentPath"
+import { Badge } from "@/shared/ui/Badge"
 import { SectionTitle, ViewAllButton } from "@/shared/ui/icons"
-import { BigNewCard } from "@/shared/ui/BigNewCard/ui/BigNewCard"
+import Image from "next/image"
+import Link from "next/link"
 
 export const NewsSection = () => {
-    const [, ...rest] = NEWS
-    const fallbackImage = 'https://s3.twcstorage.ru/4b615622-soup/hero/background.png'
+    const fallbackImage = IMAGES.hero.background
+    const [first, ...rest] = NEWS
     const mobileRest = rest.slice(0, 2)
 
     // Текущий путь
@@ -31,35 +34,57 @@ export const NewsSection = () => {
             {/* Контент */}
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-4.5 items-stretch">
 
-                {/*  большая карточка */}
-                <BigNewCard
-                />
+                {/* Левая колонка */}
+                <Link
+                    href={`/news/${first.id}`}
+                    className="relative w-full min-h-[480px] overflow-hidden rounded-[40px] group block cursor-pointer"
+                >
+                    <Image
+                        src={first.image}
+                        alt="News"
+                        fill
+                        className="object-cover hover:scale-107 transition-all duration-300 ease-in-out max-h-[480px] lg:max-h-none"
+                        placeholder="blur"
+                        blurDataURL={fallbackImage}
+                    />
+
+                    {/* Оверлей */}
+                    <div className="absolute bottom-5 left-5 right-5 max-w-[367px]">
+                        <div className="flex flex-col gap-5">
+                            <Badge badge={first.badge} />
+                            <div className="rounded-[20px] bg-white p-5 pb-15 shadow-sm fade-out-in">
+                                <h3 className="lg:text-[22px] text-xl font-bold leading-snug text-accent-secondary">
+                                    {first.title}
+                                </h3>
+                                <p className="mt-2 text-[16px] font-normal text-secondary">
+                                    {first.description}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
                 {/*  колонка */}
                 <div className="grid w-full">
-                    <div className="hidden md:grid grid-cols-1 gap-5  items-center">
+                    <div className="grid grid-cols-1 gap-5 md:hidden justify-items-center">
                         {mobileRest.map((item, index) => (
-                            <NewsCardBig
+                            <NewsCardSmall
                                 key={item.id}
                                 item={item}
                                 fallbackImage={fallbackImage}
-                                withDescription={false}
                                 withZoom={index === 0}
                                 href={`/news/${item.id}`}
-                                className="min-h-[320px]"
                             />
                         ))}
                     </div>
 
                     <div className="hidden md:grid grid-cols-2 gap-5 content-between justify-items-center">
                         {rest.map((item, index) => (
-                            <NewsCardBig
+                            <NewsCardSmall
                                 key={item.id}
                                 item={item}
                                 fallbackImage={fallbackImage}
-                                withDescription={false}
                                 withZoom={index === 0}
                                 href={`/news/${item.id}`}
-                                className="min-h-[320px] lg:min-h-[360px]"
                             />
                         ))}
                     </div>
