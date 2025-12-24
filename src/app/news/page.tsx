@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { NewsSection } from "@/widgets/Home/NewsSection";
-import { FilterSection, BottomNewsSection } from "@/widgets/News";
+import { FilterSection, ScrollNewsList } from "@/widgets/News";
+import { BigNewCard } from "@/shared/ui/BigNewCard/ui/BigNewCard";
 
 export const metadata: Metadata = {
     title: "Новости",
@@ -11,8 +11,10 @@ export default function NewsPage() {
     return (
         <div className="flex flex-col mt-10">
             <FilterSection />
-            <NewsSection />
-            <BottomNewsSection />
+            <div className="mt-6">
+                <BigNewCard />
+            </div>
+            <ScrollNewsList />
         </div>
     )
 }

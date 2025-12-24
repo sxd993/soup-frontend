@@ -1,2 +1,2 @@
-export { BottomNewsSection } from './BottowNewsSection/ui/BottomNewsSection';
+export { ScrollNewsList } from './ScrollNewsList/ui/ScrollNewsList';
 export { FilterSection } from './FilterSection/ui/FilterSection';

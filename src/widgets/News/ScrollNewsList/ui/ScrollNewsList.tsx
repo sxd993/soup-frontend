@@ -2,13 +2,13 @@ import { NEWS, NewsCardSmall } from "@/entities"
 import { IMAGES } from "@/shared/config"
 import { AdsBanner } from "@/widgets/AdsBanner/AdsBanner"
 
-export const BottomNewsSection = () => {
+export const ScrollNewsList = () => {
     const fallbackImage = IMAGES.hero.background
 
     return (
         <div className="w-full grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch mt-7 lg:mt-25 min-h-[350px]">
-            <div className="grid grid-cols-2 content-between gap-5">
-                <div className="h-full flex">
+            <div className="hidden md:grid grid-cols-2 content-between gap-5">
+                <div className="h-full block">
                     <AdsBanner />
                 </div>
                 <div className="md:flex md:flex-col">
