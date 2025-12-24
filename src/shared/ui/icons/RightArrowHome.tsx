@@ -1,4 +1,6 @@
-export const RightArrowHome = (props) => (
+import type { SVGProps } from 'react';
+
+export const RightArrowHome = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width={28}
     height={28}
@@ -14,4 +16,3 @@ export const RightArrowHome = (props) => (
     />
   </svg>
 );
-

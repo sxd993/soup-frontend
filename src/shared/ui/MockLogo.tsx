@@ -1,5 +1,6 @@
+import type { SVGProps } from 'react';
 
-export const MockLogo = (props) => (
+export const MockLogo = (props: SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -7,6 +8,7 @@ export const MockLogo = (props) => (
         height="40"
         fill="none"
         viewBox="0 0 40 40"
+        {...props}
     >
         <rect width="40" height="40" fill="#fff" rx="10"></rect>
         <rect width="40" height="40" fill="url(#pattern0_2176_29)" rx="10"></rect>
@@ -31,4 +33,3 @@ export const MockLogo = (props) => (
         </defs>
     </svg>
 );
-

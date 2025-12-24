@@ -1,4 +1,6 @@
-export const MainIcon2 = (props) => (
+import type { SVGProps } from 'react';
+
+export const MainIcon2 = (props: SVGProps<SVGSVGElement>) => (
     <svg
         width={64}
         height={61}

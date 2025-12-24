@@ -1,4 +1,6 @@
-export const SortIcon = (props) => (
+import type { SVGProps } from 'react';
+
+export const SortIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
         width={32}
         height={32}

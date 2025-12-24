@@ -1,4 +1,6 @@
-export const Search = (props) => (
+import type { SVGProps } from 'react';
+
+export const Search = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width={20}
     height={20}
