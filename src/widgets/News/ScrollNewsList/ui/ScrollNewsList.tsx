@@ -9,7 +9,7 @@ export const ScrollNewsList = () => {
         <div className="w-full grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch mt-7 lg:mt-25 min-h-[350px]">
             <div className="hidden md:grid grid-cols-2 content-between gap-5">
                 <div className="h-full block">
-                    <AdsBanner />
+                    <AdsBanner hasDescription={true} />
                 </div>
                 <div className="md:flex md:flex-col">
                     {NEWS.slice(1, 3).map((n, index) => (
