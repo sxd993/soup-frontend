@@ -1,13 +1,12 @@
 import { NewsCardSmall } from "@/entities"
 import { NewsItem } from "@/entities/News/model/types"
-import { AdsBanner } from "@/widgets/AdsBanner/AdsBanner"
+import { AdsBanner } from "@/entities/News/ui/AdsBanner"
 
 type SidePanelProps = {
     relatedNews: NewsItem[]
 }
 
 export function SidePanel({ relatedNews }: SidePanelProps) {
-    const visibleNews = relatedNews.filter((item) => !item.isAds)
 
     return (
         <aside className="w-full shrink-0 flex flex-col gap-6">

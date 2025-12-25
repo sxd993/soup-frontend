@@ -28,11 +28,10 @@ export const NewsCardSmall = ({
                     src={item.image}
                     alt={item.imageAlt}
                     fill
-                    className="object-cover"
                 />
 
                 <span className="absolute top-4 left-3">
-                    <Badge badge={item.badge}/>
+                    <Badge badge={item.badge} />
                 </span>
             </div>
 
