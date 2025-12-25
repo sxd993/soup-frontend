@@ -10,7 +10,7 @@ interface AdsBannerProps {
 
 export const AdsBanner = ({ hasDescription }: AdsBannerProps) => {
     return (
-        <div className="px-8 py-4 bg-primary rounded-[20px] flex flex-col flex-1 justify-between">
+        <div className="px-8 py-4 bg-primary rounded-[20px] flex flex-col flex-1 justify-between h-full gap-2">
 
             {/* Верхняя часть: метка "Реклама" и кнопка */}
             <div className="flex items-center justify-between">
@@ -31,13 +31,13 @@ export const AdsBanner = ({ hasDescription }: AdsBannerProps) => {
             )}
 
             {/* Изображение */}
-            <div className="rounded-[10px] relative overflow-hidden mt-2 flex justify-center h-24 sm:h-28 lg:h-32">
+            <div className="relative w-full flex-1 min-h-[120px] overflow-hidden rounded-[10px]">
                 <Image
                     src={IMAGES.hero.advertisement}
                     alt="Advertisement"
                     fill
-                    sizes="(max-width: 640px) 120vw, (max-width: 1024px) 60vw, 500px"
                     className="object-contain"
+                    sizes="(max-width: 768px) 80vw, 400px"
                 />
             </div>
         </div>

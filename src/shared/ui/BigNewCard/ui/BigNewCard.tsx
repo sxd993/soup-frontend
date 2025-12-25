@@ -11,7 +11,7 @@ export const BigNewCard = () => {
     }
 
     const card = (
-        <article className="relative w-full min-h-[480px] overflow-hidden rounded-[40px] group">
+        <article className="relative w-full min-h-[480px] overflow-hidden rounded-[40px] h-full">
             <Image
                 src={item.image}
                 alt={item.imageAlt}

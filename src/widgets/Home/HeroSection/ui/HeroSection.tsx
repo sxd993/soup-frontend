@@ -15,7 +15,7 @@ export const HeroSection = () => {
         className="object-cover object-center"
       />
       {/* Общий контейнер */}
-      <div className="relative z-10 flex py-[5%] justify-between px-4 mt-20">
+      <div className="relative z-10 flex py-20 justify-between px-10 mt-20">
         {/* Контент + CTA */}
         <div className="w-full flex items-end justify-center lg:justify-start max-w-full">
           <div className="h-full flex flex-col gap-6 justify-center items-center md:items-start md:justify-start">
