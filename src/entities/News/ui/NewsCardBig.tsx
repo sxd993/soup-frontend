@@ -3,42 +3,32 @@
 import Link from "next/link"
 import Image from "next/image"
 import { NewsItem } from "../model/types"
-import { useNewsCardImage } from "../model/useNewsCardImage"
 import { Badge } from "@/shared/ui/Badge"
 
 type NewsCardBigProps = {
     item: NewsItem
-    fallbackImage: string
     withDescription?: boolean
-    withZoom?: boolean
     href?: string
     className?: string
 }
 
 export const NewsCardBig = ({
     item,
-    fallbackImage,
     withDescription = true,
-    withZoom = true,
     href,
     className,
 }: NewsCardBigProps) => {
-    const { currentImage, handleMouseEnter, handleMouseLeave } = useNewsCardImage(item, withZoom)
-    const containerClasses = `relative w-full overflow-hidden rounded-[40px] min-h-[520px] group ${className ?? ''}`
+    const containerClasses = `relative w-full overflow-hidden rounded-[40px] min-h-[520px] ${className ?? ''}`
 
     const card = (
         <article
             className={containerClasses}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
         >
             <Image
-                src={currentImage || fallbackImage}
+                src={item.image}
                 alt={item.imageAlt}
                 fill
-                className={`object-cover transition-all duration-300 ease-in-out ${withZoom ? 'group-hover:scale-107' : ''}`}
-                placeholder="blur"
-                blurDataURL={fallbackImage}
+                className="object-cover"
             />
 
             <span className="absolute top-5 left-5">

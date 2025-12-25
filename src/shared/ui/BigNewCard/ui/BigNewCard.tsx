@@ -4,7 +4,7 @@ import { Badge } from "@/shared/ui/Badge"
 import { useBigNewsCard } from "../model/useBigNewsCard"
 
 export const BigNewCard = () => {
-    const { item, href, fallbackImage } = useBigNewsCard()
+    const { item, href } = useBigNewsCard()
 
     if (!item) {
         return null
@@ -16,9 +16,7 @@ export const BigNewCard = () => {
                 src={item.image}
                 alt={item.imageAlt}
                 fill
-                className="object-cover hover:scale-107 transition-all duration-300 ease-in-out max-h-[480px] lg:max-h-none"
-                placeholder="blur"
-                blurDataURL={fallbackImage}
+                className="object-cover max-h-[480px] lg:max-h-none"
             />
 
             <div className="absolute bottom-5 left-5 right-5 max-w-[367px]">
