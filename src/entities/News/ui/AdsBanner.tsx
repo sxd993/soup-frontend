@@ -36,8 +36,6 @@ export const AdsBanner = ({ hasDescription }: AdsBannerProps) => {
                     src={IMAGES.hero.advertisement}
                     alt="Advertisement"
                     fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 80vw, 400px"
                 />
             </div>
         </div>

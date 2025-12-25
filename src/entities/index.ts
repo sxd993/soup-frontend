@@ -10,3 +10,4 @@ export { BottomBlogCardSection } from "../widgets/Home/BlogsSection/ui/BottomBlo
 export { NEWS } from "./News/model/news";
 export { NewsCardSmall } from "./News/ui/NewsCardSmall";
 export { NewsCardBig } from "./News/ui/NewsCardBig";
+export { NewsListItem } from "./News/ui/NewsListItem";

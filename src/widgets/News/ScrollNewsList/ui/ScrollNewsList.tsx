@@ -1,22 +1,15 @@
-import { NEWS, NewsCardSmall } from "@/entities"
+"use client"
+
+import { NEWS, NewsListItem } from "@/entities"
 
 export const ScrollNewsList = () => {
     return (
         <div className="w-full grid grid-cols-1 gap-6 items-stretch min-h-[350px]">
-            <div className="hidden md:grid lg:grid-cols-2 content-between gap-5">
-                {NEWS.slice(1, 5).map((n) => (
-                    <NewsCardSmall
+            <div className="grid md:grid-cols-3 lg:grid-cols-4 content-between gap-5">
+                {NEWS.map((n) => (
+                    <NewsListItem
                         key={n.id}
                         href={`/news/${n.id}`}
-                        item={n}
-                        className="w-full h-full max-w-none"
-                    />
-                ))}
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-                {NEWS.slice(1, 4).map((n) => (
-                    <NewsCardSmall
-                        key={n.id}
                         item={n}
                         className="w-full h-full max-w-none"
                     />

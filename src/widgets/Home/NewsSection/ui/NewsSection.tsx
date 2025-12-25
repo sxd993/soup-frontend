@@ -1,6 +1,6 @@
 'use client'
 
-import { NEWS, NewsCardSmall } from "@/entities"
+import { NEWS, NewsListItem } from "@/entities"
 import { useCurrentPath } from "@/shared/hooks/useCurrentPath"
 import { Badge } from "@/shared/ui/Badge"
 import { SectionTitle, ViewAllButton } from "@/shared/ui/icons"
@@ -63,7 +63,7 @@ export const NewsSection = () => {
                 <div className="grid w-full">
                     <div className="grid grid-cols-1 gap-5 md:hidden justify-items-center">
                         {mobileRest.map((item) => (
-                            <NewsCardSmall
+                            <NewsListItem
                                 key={item.id}
                                 item={item}
                                 href={`/news/${item.id}`}
@@ -73,7 +73,7 @@ export const NewsSection = () => {
 
                     <div className="hidden md:grid grid-cols-2 gap-5 content-between justify-items-center">
                         {rest.map((item) => (
-                            <NewsCardSmall
+                            <NewsListItem
                                 key={item.id}
                                 item={item}
                                 href={`/news/${item.id}`}

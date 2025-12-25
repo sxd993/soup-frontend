@@ -6,11 +6,13 @@ type SidePanelProps = {
 }
 
 export function SidePanel({ relatedNews }: SidePanelProps) {
+    const visibleNews = relatedNews.filter((item) => !item.isAds)
+
     return (
         <aside className="w-full shrink-0">
             <h3 className="text-lg font-semibold text-secondary mb-4">Новости по теме</h3>
             <div className="grid gap-5">
-                {relatedNews.map((item) => (
+                {visibleNews.map((item) => (
                     <NewsCardSmall
                         key={item.id}
                         item={item}
