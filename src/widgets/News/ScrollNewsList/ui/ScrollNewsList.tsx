@@ -10,6 +10,7 @@ export const ScrollNewsList = () => {
                 {NEWS.slice(1, 5).map((n, index) => (
                     <NewsCardSmall
                         key={n.id}
+                        href={`/news/${n.id}`}
                         item={n}
                         fallbackImage={fallbackImage}
                         withZoom={index === 0}

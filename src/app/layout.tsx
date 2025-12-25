@@ -29,7 +29,7 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning>
         <AppProviders>
-          <div className="max-w-[1200px] mx-auto px-4 md:px-12">
+          <div className="max-w-[1200px] mx-auto px-4 lg:px-0">
             <Header />
             {children}
           </div>

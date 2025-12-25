@@ -8,7 +8,7 @@ import { Badge } from "@/shared/ui/Badge"
 
 type NewsCardSmallProps = {
     item: NewsItem
-    fallbackImage: string
+    fallbackImage?: string
     featured?: boolean
     withZoom?: boolean
     href?: string
@@ -17,22 +17,24 @@ type NewsCardSmallProps = {
 
 export const NewsCardSmall = ({
     item,
-    fallbackImage,
     withZoom = false,
     href,
+    className,
 }: NewsCardSmallProps) => {
     const { currentImage, handleMouseEnter, handleMouseLeave } = useNewsCardImage(item, withZoom)
 
+    const articleClasses = ["flex flex-col", className].filter(Boolean).join(" ")
+
     const card = (
-        <article className='flex flex-col'>
+        <article className={articleClasses}>
             {/* Картинка */}
             <div
-                className="relative w-full aspect-square rounded-2xl overflow-hidden max-h-48"
+                className="relative w-full aspect-square rounded-2xl overflow-hidden"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
                 <Image
-                    src={currentImage || fallbackImage}
+                    src={currentImage}
                     alt={item.imageAlt}
                     fill
                     className={`object-cover transition-all duration-300 ease-in-out ${withZoom ? 'hover:scale-117' : ''}`}
