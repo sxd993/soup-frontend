@@ -11,10 +11,7 @@ export const NavigationLinks = () => {
   return (
     <div className="hidden lg:flex pl-5 gap-8 text-center items-center text-nowrap">
       {NAVIGATION_LINKS.map((link) => {
-        const isRootLink = link.href === '/'
-        const isActive =
-          (isRootLink && link.label === 'Каталог' && pathname === '/') ||
-          (!isRootLink && pathname?.startsWith(link.href))
+        const isActive = pathname?.startsWith(link.href)
 
         return (
           <Link
