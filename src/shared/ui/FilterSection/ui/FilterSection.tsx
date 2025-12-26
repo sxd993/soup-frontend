@@ -6,15 +6,8 @@ import { TimeFilter } from "./TimeFilter"
 export const FilterSection = () => {
     return (
         <div className="w-full">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center gap-4">
 
-                {/* Бейджы категорий */}
-                {/* <div className="hidden flex-row gap-4 lg:flex">
-                    {FILTERS_BADGES.map(b => (
-                        <Badge key={b.id} badge={b.title} />
-                    ))}
-                </div> */}
-                
                 {/* Фильтры по месту */}
                 <PlaceFilter />
                 {/* Фильтры по времени */}
