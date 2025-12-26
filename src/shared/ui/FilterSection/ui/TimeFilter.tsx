@@ -1,7 +1,7 @@
 'use client';
 
 import { useTimeFilters } from "../model/hooks/useFilters"
-import { SortIcon } from "@/shared/ui/icons/SortIcon"
+import { SortIcon } from "@/shared/ui/icons"
 import { FilterMenu } from "./FilterMenu"
 import { TIME_BADGES } from "../model/const/timeBadges";
 

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { RightArrow } from "@/shared/ui/icons/RighArrow";
+import { RightArrow } from "@/shared/ui/icons";
 import { ContactorsTypes } from "../model/ContactorsTypes";
 
 type ContractorsCardProps = {

@@ -1,6 +1,6 @@
 'use client'
 
-import { Search } from "@/shared/ui/icons/Search"
+import { Search } from "@/shared/ui/icons"
 import { CloseSearchButton } from "@/shared/ui/icons"
 
 type SearchInputProps = {

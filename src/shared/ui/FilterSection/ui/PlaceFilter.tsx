@@ -1,7 +1,7 @@
 'use client';
 
 import { usePlaceFilters } from "../model/hooks/useFilters"
-import { SortIcon } from "@/shared/ui/icons/SortIcon"
+import { SortIcon } from "@/shared/ui/icons"
 import { PLACE_BADGES } from "../model/const/placeBadges"
 import { FilterMenu } from "./FilterMenu"
 

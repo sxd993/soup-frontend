@@ -1,4 +1,4 @@
-import { SelectedIcon } from "@/shared/ui/icons/SelectedIcon"
+import { SelectedIcon } from "@/shared/ui/icons"
 
 interface FilterMenuItem {
     id: number

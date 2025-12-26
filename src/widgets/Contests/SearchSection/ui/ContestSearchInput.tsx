@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react"
-import { Search } from "@/shared/ui/icons/Search"
+import { Search } from "@/shared/ui/icons"
 
 export const ContestSearchInput = () => {
     const [searchValue, setSearchValue] = useState("")

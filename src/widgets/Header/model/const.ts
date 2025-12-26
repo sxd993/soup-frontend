@@ -1,5 +1,5 @@
 export const NAVIGATION_LINKS = [
-  { href: '/', label: 'Каталог' },
+  { href: '/catalog', label: 'Каталог' },
   { href: '/news', label: 'Новости' },
   { href: '/contests', label: 'Конкурсы' },
   { href: '/blogs', label: 'Блоги' },
@@ -7,7 +7,7 @@ export const NAVIGATION_LINKS = [
 ] as const
 
 export const MOBILE_MENU_LINKS = [
-  { href: '/', label: 'Каталог' },
+  { href: '/catalog', label: 'Каталог' },
   { href: '/news', label: 'Новости' },
   { href: '/contests', label: 'Конкурсы' },
   { href: '/blogs', label: 'Блоги' },

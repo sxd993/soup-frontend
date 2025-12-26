@@ -8,7 +8,8 @@ import Image from "next/image"
 import Link from "next/link"
 
 export const NewsSection = () => {
-    const [first, ...rest] = NEWS
+    const lastFiveNews = NEWS.slice(0, 5)
+    const [first, ...rest] = lastFiveNews
     const mobileRest = rest.slice(0, 2)
 
     // Текущий путь

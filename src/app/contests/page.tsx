@@ -5,7 +5,7 @@ import { SectionTitle } from "@/shared/ui/SectionTitle";
 import { ContestSearchInput, ContestsList } from "@/widgets/Contests";
 import { Button } from "@/shared/ui/Button";
 import { TimeFilter } from "@/shared/ui/FilterSection/ui/TimeFilter";
-import { SearchButton } from "@/shared/ui/icons/SearchButton";
+import { SearchButton } from "@/shared/ui/icons";
 import { SearchOverlay } from "@/widgets/Header/ui/SearchOverlay";
 
 export default function ContestsPage() {

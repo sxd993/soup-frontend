@@ -1,6 +1,5 @@
 import { BlogsItems } from "../model/types";
-import { Heart } from "@/shared/ui/icons/Heart";
-import { Comment } from "@/shared/ui/icons/Comment";
+import { Heart, Comment } from "@/shared/ui/icons";
 
 interface TopBlogCardProps {
     blog: BlogsItems;
@@ -19,8 +18,8 @@ export const TopBlogCard = ({ blog }: TopBlogCardProps) => {
                 <span className="text-sm text-accent-quinary">{date}</span>
             </div>
 
-            <h3 className="text-xl font-semibold text-secondary leading-[110%]">{title}</h3>
-            <p className="text-base text-secondary-quinary leading-[140%]">{description}</p>
+            <h3 className="text-xl font-bold text-secondary leading-[110%]">{title}</h3>
+            <p className="text-base text-secondary-quinary">{description}</p>
 
             <div className="flex items-center gap-4 text-sm text-accent-quinary">
                 <span className="flex items-center gap-1"><Heart /> {likes}</span>

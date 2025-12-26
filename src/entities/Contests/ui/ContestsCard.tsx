@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { RightArrow } from "@/shared/ui/icons/RighArrow";
+import { RightArrow } from "@/shared/ui/icons";
 import Image from 'next/image';
 import { ContestsTypes } from "../model/ContestsTypes";
 
@@ -20,13 +20,13 @@ export const ContestsCard = ({ contest }: ContestsCardProps) => {
                         className="rounded-[20px]"
                     />
                 </div>
-                <h3 className="lg:text-2xl text-sm lg:font-bold font-semibold leading-tight text-secondary">
+                <h3 className="lg:text-[22px] text-sm lg:font-medium font-semibold leading-tight text-secondary">
                     {contest.title}
                 </h3>
             </div>
             {/* Ссылка и кнопка со стрелкой */}
             <div className="flex items-center justify-between">
-                <span className="text-sm text-accent-quinary lg:font-semibold font-normal leading-[120%]">
+                <span className="text-sm text-accent-quinary font-regular leading-[120%]">
                     {contest.link}
                 </span>
                 <Link href="#">
