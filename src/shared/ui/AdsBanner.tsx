@@ -10,7 +10,7 @@ interface AdsBannerProps {
 
 export const AdsBanner = ({ hasDescription }: AdsBannerProps) => {
     return (
-        <div className="px-8 py-4 bg-primary rounded-[20px] flex flex-col flex-1 justify-between h-full gap-2">
+        <div className="p-5 bg-primary rounded-[20px] flex flex-col flex-1 justify-between h-full gap-4">
 
             {/* Верхняя часть: метка "Реклама" и кнопка */}
             <div className="flex items-center justify-between">
@@ -36,6 +36,7 @@ export const AdsBanner = ({ hasDescription }: AdsBannerProps) => {
                     src={IMAGES.hero.advertisement}
                     alt="Advertisement"
                     fill
+                    className="object-cover object-center"
                 />
             </div>
         </div>

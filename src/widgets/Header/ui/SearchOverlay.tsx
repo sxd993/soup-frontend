@@ -22,7 +22,7 @@ export const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
               <input
                 type="text"
                 placeholder="Поиск"
-                className="w-full h-11 rounded-full bg-[#EBE7DF] pl-14 pr-4 text-secondary text-sm placeholder:text-secondary focus:outline-none"
+                className="w-full h-11 rounded-full bg-[#EBE7DF] pl-14 pr-4 text-secondary text-base placeholder:text-secondary focus:outline-none"
               />
             </div>
           </label>

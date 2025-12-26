@@ -1,19 +1,33 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { NAVIGATION_LINKS } from '../model/const'
 
 // Компонент навигационных ссылок
 export const NavigationLinks = () => {
+  const pathname = usePathname()
+
   return (
     <div className="hidden lg:flex pl-5 gap-8 text-center items-center text-nowrap">
-      {NAVIGATION_LINKS.map((link) => (
-        <Link
-          key={link.label}
-          href={link.href}
-          className="text-secondary lg:text-base font-semibold"
-        >
-          {link.label}
-        </Link>
-      ))}
+      {NAVIGATION_LINKS.map((link) => {
+        const isRootLink = link.href === '/'
+        const isActive =
+          (isRootLink && link.label === 'Каталог' && pathname === '/') ||
+          (!isRootLink && pathname?.startsWith(link.href))
+
+        return (
+          <Link
+            key={link.label}
+            href={link.href}
+            aria-current={isActive ? 'page' : undefined}
+            className="lg:text-base font-semibold"
+            style={{ color: isActive ? '#8BC652' : undefined }}
+          >
+            {link.label}
+          </Link>
+        )
+      })}
     </div>
   )
 }

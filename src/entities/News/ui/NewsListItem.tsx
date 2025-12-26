@@ -1,8 +1,8 @@
 "use client"
 
-import { AdsBanner } from "./AdsBanner"
 import { NewsCardSmall } from "./NewsCardSmall"
 import { NewsItem } from "../model/types"
+import { AdsBanner } from "@/shared/ui/AdsBanner"
 
 type NewsListItemProps = {
     item: NewsItem

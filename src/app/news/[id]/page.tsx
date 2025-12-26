@@ -25,7 +25,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
   const relatedNews = NEWS.filter((item) => item.id !== newsItem.id)
 
   return (
-    <div className="flex flex-col lg:flex-row gap-40 mt-10">
+    <div className="flex flex-col lg:flex-row gap-15 lg:gap-40 mt-10">
       <div className="flex-1 flex flex-col gap-6 basis-4/6">
         <NewsContent newsItem={newsItem} />
       </div>
