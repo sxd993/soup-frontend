@@ -2,6 +2,8 @@ import { SectionTitle, ViewAllButton } from "@/shared/ui/icons"
 import { CONTESTS, ContestsCard } from "@/entities"
 
 export const ContestsSection = () => {
+    const lastThreeContests = CONTESTS.slice(-3)
+
     return (
         <section className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mt-25 mb-10">
@@ -12,7 +14,7 @@ export const ContestsSection = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
-                {CONTESTS.map((contest) => (
+                {lastThreeContests.map((contest) => (
                     <ContestsCard key={contest.title} contest={contest} />
                 ))}
             </div>
