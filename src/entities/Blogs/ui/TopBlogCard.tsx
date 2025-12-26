@@ -18,7 +18,7 @@ export const TopBlogCard = ({ blog }: TopBlogCardProps) => {
                 <span className="text-sm text-accent-quinary">{date}</span>
             </div>
 
-            <h3 className="text-xl font-bold text-secondary leading-[110%]">{title}</h3>
+            <h3 className="text-[22px] font-bold text-secondary leading-[105%]">{title}</h3>
             <p className="text-base text-secondary-quinary">{description}</p>
 
             <div className="flex items-center gap-4 text-sm text-accent-quinary">

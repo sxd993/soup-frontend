@@ -37,7 +37,7 @@ export const NewsCardBig = ({
 
             <div className="absolute bottom-6 left-6 right-6 max-w-[540px]">
                 <div className="rounded-[20px] bg-white/95 p-5 pb-6 shadow-sm backdrop-blur-sm">
-                    <h3 className="lg:text-[22px] text-xl font-bold leading-[110%] text-accent-secondary">
+                    <h3 className="lg:text-[22px] text-xl font-bold leading-[105%] text-accent-secondary">
                         {item.title}
                     </h3>
                     {withDescription && item.description && (

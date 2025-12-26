@@ -38,7 +38,7 @@ export const NewsCardSmall = ({
             {/* Текст */}
             <div className="mt-3">
                 <h4
-                    className="text-lg font-bold leading-[110%] text-secondary text-wrap"
+                    className="text-lg font-bold leading-[105%] text-secondary text-wrap"
                     style={{ fontFamily: 'Manrope, var(--font-family-sans)' }}
                 >
                     {item.title}

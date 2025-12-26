@@ -20,7 +20,7 @@ export const ContestsCard = ({ contest }: ContestsCardProps) => {
                         className="rounded-[20px]"
                     />
                 </div>
-                <h3 className="lg:text-[22px] text-sm lg:font-medium font-semibold leading-tight text-secondary">
+                <h3 className="lg:text-[22px] text-sm lg:font-bold font-semibold leading-[105%] text-secondary">
                     {contest.title}
                 </h3>
             </div>
