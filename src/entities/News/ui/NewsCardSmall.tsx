@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { NewsItem } from "../model/types"
-import { Badge } from "@/shared/ui/Badge"
+import { Badge } from "@/shared"
 
 type NewsCardSmallProps = {
     item: NewsItem

@@ -1,7 +1,7 @@
-import { BlogsItems } from './types';
-import { MockLogo } from '../../../shared/ui/MockLogo';
+import { BlogItem } from './types';
+import { MockLogo } from '@/shared';
 
-export const BLOGS: BlogsItems[] = [
+export const BLOGS: BlogItem[] = [
     {
         id: 1,
         logo: <MockLogo />,
@@ -11,6 +11,8 @@ export const BLOGS: BlogsItems[] = [
         description: "Агентство по привлечению инвестиций Свердловской области взяло на сопровождение футуристический проект по созданию глэмпинг-обсерватории. Реализация проекта намечена на 2027 год, объем инвестиций – 56 млн руб. Инвестор – компания «Глэмпинг гражданской науки».",
         likes: 16,
         comments: 16,
+        image: 'https://s3.twcstorage.ru/4b615622-soup/blogs/Shapka.svg',
+        isImportantBlog: true,
     },
     {
         id: 2,
@@ -43,6 +45,7 @@ export const BLOGS: BlogsItems[] = [
         description: "Проектировщики регулярно сталкиваются с замечаниями при согласовании светопрозрачных противопожарных конструкций и затянутыми в связи с этим сроками. RGC предлагает решение этой ",
         likes: 16,
         comments: 16,
-        image: 'https://s3.twcstorage.ru/4b615622-soup/blogs/placeholder.svg'
+        image: 'https://s3.twcstorage.ru/4b615622-soup/blogs/placeholder.svg',
+        isAds: true
     },
 ];

@@ -1,30 +1,65 @@
-import { BlogsItems } from "../model/types";
-import { Heart, Comment } from "@/shared/ui/icons";
+import Link from "next/link"
+import { BlogItem } from "../model/types";
+import { getPriorityBlog } from "../model/useBlogCardBig";
+import { Heart, Comment } from "@/shared";
+import Image from "next/image";
 
-interface TopBlogCardProps {
-    blog: BlogsItems;
+type TopBlogCardProps = {
+    blog?: BlogItem;
+    href?: string;
+    className?: string;
 }
 
-export const TopBlogCard = ({ blog }: TopBlogCardProps) => {
-    const { logo, company_name, date, title, description, likes, comments } = blog;
+export const TopBlogCard = ({ blog: blogProp, href: hrefProp, className }: TopBlogCardProps = {}) => {
+    const { item: blogFromHook, href: hrefFromHook, fallbackImage } = getPriorityBlog()
+    const blog = blogProp ?? blogFromHook
+    const href = hrefProp ?? hrefFromHook
+
+    if (!blog) {
+        return null
+    }
+
+    const { logo, company_name, date, title, description, likes, comments, image } = blog;
+    const imageSrc = image ?? fallbackImage
+
+    const card = (
+        <div className={`flex flex-col lg:flex-row gap-5 items-center md:items-stretch ${className ?? ""}`}>
+            {/* Изображение */}
+            <div className="w-full flex justify-center md:w-auto">
+                <Image
+                    width={797}
+                    height={500}
+                    src={imageSrc}
+                    alt={title}
+                    className="max-w-full h-auto"
+                />
+            </div>
+            <article className="flex-1 rounded-2xl flex flex-col justify-between gap-4">
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                        <div>{logo}</div>
+                        <h4 className="font-semibold text-base text-secondary">{company_name}</h4>
+                    </div>
+                    <span className="text-sm text-accent-quinary">{date}</span>
+                </div>
+
+                <h3 className="text-[22px] font-bold text-secondary leading-[105%]">{title}</h3>
+                <p className="text-base text-secondary-quinary">{description}</p>
+
+                <div className="flex items-center gap-4 text-sm text-accent-quinary">
+                    <span className="flex items-center gap-1"><Heart /> {likes}</span>
+                    <span className="flex items-center gap-1"><Comment /> {comments}</span>
+                </div>
+            </article>
+        </div>
+    );
 
     return (
-        <article className="flex-1 rounded-2xl flex flex-col justify-between gap-4">
-            <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                    <div>{logo}</div>
-                    <h4 className="font-semibold text-base text-secondary">{company_name}</h4>
-                </div>
-                <span className="text-sm text-accent-quinary">{date}</span>
-            </div>
-
-            <h3 className="text-[22px] font-bold text-secondary leading-[105%]">{title}</h3>
-            <p className="text-base text-secondary-quinary">{description}</p>
-
-            <div className="flex items-center gap-4 text-sm text-accent-quinary">
-                <span className="flex items-center gap-1"><Heart /> {likes}</span>
-                <span className="flex items-center gap-1"><Comment /> {comments}</span>
-            </div>
-        </article>
+        <Link
+            href={href}
+            className="block cursor-pointer"
+        >
+            {card}
+        </Link>
     );
 };

@@ -2,14 +2,10 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { MainIcon } from '@/shared/ui/icons/index'
-import { MenuIcon } from '@/shared/ui/icons/index'
+import { MainIcon, MenuIcon, Person, SearchButton, SearchOverlay } from '@/shared'
 import { NavigationLinks } from './NavigationLinks'
 import { SearchInput } from './SearchInput'
-import { Person } from '@/shared/ui/icons/index'
-import { SearchButton } from '@/shared/ui/icons/index'
 import { MobileMenu } from './MobileMenu'
-import { SearchOverlay } from './SearchOverlay'
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

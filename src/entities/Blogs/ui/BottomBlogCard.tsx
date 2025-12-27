@@ -1,16 +1,21 @@
-import { BlogsItems } from "../model/types";
-import { Heart, Comment, DetailsIcon } from "@/shared/ui/icons";
+import Link from "next/link"
+import { BlogItem } from "../model/types";
+import { Heart, Comment, DetailsIcon } from "@/shared";
 import Image from "next/image";
 
-interface BottomBlogCardProps {
-    blog: BlogsItems;
+type BottomBlogCardProps = {
+    blog: BlogItem;
+    href?: string;
+    className?: string;
 }
 
-export const BottomBlogCard = ({ blog }: BottomBlogCardProps) => {
+export const BottomBlogCard = ({ blog, href, className }: BottomBlogCardProps) => {
     const { logo, company_name, date, title, description, likes, comments, image } = blog;
 
-    return (
-        <article className="flex-1 rounded-2xl flex flex-col justify-between gap-4">
+    const articleClasses = ["flex-1 rounded-2xl flex flex-col justify-between gap-4", className].filter(Boolean).join(" ")
+
+    const card = (
+        <article className={articleClasses}>
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <div>{logo}</div>
@@ -43,5 +48,18 @@ export const BottomBlogCard = ({ blog }: BottomBlogCardProps) => {
                 <span className="flex items-center gap-1"><Comment /> {comments}</span>
             </div>
         </article>
+    );
+
+    if (!href) {
+        return card
+    }
+
+    return (
+        <Link
+            href={href}
+            className="block h-full cursor-pointer"
+        >
+            {card}
+        </Link>
     );
 };

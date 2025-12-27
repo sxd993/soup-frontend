@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { RightArrow } from "@/shared/ui/icons";
+import { RightArrow } from "@/shared";
 import Image from 'next/image';
-import { ContestsTypes } from "../model/ContestsTypes";
+import { ContestsTypes } from "../model/types";
 
 type ContestsCardProps = {
     contest: ContestsTypes;

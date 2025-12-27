@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { MainIcon2 } from '@/shared/ui/icons'
+import { MainIcon2 } from '@/shared'
 import { FOOTER_LINKS, FOOTER_META_LINKS } from '../model/const'
 
 export const Footer = () => {

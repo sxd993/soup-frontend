@@ -4,7 +4,7 @@ import { FAQ_DATA } from "../model/const/faq"
 import { useFAQSection } from "../model/hooks/useFAQSection"
 import { useFAQStore } from "../model/store/useFAQStore"
 import { FAQCard } from "./FAQCard"
-import { SectionTitle } from "@/shared/ui/SectionTitle"
+import { SectionTitle } from "@/shared"
 
 export const FAQSection = () => {
     const openIndices = useFAQStore(state => state.openIndices)

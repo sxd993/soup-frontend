@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation"
-import { NEWS } from "@/entities"
-import { SidePanel } from "@/widgets/OneNews/SidePanel/SidePanel"
-import { NewsContent } from "@/widgets/OneNews/NewsContent/NewsContent"
+import { NEWS, NewsContent } from "@/entities"
+import { SidePanel } from "@/shared"
 
 type PageProps = {
   params: Promise<{ id: string }>
@@ -30,7 +29,11 @@ export default async function NewsDetailPage({ params }: PageProps) {
         <NewsContent newsItem={newsItem} />
       </div>
       <div className="basis-2/10">
-        <SidePanel relatedNews={relatedNews} />
+        <SidePanel
+          items={relatedNews}
+          title="Новости по теме"
+          getHref={(item) => `/news/${item.id}`}
+        />
       </div>
     </div>
   )

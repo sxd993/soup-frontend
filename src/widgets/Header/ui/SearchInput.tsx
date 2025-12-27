@@ -1,7 +1,6 @@
 'use client'
 
-import { Search } from "@/shared/ui/icons"
-import { CloseSearchButton } from "@/shared/ui/icons"
+import { Search, CloseSearchButton } from "@/shared"
 
 type SearchInputProps = {
   onClose?: () => void

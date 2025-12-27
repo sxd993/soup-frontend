@@ -1,6 +1,6 @@
 import { JSX } from "react";
 
-export interface BlogsItems {
+export interface BlogItem {
     id: number,
     logo: JSX.Element;
     company_name: string;
@@ -10,4 +10,6 @@ export interface BlogsItems {
     likes: number;
     comments: number;
     image?: string;
+    isImportantBlog?: boolean;
+    isAds?: boolean;
 }

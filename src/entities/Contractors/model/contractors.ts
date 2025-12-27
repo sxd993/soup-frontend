@@ -1,9 +1,9 @@
-import { ContactorsTypes } from './ContactorsTypes';
+import { ContractorsTypes } from './types';
 
-export const CONTRACTORS: ContactorsTypes[] = [
+export const CONTRACTORS: ContractorsTypes[] = [
     {
         title: 'Проектирование',
-        bages: [
+        badges: [
             'Архитектура',
             'Благоустройство',
             'Инженерное проектирование',
@@ -14,11 +14,11 @@ export const CONTRACTORS: ContactorsTypes[] = [
     },
     {
         title: 'Монтажные работы',
-        bages: ['Покрытия'],
+        badges: ['Покрытия'],
     },
     {
         title: 'Производство',
-        bages: [
+        badges: [
             'МАФ',
             'Арт-объекты',
             'Приборы освещения',
@@ -28,15 +28,15 @@ export const CONTRACTORS: ContactorsTypes[] = [
     },
     {
         title: 'Озеленение',
-        bages: ['Высадка растений', 'Услуги садовников', 'Питомники'],
+        badges: ['Высадка растений', 'Услуги садовников', 'Питомники'],
     },
     {
         title: 'Сети',
-        bages: ['Электромонтаж', 'Водоотведение', 'Полив'],
+        badges: ['Электромонтаж', 'Водоотведение', 'Полив'],
     },
     {
         title: 'Поставщики',
-        bages: [
+        badges: [
             'МАФ',
             'Покрытия',
             'Детские комплексы',

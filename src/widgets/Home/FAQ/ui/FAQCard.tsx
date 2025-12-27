@@ -2,7 +2,7 @@
 
 import { useFAQCard } from "../model/hooks/useFAQCard"
 import { FAQItem } from "../model/types/types"
-import { ArrowDown, ArrowUp } from "@/shared/ui/icons"
+import { ArrowDown, ArrowUp } from "@/shared"
 
 interface FAQCardProps {
     item: FAQItem

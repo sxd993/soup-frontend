@@ -1,7 +1,7 @@
 'use client';
 
 import { CONTESTS, ContestsCard } from "@/entities"
-import { Pagination, usePagination } from "@/shared/ui/Pagination";
+import { Pagination, usePagination } from "@/shared";
 import { useContestsStore } from "../model/store/contestsStore";
 
 const ITEMS_PER_PAGE = 12;

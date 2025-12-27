@@ -1,5 +1,4 @@
-import { IMAGES } from "@/shared/config"
-import { RightArrowHome } from "@/shared/ui/icons"
+import { IMAGES, RightArrowHome } from "@/shared"
 import Image from "next/image"
 
 

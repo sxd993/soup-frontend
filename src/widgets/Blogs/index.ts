@@ -1,0 +1,1 @@
+export { ScrollBlogsList } from './ScrollBlogsList/ui/ScrollBlogsList'

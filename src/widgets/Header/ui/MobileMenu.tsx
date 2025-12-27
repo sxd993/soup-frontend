@@ -1,7 +1,6 @@
 import Link from 'next/link'
-import { MainIcon2 } from '@/shared/ui/icons/index'
+import { MainIcon2, CloseIcon } from '@/shared'
 import { MOBILE_MENU_LINKS } from '../model/const'
-import { CloseIcon } from '@/shared/ui/icons/index'
 
 type MobileMenuProps = {
   isOpen: boolean
@@ -13,7 +12,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
 
   return (
     <div className="fixed inset-0 z-10 lg:hidden">
-      <div className="relative w-full bg-[#06352D] rounded-b-3xl md:px-20 px-5 md:pt-8 pt-3 pb-20 text-white">
+      <div className="relative w-full bg-accent-senary rounded-b-3xl md:px-20 px-5 md:pt-8 pt-3 pb-20 text-white">
         <div className="flex items-center justify-between">
           <Link href="/">
             <MainIcon2 className="w-20 h-20 py-3" />
@@ -21,7 +20,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
           <button
             type="button"
             aria-label="Закрыть меню"
-            className="w-11 h-11 rounded-full bg-[#F3EDE3] text-[#06352D] flex items-center justify-center"
+            className="w-11 h-11 rounded-full bg-[#F3EDE3] text-accent-senary flex items-center justify-center"
             onClick={onClose}
           >
             <CloseIcon />

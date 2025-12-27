@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { RightArrow } from "@/shared/ui/icons";
-import { ContactorsTypes } from "../model/ContactorsTypes";
+import { RightArrow } from "@/shared";
+import { ContractorsTypes } from "../model/types";
 
 type ContractorsCardProps = {
-    contractor: ContactorsTypes;
+    contractor: ContractorsTypes;
 };
 
 export const ContractorsCard = ({ contractor }: ContractorsCardProps) => {
@@ -24,7 +24,7 @@ export const ContractorsCard = ({ contractor }: ContractorsCardProps) => {
             {/* Бейджы услуг */}
             <div className="flex flex-wrap gap-2">
                 {/* Текст внутри бейджа */}
-                {contractor.bages.map((badge) => (
+                {contractor.badges.map((badge) => (
                     <span
                         key={badge}
                         className="rounded-full bg-[#EBE7DF] hover:bg-accent-tertiary transition-all duration-300 px-4 py-1 text-xs font-medium leading-[150%] tracking-normal text-secondary"

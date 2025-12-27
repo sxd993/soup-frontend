@@ -1,11 +1,7 @@
 'use client'
 
-import { NEWS, NewsListItem } from "@/entities"
-import { useCurrentPath } from "@/shared/hooks/useCurrentPath"
-import { Badge } from "@/shared/ui/Badge"
-import { SectionTitle, ViewAllButton } from "@/shared/ui/icons"
-import Image from "next/image"
-import Link from "next/link"
+import { NEWS, NewsCardSmall, NewsCardBig } from "@/entities"
+import { AdsBanner, useCurrentPath, SectionTitle, ViewAllButton } from "@/shared"
 
 export const NewsSection = () => {
     const lastFiveNews = NEWS.slice(0, 5)
@@ -34,52 +30,50 @@ export const NewsSection = () => {
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-4.5 items-stretch">
 
                 {/* Левая колонка */}
-                <Link
-                    href={`/news/${first.id}`}
-                    className="relative w-full min-h-[480px] overflow-hidden rounded-[40px] block cursor-pointer"
-                >
-                    <Image
-                        src={first.image}
-                        alt="News"
-                        fill
-                        className="object-cover max-h-[480px] lg:max-h-none"
+                {!first.isAds && (
+                    <NewsCardBig
+                        item={first}
+                        href={`/news/${first.id}`}
                     />
-
-                    {/* Оверлей */}
-                    <div className="absolute bottom-5 left-5 right-5 max-w-[367px]">
-                        <div className="flex flex-col gap-5">
-                            <Badge badge={first.badge} />
-                            <div className="rounded-[20px] bg-white p-5 pb-15 shadow-sm">
-                                <h3 className="lg:text-[22px] text-xl font-bold leading-snug text-accent-secondary">
-                                    {first.title}
-                                </h3>
-                                <p className="mt-2 text-[16px] font-normal text-secondary">
-                                    {first.description}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </Link>
+                )}
                 {/*  колонка */}
                 <div className="grid w-full">
                     <div className="grid grid-cols-1 gap-5 md:hidden justify-items-center">
-                        {mobileRest.map((item) => (
-                            <NewsListItem
-                                key={item.id}
-                                item={item}
-                                href={`/news/${item.id}`}
-                            />
-                        ))}
+                        {mobileRest.map((item) => {
+                            if (item.isAds) {
+                                return (
+                                    <div key={item.id} className="w-full h-full max-w-none">
+                                        <AdsBanner hasDescription={Boolean(item.description)} />
+                                    </div>
+                                )
+                            }
+                            return (
+                                <NewsCardSmall
+                                    key={item.id}
+                                    item={item}
+                                    href={`/news/${item.id}`}
+                                />
+                            )
+                        })}
                     </div>
 
                     <div className="hidden md:grid grid-cols-2 gap-5 content-between justify-items-center">
-                        {rest.map((item) => (
-                            <NewsListItem
-                                key={item.id}
-                                item={item}
-                                href={`/news/${item.id}`}
-                            />
-                        ))}
+                        {rest.map((item) => {
+                            if (item.isAds) {
+                                return (
+                                    <div key={item.id} className="w-full h-full max-w-none">
+                                        <AdsBanner hasDescription={Boolean(item.description)} />
+                                    </div>
+                                )
+                            }
+                            return (
+                                <NewsCardSmall
+                                    key={item.id}
+                                    item={item}
+                                    href={`/news/${item.id}`}
+                                />
+                            )
+                        })}
                     </div>
                 </div>
 

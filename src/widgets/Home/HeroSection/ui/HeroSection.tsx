@@ -1,6 +1,5 @@
-import { IMAGES } from '@/shared/config'
+import { IMAGES, AdsBanner } from '@/shared'
 import Link from 'next/link'
-import { AdsBanner } from '@/shared/ui/AdsBanner'
 import Image from 'next/image'
 
 export const HeroSection = () => {
