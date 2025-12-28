@@ -1,25 +1,7 @@
-import { Fragment, ReactNode } from "react"
+import { Fragment } from "react"
 import { AdsBanner } from "@/shared"
 import { SidePanelCard } from "./SidePanelCard"
-
-type SidePanelItem = {
-    id: string
-    image: string
-    imageAlt: string
-    title: string
-    badge?: string
-    isAds?: boolean
-    description?: string
-}
-
-type SidePanelProps<T extends SidePanelItem> = {
-    items: T[]
-    title?: string
-    getHref: (item: T) => string
-    renderAds?: (item: T) => ReactNode
-    renderItem?: (item: T, href: string) => ReactNode
-    className?: string
-}
+import type { SidePanelItem, SidePanelProps } from "./model/SidePanel.types"
 
 export function SidePanel<T extends SidePanelItem>({ 
     items, 

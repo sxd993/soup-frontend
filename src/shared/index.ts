@@ -22,8 +22,7 @@ export { usePagination } from './ui/Pagination/model/usePagination'
 export { useScrollToTop } from './ui/Pagination/model/useScrollToTop'
 
 // Экспорты SidePanel
-export { SidePanel } from './ui/SidePanel/SidePanel'
-export { SidePanelCard } from './ui/SidePanel/SidePanelCard'
+export { SidePanel } from './ui/SidePanel/ui/SidePanel'
 
 // Экспорты FilterSection
 export { FilterSection } from './ui/FilterSection/ui/FilterSection'
