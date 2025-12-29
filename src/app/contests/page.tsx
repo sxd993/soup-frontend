@@ -1,4 +1,4 @@
-import { SectionTitle, Button, TimeFilter } from "@/shared";
+import { SectionTitle, Button, TimeFilter } from "@/shared/ui";
 import { ContestSearchInput, ContestsList } from "@/widgets/Contests";
 
 export default function ContestsPage() {

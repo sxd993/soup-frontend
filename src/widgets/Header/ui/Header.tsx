@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { MainIcon, MenuIcon, Person, SearchButton, SearchOverlay } from '@/shared'
+import { MainIcon, MenuIcon, Person, SearchButton, SearchOverlay } from '@/shared/ui'
 import { NavigationLinks } from './NavigationLinks'
 import { SearchInput } from './SearchInput'
 import { MobileMenu } from './MobileMenu'

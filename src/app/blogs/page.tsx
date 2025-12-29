@@ -1,21 +1,15 @@
 import { ScrollBlogsList } from "@/widgets/Blogs";
-import { BLOGS } from "@/entities";
-import { getPriorityBlog } from "@/entities/Blogs/model/useBlogCardBig";
-import { SectionTitle, SidePanel, AdsBanner, IMAGES } from "@/shared";
-import { BlogItem } from "@/entities/Blogs/model/types";
+import { BLOGS, getPriorityBlog, type BlogItem } from "@/entities/Blogs";
+import { SectionTitle, AdsBanner, SidePanel, BlogSidePanelCard, type SidePanelItem } from "@/shared/ui";
 
 export default function BlogsPage() {
     const { item: topBlogItem } = getPriorityBlog()
     const topBlogId = topBlogItem?.id
     const relatedBlogs = BLOGS.filter((blog) => blog.id !== topBlogId)
-    const sidePanelItems = relatedBlogs.map((blog) => ({
+    const sidePanelItems: SidePanelItem[] = relatedBlogs.map((blog) => ({
         id: String(blog.id),
-        image: blog.image ?? IMAGES.hero.background,
-        imageAlt: blog.title,
-        title: blog.title,
-        badge: blog.company_name,
         isAds: blog.isAds,
-        description: blog.description,
+        blog,
     }))
 
     return (
@@ -46,7 +40,11 @@ export default function BlogsPage() {
                 <SidePanel
                     items={sidePanelItems}
                     title="Самое обсуждаемое"
-                    getHref={(item: BlogItem) => `/blogs/${item.id}`}
+                    getHref={(item) => `/blogs/${item.id}`}
+                    renderItem={(item, href) => {
+                        const blog = (item as any).blog as BlogItem
+                        return <BlogSidePanelCard item={blog} href={href} />
+                    }}
                 />
             </div>
         </div>

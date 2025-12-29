@@ -1,5 +1,5 @@
 import { BlogItem } from './types';
-import { MockLogo } from '@/shared';
+import { MockLogo } from '@/shared/ui';
 
 export const BLOGS: BlogItem[] = [
     {
@@ -23,7 +23,7 @@ export const BLOGS: BlogItem[] = [
         description: "Проектировщики регулярно сталкиваются с замечаниями при согласовании светопрозрачных противопожарных конструкций и затянутыми в связи с этим сроками. RGC предлагает решение этой ",
         likes: 16,
         comments: 16,
-        image: 'https://s3.twcstorage.ru/4b615622-soup/blogs/placeholder.svg'
+        image: 'https://s3.twcstorage.ru/4b615622-soup/blogs/Frame%202136138513.svg'
     },
     {
         id: 3,
@@ -34,7 +34,7 @@ export const BLOGS: BlogItem[] = [
         description: "Проектировщики регулярно сталкиваются с замечаниями при согласовании светопрозрачных противопожарных конструкций и затянутыми в связи с этим сроками. RGC предлагает решение этой ",
         likes: 16,
         comments: 16,
-        image: 'https://s3.twcstorage.ru/4b615622-soup/blogs/placeholder.svg'
+        image: 'https://s3.twcstorage.ru/4b615622-soup/blogs/Frame%202136138513.svg'
     },
     {
         id: 4,
@@ -45,7 +45,7 @@ export const BLOGS: BlogItem[] = [
         description: "Проектировщики регулярно сталкиваются с замечаниями при согласовании светопрозрачных противопожарных конструкций и затянутыми в связи с этим сроками. RGC предлагает решение этой ",
         likes: 16,
         comments: 16,
-        image: 'https://s3.twcstorage.ru/4b615622-soup/blogs/placeholder.svg',
+        image: 'https://s3.twcstorage.ru/4b615622-soup/blogs/Frame%202136138513.svg',
         isAds: true
     },
 ];

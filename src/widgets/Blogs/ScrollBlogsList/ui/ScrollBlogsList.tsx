@@ -1,7 +1,6 @@
 "use client"
 
-import { BLOGS, BottomBlogCard } from "@/entities"
-import { getPriorityBlog } from "@/entities/Blogs/model/useBlogCardBig"
+import { BLOGS, BottomBlogCard, getPriorityBlog } from "@/entities/Blogs"
 
 export const ScrollBlogsList = () => {
     const { item: topBlog } = getPriorityBlog()
@@ -15,6 +14,7 @@ export const ScrollBlogsList = () => {
                     <BottomBlogCard 
                         blog={blog}
                         href={`/blogs/${blog.id}`}
+                        imageHeight={null}
                     />
                 </div>
             ))}

@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { NewsItem } from "../model/types"
-import { Badge } from "@/shared"
+import type { NewsItem } from ".."
+import { Badge } from "@/shared/ui"
 
 type NewsCardSmallProps = {
     item: NewsItem

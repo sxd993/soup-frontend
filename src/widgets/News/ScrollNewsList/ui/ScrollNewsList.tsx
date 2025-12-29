@@ -1,7 +1,7 @@
 "use client"
 
-import { NEWS, NewsCardSmall } from "@/entities"
-import { AdsBanner } from "@/shared"
+import { NEWS, NewsCardSmall } from "@/entities/News"
+import { AdsBanner } from "@/shared/ui"
 
 export const ScrollNewsList = () => {
     return (

@@ -1,6 +1,5 @@
-import { BLOGS, TopBlogCard, BottomBlogCard } from "@/entities"
-import { getPriorityBlog } from "@/entities/Blogs/model/useBlogCardBig"
-import { SectionTitle, ViewAllButton } from "@/shared"
+import { BLOGS, TopBlogCard, BottomBlogCard, getPriorityBlog } from "@/entities/Blogs"
+import { SectionTitle, ViewAllButton } from "@/shared/ui"
 
 export const BlogsSection = () => {
     const { item: topBlog } = getPriorityBlog();
@@ -29,6 +28,7 @@ export const BlogsSection = () => {
                             key={blog.id} 
                             blog={blog}
                             href={`/blogs/${blog.id}`}
+                            imageHeight={144}
                         />
                     ))}
                 </div>
@@ -38,6 +38,7 @@ export const BlogsSection = () => {
                             key={blog.id} 
                             blog={blog}
                             href={`/blogs/${blog.id}`}
+                            imageHeight={144}
                         />
                     ))}
                 </div>

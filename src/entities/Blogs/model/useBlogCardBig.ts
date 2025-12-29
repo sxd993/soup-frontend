@@ -1,6 +1,6 @@
 import { BLOGS } from "./blogs"
 import { BlogItem } from "./types"
-import { IMAGES } from "@/shared"
+import { IMAGES } from "@/shared/config"
 
 export const getPriorityBlog = (): { 
     item: BlogItem | undefined; 

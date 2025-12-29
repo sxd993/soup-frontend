@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { MainIcon2, CloseIcon } from '@/shared'
+import { MainIcon2, CloseIcon } from '@/shared/ui'
 import { MOBILE_MENU_LINKS } from '../model/const'
 
 type MobileMenuProps = {

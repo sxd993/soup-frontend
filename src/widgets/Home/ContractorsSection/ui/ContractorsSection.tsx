@@ -1,5 +1,5 @@
-import { SectionTitle } from "@/shared"
-import { CONTRACTORS, ContractorsCard } from "@/entities"
+import { SectionTitle } from "@/shared/ui"
+import { CONTRACTORS, ContractorsCard } from "@/entities/Contractors"
 
 export const ContractorsSection = () => {
     return (

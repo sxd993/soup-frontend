@@ -1,7 +1,6 @@
 import Link from "next/link"
-import { BlogItem } from "../model/types";
-import { getPriorityBlog } from "../model/useBlogCardBig";
-import { Heart, Comment } from "@/shared";
+import { getPriorityBlog, type BlogItem } from "..";
+import { Heart, Comment } from "@/shared/ui";
 import Image from "next/image";
 
 type TopBlogCardProps = {

@@ -1,5 +1,5 @@
-import { SectionTitle, ViewAllButton } from "@/shared"
-import { CONTESTS, ContestsCard } from "@/entities"
+import { SectionTitle, ViewAllButton } from "@/shared/ui"
+import { CONTESTS, ContestsCard } from "@/entities/Contests"
 
 export const ContestsSection = () => {
     const lastThreeContests = CONTESTS.slice(-3)

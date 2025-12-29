@@ -1,0 +1,1 @@
+export { useCurrentPath } from './useCurrentPath'

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
-import { NEWS, NewsContent } from "@/entities"
-import { SidePanel } from "@/shared"
+import { NEWS, NewsContent, type NewsItem } from "@/entities/News"
+import { SidePanel, NewsSidePanelCard, type SidePanelItem } from "@/shared/ui"
 
 type PageProps = {
   params: Promise<{ id: string }>
@@ -22,6 +22,12 @@ export default async function NewsDetailPage({ params }: PageProps) {
   }
 
   const relatedNews = NEWS.filter((item) => item.id !== newsItem.id)
+  
+  const sidePanelItems: SidePanelItem[] = relatedNews.map((item) => ({
+    id: item.id,
+    isAds: item.isAds,
+    news: item,
+  }))
 
   return (
     <div className="flex flex-col lg:flex-row gap-15 lg:gap-40 mt-10">
@@ -30,9 +36,13 @@ export default async function NewsDetailPage({ params }: PageProps) {
       </div>
       <div className="basis-2/10">
         <SidePanel
-          items={relatedNews}
+          items={sidePanelItems}
           title="Новости по теме"
           getHref={(item) => `/news/${item.id}`}
+          renderItem={(item, href) => {
+            const news = (item as any).news as NewsItem
+            return <NewsSidePanelCard item={news} href={href} />
+          }}
         />
       </div>
     </div>

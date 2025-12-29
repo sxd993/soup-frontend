@@ -1,7 +1,8 @@
 'use client'
 
-import { NEWS, NewsCardSmall, NewsCardBig } from "@/entities"
-import { AdsBanner, useCurrentPath, SectionTitle, ViewAllButton } from "@/shared"
+import { NEWS, NewsCardSmall, NewsCardBig } from "@/entities/News"
+import { AdsBanner, SectionTitle, ViewAllButton } from "@/shared/ui"
+import { useCurrentPath } from "@/shared/hooks"
 
 export const NewsSection = () => {
     const lastFiveNews = NEWS.slice(0, 5)

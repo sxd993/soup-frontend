@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react"
-import { Search } from "@/shared"
+import { Search } from "@/shared/ui"
 
 export const ContestSearchInput = () => {
     const [searchValue, setSearchValue] = useState("")
@@ -14,7 +14,7 @@ export const ContestSearchInput = () => {
                 placeholder="поиск по названию"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 rounded-[20px] bg-white focus:outline-none font-semibold text-sm placeholder:text-[#535353] placeholder:font-normal"
+                className="w-full pl-10 pr-4 py-2.5 rounded-[20px] bg-white focus:outline-none font-semibold text-sm placeholder:text-[#535353] placeholder:font-normal"
             />
         </div>
     )

@@ -1,4 +1,4 @@
-import { LeftArrow, SearchButton } from '@/shared'
+import { LeftArrow, SearchButton } from '@/shared/ui'
 
 type SearchOverlayProps = {
   isOpen: boolean

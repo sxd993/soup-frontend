@@ -1,8 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Badge } from "@/shared"
-import { getPriorityNews } from "../model/useNewsCardBig"
-import { NewsItem } from "../model/types"
+import { Badge } from "@/shared/ui"
+import { getPriorityNews, type NewsItem } from ".."
 
 type NewsCardBigProps = {
     item?: NewsItem

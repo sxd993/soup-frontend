@@ -1,4 +1,5 @@
-import { IMAGES, AdsBanner } from '@/shared'
+import { AdsBanner } from '@/shared/ui'
+import { IMAGES } from '@/shared/config'
 import Link from 'next/link'
 import Image from 'next/image'
 

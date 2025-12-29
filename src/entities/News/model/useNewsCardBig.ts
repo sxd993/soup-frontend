@@ -1,6 +1,6 @@
 import { NEWS } from "./news"
 import { NewsItem } from "./types"
-import { IMAGES } from "@/shared"
+import { IMAGES } from "@/shared/config"
 
 export const getPriorityNews = (): { 
     item: NewsItem | undefined; 

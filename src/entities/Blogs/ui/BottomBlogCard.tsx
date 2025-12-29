@@ -1,15 +1,16 @@
 import Link from "next/link"
-import { BlogItem } from "../model/types";
-import { Heart, Comment, DetailsIcon } from "@/shared";
+import type { BlogItem } from "..";
+import { Heart, Comment, DetailsIcon } from "@/shared/ui";
 import Image from "next/image";
 
 type BottomBlogCardProps = {
     blog: BlogItem;
     href?: string;
     className?: string;
+    imageHeight?: number | null;
 }
 
-export const BottomBlogCard = ({ blog, href, className }: BottomBlogCardProps) => {
+export const BottomBlogCard = ({ blog, href, className, imageHeight = 144 }: BottomBlogCardProps) => {
     const { logo, company_name, date, title, description, likes, comments, image } = blog;
 
     const articleClasses = ["flex-1 rounded-2xl flex flex-col justify-between gap-4", className].filter(Boolean).join(" ")
@@ -29,13 +30,15 @@ export const BottomBlogCard = ({ blog, href, className }: BottomBlogCardProps) =
             </div>
 
             {image && (
-                <div className="overflow-hidden rounded-xl">
+                <div 
+                    className={`overflow-hidden ${imageHeight !== null ? 'h-[144px] rounded-[20px]' : 'rounded-xl'}`}
+                >
                     <Image
                         src={image}
                         alt={title}
                         width={387}
-                        height={144}
-                        className="w-full h-full object-cover"
+                        height={imageHeight ?? 144}
+                        className={`w-full ${imageHeight === null ? 'h-auto object-contain' : 'h-full object-cover'}`}
                     />
                 </div>
             )}
