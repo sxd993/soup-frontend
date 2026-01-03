@@ -14,7 +14,9 @@ export default function ContestsPage() {
                 <div className="flex-1 hidden md:block">
                     <ContestSearchInput />
                 </div>
-                <Button text="Найти" className="hidden md:block" />
+                <Button className="hidden md:block">
+                    Найти
+                </Button>
             </div>
 
             {/* Фильтр по дате */}

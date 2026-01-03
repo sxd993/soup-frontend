@@ -11,7 +11,9 @@ export function CommentsSection() {
           className="w-full px-4 py-3 rounded-[10px] border border-[#C5C2C2] focus:outline-none text-sm text-[#C5C2C2] resize-none"
         />
         <div className="flex justify-end">
-          <Button text="Отправить" />
+          <Button>
+            Отправить
+          </Button>
         </div>
       </form>
     </div>
