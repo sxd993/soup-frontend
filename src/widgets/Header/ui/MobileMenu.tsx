@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { MainIcon2, CloseIcon } from '@/shared/ui'
-import { MOBILE_MENU_LINKS } from '../model/const'
+import { MainIcon2, CloseIcon } from '@/shared/ui/icons'
+import { HEADER_LINKS } from '../model/const'
 
 type MobileMenuProps = {
   isOpen: boolean
@@ -9,6 +9,10 @@ type MobileMenuProps = {
 
 export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
   if (!isOpen) return null
+
+  const mobileLinks = HEADER_LINKS.filter((link) =>
+    link.devices.some((device) => device === 'sm' || device === 'md'),
+  )
 
   return (
     <div className="fixed inset-0 z-10 lg:hidden">
@@ -27,7 +31,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
           </button>
         </div>
         <nav className=" flex flex-col text-lg font-semibold ml-3">
-          {MOBILE_MENU_LINKS.map((link) => (
+          {mobileLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}

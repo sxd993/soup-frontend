@@ -51,7 +51,7 @@ export const Header = () => {
         <div className="hidden md:block lg:hidden">
           <SearchInput />
         </div>
-        <Link href="/profile" className="hidden md:block">
+        <Link href="/auth/login" className="hidden md:block">
           <Person className="w-11 h-11 lg:w-8 lg:h-8" />
         </Link>
         <button

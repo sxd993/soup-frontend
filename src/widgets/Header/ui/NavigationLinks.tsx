@@ -2,15 +2,16 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { NAVIGATION_LINKS } from '../model/const'
+import { HEADER_LINKS } from '../model/const'
 
 // Компонент навигационных ссылок
 export const NavigationLinks = () => {
   const pathname = usePathname()
+  const navigationLinks = HEADER_LINKS.filter((link) => link.devices.includes('lg'))
 
   return (
     <div className="hidden lg:flex pl-5 gap-8 text-center items-center text-nowrap">
-      {NAVIGATION_LINKS.map((link) => {
+      {navigationLinks.map((link) => {
         const isActive = pathname?.startsWith(link.href)
 
         return (
