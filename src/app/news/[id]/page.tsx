@@ -2,6 +2,10 @@ import { notFound } from "next/navigation"
 import { NEWS, NewsContent, type NewsItem } from "@/entities/News"
 import { SidePanel, NewsSidePanelCard, type SidePanelItem } from "@/shared/ui"
 
+type NewsSidePanelItem = SidePanelItem & {
+  news: NewsItem
+}
+
 type PageProps = {
   params: Promise<{ id: string }>
 }
@@ -23,7 +27,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
 
   const relatedNews = NEWS.filter((item) => item.id !== newsItem.id)
   
-  const sidePanelItems: SidePanelItem[] = relatedNews.map((item) => ({
+  const sidePanelItems: NewsSidePanelItem[] = relatedNews.map((item) => ({
     id: item.id,
     isAds: item.isAds,
     news: item,
@@ -40,8 +44,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
           title="Новости по теме"
           getHref={(item) => `/news/${item.id}`}
           renderItem={(item, href) => {
-            const news = (item as any).news as NewsItem
-            return <NewsSidePanelCard item={news} href={href} />
+            return <NewsSidePanelCard item={item.news} href={href} />
           }}
         />
       </div>

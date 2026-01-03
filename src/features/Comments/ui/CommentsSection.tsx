@@ -1,10 +1,6 @@
 import { Button } from "@/shared/ui"
 
-interface CommentsSectionProps {
-  blogId: number
-}
-
-export function CommentsSection({ blogId }: CommentsSectionProps) {
+export function CommentsSection() {
   return (
     <div className="flex flex-col gap-6">
       {/* Форма добавления комментария */}

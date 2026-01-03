@@ -3,6 +3,10 @@ import { BLOGS, BottomBlogCard, getPriorityBlog, type BlogItem } from "@/entitie
 import { CommentsSection } from "@/features/Comments/ui/CommentsSection"
 import { SectionTitle, AdsBanner, SidePanel, BlogSidePanelCard, type SidePanelItem } from "@/shared/ui"
 
+type BlogSidePanelItem = SidePanelItem & {
+  blog: BlogItem
+}
+
 type PageProps = {
   params: Promise<{ id: string }>
 }
@@ -25,7 +29,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
   const { item: topBlogItem } = getPriorityBlog()
   const topBlogId = topBlogItem?.id
   const relatedBlogs = BLOGS.filter((blog) => blog.id !== topBlogId)
-  const sidePanelItems: SidePanelItem[] = relatedBlogs.map((blog) => ({
+  const sidePanelItems: BlogSidePanelItem[] = relatedBlogs.map((blog) => ({
     id: String(blog.id),
     isAds: blog.isAds,
     blog,
@@ -48,7 +52,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
         {/*  Раздел комментариев */}
         <div className="mt-12 bg-white p-5 rounded-[20px]">
           <SectionTitle title="Комментарии" className="mb-6 text-secondary! text-[22px]! font-bold!" />
-          <CommentsSection blogId={blogItem.id} />
+          <CommentsSection />
         </div>
 
       </div>
@@ -67,8 +71,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
           title="Самое обсуждаемое"
           getHref={(item) => `/blogs/${item.id}`}
           renderItem={(item, href) => {
-            const blog = (item as any).blog as BlogItem
-            return <BlogSidePanelCard item={blog} href={href} />
+            return <BlogSidePanelCard item={item.blog} href={href} />
           }}
         />
       </div>

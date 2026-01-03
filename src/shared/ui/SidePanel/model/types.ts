@@ -4,6 +4,7 @@ import { ReactNode } from "react"
 export type SidePanelItem = {
     id: string
     isAds?: boolean
+    description?: string
     [key: string]: unknown
 }
 

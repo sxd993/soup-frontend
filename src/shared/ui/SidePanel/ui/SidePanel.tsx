@@ -12,7 +12,7 @@ export function SidePanel<T extends SidePanelItem>({
 }: SidePanelProps<T>) {
     const defaultRenderAds = (item: T) => (
         <div className="w-full h-full max-w-none">
-            <AdsBanner hasDescription={Boolean((item as any).description)} />
+            <AdsBanner hasDescription={Boolean(item.description)} />
         </div>
     )
     const renderAdsBanner = renderAds || defaultRenderAds

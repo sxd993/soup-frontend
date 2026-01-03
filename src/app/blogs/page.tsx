@@ -2,11 +2,15 @@ import { ScrollBlogsList } from "@/widgets/Blogs";
 import { BLOGS, getPriorityBlog, type BlogItem } from "@/entities/Blogs";
 import { SectionTitle, AdsBanner, SidePanel, BlogSidePanelCard, type SidePanelItem } from "@/shared/ui";
 
+type BlogSidePanelItem = SidePanelItem & {
+    blog: BlogItem
+}
+
 export default function BlogsPage() {
     const { item: topBlogItem } = getPriorityBlog()
     const topBlogId = topBlogItem?.id
     const relatedBlogs = BLOGS.filter((blog) => blog.id !== topBlogId)
-    const sidePanelItems: SidePanelItem[] = relatedBlogs.map((blog) => ({
+    const sidePanelItems: BlogSidePanelItem[] = relatedBlogs.map((blog) => ({
         id: String(blog.id),
         isAds: blog.isAds,
         blog,
@@ -42,8 +46,7 @@ export default function BlogsPage() {
                     title="Самое обсуждаемое"
                     getHref={(item) => `/blogs/${item.id}`}
                     renderItem={(item, href) => {
-                        const blog = (item as any).blog as BlogItem
-                        return <BlogSidePanelCard item={blog} href={href} />
+                        return <BlogSidePanelCard item={item.blog} href={href} />
                     }}
                 />
             </div>

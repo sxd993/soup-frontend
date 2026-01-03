@@ -22,7 +22,7 @@ export const useScrollToTop = () => {
                 document.body.scrollTop = 0
                 window.scrollTo(0, 0)
             }, 0)
-        } catch (error) {
+        } catch {
             // Fallback на простой скролл
             window.scrollTo(0, 0)
         }
