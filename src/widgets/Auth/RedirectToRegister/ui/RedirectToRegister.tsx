@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export const RedirectToRegister = () => {
   return (
-    <p className="text-sm text-accent-quinary flex justify-center">
+    <div className="text-sm text-accent-quinary flex justify-center">
       Нет аккаунта?{' '}
       <Link
         href="/auth/register"
@@ -12,6 +12,6 @@ export const RedirectToRegister = () => {
           Зарегистрируйтесь
         </p>
       </Link>
-    </p>
+    </div>
   )
 }

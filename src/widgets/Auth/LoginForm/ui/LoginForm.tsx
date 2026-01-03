@@ -1,4 +1,4 @@
-import { Button } from '@/shared'
+import { Button } from '@/shared/ui'
 import Link from 'next/link'
 
 export const LoginForm = () => {
