@@ -1,17 +1,9 @@
-export const NAVIGATION_LINKS = [
-  { href: '/catalog', label: 'Каталог' },
-  { href: '/news', label: 'Новости' },
-  { href: '/contests', label: 'Конкурсы' },
-  { href: '/blogs', label: 'Блоги' },
-  { href: '/order', label: 'Разместить заказ' },
-] as const
-
-export const MOBILE_MENU_LINKS = [
-  { href: '/catalog', label: 'Каталог' },
-  { href: '/news', label: 'Новости' },
-  { href: '/contests', label: 'Конкурсы' },
-  { href: '/blogs', label: 'Блоги' },
-  { href: '/order', label: 'Разместить заказ' },
-  { href: '/profile', label: 'Личный кабинет' },
-  { href: '/contacts', label: 'Контакты' },
-] as const
+export const HEADER_LINKS = [
+  { href: '/catalog', label: 'Каталог', devices: ['sm', 'md', 'lg'] },
+  { href: '/news', label: 'Новости', devices: ['sm', 'md', 'lg'] },
+  { href: '/contests', label: 'Конкурсы', devices: ['sm', 'md', 'lg'] },
+  { href: '/blogs', label: 'Блоги', devices: ['sm', 'md', 'lg'] },
+  { href: '/order', label: 'Разместить заказ', devices: ['sm', 'md', 'lg'] },
+  { href: '/login', label: 'Личный кабинет', devices: ['sm', 'md'] },
+  { href: '/contacts', label: 'Контакты', devices: ['sm', 'md'] },
+]
