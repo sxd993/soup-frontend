@@ -2,6 +2,7 @@
 export { AdsBanner } from './AdsBanner'
 export { Badge } from './Badge'
 export { Button } from './Button'
+export { Input } from './Input'
 export { MockLogo } from './MockLogo'
 export { SectionTitle } from './SectionTitle'
 export { ViewAllButton } from './ViewAllButton'
