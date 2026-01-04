@@ -8,10 +8,7 @@ export function useSession() {
         queryFn: async () => {
             const res = await client.post("/auth/refresh");
             return res.data;
-        },
-        retry: false,
-        staleTime: Infinity,
-        refetchOnWindowFocus: false,
+        }
     });
 }
 
