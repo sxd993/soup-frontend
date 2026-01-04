@@ -1,12 +1,12 @@
 import type { AuthSession } from "../model/session.types";
-import { client } from "@/shared/api/client";
+import { AxiosClient } from "@/shared/api/AxiosClient";
 import { useQuery } from "@tanstack/react-query";
 
 export function useSession() {
     return useQuery<AuthSession>({
         queryKey: ["session"],
         queryFn: async () => {
-            const res = await client.post("/auth/refresh");
+            const res = await AxiosClient.post("/auth/refresh");
             return res.data;
         }
     });

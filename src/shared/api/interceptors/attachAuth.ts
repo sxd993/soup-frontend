@@ -1,8 +1,12 @@
 import type { QueryClient } from "@tanstack/react-query";
-import { client } from "../client";
+import type { AxiosInstance } from "axios";
 import type { AuthSession } from "@/entities/Session/model/session.types";
 
-export function attachAuthInterceptors(queryClient: QueryClient) {
+export function attachAuthInterceptors(
+  client: AxiosInstance,
+  queryClient: QueryClient,
+) {
+
   // Добавляем accessToken в каждый запрос, если сессия есть в react-query кеше
   client.interceptors.request.use((config) => {
     const session = queryClient.getQueryData<AuthSession>(["session"]);
