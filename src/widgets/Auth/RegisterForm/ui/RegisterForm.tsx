@@ -13,7 +13,7 @@ export const RegisterForm = () => {
                 <label className="flex items-center gap-2 cursor-pointer">
                     <input
                         type="radio"
-                        value="customer"
+                        value="client"
                         className="peer sr-only"
                         {...register('role', { required: true })}
                     />
@@ -27,7 +27,7 @@ export const RegisterForm = () => {
                 <label className="flex items-center gap-2 cursor-pointer">
                     <input
                         type="radio"
-                        value="executor"
+                        value="doer"
                         className="peer sr-only"
                         {...register('role', { required: true })}
                     />

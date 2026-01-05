@@ -1,6 +1,6 @@
 // Cетевой запрос на auth/register и поля формы
 export type RegisterFormValues = {
-    role: "doer" | "client";
+    role: "client" | "doer";
     name: string;
     email: string;
     password: string;
