@@ -7,7 +7,7 @@ export const useLoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm<LoginFormValues>()
 
   const onSubmit = (data: LoginFormValues) => mutate(data)
@@ -18,5 +18,6 @@ export const useLoginForm = () => {
     handleSubmit,
     onSubmit,
     isBusy,
+    errors,
   }
 }

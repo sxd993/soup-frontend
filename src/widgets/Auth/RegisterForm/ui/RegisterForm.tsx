@@ -4,7 +4,7 @@ import { Button, Input, RadioCircleIcon } from '@/shared/ui'
 import { useRegisterForm } from '../hooks/useRegisterForm'
 
 export const RegisterForm = () => {
-   const {handleSubmit, onSubmit, register, isBusy} = useRegisterForm()
+   const { handleSubmit, onSubmit, register, isBusy, errors, getValues } = useRegisterForm()
     return (
         <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
             
@@ -39,6 +39,9 @@ export const RegisterForm = () => {
                     </span>
                 </label>
             </div>
+            {errors.role && (
+                <p className="text-xs text-red-600 text-center">Выберите роль</p>
+            )}
 
             {/* ФИО / компания */}
             <Input
@@ -47,6 +50,13 @@ export const RegisterForm = () => {
                 className="text-secondary"
                 {...register('name', { required: true, minLength: 2 })}
             />
+            {errors.name && (
+                <p className="text-xs text-red-600">
+                    {errors.name.type === 'minLength'
+                        ? 'Минимум 2 символа'
+                        : 'Введите имя или название компании'}
+                </p>
+            )}
 
             {/* E-mail */}
             <Input
@@ -58,6 +68,11 @@ export const RegisterForm = () => {
                     pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 })}
             />
+            {errors.email && (
+                <p className="text-xs text-red-600">
+                    {errors.email.type === 'pattern' ? 'Введите корректный e-mail' : 'Введите e-mail'}
+                </p>
+            )}
 
             {/* Пароль */}
             <Input
@@ -65,15 +80,26 @@ export const RegisterForm = () => {
                 placeholder="Пароль"
                 {...register('password', { required: true, minLength: 8 })}
             />
+            {errors.password && (
+                <p className="text-xs text-red-600">
+                    {errors.password.type === 'minLength' ? 'Минимум 8 символов' : 'Введите пароль'}
+                </p>
+            )}
 
             {/* Подтверждение пароля */}
             <Input
                 type="password"
                 placeholder="Подтверждение пароля"
                 {...register('passwordConfirm', {
-                    required: true
+                    required: true,
+                    validate: (value) => value === getValues('password') || 'Пароли не совпадают',
                 })}
             />
+            {errors.passwordConfirm && (
+                <p className="text-xs text-red-600">
+                    {errors.passwordConfirm.message ?? 'Подтвердите пароль'}
+                </p>
+            )}
 
             {/* Создать аккаунт */}
             <div className="flex justify-center mt-5">

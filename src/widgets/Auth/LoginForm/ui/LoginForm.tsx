@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useLoginForm } from '../hooks/useLoginForm'
 
 export const LoginForm = () => {
-  const { register, handleSubmit, onSubmit, isBusy } = useLoginForm()
+  const { register, handleSubmit, onSubmit, isBusy, errors } = useLoginForm()
 
   return (
     <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
@@ -20,6 +20,11 @@ export const LoginForm = () => {
           pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
         })}
       />
+      {errors.email && (
+        <p className="text-xs text-red-600">
+          {errors.email.type === 'pattern' ? 'Введите корректный e-mail' : 'Введите e-mail'}
+        </p>
+      )}
 
       {/* Пароль */}
       <Input
@@ -27,6 +32,11 @@ export const LoginForm = () => {
         placeholder="Пароль"
         {...register('password', { required: true, minLength: 6 })}
       />
+      {errors.password && (
+        <p className="text-xs text-red-600">
+          {errors.password.type === 'minLength' ? 'Минимум 6 символов' : 'Введите пароль'}
+        </p>
+      )}
 
       {/* Забыли пароль */}
       <Link

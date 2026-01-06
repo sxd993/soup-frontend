@@ -10,7 +10,8 @@ export const useRegisterForm = () => {
     const {
         register,
         handleSubmit,
-        formState: { isSubmitting },
+        getValues,
+        formState: { isSubmitting, errors },
     } = useForm<RegisterFormValues>({
         defaultValues: { role: 'client' },
     })
@@ -22,7 +23,9 @@ export const useRegisterForm = () => {
     return {
         register,
         handleSubmit,
+        getValues,
         onSubmit,
         isBusy,
+        errors,
     }
 }
