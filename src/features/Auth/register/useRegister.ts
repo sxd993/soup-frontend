@@ -7,7 +7,7 @@ export const useRegister = () => {
         mutationKey: ['register'],
         mutationFn: async (data: RegisterFormValues) => {
             const response = await AxiosClient.post('/auth/register', data)
-            return response.data
+            return response
         }
     })
 }
