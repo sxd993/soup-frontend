@@ -1,6 +1,6 @@
 "use client"
 
-import { CATALOG_COMPANIES } from "@/entities/Company/model/companies"
+import { CATALOG_COMPANIES } from "@/entities/Company/model/const/companies"
 import { CompanyCard } from "@/entities/Company/ui/CompanyCard"
 import { SortIcon } from "@/shared/ui"
 

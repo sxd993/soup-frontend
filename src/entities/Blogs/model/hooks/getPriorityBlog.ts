@@ -1,11 +1,11 @@
-import { BLOGS } from "./blogs"
-import { BlogItem } from "./types"
+import { BLOGS } from "../const/blogs";
 import { IMAGES } from "@/shared/config"
+import type { BlogItem } from './../types/blogs.types';
 
-export const getPriorityBlog = (): { 
-    item: BlogItem | undefined; 
+export const getPriorityBlog = (): {
+    item: BlogItem | undefined;
     href: string;
-    fallbackImage: string 
+    fallbackImage: string
 } => {
     const priorityItem = BLOGS.find((blog) => blog.isImportantBlog)
     const fallbackItem = BLOGS[0]

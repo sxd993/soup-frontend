@@ -1,11 +1,11 @@
-import { NEWS } from "./news"
-import { NewsItem } from "./types"
+import { NEWS } from "../const/news";
+import { NewsItem } from "../types/news.types"
 import { IMAGES } from "@/shared/config"
 
-export const getPriorityNews = (): { 
-    item: NewsItem | undefined; 
-    href: string; 
-    fallbackImage: string 
+export const getPriorityNews = (): {
+    item: NewsItem | undefined;
+    href: string;
+    fallbackImage: string
 } => {
     const priorityItem = NEWS.find((newsItem) => newsItem.isImportantNew && !newsItem.isAds)
     const fallbackItem = NEWS.find((newsItem) => !newsItem.isAds)

@@ -1,5 +1,5 @@
 import { Heart, MockLogo } from "@/shared/ui"
-import type { CompanyCardData } from "../model/types"
+import type { CompanyCardData } from "../model/types/company.types"
 
 type CompanyCardProps = {
   item: CompanyCardData
@@ -7,10 +7,10 @@ type CompanyCardProps = {
 
 export const CompanyCard = ({ item }: CompanyCardProps) => {
   return (
-    <article className="rounded-[24px] bg-white p-6 shadow-sm">
+    <article className="rounded-3xl bg-white p-6 shadow-sm">
       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
         <div className="flex gap-4">
-          <div className="h-16 w-16 rounded-[16px] bg-[#F6F3EE] p-2">
+          <div className="h-16 w-16 rounded-2xl bg-[#F6F3EE] p-2">
             <MockLogo className="h-full w-full" />
           </div>
           <div className="flex flex-col gap-2">

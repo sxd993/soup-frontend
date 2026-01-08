@@ -1,5 +1,5 @@
-export { BLOGS } from "./model/blogs";
+export { BLOGS } from "./model/const/blogs";
+export { getPriorityBlog } from "./model/hooks/getPriorityBlog";
 export { TopBlogCard } from "./ui/TopBlogCard";
 export { BottomBlogCard } from "./ui/BottomBlogCard";
-export { getPriorityBlog } from "./model/useBlogCardBig";
-export type { BlogItem } from "./model/types";
+export type { BlogItem } from "./model/types/blogs.types";

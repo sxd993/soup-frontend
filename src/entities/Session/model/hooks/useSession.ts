@@ -1,4 +1,4 @@
-import type { AuthSession } from "../model/session.types";
+import type { AuthSession } from "../types/session.types";
 import { AxiosClient } from "@/shared/api/AxiosClient";
 import { useQuery } from "@tanstack/react-query";
 

@@ -1,4 +1,4 @@
-import { ContestsTypes } from './types';
+import { ContestsTypes } from './types/contest.types';
 
 export const CONTESTS: ContestsTypes[] = [
     {

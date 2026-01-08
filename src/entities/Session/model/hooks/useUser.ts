@@ -1,4 +1,4 @@
-import { useSession } from "@/entities/Session/api/session.query";
+import { useSession } from "./useSession";
 
 export function useUser() {
     const { data } = useSession();

@@ -4,7 +4,7 @@ import type {
   AxiosInstance,
   InternalAxiosRequestConfig,
 } from "axios";
-import type { AuthSession } from "@/entities/Session/model/session.types";
+import type { AuthSession } from "@/entities/Session/model/types/session.types";
 
 export function attachAuthInterceptors(
   client: AxiosInstance,

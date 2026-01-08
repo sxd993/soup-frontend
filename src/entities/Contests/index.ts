@@ -1,3 +1,3 @@
-export { CONTESTS } from "./model/contests";
+export { CONTESTS } from "./model/const/contests";
 export { ContestsCard } from "./ui/ContestsCard";
-export type { ContestsTypes } from "./model/types";
+export type { ContestsTypes } from "./model/types/contest.types";

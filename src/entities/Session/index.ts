@@ -1,1 +1,1 @@
-export type { User, AuthSession } from './model/session.types'
+export type { User, AuthSession } from './model/types/session.types'

@@ -1,4 +1,4 @@
-import { ContractorsTypes } from './types';
+import { ContractorsTypes } from './types/contractors.types';
 
 export const CONTRACTORS: ContractorsTypes[] = [
     {

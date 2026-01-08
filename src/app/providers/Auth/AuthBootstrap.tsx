@@ -1,6 +1,6 @@
 'use client';
 
-import { useSession } from "@/entities/Session/api/session.query";
+import { useSession } from "@/entities/Session/model/hooks/useSession";
 
 export function AuthBootstrap() {
     useSession();

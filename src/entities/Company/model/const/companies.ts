@@ -1,4 +1,4 @@
-import type { CompanyCardData } from "./types"
+import { CompanyCardData } from "../types/company.types"
 
 export const CATALOG_COMPANIES: CompanyCardData[] = [
   {
