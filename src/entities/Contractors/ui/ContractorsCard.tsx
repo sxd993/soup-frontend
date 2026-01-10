@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { RightArrow } from "@/shared/ui";
-import type { ContractorsTypes } from "..";
+import type { ContractorsTypes } from "../model/types/contractors.types";
 
 type ContractorsCardProps = {
     contractor: ContractorsTypes;

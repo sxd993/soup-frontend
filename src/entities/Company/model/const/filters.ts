@@ -1,4 +1,4 @@
-import type { CatalogFilterItem } from "./types"
+import type { CatalogFilterItem } from "../types/company.types"
 
 export const REGION_FILTERS: CatalogFilterItem[] = [
   { id: "sverdlovsk", label: "Свердловская область", isSelected: true },

@@ -1,4 +1,4 @@
-import { BlogItem } from './types';
+import { BlogItem } from '../types/blogs.types';
 import { MockLogo } from '@/shared/ui';
 
 export const BLOGS: BlogItem[] = [

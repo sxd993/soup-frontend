@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { RightArrow } from "@/shared/ui";
 import Image from 'next/image';
-import type { ContestsTypes } from "..";
+import type { ContestItem } from "../model/types/contest.types";
 
 type ContestsCardProps = {
-    contest: ContestsTypes;
+    contest: ContestItem;
 };
 
 export const ContestsCard = ({ contest }: ContestsCardProps) => {

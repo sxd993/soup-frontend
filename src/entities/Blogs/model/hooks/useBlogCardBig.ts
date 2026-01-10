@@ -1,5 +1,5 @@
-import { BLOGS } from "./blogs"
-import { BlogItem } from "./types"
+import { BLOGS } from "../const/blogs"
+import { BlogItem } from "../types/blogs.types"
 import { IMAGES } from "@/shared/config"
 
 export const getPriorityBlog = (): { 

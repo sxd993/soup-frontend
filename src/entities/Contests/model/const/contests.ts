@@ -1,6 +1,6 @@
-import { ContestsTypes } from './types/contest.types';
+import { ContestItem } from "../types/contest.types";
 
-export const CONTESTS: ContestsTypes[] = [
+export const CONTESTS: ContestItem[] = [
     {
         title: 'Конкурс архитектурных проектов «Город будущего»',
         link: 'futurecity.ru',
