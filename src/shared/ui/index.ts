@@ -27,3 +27,6 @@ export { FilterSection } from './FilterSection/ui/FilterSection'
 export { PlaceFilter } from './FilterSection/ui/PlaceFilter'
 export { TimeFilter } from './FilterSection/ui/TimeFilter'
 export { FilterMenu } from './FilterSection/ui/FilterMenu'
+
+// QueryState
+export { QueryState } from './QueryState/ui/QueryState'

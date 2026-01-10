@@ -19,9 +19,9 @@ export const NewsSidePanelCard = ({ item, href }: NewsSidePanelCardProps) => {
                         fill
                         className="object-cover"
                     />
-                    {item.badge && (
+                    {item.category && (
                         <span className="absolute top-3 left-3">
-                            <Badge badge={item.badge} />
+                            <Badge badge={item.category} />
                         </span>
                     )}
                 </div>

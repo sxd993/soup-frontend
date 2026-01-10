@@ -11,6 +11,7 @@ type NewsCardSmallProps = {
     className?: string
 }
 
+// Компонент маленькой карточки новости {отображает изображение, категорию и заголовок}
 export const NewsCardSmall = ({
     item,
     href,
@@ -31,7 +32,7 @@ export const NewsCardSmall = ({
                 />
 
                 <span className="absolute top-4 left-3">
-                    <Badge badge={item.badge} />
+                    <Badge badge={item.category} />
                 </span>
             </div>
 

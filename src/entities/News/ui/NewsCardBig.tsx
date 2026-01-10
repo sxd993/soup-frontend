@@ -1,20 +1,19 @@
+'use client';
+
 import Link from "next/link"
 import Image from "next/image"
 import { Badge } from "@/shared/ui"
-import { getPriorityNews, type NewsItem } from ".."
+import { usePriorityNews } from ".."
 
 type NewsCardBigProps = {
-    item?: NewsItem
-    href?: string
     className?: string
 }
 
-export const NewsCardBig = ({ item: itemProp, href: hrefProp, className }: NewsCardBigProps = {}) => {
-    const { item: itemFromHook, href: hrefFromHook } = getPriorityNews()
-    const item = itemProp ?? itemFromHook
-    const href = hrefProp ?? hrefFromHook
+// Компонент большой карточки новости {отображает приоритетную новость из API}
+export const NewsCardBig = ({ className }: NewsCardBigProps = {}) => {
+    const { item, href, isLoading } = usePriorityNews()
 
-    if (!item) {
+    if (isLoading || !item) {
         return null
     }
 
@@ -29,7 +28,7 @@ export const NewsCardBig = ({ item: itemProp, href: hrefProp, className }: NewsC
 
             <div className="absolute bottom-5 left-5 right-5 max-w-[367px]">
                 <div className="flex flex-col gap-5">
-                    <Badge badge={item.badge} />
+                    <Badge badge={item.category} />
                     <div className="rounded-[20px] bg-white p-5 pb-15 shadow-sm fade-out-in">
                         <h3 className="lg:text-[22px] text-xl font-bold leading-snug text-accent-secondary">
                             {item.title}

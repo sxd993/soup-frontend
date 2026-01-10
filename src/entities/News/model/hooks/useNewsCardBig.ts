@@ -1,17 +1,17 @@
-import { NEWS } from "../const/news";
+import { useNews } from "./useNews";
 import { NewsItem } from "../types/news.types"
-import { IMAGES } from "@/shared/config"
 
-export const getPriorityNews = (): {
+// Хук для получения приоритетной новости {использует isImportantNew из API, исключает рекламу}
+export const usePriorityNews = (): {
     item: NewsItem | undefined;
     href: string;
-    fallbackImage: string
+    isLoading: boolean;
 } => {
-    const priorityItem = NEWS.find((newsItem) => newsItem.isImportantNew && !newsItem.isAds)
-    const fallbackItem = NEWS.find((newsItem) => !newsItem.isAds)
-    const item = priorityItem ?? fallbackItem ?? NEWS[0]
-    const href = item ? `/news/${item.id}` : ""
-    const fallbackImage = IMAGES.hero.background
+    const { data: news = [], isLoading } = useNews();
+    
+    // Ищем новость с isImportantNew === true и не рекламу
+    const item = news.find((newsItem) => newsItem.isImportantNew && !newsItem.isAds);
+    const href = item ? `/news/${item.id}` : "";
 
-    return { item, href, fallbackImage }
-}
+    return { item, href, isLoading };
+};
