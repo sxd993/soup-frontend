@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { VerifyForm } from '@/widgets/Auth/VerifyForm'
 
 export default function VerifyPage() {
@@ -13,7 +14,9 @@ export default function VerifyPage() {
                 <div className="mt-10 space-y-5">
 
                     {/* Форма подтверждения */}
-                    <VerifyForm />
+                    <Suspense fallback={<div>Загрузка...</div>}>
+                        <VerifyForm />
+                    </Suspense>
 
                 </div>
             </div>
