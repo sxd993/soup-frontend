@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ProfilePageClient } from "./ProfilePageClient";
 
 export const metadata: Metadata = {
     title: "Профиль",
@@ -6,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function ProfilePage() {
-    return (
-        <div className="m-auto min-h-screen flex items-center justify-center">
-            Profile Page
-        </div>
-    )
+    return <ProfilePageClient />
 }

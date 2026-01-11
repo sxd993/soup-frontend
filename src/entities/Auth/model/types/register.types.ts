@@ -6,3 +6,8 @@ export type RegisterFormValues = {
     password: string;
     passwordConfirm: string;
 }
+
+// Ответ от сервера при регистрации
+export type RegisterResponse = {
+    verificationId: string;
+}

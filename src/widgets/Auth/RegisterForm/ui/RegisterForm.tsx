@@ -4,9 +4,15 @@ import { Button, Input, RadioCircleIcon } from '@/shared/ui'
 import { useRegisterForm } from '../hooks/useRegisterForm'
 
 export const RegisterForm = () => {
-   const { handleSubmit, onSubmit, register, isBusy, errors, getValues } = useRegisterForm()
+   const { handleSubmit, onSubmit, register, isBusy, errors, getValues, serverError } = useRegisterForm()
     return (
         <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+            {/* Ошибка сервера */}
+            {serverError && (
+                <div className="p-3 rounded-lg bg-red-50 border border-red-200">
+                    <p className="text-sm text-red-600 text-center">{serverError}</p>
+                </div>
+            )}
             
             {/* Роль */}
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm">

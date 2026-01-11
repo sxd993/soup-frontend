@@ -6,3 +6,6 @@ export type User = {
 };
 
 export type AuthSession = { user: User; accessToken: string } | null;
+
+// Реэкспорт типов API
+export type { MeResponse } from './api.types'
