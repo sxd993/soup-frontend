@@ -6,9 +6,3 @@ export type CompanyCardData = {
   city: string
   description: string
 }
-
-export type CatalogFilterItem = {
-  id: string
-  label: string
-  isSelected?: boolean
-}
