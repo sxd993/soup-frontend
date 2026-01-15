@@ -12,9 +12,7 @@ export { SearchOverlay } from './SearchOverlay'
 export * from './icons'
 
 // Pagination
-export { Pagination } from './Pagination/ui/Pagination'
-export { usePagination } from './Pagination/model/usePagination'
-export { useScrollToTop } from './Pagination/model/useScrollToTop'
+export { ClientPagination } from './Pagination/ui/ClientPagination'
 
 // SidePanel
 export { SidePanel } from './SidePanel/ui/SidePanel'

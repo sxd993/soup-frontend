@@ -1,19 +1,16 @@
-'use client';
-
 import Link from "next/link"
 import Image from "next/image"
 import { Badge } from "@/shared/ui"
-import { usePriorityNews } from ".."
+import type { NewsItem } from ".."
 
 type NewsCardBigProps = {
     className?: string
+    item?: NewsItem
 }
 
 // Компонент большой карточки новости {отображает приоритетную новость из API}
-export const NewsCardBig = ({ className }: NewsCardBigProps = {}) => {
-    const { item, href, isLoading } = usePriorityNews()
-
-    if (isLoading || !item) {
+export const NewsCardBig = ({ className, item }: NewsCardBigProps = {}) => {
+    if (!item) {
         return null
     }
 
@@ -44,7 +41,7 @@ export const NewsCardBig = ({ className }: NewsCardBigProps = {}) => {
 
     return (
         <Link
-            href={href}
+            href={`/news/${item.id}`}
             className={`relative block w-full min-h-[480px] overflow-hidden rounded-[40px] cursor-pointer ${className ?? ""}`}
         >
             {card}
