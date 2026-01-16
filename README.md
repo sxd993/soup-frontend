@@ -2,13 +2,12 @@
 
 Next.js app (App Router).
 
-### Scripts
-- `npm i` — установка зависимостей
-- `npm run dev` — старт dev-сервера
+Начало работы:
+1) `npm i` — установка зависимостей
+2) Заполните файл next-env.d.ts:
 
-### Env
-- `NEXT_PUBLIC_API_URL` — base URL для API
-- `REVALIDATE_SECRET` — секрет для `/api/revalidate`
+NEXT_PUBLIC_API_URL='http://localhost:3005/'
 
-### ISR
-- `/api/revalidate` принимает `{ secret, path }` и вызывает `revalidatePath`
+REVALIDATE_SECRET=120
+
+3) `npm run dev` — старт dev-сервера

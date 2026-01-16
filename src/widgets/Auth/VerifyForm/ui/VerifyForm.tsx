@@ -5,16 +5,16 @@ import Link from 'next/link'
 import { useVerifyForm } from '../hooks/useVerifyForm'
 
 export const VerifyForm = () => {
-    const { 
-        code, 
-        inputRefs, 
-        handleInputChange, 
-        handleKeyDown, 
-        handlePaste, 
-        onSubmit, 
-        isBusy, 
-        serverError, 
-        verificationId 
+    const {
+        code,
+        inputRefs,
+        handleInputChange,
+        handleKeyDown,
+        handlePaste,
+        onSubmit,
+        isBusy,
+        serverError,
+        verificationId
     } = useVerifyForm()
 
     if (!verificationId) {
@@ -73,8 +73,8 @@ export const VerifyForm = () => {
             {/* Ссылка на изменение email */}
             <div className="flex items-center justify-center gap-2">
                 <span className="text-sm text-gray-500">Не приходит код?</span>
-                <Link 
-                    href="/auth/register" 
+                <Link
+                    href="/auth/register"
                     className="text-sm text-primary border-b leading-[130%] hover:text-accent transition"
                 >
                     Изменить e-mail

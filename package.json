@@ -9,7 +9,9 @@
     "lint": "eslint",
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -36,6 +38,19 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.6",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "storybook": "^10.1.11",
+    "@storybook/nextjs-vite": "^10.1.11",
+    "@chromatic-com/storybook": "^5.0.0",
+    "@storybook/addon-vitest": "^10.1.11",
+    "@storybook/addon-a11y": "^10.1.11",
+    "@storybook/addon-docs": "^10.1.11",
+    "@storybook/addon-onboarding": "^10.1.11",
+    "vite": "^7.3.1",
+    "eslint-plugin-storybook": "^10.1.11",
+    "vitest": "^4.0.17",
+    "playwright": "^1.57.0",
+    "@vitest/browser-playwright": "^4.0.17",
+    "@vitest/coverage-v8": "^4.0.17"
   }
 }
