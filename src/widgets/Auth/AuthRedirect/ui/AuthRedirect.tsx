@@ -1,11 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useCurrentPath } from '@/shared/hooks'
 
 export const AuthRedirect = () => {
 
-  const pathname = usePathname()
+  const pathname = useCurrentPath()
 
   if (pathname === '/auth/register') {
     return (

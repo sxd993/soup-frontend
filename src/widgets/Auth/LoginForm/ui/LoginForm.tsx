@@ -5,10 +5,16 @@ import Link from 'next/link'
 import { useLoginForm } from '../hooks/useLoginForm'
 
 export const LoginForm = () => {
-  const { register, handleSubmit, onSubmit, isBusy, errors } = useLoginForm()
+  const { register, handleSubmit, onSubmit, isBusy, errors, serverError } = useLoginForm()
 
   return (
     <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+      {/* Ошибка сервера */}
+      {serverError && (
+        <div className="p-3 rounded-lg bg-red-50 border border-red-200">
+          <p className="text-sm text-red-600 text-center">{serverError}</p>
+        </div>
+      )}
 
       {/* Почта */}
       <Input

@@ -1,12 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useCurrentPath } from '@/shared/hooks'
 import { HEADER_LINKS } from '../model/const'
 
 // Компонент навигационных ссылок
 export const NavigationLinks = () => {
-  const pathname = usePathname()
+  const pathname = useCurrentPath()
   const navigationLinks = HEADER_LINKS.filter((link) => link.devices.includes('lg'))
 
   return (

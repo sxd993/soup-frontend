@@ -18,7 +18,7 @@ export function NewsContent({ newsItem }: NewsContentProps) {
                     className="object-cover"
                 />
                 <span className="absolute top-5 left-5">
-                    <Badge badge={newsItem.badge} />
+                    <Badge badge={newsItem.category} />
                 </span>
             </div>
 

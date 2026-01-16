@@ -1,13 +1,16 @@
-"use client"
-
-import { NEWS, NewsCardSmall } from "@/entities/News"
+import { NewsCardSmall } from "@/entities/News"
+import type { NewsItem } from "@/entities/News"
 import { AdsBanner } from "@/shared/ui"
 
-export const ScrollNewsList = () => {
+interface ScrollNewsListProps {
+    news: NewsItem[]
+}
+
+export const ScrollNewsList = ({ news }: ScrollNewsListProps) => {
     return (
         <div className="w-full grid grid-cols-1 gap-6 items-stretch min-h-[350px]">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 content-between gap-5">
-                {NEWS.map((n) => {
+                {news.map((n) => {
                     if (n.isAds) {
                         return (
                             <div key={n.id} className="w-full h-full max-w-none">

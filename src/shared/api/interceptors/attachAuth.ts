@@ -4,7 +4,8 @@ import type {
   AxiosInstance,
   InternalAxiosRequestConfig,
 } from "axios";
-import type { AuthSession } from "@/entities/Session/model/types/session.types";
+import type { AuthSession } from "@/entities/Session";
+import { fetchSessionFromToken } from "@/entities/Session";
 
 export function attachAuthInterceptors(
   client: AxiosInstance,
@@ -35,18 +36,24 @@ export function attachAuthInterceptors(
 
       const is401 = axiosError.response?.status === 401;
       const isRefresh = (original.url ?? "").includes("/auth/refresh");
+      const isLogin = (original.url ?? "").includes("/auth/login");
+      const isRegister = (original.url ?? "").includes("/auth/register");
 
-      // Не трогаем не-401, сам refresh-запрос, и уже повторённые запросы
-      if (!is401 || isRefresh || original._retry) throw error;
+      // Не трогаем не-401, сам refresh-запрос, публичные эндпоинты (login/register), и уже повторённые запросы
+      if (!is401 || isRefresh || isLogin || isRegister || original._retry) throw error;
 
       original._retry = true;
 
       // Стартуем refresh один раз, остальные ждут тот же refreshPromise
       if (!refreshPromise) {
         refreshPromise = client
-          .post<Session>("/auth/refresh")
-          .then((res) => {
-            const newSession = res.data;
+          .post<{ accessToken: string }>("/auth/refresh")
+          .then(async (res) => {
+            const { accessToken } = res.data;
+            
+            // Получаем полную сессию (включая данные пользователя)
+            const newSession: Session = await fetchSessionFromToken(accessToken, client);
+            
             queryClient.setQueryData(["session"], newSession);
             return newSession;
           })

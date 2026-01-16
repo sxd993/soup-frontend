@@ -1,8 +1,9 @@
+// Тип для новости
 export interface NewsItem {
     id: string;
     image: string;
     imageAlt: string;
-    badge: string;
+    category: string;
     title: string;
     description?: string;
     date?: string;

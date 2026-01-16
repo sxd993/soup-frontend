@@ -1,32 +1,33 @@
 import { notFound } from "next/navigation"
-import { NEWS, NewsContent, type NewsItem } from "@/entities/News"
+import {
+  getNews,
+  getNewsById,
+  NewsContent,
+  type NewsItem,
+} from "@/entities/News"
 import { SidePanel, NewsSidePanelCard, type SidePanelItem } from "@/shared/ui"
-
-type NewsSidePanelItem = SidePanelItem & {
-  news: NewsItem
-}
 
 type PageProps = {
   params: Promise<{ id: string }>
 }
 
-export async function generateStaticParams() {
-  return NEWS.map((item) => ({
-    id: item.id,
-  }))
+type NewsSidePanelItem = SidePanelItem & {
+  news: NewsItem
 }
 
 export default async function NewsDetailPage({ params }: PageProps) {
   const { id } = await params
 
-  const newsItem = NEWS.find((item) => item.id === id)
+  const [newsItem, allNews] = await Promise.all([
+    getNewsById(id),
+    getNews(),
+  ])
 
   if (!newsItem) {
     notFound()
   }
 
-  const relatedNews = NEWS.filter((item) => item.id !== newsItem.id)
-  
+  const relatedNews = allNews.filter((item) => item.id !== id)
   const sidePanelItems: NewsSidePanelItem[] = relatedNews.map((item) => ({
     id: item.id,
     isAds: item.isAds,

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ScrollNewsList } from "@/widgets/News";
-import { NewsCardBig, getPriorityNews } from "@/entities/News";
+import { NewsCardBig, getNews } from "@/entities/News";
+import type { NewsItem } from "@/entities/News";
 import { FilterSection, SectionTitle } from "@/shared/ui";
 
 export const metadata: Metadata = {
@@ -8,8 +9,9 @@ export const metadata: Metadata = {
     description: "Студия уникальных проектов",
 };
 
-export default function NewsPage() {
-    const { item: bigNewsItem, href } = getPriorityNews()
+export default async function NewsPage() {
+    const news: NewsItem[] = await getNews()
+    const priorityNews = news.find((item) => item.isImportantNew && !item.isAds)
 
     return (
         <div className="flex flex-col mt-15">
@@ -17,17 +19,11 @@ export default function NewsPage() {
             <FilterSection />
             <div className="mt-6 flex flex-col gap-10">
                 <div className="basis-1/2">
-                    {bigNewsItem && !bigNewsItem.isAds && (
-                        <NewsCardBig
-                            item={bigNewsItem}
-                            href={href}
-                        />
-                    )}
+                    <NewsCardBig item={priorityNews} />
                 </div>
                 <div className="basis-1/2">
-                    <ScrollNewsList />
+                    <ScrollNewsList news={news} />
                 </div>
-
             </div>
         </div>
     )

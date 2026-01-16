@@ -1,19 +1,15 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Badge } from "@/shared/ui"
-import { getPriorityNews, type NewsItem } from ".."
+import type { NewsItem } from ".."
 
 type NewsCardBigProps = {
-    item?: NewsItem
-    href?: string
     className?: string
+    item?: NewsItem
 }
 
-export const NewsCardBig = ({ item: itemProp, href: hrefProp, className }: NewsCardBigProps = {}) => {
-    const { item: itemFromHook, href: hrefFromHook } = getPriorityNews()
-    const item = itemProp ?? itemFromHook
-    const href = hrefProp ?? hrefFromHook
-
+// Компонент большой карточки новости {отображает приоритетную новость из API}
+export const NewsCardBig = ({ className, item }: NewsCardBigProps = {}) => {
     if (!item) {
         return null
     }
@@ -29,7 +25,7 @@ export const NewsCardBig = ({ item: itemProp, href: hrefProp, className }: NewsC
 
             <div className="absolute bottom-5 left-5 right-5 max-w-[367px]">
                 <div className="flex flex-col gap-5">
-                    <Badge badge={item.badge} />
+                    <Badge badge={item.category} />
                     <div className="rounded-[20px] bg-white p-5 pb-15 shadow-sm fade-out-in">
                         <h3 className="lg:text-[22px] text-xl font-bold leading-snug text-accent-secondary">
                             {item.title}
@@ -45,7 +41,7 @@ export const NewsCardBig = ({ item: itemProp, href: hrefProp, className }: NewsC
 
     return (
         <Link
-            href={href}
+            href={`/news/${item.id}`}
             className={`relative block w-full min-h-[480px] overflow-hidden rounded-[40px] cursor-pointer ${className ?? ""}`}
         >
             {card}

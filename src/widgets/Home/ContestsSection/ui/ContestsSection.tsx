@@ -1,8 +1,10 @@
 import { SectionTitle, ViewAllButton } from "@/shared/ui"
-import { CONTESTS, ContestsCard } from "@/entities/Contests"
+import { ContestsCard, getContests } from "@/entities/Contests"
+import type { ContestItem } from "@/entities/Contests/model/types/contest.types"
 
-export const ContestsSection = () => {
-    const lastThreeContests = CONTESTS.slice(-3)
+export const ContestsSection = async () => {
+    const contests: ContestItem[] = await getContests()
+    const lastThreeContests = contests.slice(-3)
 
     return (
         <section className="space-y-6">
@@ -15,7 +17,7 @@ export const ContestsSection = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
                 {lastThreeContests.map((contest) => (
-                    <ContestsCard key={contest.title} contest={contest} />
+                    <ContestsCard key={contest.id} contest={contest} />
                 ))}
             </div>
 

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { MainIcon, MenuIcon, Person, SearchButton, SearchOverlay } from '@/shared/ui'
+import { useSession } from '@/entities/Session'
 import { NavigationLinks } from './NavigationLinks'
 import { SearchInput } from './SearchInput'
 import { MobileMenu } from './MobileMenu'
@@ -11,6 +12,8 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false)
+  const { data: session } = useSession()
+  const profileHref = session?.user ? '/profile' : '/auth/login'
 
   return (
     <header className="w-full flex justify-between items-center mt-5 rounded-[50px] bg-white pr-4 relative z-20">
@@ -51,7 +54,7 @@ export const Header = () => {
         <div className="hidden md:block lg:hidden">
           <SearchInput />
         </div>
-        <Link href="/auth/login" className="hidden md:block">
+        <Link href={profileHref} className="hidden md:block">
           <Person className="w-11 h-11 lg:w-8 lg:h-8" />
         </Link>
         <button
@@ -63,7 +66,7 @@ export const Header = () => {
           <MenuIcon className="w-11 h-11 bg-background rounded-[22px]" />
         </button>
       </div>
-      <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} profileHref={profileHref} />
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
   )

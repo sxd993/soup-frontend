@@ -1,7 +1,13 @@
 import { SectionTitle, Button, TimeFilter } from "@/shared/ui";
 import { ContestSearchInput, ContestsList } from "@/widgets/Contests";
 
-export default function ContestsPage() {
+type PageProps = {
+    searchParams: Promise<{ page?: string }>
+}
+
+export default async function ContestsPage({ searchParams }: PageProps) {
+    const { page } = await searchParams
+    const currentPage = Number(page) || 1
 
     return (
         <div className="flex flex-col mt-15">
@@ -25,7 +31,7 @@ export default function ContestsPage() {
             </div>
 
             {/* Список конкурсов */}
-            <ContestsList />
+            <ContestsList currentPage={currentPage} />
         </div>
     )
 }

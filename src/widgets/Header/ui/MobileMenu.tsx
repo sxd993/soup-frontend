@@ -1,13 +1,15 @@
 import Link from 'next/link'
-import { MainIcon2, CloseIcon } from '@/shared/ui/icons'
+import { MainIcon2, CloseIcon } from '@/shared/ui'
 import { HEADER_LINKS } from '../model/const'
 
 type MobileMenuProps = {
   isOpen: boolean
   onClose: () => void
+  profileHref: string
 }
 
-export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
+export const MobileMenu = ({ isOpen, onClose, profileHref }: MobileMenuProps) => {
+  
   if (!isOpen) return null
 
   const mobileLinks = HEADER_LINKS.filter((link) =>
@@ -34,7 +36,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
           {mobileLinks.map((link) => (
             <Link
               key={link.label}
-              href={link.href}
+              href={link.label === 'Личный кабинет' ? profileHref : link.href}
               onClick={onClose}
               className="py-4 border-b border-[#EBE7DF]/20 md:border-b-0"
             >
