@@ -1,4 +1,6 @@
 import React from "react";
+import { LoadingState } from "./LoadingState";
+import { ErrorState } from "./ErrorState";
 
 // Переиспользуемый компонент для отображения состояний загрузки, ошибок и пустых данных
 
@@ -22,19 +24,11 @@ export const QueryState = ({
     children,
 }: QueryStateProps) => {
     if (isLoading) {
-        return (
-            <div className="text-center py-10">
-                <p className="text-accent-quinary">{loadingMessage}</p>
-            </div>
-        );
+        return <LoadingState message={loadingMessage} />;
     }
 
     if (isError) {
-        return (
-            <div className="text-center py-10">
-                <p className="text-red-500">{errorMessage}</p>
-            </div>
-        );
+        return <ErrorState message={errorMessage} />;
     }
 
     if (isEmpty) {

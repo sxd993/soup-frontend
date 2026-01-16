@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { VerifyForm } from '@/widgets/Auth/VerifyForm'
+import { LoadingState } from '@/shared/ui'
 
 export default function VerifyPage() {
     return (
@@ -14,7 +15,7 @@ export default function VerifyPage() {
                 <div className="mt-10 space-y-5">
 
                     {/* Форма подтверждения */}
-                    <Suspense fallback={<div>Загрузка...</div>}>
+                    <Suspense fallback={<LoadingState />}>
                         <VerifyForm />
                     </Suspense>
 

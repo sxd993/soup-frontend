@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { MainIcon2, CloseIcon } from '@/shared/ui/icons'
+import { MainIcon2, CloseIcon } from '@/shared/ui'
 import { HEADER_LINKS } from '../model/const'
 
 type MobileMenuProps = {

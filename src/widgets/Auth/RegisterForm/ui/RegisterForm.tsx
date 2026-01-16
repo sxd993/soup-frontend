@@ -23,25 +23,27 @@ export const RegisterForm = () => {
                         className="peer sr-only"
                         {...register('role', { required: true })}
                     />
-                    <span className="flex h-6 w-6 items-center justify-center text-accent transition opacity-60 peer-checked:opacity-100">
+                    <span className="relative flex h-6 w-6 items-center justify-center text-accent transition opacity-60 peer-checked:opacity-100 peer-checked:[&>span]:opacity-100">
                         <RadioCircleIcon aria-hidden="true" />
+                        <span className="absolute h-3 w-3 rounded-full bg-accent opacity-0 transition" />
                     </span>
                     <span className="text-[#535353] transition peer-checked:text-black">
-                        Я заказчик
+                        Заказчик
                     </span>
                 </label>
                 <label className="flex items-center gap-2 cursor-pointer">
                     <input
                         type="radio"
-                        value="doer"
+                        value="company"
                         className="peer sr-only"
                         {...register('role', { required: true })}
                     />
-                    <span className="flex h-6 w-6 items-center justify-center text-accent transition opacity-60 peer-checked:opacity-100">
+                    <span className="relative flex h-6 w-6 items-center justify-center text-accent transition opacity-60 peer-checked:opacity-100 peer-checked:[&>span]:opacity-100">
                         <RadioCircleIcon aria-hidden="true" />
+                        <span className="absolute h-3 w-3 rounded-full bg-accent opacity-0 transition" />
                     </span>
                     <span className="text-[#535353] transition peer-checked:text-black">
-                        Я исполнитель
+                        Компания
                     </span>
                 </label>
             </div>

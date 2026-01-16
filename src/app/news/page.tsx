@@ -4,8 +4,6 @@ import { NewsCardBig, getNews } from "@/entities/News";
 import type { NewsItem } from "@/entities/News";
 import { FilterSection, SectionTitle } from "@/shared/ui";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
     title: "Новости",
     description: "Студия уникальных проектов",

@@ -8,7 +8,7 @@ export const mapMeResponseToUser = (meResponse: MeResponse): User => {
         id: meResponse.id,
         email: meResponse.email,
         name: meResponse.name,
-        role: meResponse.role === 'customer' ? 'client' : 'doer'
+        role: meResponse.role
     }
 }
 

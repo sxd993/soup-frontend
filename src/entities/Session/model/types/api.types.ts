@@ -3,5 +3,5 @@ export type MeResponse = {
     id: string
     email: string
     name: string
-    role: 'customer' | 'executor'
+    role: 'client' | 'company'
 }
