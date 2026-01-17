@@ -47,7 +47,7 @@ export const Header = () => {
             aria-label="Открыть поиск"
             onClick={() => setIsDesktopSearchOpen(true)}
           >
-            <NotificationIcon className="rounded-[22px] w-8 h-8" />
+            <SearchButton className="rounded-[22px] w-8 h-8" />
           </button>
         ) : (
           <div className="hidden lg:block">
@@ -59,8 +59,8 @@ export const Header = () => {
           <SearchInput />
         </div>
         {session?.user && (
-          <Link href={notificationsHref} className="hidden md:block" aria-label="Уведомления">
-            <SearchButton className="w-11 h-11 lg:w-8 lg:h-8" />
+          <Link href={notificationsHref} className="hidden lg:block" aria-label="Уведомления">
+            <NotificationIcon className="w-11 h-11 lg:w-8 lg:h-8" />
           </Link>
         )}
         <Link href={profileHref} className="hidden md:block">

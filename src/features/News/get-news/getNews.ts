@@ -3,8 +3,6 @@ import type { NewsItem } from "@/entities/News";
 
 // Получить список новостей
 export const getNews = async (): Promise<NewsItem[]> => {
-    const response = await fetch(`${API_BASE_URL}/news`, {
-        next: { revalidate: 60 }
-    });
+    const response = await fetch(`${API_BASE_URL}/news`);
     return response.json();
 };
