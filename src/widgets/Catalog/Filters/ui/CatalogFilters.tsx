@@ -2,7 +2,6 @@
 
 import {
   Button,
-  QueryState,
   Search,
   DesigningIcon,
   GreeningIcon,
@@ -12,6 +11,7 @@ import {
   EducationIcon,
   CheckIcon,
 } from "@/shared/ui"
+import { StateProvider } from "@/app/providers/State/StateProvider"
 import { CATALOG_FILTERS_MESSAGES, REGION_FILTERS } from "@/entities/CatalogFilters/model/const/filters"
 import { useCatalogFiltersData } from "@/entities/CatalogFilters/model/hooks/useCatalogFiltersData"
 import { useCatalogFilters } from "../model/hooks/useCatalogFilters"
@@ -46,7 +46,7 @@ export const CatalogFilters = () => {
               <span className="relative h-5 w-5">
                 <input
                   type="checkbox"
-                  className="peer h-5 w-5 appearance-none rounded-[6px] border border-[#8BC652] bg-white checked:bg-[#8BC652]"
+                  className="peer h-5 w-5 appearance-none rounded-[6px] border-primary bg-white checked:bg-primary"
                   defaultChecked={Boolean(region.isSelected)}
                 />
                 <span className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity peer-checked:opacity-100">
@@ -61,7 +61,7 @@ export const CatalogFilters = () => {
 
       <div className="flex flex-col gap-4">
         <p className="text-lg font-semibold text-secondary">Сфера деятельности</p>
-        <QueryState
+        <StateProvider
           isLoading={isLoading}
           isError={isError}
           isEmpty={sections.length === 0}
@@ -77,7 +77,7 @@ export const CatalogFilters = () => {
                   <button
                     type="button"
                     onClick={() => toggleSection(section.id)}
-                    className={`group flex h-12 items-center justify-between rounded-full px-4 text-[16px] font-semibold leading-[140%] text-[#2F2F2F] ${
+                    className={`group flex h-12 items-center justify-between rounded-full px-4 text-[16px] font-semibold leading-[140%] text-secondary ${
                       isOpen ? "bg-white hover:bg-white" : "bg-transparent"
                     }`}
                   >
@@ -135,7 +135,7 @@ export const CatalogFilters = () => {
                         <span className="relative h-5 w-5">
                           <input
                             type="checkbox"
-                            className="peer h-5 w-5 appearance-none rounded-[6px] border border-[#8BC652] bg-white checked:bg-[#8BC652]"
+                            className="peer h-5 w-5 appearance-none rounded-[6px] border-primary bg-white checked:bg-primary"
                           />
                           <span className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity peer-checked:opacity-100">
                             <CheckIcon />
@@ -149,7 +149,7 @@ export const CatalogFilters = () => {
               )
             })}
           </div>
-        </QueryState>
+        </StateProvider>
         <Button className="mt-3 w-full rounded-full bg-primary text-accent-senary">
           Сбросить все
         </Button>

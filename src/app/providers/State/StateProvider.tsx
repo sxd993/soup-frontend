@@ -1,10 +1,9 @@
 import React from "react";
-import { LoadingState } from "./LoadingState";
-import { ErrorState } from "./ErrorState";
+import { LoadingState, ErrorState } from "@/shared/ui";
 
 // Переиспользуемый компонент для отображения состояний загрузки, ошибок и пустых данных
 
-type QueryStateProps = {
+type StateProviderProps = {
     isLoading: boolean;
     isError: boolean;
     isEmpty?: boolean;
@@ -14,7 +13,7 @@ type QueryStateProps = {
     children: React.ReactNode;
 };
 
-export const QueryState = ({
+export const StateProvider = ({
     isLoading,
     isError,
     isEmpty = false,
@@ -22,7 +21,7 @@ export const QueryState = ({
     errorMessage = "Ошибка при загрузке данных",
     emptyMessage = "Данные не найдены",
     children,
-}: QueryStateProps) => {
+}: StateProviderProps) => {
     if (isLoading) {
         return <LoadingState message={loadingMessage} />;
     }

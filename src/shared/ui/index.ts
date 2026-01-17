@@ -28,6 +28,5 @@ export { TimeFilter } from './FilterSection/ui/TimeFilter'
 export { FilterMenu } from './FilterSection/ui/FilterMenu'
 
 // State
-export { QueryState } from './State/QueryState'
 export { LoadingState } from './State/LoadingState'
 export { ErrorState } from './State/ErrorState'

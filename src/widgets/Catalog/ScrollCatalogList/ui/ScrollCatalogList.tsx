@@ -2,7 +2,8 @@
 
 import { CATALOG_COMPANIES } from "@/entities/Company/model/const/companies"
 import { CompanyCard } from "@/entities/Company/ui/CompanyCard"
-import { QueryState, SortIcon } from "@/shared/ui"
+import { SortIcon } from "@/shared/ui"
+import { StateProvider } from "@/app/providers/State/StateProvider"
 
 export const ScrollCatalogList = () => {
   return (
@@ -17,7 +18,7 @@ export const ScrollCatalogList = () => {
         </button>
       </div>
 
-      <QueryState
+      <StateProvider
         isLoading={false}
         isError={false}
         isEmpty={CATALOG_COMPANIES.length === 0}
@@ -30,7 +31,7 @@ export const ScrollCatalogList = () => {
             <CompanyCard key={item.id} item={item} />
           ))}
         </div>
-      </QueryState>
+      </StateProvider>
 
       <div className="mt-6 flex items-center justify-center gap-4 text-base font-semibold text-accent-quinary">
         <button type="button" className="h-8 w-8 rounded-full bg-primary text-accent-senary">
