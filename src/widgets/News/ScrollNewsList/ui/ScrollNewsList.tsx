@@ -8,7 +8,7 @@ interface ScrollNewsListProps {
 
 export const ScrollNewsList = ({ news }: ScrollNewsListProps) => {
     return (
-        <div className="w-full grid grid-cols-1 gap-6 items-stretch min-h-[350px]">
+        <div className="w-full grid grid-cols-1 gap-6 items-stretch min-h-87.5">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 content-between gap-5">
                 {news.map((n) => {
                     if (n.isAds) {

@@ -2,6 +2,18 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { AppProviders } from "./providers/AppProviders";
 import { Footer, Header } from "@/widgets";
+import { Manrope, Roboto_Flex } from "next/font/google";
+
+const manrope = Manrope({
+  subsets: ["latin", "cyrillic"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-manrope",
+});
+
+const robotoFlex = Roboto_Flex({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-roboto-flex",
+});
 
 export const metadata: Metadata = {
   title: "Студия Уникальных Проектов",
@@ -10,24 +22,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144,wght@400;500&display=swap"
-          rel="stylesheet"
-        />
+    <html lang="ru" className={`${manrope.variable} ${robotoFlex.variable}`}>
+      <body>
         <AppProviders>
-          <div className="max-w-[1200px] mx-auto px-4 lg:px-0">
+          <div className="max-w-300 mx-auto px-4 lg:px-0">
             <Header />
             {children}
           </div>

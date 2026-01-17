@@ -1,11 +1,10 @@
 import { notFound } from "next/navigation"
 import {
-  getNews,
-  getNewsById,
   NewsContent,
   type NewsItem,
 } from "@/entities/News"
 import { SidePanel, NewsSidePanelCard, type SidePanelItem } from "@/shared/ui"
+import { getNews, getNewsById } from "@/features/News";
 
 type PageProps = {
   params: Promise<{ id: string }>
@@ -13,6 +12,14 @@ type PageProps = {
 
 type NewsSidePanelItem = SidePanelItem & {
   news: NewsItem
+}
+
+export async function generateStaticParams() {
+  const news = await getNews();
+
+  return news.map((item) => ({
+    id: item.id,
+  }));
 }
 
 export default async function NewsDetailPage({ params }: PageProps) {

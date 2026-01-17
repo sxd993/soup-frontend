@@ -1,6 +1,7 @@
-import { NewsCardSmall, NewsCardBig, getNews } from "@/entities/News"
+import { NewsCardSmall, NewsCardBig } from "@/entities/News"
 import type { NewsItem } from "@/entities/News"
 import { AdsBanner, SectionTitle, ViewAllButton } from "@/shared/ui"
+import { getNews } from "@/features/News"
 
 export const NewsSection = async () => {
     const news: NewsItem[] = await getNews()

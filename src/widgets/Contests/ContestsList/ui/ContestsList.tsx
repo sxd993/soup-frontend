@@ -1,5 +1,5 @@
-import { ContestsCard, getContests } from "@/entities/Contests"
-import type { ContestItem } from "@/entities/Contests/model/types/contest.types"
+import { ContestItem, ContestsCard } from "@/entities/Contests"
+import { getContests } from "@/features/Contests";
 import { ClientPagination } from "@/shared/ui"
 
 const ITEMS_PER_PAGE = 12;

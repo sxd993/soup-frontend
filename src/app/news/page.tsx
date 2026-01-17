@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { ScrollNewsList } from "@/widgets/News";
-import { NewsCardBig, getNews } from "@/entities/News";
+import { NewsCardBig } from "@/entities/News";
 import type { NewsItem } from "@/entities/News";
 import { FilterSection, SectionTitle } from "@/shared/ui";
+import { getNews } from "@/features/News";
 
 export const metadata: Metadata = {
     title: "Новости",
