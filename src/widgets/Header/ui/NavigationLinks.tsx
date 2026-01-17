@@ -2,12 +2,16 @@
 
 import Link from 'next/link'
 import { useCurrentPath } from '@/shared/hooks'
-import { HEADER_LINKS } from '../model/const'
+import type { HeaderLink } from '../model/const'
+
+type NavigationLinksProps = {
+  links: HeaderLink[]
+}
 
 // Компонент навигационных ссылок
-export const NavigationLinks = () => {
+export const NavigationLinks = ({ links }: NavigationLinksProps) => {
   const pathname = useCurrentPath()
-  const navigationLinks = HEADER_LINKS.filter((link) => link.devices.includes('lg'))
+  const navigationLinks = links.filter((link) => link.devices.includes('lg'))
 
   return (
     <div className="hidden lg:flex pl-5 gap-8 text-center items-center text-nowrap">
@@ -16,7 +20,7 @@ export const NavigationLinks = () => {
 
         return (
           <Link
-            key={link.label}
+            key={link.href}
             href={link.href}
             aria-current={isActive ? 'page' : undefined}
             className="lg:text-base font-semibold"

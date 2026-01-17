@@ -1,6 +1,8 @@
 export { MainIcon } from './Main'
 export { MainIcon2 } from './MainIcon2'
 export { MenuIcon } from './Menu'
+export { LogoutIcon } from './LogoutIcon'
+export { NotificationIcon } from './NotificationIcon'
 export { RightArrow } from './RighArrow'
 export { ArrowDown } from './ArrowDown'
 export { ArrowUp } from './ArrowUp'

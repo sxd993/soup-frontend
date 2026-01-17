@@ -1,18 +1,22 @@
 import Link from 'next/link'
 import { MainIcon2, CloseIcon } from '@/shared/ui'
-import { HEADER_LINKS } from '../model/const'
+import { useLogoutRedirect } from '@/features/Auth/logout'
+import type { HeaderLink } from '../model/const'
 
 type MobileMenuProps = {
   isOpen: boolean
   onClose: () => void
   profileHref: string
+  links: HeaderLink[]
+  isAuthorized: boolean
 }
 
-export const MobileMenu = ({ isOpen, onClose, profileHref }: MobileMenuProps) => {
-  
+export const MobileMenu = ({ isOpen, onClose, profileHref, links, isAuthorized }: MobileMenuProps) => {
+  const { handleLogout, isPending } = useLogoutRedirect()
+
   if (!isOpen) return null
 
-  const mobileLinks = HEADER_LINKS.filter((link) =>
+  const mobileLinks = links.filter((link) =>
     link.devices.some((device) => device === 'sm' || device === 'md'),
   )
 
@@ -35,7 +39,7 @@ export const MobileMenu = ({ isOpen, onClose, profileHref }: MobileMenuProps) =>
         <nav className=" flex flex-col text-lg font-semibold ml-3">
           {mobileLinks.map((link) => (
             <Link
-              key={link.label}
+              key={link.href}
               href={link.label === 'Личный кабинет' ? profileHref : link.href}
               onClick={onClose}
               className="py-4 border-b border-[#EBE7DF]/20 md:border-b-0"
@@ -43,6 +47,28 @@ export const MobileMenu = ({ isOpen, onClose, profileHref }: MobileMenuProps) =>
               {link.label}
             </Link>
           ))}
+          {isAuthorized && (
+            <Link
+              href="/notifications"
+              onClick={onClose}
+              className="py-4 border-b border-[#EBE7DF]/20 md:border-b-0"
+            >
+              Уведомления
+            </Link>
+          )}
+          {isAuthorized && (
+            <button
+              type="button"
+              className="py-4 border-b border-[#EBE7DF]/20 md:border-b-0 text-left disabled:opacity-50"
+              onClick={() => {
+                handleLogout()
+                onClose()
+              }}
+              disabled={isPending}
+            >
+              {isPending ? 'Выход...' : 'Выйти'}
+            </button>
+          )}
         </nav>
       </div>
     </div>

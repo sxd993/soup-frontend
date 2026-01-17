@@ -2,7 +2,6 @@
 export { AdsBanner } from './AdsBanner'
 export { Badge } from './Badge'
 export { Button } from './Controls/Button'
-export { LogoutButton } from './Controls/LogoutButton'
 export { Input } from './Controls/Input'
 export { MockLogo } from './Controls/icons/MockLogo'
 export { SectionTitle } from './SectionTitle'

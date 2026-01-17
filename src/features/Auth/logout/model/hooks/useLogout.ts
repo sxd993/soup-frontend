@@ -1,10 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { AxiosClient } from '@/shared/api/AxiosClient'
 import type { AuthSession } from "@/entities/Session"
-
-type LogoutResponse = {
-    success: boolean
-}
+import type { LogoutResponse } from '../types/logout.types'
 
 export const useLogout = () => {
     const queryClient = useQueryClient()

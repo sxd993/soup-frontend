@@ -2,11 +2,13 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { MainIcon, MenuIcon, Person, SearchButton, SearchOverlay } from '@/shared/ui'
+import { MainIcon, MenuIcon, NotificationIcon, Person, SearchButton, SearchOverlay } from '@/shared/ui'
 import { useSession } from '@/entities/Session'
+import { LogoutIconButton } from '@/features/Auth/logout'
 import { NavigationLinks } from './NavigationLinks'
 import { SearchInput } from './SearchInput'
 import { MobileMenu } from './MobileMenu'
+import { useHeaderLinks } from '../model/hooks/useHeaderLinks'
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -14,6 +16,8 @@ export const Header = () => {
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false)
   const { data: session } = useSession()
   const profileHref = session?.user ? '/profile' : '/auth/login'
+  const notificationsHref = '/notifications'
+  const headerLinks = useHeaderLinks(session?.user?.role)
 
   return (
     <header className="w-full flex justify-between items-center mt-5 rounded-[50px] bg-white pr-4 relative z-20">
@@ -22,7 +26,7 @@ export const Header = () => {
         <Link href={'/'}>
           <MainIcon className="py-3" />
         </Link>
-        <NavigationLinks />
+        <NavigationLinks links={headerLinks} />
       </div>
       {/* Правая часть: поиск, профиль и меню */}
       <div className="flex items-center gap-3 md:ml-4">
@@ -43,7 +47,7 @@ export const Header = () => {
             aria-label="Открыть поиск"
             onClick={() => setIsDesktopSearchOpen(true)}
           >
-            <SearchButton className="rounded-[22px] w-8 h-8" />
+            <NotificationIcon className="rounded-[22px] w-8 h-8" />
           </button>
         ) : (
           <div className="hidden lg:block">
@@ -54,9 +58,21 @@ export const Header = () => {
         <div className="hidden md:block lg:hidden">
           <SearchInput />
         </div>
+        {session?.user && (
+          <Link href={notificationsHref} className="hidden md:block" aria-label="Уведомления">
+            <SearchButton className="w-11 h-11 lg:w-8 lg:h-8" />
+          </Link>
+        )}
         <Link href={profileHref} className="hidden md:block">
           <Person className="w-11 h-11 lg:w-8 lg:h-8" />
         </Link>
+        {session?.user && (
+          <LogoutIconButton
+            className="hidden lg:block disabled:opacity-50"
+            iconClassName="w-11 h-11 lg:w-8 lg:h-8"
+            ariaLabel="Выйти"
+          />
+        )}
         <button
           type="button"
           className="block lg:hidden"
@@ -66,7 +82,13 @@ export const Header = () => {
           <MenuIcon className="w-11 h-11 bg-background rounded-[22px]" />
         </button>
       </div>
-      <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} profileHref={profileHref} />
+      <MobileMenu
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        profileHref={profileHref}
+        links={headerLinks}
+        isAuthorized={Boolean(session?.user)}
+      />
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
   )
