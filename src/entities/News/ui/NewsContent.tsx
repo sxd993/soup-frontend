@@ -41,6 +41,12 @@ export function NewsContent({ newsItem }: NewsContentProps) {
                 </div>
             )}
 
+            {newsItem.author && (
+                <p className="text-base text-secondary leading-relaxed">
+                    Фото: {newsItem.author}
+                </p>
+            )}
+
             {/* Дата внизу справа */}
             {newsItem.date && (
                 <div className="flex justify-end">
