@@ -14,14 +14,6 @@ type NewsSidePanelItem = SidePanelItem & {
   news: NewsItem
 }
 
-export async function generateStaticParams() {
-  const news = await getNews();
-
-  return news.map((item) => ({
-    id: item.id,
-  }));
-}
-
 export default async function NewsDetailPage({ params }: PageProps) {
   const { id } = await params
 
