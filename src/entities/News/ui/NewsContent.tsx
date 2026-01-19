@@ -1,6 +1,7 @@
 import Image from "next/image"
 import type { NewsItem } from ".."
 import { Badge } from "@/shared/ui"
+import { formatDate } from "@/shared/lib"
 
 type NewsContentProps = {
     newsItem: NewsItem
@@ -50,7 +51,9 @@ export function NewsContent({ newsItem }: NewsContentProps) {
             {/* Дата внизу справа */}
             {newsItem.date && (
                 <div className="flex justify-end">
-                    <p className="text-sm text-accent-quinary">{newsItem.date}</p>
+                    <p className="text-sm text-accent-quinary">
+                        {formatDate(newsItem.date)}
+                    </p>
                 </div>
             )}
         </article>

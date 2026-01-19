@@ -21,10 +21,7 @@ export { BlogSidePanelCard } from './SidePanel/ui/BlogSidePanelCard'
 export type { SidePanelItem, SidePanelProps } from './SidePanel/model/types'
 
 // FilterSection
-export { FilterSection } from './FilterSection/ui/FilterSection'
-export { PlaceFilter } from './FilterSection/ui/PlaceFilter'
-export { TimeFilter } from './FilterSection/ui/TimeFilter'
-export { FilterMenu } from './FilterSection/ui/FilterMenu'
+export { FilterMenu } from './FilterMenu/ui/FilterMenu'
 
 // State
 export { LoadingState } from './State/LoadingState'

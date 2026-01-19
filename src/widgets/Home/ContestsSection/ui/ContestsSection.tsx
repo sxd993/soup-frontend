@@ -5,7 +5,7 @@ import { getContests } from "@/features/Contests"
 
 export const ContestsSection = async () => {
     const contests: ContestItem[] = await getContests()
-    const lastThreeContests = contests.slice(-3)
+    const lastThreeContests = contests.slice(0, 3)
 
     return (
         <section className="space-y-6">

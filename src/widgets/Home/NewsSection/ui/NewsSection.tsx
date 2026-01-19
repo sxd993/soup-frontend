@@ -8,7 +8,7 @@ export const NewsSection = async () => {
     const lastThreeNews = news.slice(0, 4)
     const rest = lastThreeNews
     const mobileRest = rest.slice(0, 2)
-    const priorityNews = news.find((item) => item.isImportantNew && !item.isAds)
+    const priorityNews = news.find((item) => !item.isAds)
 
     return (
         <section className="flex flex-col">

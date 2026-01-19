@@ -10,5 +10,4 @@ export interface NewsItem {
     date?: string;
     content?: string[];
     isAds?: boolean;
-    isImportantNew?: boolean;
 }

@@ -1,28 +1,22 @@
 'use client';
 
-import { useTimeFilters } from "../model/hooks/useFilters"
-import { SortIcon } from "@/shared/ui"
-import { FilterMenu } from "./FilterMenu"
+import { SortIcon } from "@/shared/ui";
+import { FilterMenu } from "@/shared/ui/FilterMenu/ui/FilterMenu";
 import { TIME_BADGES } from "../model/const/timeBadges";
-
+import { useTimeFilter } from "../model/hooks/useTimeFilter";
 
 export const TimeFilter = () => {
-    const {
-        isTimeFilterOpen,
-        toggleTimeFilter,
-        setTimeFilterOpen,
-        selectedTimeId,
-        setSelectedTime
-    } = useTimeFilters()
-    const selectedTime = TIME_BADGES.find((badge) => badge.id === selectedTimeId)
+    const { isOpen, toggleOpen, setOpen, selectedTimeId, setSelectedTime } = useTimeFilter();
+    const selectedTime = TIME_BADGES.find((badge) => badge.id === selectedTimeId);
 
     return (
         <div className="relative">
+            {/* Выпадающий фильтр по времени */}
             <button
                 type="button"
                 className="flex gap-2 items-center"
-                aria-expanded={isTimeFilterOpen}
-                onClick={toggleTimeFilter}
+                aria-expanded={isOpen}
+                onClick={toggleOpen}
             >
                 <p className="text-secondary font-semibold leading-[130%] text-sm">
                     {selectedTime?.title ?? "за все время"}
@@ -30,17 +24,17 @@ export const TimeFilter = () => {
                 <SortIcon />
             </button>
 
-            {isTimeFilterOpen && (
+            {isOpen && (
                 <FilterMenu
                     items={TIME_BADGES}
                     selectedId={selectedTimeId}
                     className="-right-20"
                     onSelect={(id) => {
-                        setSelectedTime(id)
-                        setTimeFilterOpen(false)
+                        setSelectedTime(id);
+                        setOpen(false);
                     }}
                 />
             )}
         </div>
-    )
-}
+    );
+};

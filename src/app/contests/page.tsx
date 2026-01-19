@@ -1,4 +1,5 @@
-import { SectionTitle, Button, TimeFilter } from "@/shared/ui";
+import { SectionTitle, Button } from "@/shared/ui";
+import { TimeFilter } from "@/features/TimeFilter";
 import { ContestSearchInput, ContestsList } from "@/widgets/Contests";
 
 type PageProps = {
