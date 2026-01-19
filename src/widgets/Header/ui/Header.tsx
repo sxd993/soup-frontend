@@ -23,7 +23,7 @@ export const Header = () => {
     <header className="w-full flex justify-between items-center mt-5 rounded-[50px] bg-white pr-4 relative z-20">
       {/* Левая часть: логотип и навигация */}
       <div className="flex items-center">
-        <Link href={'/'}>
+        <Link href={'/'} className="cursor-pointer">
           <MainIcon className="py-3" />
         </Link>
         <NavigationLinks links={headerLinks} />
@@ -33,17 +33,17 @@ export const Header = () => {
         {/* Мобильный поиск - открывает оверлей */}
         <button
           type="button"
-          className="block md:hidden"
+          className="block md:hidden cursor-pointer"
           aria-label="Открыть поиск"
           onClick={() => setIsSearchOpen(true)}
         >
-          <SearchButton className="rounded-[22px] w-11 h-11" />
+            <SearchButton className="rounded-[22px] w-11 h-11" />
         </button>
         {/* Десктопный поиск - иконка или строка */}
         {!isDesktopSearchOpen ? (
           <button
             type="button"
-            className="hidden lg:block"
+            className="hidden lg:block cursor-pointer"
             aria-label="Открыть поиск"
             onClick={() => setIsDesktopSearchOpen(true)}
           >
@@ -59,23 +59,23 @@ export const Header = () => {
           <SearchInput />
         </div>
         {session?.user && (
-          <Link href={notificationsHref} className="hidden lg:block" aria-label="Уведомления">
+          <Link href={notificationsHref} className="hidden lg:block cursor-pointer" aria-label="Уведомления">
             <NotificationIcon className="w-11 h-11 lg:w-8 lg:h-8" />
           </Link>
         )}
-        <Link href={profileHref} className="hidden md:block">
+        <Link href={profileHref} className="hidden md:block cursor-pointer">
           <Person className="w-11 h-11 lg:w-8 lg:h-8" />
         </Link>
         {session?.user && (
           <LogoutIconButton
-            className="hidden lg:block disabled:opacity-50"
-            iconClassName="w-11 h-11 lg:w-8 lg:h-8"
+            className="hidden lg:block"
+            iconClassName="w-11 h-11 lg:w-8 lg:h-8 cursor-pointer"
             ariaLabel="Выйти"
           />
         )}
         <button
           type="button"
-          className="block lg:hidden"
+          className="block lg:hidden cursor-pointer"
           aria-label="Открыть меню"
           onClick={() => setIsMenuOpen(true)}
         >

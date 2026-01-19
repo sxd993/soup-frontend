@@ -15,7 +15,7 @@ export const AdsBanner = ({ hasDescription }: AdsBannerProps) => {
             {/* Верхняя часть: метка "Реклама" и кнопка */}
             <div className="flex items-center justify-between">
                 <p className="text-white opacity-50 font-medium text-xs items-center">Реклама</p>
-                <RightArrowHome />
+                <RightArrowHome className="cursor-pointer" />
             </div>
 
             {/* Заголовок */}

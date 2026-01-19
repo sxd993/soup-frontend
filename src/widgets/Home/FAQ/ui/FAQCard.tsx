@@ -20,7 +20,7 @@ export const FAQCard = ({ item, isOpen, onToggle }: FAQCardProps) => {
     return (
         <div className={`bg-white py-4.5 px-5 relative ${borderRadius}`} style={cardStyle}>
             <div
-                className="flex items-start justify-between gap-4 cursor-pointer relative"
+                className="flex items-start justify-between gap-4 relative"
                 onClick={handleToggle}
             >
                 <h3
@@ -29,7 +29,7 @@ export const FAQCard = ({ item, isOpen, onToggle }: FAQCardProps) => {
                     {item.question}
                 </h3>
                 <button
-                    className="shrink-0"
+                    className="shrink-0 cursor-pointer"
                     aria-label={isOpen ? "Свернуть" : "Развернуть"}
                 >
                     {isOpen ? <ArrowUp /> : <ArrowDown />}

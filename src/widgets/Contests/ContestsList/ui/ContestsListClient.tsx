@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import type { ContestItem } from "@/entities/Contests";
 import { ContestsCard } from "@/entities/Contests";
 import { isWithinTimeRange } from "@/shared/lib";
-import { ClientPagination } from "@/shared/ui";
+import { ClientPagination } from "@/features/Pagination";
 import { useTimeFilterStore } from "@/features/TimeFilter";
 
 const ITEMS_PER_PAGE = 12;

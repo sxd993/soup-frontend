@@ -4,11 +4,10 @@ type FooterLink = {
 }
 
 export const FOOTER_LINKS: readonly FooterLink[] = [
-  { href: '/', label: 'Каталог' },
+  { href: '/catalog', label: 'Каталог' },
   { href: '/news', label: 'Новости' },
-  { href: '/', label: 'Конкурсы' },
-  { href: '/', label: 'Блоги' },
-  { href: '/', label: 'Разместить заказ' },
+  { href: '/contests', label: 'Конкурсы' },
+  { href: '/blogs', label: 'Блоги' },
 ] as const
 
 export const FOOTER_META_LINKS: readonly FooterLink[] = [

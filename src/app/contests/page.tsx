@@ -14,14 +14,14 @@ export default async function ContestsPage({ searchParams }: PageProps) {
         <div className="flex flex-col mt-15">
 
             {/* Заголовок секции */}
-            <SectionTitle title="Конкурсы" />
+            <SectionTitle title="Конкурсы" className="mb-5" />
 
             {/* md+ Секция поиска */}
-            <div className="flex items-center gap-4 md:mt-4">
+            <div className="flex items-center gap-4">
                 <div className="flex-1 hidden md:block">
                     <ContestSearchInput />
                 </div>
-                <Button className="hidden md:block">
+                <Button className="hidden md:block cursor-pointer">
                     Найти
                 </Button>
             </div>

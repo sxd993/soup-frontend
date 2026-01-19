@@ -11,9 +11,6 @@ export { SearchOverlay } from './SearchOverlay'
 // Иконки
 export * from './Controls/icons'
 
-// Pagination
-export { ClientPagination } from './Pagination/ui/ClientPagination'
-
 // SidePanel
 export { SidePanel } from './SidePanel/ui/SidePanel'
 export { NewsSidePanelCard } from './SidePanel/ui/NewsSidePanelCard'

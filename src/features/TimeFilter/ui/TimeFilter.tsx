@@ -14,7 +14,7 @@ export const TimeFilter = () => {
             {/* Выпадающий фильтр по времени */}
             <button
                 type="button"
-                className="flex gap-2 items-center"
+                className="flex gap-2 items-center cursor-pointer"
                 aria-expanded={isOpen}
                 onClick={toggleOpen}
             >

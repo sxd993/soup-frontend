@@ -112,7 +112,7 @@ export const RegisterForm = () => {
             {/* Создать аккаунт */}
             <div className="flex justify-center mt-5">
                 <Button
-                    className="rounded-full bg-primary px-8 py-2 transition hover:bg-accent flex justify-center"
+                    className="rounded-full bg-primary px-8 py-2 transition hover:bg-accent flex justify-center cursor-pointer"
                     type="submit"
                     disabled={isBusy}
                 >

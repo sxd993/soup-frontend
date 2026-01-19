@@ -15,7 +15,7 @@ export const ContractorsCard = ({ contractor }: ContractorsCardProps) => {
                     {contractor.title}
                 </h3>
                 <Link href="#">
-                    <button className="w-7 h-7 bg-primary hover:bg-accent transition-all duration-300 rounded-full flex items-center justify-center">
+                    <button className="w-7 h-7 bg-primary hover:bg-accent transition-all duration-300 rounded-full flex items-center justify-center cursor-pointer">
                         <RightArrow />
                     </button>
                 </Link>
@@ -27,7 +27,7 @@ export const ContractorsCard = ({ contractor }: ContractorsCardProps) => {
                 {contractor.badges.map((badge) => (
                     <span
                         key={badge}
-                        className="rounded-full bg-[#EBE7DF] hover:bg-accent-tertiary transition-all duration-300 px-4 py-1 text-xs font-medium leading-[150%] tracking-normal text-secondary"
+                        className="rounded-full bg-[#EBE7DF] hover:bg-accent-tertiary transition-all duration-300 px-4 py-1 text-xs font-medium leading-[150%] tracking-normal text-secondary cursor-pointer"
                     >
                         {badge}
                     </span>

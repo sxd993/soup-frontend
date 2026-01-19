@@ -40,7 +40,7 @@ export const BadgeFilter = () => {
                 {/* Мобильная версия - выпадающее меню */}
                 <button
                     type="button"
-                    className="flex md:hidden gap-2 items-center"
+                    className="flex md:hidden gap-2 items-center cursor-pointer"
                     aria-expanded={isMenuOpen}
                     onClick={() => setMenuOpen((prev) => !prev)}
                 >
@@ -68,7 +68,7 @@ export const BadgeFilter = () => {
                                 key={item.id}
                                 type="button"
                                 onClick={() => setSelectedBadge(item.value)}
-                                className={`w-fit px-4 py-1 text-[11px] font-medium transition-all duration-300 text-secondary rounded-full ${
+                                className={`w-fit px-4 py-1 text-[11px] font-medium transition-all duration-300 text-secondary rounded-full cursor-pointer ${
                                     isSelected
                                         ? "bg-accent-quaternary"
                                         : "bg-white hover:bg-accent-quaternary"

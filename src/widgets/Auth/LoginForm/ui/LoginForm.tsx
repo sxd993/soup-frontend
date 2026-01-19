@@ -57,7 +57,7 @@ export const LoginForm = () => {
       {/* Кнопка входа */}
       <div className="flex justify-center mt-5">
         <Button
-          className="rounded-full bg-primary px-19 py-2  transition hover:bg-accent flex justify-center"
+          className="rounded-full bg-primary px-19 py-2 transition hover:bg-accent flex justify-center cursor-pointer"
           type="submit"
           disabled={isBusy}
         >

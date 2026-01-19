@@ -1,5 +1,6 @@
-import Link from 'next/link'
+import Link from "next/link";
 import { RightArrow } from "@/shared/ui";
+import { normalizeUrl } from "@/shared/lib";
 import Image from 'next/image';
 import type { ContestItem } from "../types/contest.types";
 
@@ -9,6 +10,7 @@ type ContestsCardProps = {
 
 // Компонент карточки конкурса {отображает изображение, название, ссылку}
 export const ContestsCard = ({ contest }: ContestsCardProps) => {
+    const contestHref = normalizeUrl(contest.contestLink)
     return (
         <div className="group flex flex-col justify-between gap-3 rounded-[20px] bg-white p-3">
             {/* Изображение и заголовок */}
@@ -32,8 +34,12 @@ export const ContestsCard = ({ contest }: ContestsCardProps) => {
                 <span className="text-sm text-accent-quinary font-regular leading-[120%]">
                     {contest.contestLink}
                 </span>
-                <Link href="#">
-                    <button className="w-7 h-7 bg-primary hover:bg-accent transition-all duration-300 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <Link
+                    href={contestHref}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <button className="w-7 h-7 bg-primary hover:bg-accent transition-all duration-300 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 cursor-pointer">
                         <RightArrow />
                     </button>
                 </Link>
