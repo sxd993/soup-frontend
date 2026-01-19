@@ -13,6 +13,9 @@ export const NewsFeedSection = ({ news }: NewsFeedSectionProps) => {
     // Один источник фильтрации для bigcard и scrolllist.
     const { filteredNews } = useFilteredNewsList(news);
     const priorityNews = filteredNews.find((item) => !item.isAds);
+    const listNews = priorityNews
+        ? filteredNews.filter((item) => item.id !== priorityNews.id)
+        : filteredNews;
 
     return (
         <div className="mt-6 flex flex-col gap-10">
@@ -20,7 +23,7 @@ export const NewsFeedSection = ({ news }: NewsFeedSectionProps) => {
                 <NewsCardBig item={priorityNews} />
             </div>
             <div className="basis-1/2">
-                <ScrollNewsList news={filteredNews} />
+                <ScrollNewsList news={listNews} />
             </div>
         </div>
     );

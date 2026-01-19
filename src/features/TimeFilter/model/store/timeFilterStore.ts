@@ -15,6 +15,6 @@ export const useTimeFilterStore = create<TimeFilterStoreState>((set) => ({
     isOpen: false,
     setOpen: (value) => set(() => ({ isOpen: value })),
     toggleOpen: () => set((state) => ({ isOpen: !state.isOpen })),
-    selectedTimeId: TIME_BADGES[0]?.id ?? 0,
+    selectedTimeId: TIME_BADGES.find((badge) => badge.id === 3)?.id ?? 3,
     setSelectedTime: (id) => set(() => ({ selectedTimeId: id })),
 }));

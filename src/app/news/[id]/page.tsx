@@ -26,7 +26,11 @@ export default async function NewsDetailPage({ params }: PageProps) {
     notFound()
   }
 
-  const relatedNews = allNews.filter((item) => item.id !== id)
+  const currentCategory = newsItem.category
+  const relatedNews = allNews.filter((item) => (
+    item.id !== id &&
+    (item.isAds || item.category === currentCategory)
+  ))
   const sidePanelItems: NewsSidePanelItem[] = relatedNews.map((item) => ({
     id: item.id,
     isAds: item.isAds,
