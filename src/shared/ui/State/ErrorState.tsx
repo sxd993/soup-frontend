@@ -11,7 +11,7 @@ export function ErrorState({
 
     return (
         <div className={classes}>
-            <p className="text-red-500">{message}</p>
+            <p className="text-red-500 h-full">{message}</p>
         </div>
     )
 }

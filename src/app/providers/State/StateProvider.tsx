@@ -23,16 +23,16 @@ export const StateProvider = ({
     children,
 }: StateProviderProps) => {
     if (isLoading) {
-        return <LoadingState message={loadingMessage} />;
+        return <LoadingState className="min-h-125 text-center" message={loadingMessage} />;
     }
 
     if (isError) {
-        return <ErrorState message={errorMessage} />;
+        return <ErrorState className="min-h-125" message={errorMessage} />;
     }
 
     if (isEmpty) {
         return (
-            <div className="text-center py-10">
+            <div className="text-center py-10 min-h-screen">
                 <p className="text-accent-quinary">{emptyMessage}</p>
             </div>
         );

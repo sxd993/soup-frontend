@@ -1,1 +1,0 @@
-export { ProfileGate } from './ui/ProfileGate'

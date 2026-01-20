@@ -15,7 +15,11 @@ export const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false)
   const { data: session } = useSession()
-  const profileHref = session?.user ? '/profile' : '/auth/login'
+  const profileHref = session?.user
+    ? session.user.role === 'client'
+      ? '/profile/client'
+      : '/profile/company'
+    : '/auth/login'
   const notificationsHref = '/notifications'
   const headerLinks = useHeaderLinks(session?.user?.role)
 
