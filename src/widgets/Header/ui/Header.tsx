@@ -24,7 +24,7 @@ export const Header = () => {
   const headerLinks = useHeaderLinks(session?.user?.role)
 
   return (
-    <header className="w-full flex justify-between items-center mt-5 rounded-[50px] bg-white pr-4 relative z-20">
+    <header className="w-full flex justify-between items-center mt-5 rounded-[50px] bg-white pr-4 relative z-30">
       {/* Левая часть: логотип и навигация */}
       <div className="flex items-center">
         <Link href={'/'} className="cursor-pointer">

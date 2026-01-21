@@ -20,7 +20,7 @@ export const ContestsListClient = ({ contests, currentPage }: ContestsListClient
     const filteredContests = useMemo(() => {
         // Фильтр по времени применяем на клиенте.
         return contests.filter((contest) =>
-            isWithinTimeRange(contest.createdAt, selectedTimeId),
+            isWithinTimeRange(contest.startDate, selectedTimeId),
         );
     }, [contests, selectedTimeId]);
 

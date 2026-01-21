@@ -1,14 +1,15 @@
 import { SectionTitle, Button } from "@/shared/ui";
 import { TimeFilter } from "@/features/TimeFilter";
-import { ContestSearchInput, ContestsList } from "@/widgets/Contests";
+import { ContestSearchInput, ContestsList, ContestStatusTabs } from "@/widgets/Contests";
 
 type PageProps = {
-    searchParams: Promise<{ page?: string }>
+    searchParams: Promise<{ page?: string; status?: string }>
 }
 
 export default async function ContestsPage({ searchParams }: PageProps) {
-    const { page } = await searchParams
+    const { page, status } = await searchParams
     const currentPage = Number(page) || 1
+    const contestStatus = status === "past" ? "past" : "current"
 
     return (
         <div className="flex flex-col mt-15">
@@ -26,13 +27,16 @@ export default async function ContestsPage({ searchParams }: PageProps) {
                 </Button>
             </div>
 
-            {/* Фильтр по дате */}
-            <div className="flex justify-end mb-5 mt-7 md:mt-10">
-                <TimeFilter />
+            {/* Вкладки и фильтр по дате */}
+            <div className="w-full relative mt-7 mb-5 md:mt-10">
+                <div className="flex justify-between items-center gap-4">
+                    <ContestStatusTabs status={contestStatus} />
+                    <TimeFilter />
+                </div>
             </div>
 
             {/* Список конкурсов */}
-            <ContestsList currentPage={currentPage} />
+            <ContestsList currentPage={currentPage} status={contestStatus} />
         </div>
     )
 }

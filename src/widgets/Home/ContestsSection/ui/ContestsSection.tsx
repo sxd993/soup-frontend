@@ -1,10 +1,10 @@
 import { SectionTitle, ViewAllButton } from "@/shared/ui"
 import { ContestsCard } from "@/entities/Contests"
 import type { ContestItem } from "@/entities/Contests/types/contest.types"
-import { getContests } from "@/features/Contests"
+import { getCurrentContests } from "@/features/Contests"
 
 export const ContestsSection = async () => {
-    const contests: ContestItem[] = await getContests()
+    const contests: ContestItem[] = await getCurrentContests()
     const lastThreeContests = contests.slice(0, 3)
 
     return (
