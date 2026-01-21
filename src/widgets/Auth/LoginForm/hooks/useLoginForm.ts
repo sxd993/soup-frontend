@@ -25,7 +25,7 @@ export const useLoginForm = () => {
         const session = queryClient.getQueryData<AuthSession>(['session'])
         const role = session?.user.role
         const target =
-          role === 'client' ? '/profile/client' : role === 'company' ? '/profile/company' : '/profile'
+          role === 'client' ? '/profile/client' : role === 'company' ? '/profile/company/profile' : '/profile'
         router.push(target)
       },
       onError: (error: Error) => {

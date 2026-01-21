@@ -28,7 +28,7 @@ export function ProfileRoleGuard({ role, children }: ProfileRoleGuardProps) {
 
         if (session.user.role !== role) {
             const target =
-                session.user.role === 'client' ? '/profile/client' : '/profile/company'
+                session.user.role === 'client' ? '/profile/client/account' : '/profile/company/account'
             router.replace(target)
         }
     }, [isError, isLoading, role, router, session])

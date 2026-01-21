@@ -17,8 +17,8 @@ export const Header = () => {
   const { data: session } = useSession()
   const profileHref = session?.user
     ? session.user.role === 'client'
-      ? '/profile/client'
-      : '/profile/company'
+      ? '/profile/client/account'
+      : '/profile/company/account'
     : '/auth/login'
   const notificationsHref = '/notifications'
   const headerLinks = useHeaderLinks(session?.user?.role)
