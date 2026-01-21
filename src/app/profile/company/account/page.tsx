@@ -1,3 +1,5 @@
+import { AccountCompanyForm } from "@/widgets/Profile/CompanyProfile"
+
 export default function AccountProfilePage() {
-        return <div>account</div>
+        return <AccountCompanyForm/>
 }

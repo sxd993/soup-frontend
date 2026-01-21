@@ -8,11 +8,13 @@ type CompanyProfileLayoutProps = {
 export default function CompanyProfileLayout({ children }: CompanyProfileLayoutProps) {
     return (
         <ProfileRoleGuard role="company">
-            <div className="flex justify-between">
+            <div className="flex gap-40 mt-[34px]">
                 <div>
                     <CompanyNavigationSideBar />
                 </div>
-                <div>{children}</div>
+                <div className='flex-1'>
+                    {children}
+                </div>
             </div>
         </ProfileRoleGuard>
     )
