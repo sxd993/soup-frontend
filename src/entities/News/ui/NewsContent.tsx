@@ -49,10 +49,10 @@ export function NewsContent({ newsItem }: NewsContentProps) {
             )}
 
             {/* Дата внизу справа */}
-            {newsItem.date && (
+            {newsItem.createdAt && (
                 <div className="flex justify-end">
                     <p className="text-sm text-accent-quinary">
-                        {formatDate(newsItem.date)}
+                        {formatDate(newsItem.createdAt)}
                     </p>
                 </div>
             )}

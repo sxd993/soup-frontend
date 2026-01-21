@@ -7,7 +7,8 @@ export interface NewsItem {
     author: string;
     title: string;
     description?: string;
-    date?: string;
+    createdAt?: string;
     content?: string[];
     isAds?: boolean;
+    isImportantNew?: boolean;
 }

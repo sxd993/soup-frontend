@@ -28,13 +28,13 @@ export const useFilteredNewsList = (news: NewsItem[]) => {
     const filteredNews = useMemo(() => {
         // Реклама всегда показывается независимо от фильтров.
         if (!selectedBadge) {
-            return news.filter((item) => item.isAds || isWithinTimeRange(item.date, selectedTimeId));
+            return news.filter((item) => item.isAds || isWithinTimeRange(item.createdAt, selectedTimeId));
         }
         return news.filter((item) => {
             if (item.isAds) {
                 return true;
             }
-            return item.category === selectedBadge && isWithinTimeRange(item.date, selectedTimeId);
+            return item.category === selectedBadge && isWithinTimeRange(item.createdAt, selectedTimeId);
         });
     }, [news, selectedBadge, selectedTimeId]);
 

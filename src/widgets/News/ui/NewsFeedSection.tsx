@@ -4,6 +4,7 @@ import type { NewsItem } from "@/entities/News";
 import { NewsCardBig } from "@/entities/News";
 import { ScrollNewsList } from "@/widgets/News";
 import { useFilteredNewsList } from "../model/hooks/useFilteredNewsList";
+import { getNewsListWithoutPriority, getPriorityNews } from "@/entities/News/model/lib/priorityNews";
 
 type NewsFeedSectionProps = {
     news: NewsItem[];
@@ -12,10 +13,8 @@ type NewsFeedSectionProps = {
 export const NewsFeedSection = ({ news }: NewsFeedSectionProps) => {
     // Один источник фильтрации для bigcard и scrolllist.
     const { filteredNews } = useFilteredNewsList(news);
-    const priorityNews = filteredNews.find((item) => !item.isAds);
-    const listNews = priorityNews
-        ? filteredNews.filter((item) => item.id !== priorityNews.id)
-        : filteredNews;
+    const priorityNews = getPriorityNews(news);
+    const listNews = getNewsListWithoutPriority(filteredNews, priorityNews);
 
     return (
         <div className="mt-6 flex flex-col gap-10">

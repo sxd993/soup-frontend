@@ -2,13 +2,13 @@ import { NewsCardSmall, NewsCardBig } from "@/entities/News"
 import type { NewsItem } from "@/entities/News"
 import { AdsBanner, SectionTitle, ViewAllButton } from "@/shared/ui"
 import { getNews } from "@/features/News"
+import { getNewsListWithoutPriority, getPriorityNews } from "@/entities/News/model/lib/priorityNews"
 
 export const NewsSection = async () => {
     const news: NewsItem[] = await getNews()
-    const lastThreeNews = news.slice(0, 4)
-    const rest = lastThreeNews
+    const priorityNews = getPriorityNews(news)
+    const rest = getNewsListWithoutPriority(news, priorityNews, 4)
     const mobileRest = rest.slice(0, 2)
-    const priorityNews = news.find((item) => !item.isAds)
 
     return (
         <section className="flex flex-col">
