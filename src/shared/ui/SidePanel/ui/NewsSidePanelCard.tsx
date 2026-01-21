@@ -9,8 +9,10 @@ type NewsSidePanelCardProps = {
 }
 
 export const NewsSidePanelCard = ({ item, href }: NewsSidePanelCardProps) => {
+    const badgeHref = item.category ? `/news?badge=${encodeURIComponent(item.category)}` : undefined
+
     return (
-        <Link href={href} className="block h-full cursor-pointer">
+        <div className="relative h-full">
             <article className="flex flex-col">
                 <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden">
                     <Image
@@ -20,8 +22,14 @@ export const NewsSidePanelCard = ({ item, href }: NewsSidePanelCardProps) => {
                         className="object-cover"
                     />
                     {item.category && (
-                        <span className="absolute top-3 left-3">
-                            <Badge badge={item.category} />
+                        <span className="absolute top-3 left-3 z-20">
+                            {badgeHref ? (
+                                <Link href={badgeHref} className="relative z-20">
+                                    <Badge badge={item.category} />
+                                </Link>
+                            ) : (
+                                <Badge badge={item.category} />
+                            )}
                         </span>
                     )}
                 </div>
@@ -34,6 +42,7 @@ export const NewsSidePanelCard = ({ item, href }: NewsSidePanelCardProps) => {
                     </h4>
                 </div>
             </article>
-        </Link>
+            <Link href={href} aria-label={item.title} className="absolute inset-0 z-10" />
+        </div>
     )
 }

@@ -5,10 +5,12 @@ import { StateProvider } from "@/app/providers/State/StateProvider";
 import { SortIcon } from "@/shared/ui";
 import { FilterMenu } from "@/shared/ui/FilterMenu/ui/FilterMenu";
 import { useNewsBadgeFilterState } from "../model/hooks/useNewsBadgeFilterState";
+import { useNewsBadgeQuerySync } from "../model/hooks/useNewsBadgeQuerySync";
 
 export const BadgeFilter = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
-    const { badges, selectedBadge, setSelectedBadge } = useNewsBadgeFilterState();
+    const { badges } = useNewsBadgeFilterState();
+    const { selectedBadge, handleSelect: handleBadgeSelect } = useNewsBadgeQuerySync();
 
     // Список бейджей строится из доступных новостей.
     const items = [
@@ -22,10 +24,10 @@ export const BadgeFilter = () => {
 
     const selectedItem = items.find((item) => item.value === selectedBadge) ?? items[0];
 
-    // Выбор бейджа синхронизируется в сторе.
+    // Выбор категории синхронизируется в query.
     const handleSelect = (id: number) => {
         const nextItem = items.find((item) => item.id === id);
-        setSelectedBadge(nextItem?.value ?? null);
+        handleBadgeSelect(nextItem?.value ?? null);
         setMenuOpen(false);
     };
 
@@ -67,7 +69,7 @@ export const BadgeFilter = () => {
                             <button
                                 key={item.id}
                                 type="button"
-                                onClick={() => setSelectedBadge(item.value)}
+                                onClick={() => handleBadgeSelect(item.value)}
                                 className={`w-fit px-4 py-1 text-[11px] font-medium transition-all duration-300 text-secondary rounded-full cursor-pointer ${
                                     isSelected
                                         ? "bg-accent-quaternary"

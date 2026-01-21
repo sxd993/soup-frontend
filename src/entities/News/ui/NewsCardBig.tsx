@@ -14,6 +14,8 @@ export const NewsCardBig = ({ className, item }: NewsCardBigProps = {}) => {
         return null
     }
 
+    const badgeHref = item.category ? `/news?badge=${encodeURIComponent(item.category)}` : undefined
+
     const card = (
         <article className="relative w-full min-h-[480px] overflow-hidden rounded-[40px] h-full">
             <Image
@@ -25,7 +27,15 @@ export const NewsCardBig = ({ className, item }: NewsCardBigProps = {}) => {
 
             <div className="absolute bottom-5 left-5 right-5 max-w-[367px]">
                 <div className="flex flex-col gap-5">
-                    <Badge badge={item.category} />
+                    <div className="relative z-20">
+                        {badgeHref ? (
+                            <Link href={badgeHref} className="relative z-20">
+                                <Badge badge={item.category} />
+                            </Link>
+                        ) : (
+                            <Badge badge={item.category} />
+                        )}
+                    </div>
                     <div className="rounded-[20px] bg-white p-5 pb-15 shadow-sm fade-out-in">
                         <h3 className="lg:text-[22px] text-xl font-bold leading-snug text-accent-secondary">
                             {item.title}
@@ -40,11 +50,13 @@ export const NewsCardBig = ({ className, item }: NewsCardBigProps = {}) => {
     )
 
     return (
-        <Link
-            href={`/news/${item.id}`}
-            className={`relative block w-full min-h-[480px] overflow-hidden rounded-[40px] cursor-pointer ${className ?? ""}`}
-        >
+        <div className={`relative w-full min-h-[480px] ${className ?? ""}`}>
             {card}
-        </Link>
+            <Link
+                href={`/news/${item.id}`}
+                aria-label={item.title}
+                className="absolute inset-0 z-10"
+            />
+        </div>
     )
 }

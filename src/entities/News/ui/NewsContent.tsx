@@ -1,3 +1,4 @@
+import Link from "next/link"
 import Image from "next/image"
 import type { NewsItem } from ".."
 import { Badge } from "@/shared/ui"
@@ -8,6 +9,10 @@ type NewsContentProps = {
 }
 
 export function NewsContent({ newsItem }: NewsContentProps) {
+    const badgeHref = newsItem.category
+        ? `/news?badge=${encodeURIComponent(newsItem.category)}`
+        : undefined
+
     return (
         <article className="flex flex-col gap-6">
             {/* Изображение */}
@@ -19,7 +24,13 @@ export function NewsContent({ newsItem }: NewsContentProps) {
                     className="object-cover"
                 />
                 <span className="absolute top-5 left-5">
-                    <Badge badge={newsItem.category} />
+                    {badgeHref ? (
+                        <Link href={badgeHref} className="relative z-20">
+                            <Badge badge={newsItem.category} />
+                        </Link>
+                    ) : (
+                        <Badge badge={newsItem.category} />
+                    )}
                 </span>
             </div>
 

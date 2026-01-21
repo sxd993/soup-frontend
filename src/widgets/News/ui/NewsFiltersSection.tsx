@@ -5,7 +5,7 @@ import { BadgeFilter } from "./BadgeFilter";
 
 export const NewsFiltersSection = () => {
     return (
-        <div className="w-full">
+        <div className="w-full relative z-20">
             <div className="flex justify-between items-center gap-4">
                 <BadgeFilter />
                 <TimeFilter />

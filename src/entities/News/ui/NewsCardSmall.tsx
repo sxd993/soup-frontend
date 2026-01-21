@@ -17,7 +17,8 @@ export const NewsCardSmall = ({
     href,
     className,
 }: NewsCardSmallProps) => {
-    const articleClasses = ["flex flex-col", className].filter(Boolean).join(" ")
+    const articleClasses = ["flex flex-col relative", className].filter(Boolean).join(" ")
+    const badgeHref = item.category ? `/news?badge=${encodeURIComponent(item.category)}` : undefined
 
     const card = (
         <article className={articleClasses}>
@@ -31,8 +32,14 @@ export const NewsCardSmall = ({
                     fill
                 />
 
-                <span className="absolute top-4 left-3">
-                    <Badge badge={item.category} />
+                <span className="absolute top-4 left-3 z-20">
+                    {badgeHref ? (
+                        <Link href={badgeHref} className="relative z-20">
+                            <Badge badge={item.category} />
+                        </Link>
+                    ) : (
+                        <Badge badge={item.category} />
+                    )}
                 </span>
             </div>
 
@@ -53,11 +60,13 @@ export const NewsCardSmall = ({
     }
 
     return (
-        <Link
-            href={href}
-            className="block h-full cursor-pointer"
-        >
+        <div className="relative h-full">
             {card}
-        </Link>
+            <Link
+                href={href}
+                aria-label={item.title}
+                className="absolute inset-0 z-10"
+            />
+        </div>
     )
 }
