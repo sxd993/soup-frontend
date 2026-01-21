@@ -1,0 +1,29 @@
+export interface CompanyAccountSelectOption {
+    id: string;
+    label: string;
+    icon?: React.ReactNode;
+    onSelect: () => void;
+}
+
+interface CompanyAccountSelectProps {
+    options: CompanyAccountSelectOption[];
+    className?: string;
+}
+
+export const CompanyAccountSelect = ({ options, className = "" }: CompanyAccountSelectProps) => {
+    return (
+        <div className={`bg-white rounded-[10px] shadow-md border border-[#e3e3e3] overflow-hidden w-[180px] ${className}`}>
+            {options.map((option) => (
+                <button
+                    key={option.id}
+                    type="button"
+                    className="w-full flex items-center gap-3 px-4 py-2 text-sm hover:bg-[#f5f5f5]"
+                    onClick={option.onSelect}
+                >
+                    {option.icon}
+                    {option.label}
+                </button>
+            ))}
+        </div>
+    )
+}

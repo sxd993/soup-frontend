@@ -1,9 +1,19 @@
-import { CompanyProfileEdit } from "@/features/Profile/CompanyAccount/AccountSection"
+'use client';
+import { FormProvider } from "react-hook-form"
+import { CompanyProfileEdit, CompanyContactEdit, CompanySocialLinksEdit, CompannyAddressEdit } from "@/features/Profile/CompanyAccount/AccountSection"
+import { useCompanyAccountForm } from "../model"
 
 export const AccountCompanyForm = () => {
+    const { form } = useCompanyAccountForm()
+
     return (
-        <div className="flex flex-col gap-5">
-            <CompanyProfileEdit />
-        </div>
+        <FormProvider {...form}>
+            <form className="flex flex-col gap-5" noValidate>
+                <CompanyProfileEdit />
+                <CompanyContactEdit />
+                <CompanySocialLinksEdit />
+                <CompannyAddressEdit />
+            </form>
+        </FormProvider>
     )
 }
