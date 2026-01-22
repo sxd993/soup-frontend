@@ -7,6 +7,16 @@ export type CompanyCardData = {
   description: string
 }
 
+export type CompanyReview = {
+    id: string | number
+    authorName?: string | null
+    authorAvatarUrl?: string | null
+    rating?: number | string | null
+    comment?: string | null
+    createdAt?: string | null
+    serviceName?: string | null
+}
+
 export type CompanySocialLinks = {
     website?: string | null;
     vk?: string | null;
