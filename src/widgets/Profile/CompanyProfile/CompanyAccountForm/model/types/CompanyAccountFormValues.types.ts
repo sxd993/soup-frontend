@@ -4,11 +4,14 @@ export interface CompanyAccountFormValues {
         name: string;
         description: string;
         regions: string[];
+        address: string;
     };
     contacts: {
-        phones: string[];
+        phones: {
+            phone: string;
+            representativeName?: string;
+        }[];
         email: string;
-        representativeName: string;
     };
     socials: {
         website: string;

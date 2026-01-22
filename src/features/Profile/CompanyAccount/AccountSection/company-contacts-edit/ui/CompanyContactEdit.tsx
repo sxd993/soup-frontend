@@ -1,4 +1,6 @@
 'use client';
+import { useEffect } from "react"
+import { useFormContext } from "react-hook-form"
 import { CompanyAccountAddButton } from "@/shared/ui/CompanyAccount/CompanyAccountAddButton"
 import { CompanyAccountFormBlock } from "@/shared/ui/CompanyAccount/CompanyAccountFormBlock"
 import { CompanyAccountSelect, type CompanyAccountSelectOption } from "@/shared/ui/CompanyAccount/CompanyAccountSelect"
@@ -6,9 +8,28 @@ import { EmailIcon } from "@/shared/ui/CompanyAccount/icons/EmailIcon"
 import { PhoneIcon } from "@/shared/ui/CompanyAccount/icons/PhoneIcon"
 import { useCompanyContactFields } from "../model/hooks/useCompanyContactFields"
 import { CompanyEmailInput, CompanyPhoneInput } from "./labels"
+import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/CompanyAccountForm/model/types/CompanyAccountFormValues.types"
 
 export const CompanyContactEdit = () => {
-    const { counts, isPickerOpen, allAdded, availableFields, togglePicker, addField } = useCompanyContactFields()
+    const { counts, isPickerOpen, allAdded, availableFields, togglePicker, addField, setCounts } = useCompanyContactFields()
+    const { watch } = useFormContext<CompanyAccountFormValues>()
+    const phones = watch("contacts.phones")
+    const email = watch("contacts.email")
+
+    useEffect(() => {
+        if (phones && phones.length > counts.phone) {
+            setCounts({
+                phone: Math.min(phones.length, 2),
+                email: counts.email,
+            })
+        }
+        if (email && counts.email < 1) {
+            setCounts({
+                phone: counts.phone,
+                email: 1,
+            })
+        }
+    }, [counts.email, counts.phone, email, phones, setCounts])
     const selectOptions: CompanyAccountSelectOption[] = availableFields.map((field) => ({
         id: field,
         label: field === "phone" ? "Телефон" : "Почта",
@@ -21,7 +42,7 @@ export const CompanyContactEdit = () => {
 
             {/* По дефолту 2 поля уже есть */}
             {Array.from({ length: counts.phone }, (_, index) => (
-                <CompanyPhoneInput key={`phone-${index}`} />
+                <CompanyPhoneInput key={`phone-${index}`} index={index} />
             ))}
             {Array.from({ length: counts.email }, (_, index) => (
                 <CompanyEmailInput key={`email-${index}`} />

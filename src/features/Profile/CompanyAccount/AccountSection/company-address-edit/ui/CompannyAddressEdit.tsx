@@ -4,10 +4,11 @@ import { CompanyAccountField } from "@/shared/ui/CompanyAccount/CompanyAccountFi
 import { CompanyAccountFormBlock } from "@/shared/ui/CompanyAccount/CompanyAccountFormBlock"
 import { CompanyAccountInput } from "@/shared/ui/CompanyAccount/CompanyAccountInput";
 import { AddressIcon } from "@/shared/ui/CompanyAccount/icons/AddressIcon";
-import { useState } from "react";
+import { useFormContext } from "react-hook-form";
+import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/CompanyAccountForm/model/types/CompanyAccountFormValues.types";
 
 export const CompannyAddressEdit = () => {
-    const [address, setAddress] = useState('')
+    const { register } = useFormContext<CompanyAccountFormValues>()
     return (
         <CompanyAccountFormBlock
             label="Адрес"
@@ -17,8 +18,7 @@ export const CompannyAddressEdit = () => {
                 icon={<AddressIcon />}>
                 <CompanyAccountInput
                     placeholder="Введите адрес"
-                    value={address}
-                    onChange={(event) => setAddress(event.target.value)}
+                    {...register("profile.address")}
                 />
             </CompanyAccountField>
             {/* Карта */}

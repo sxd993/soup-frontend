@@ -6,12 +6,13 @@ import { socialLinksOrder, type SocialField } from "../config/socialLinksConfig"
 import { useCompanySocialLinksStore } from "../store/useCompanySocialLinksStore"
 
 export const useCompanySocialLinks = () => {
-    const { fields, isPickerOpen, togglePicker, addField } = useCompanySocialLinksStore(
+    const { fields, isPickerOpen, togglePicker, addField, setFields } = useCompanySocialLinksStore(
         useShallow((state) => ({
             fields: state.fields,
             isPickerOpen: state.isPickerOpen,
             togglePicker: state.togglePicker,
             addField: state.addField,
+            setFields: state.setFields,
         }))
     )
     const availableFields = useMemo<SocialField[]>(() => {
@@ -27,5 +28,6 @@ export const useCompanySocialLinks = () => {
         availableFields,
         togglePicker,
         addField,
+        setFields,
     }
 }

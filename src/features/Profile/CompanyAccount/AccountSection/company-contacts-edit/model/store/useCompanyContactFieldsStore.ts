@@ -9,6 +9,7 @@ type CompanyContactFieldsStore = {
     counts: Record<ContactField, number>;
     togglePicker: () => void;
     addField: (type: ContactField) => void;
+    setCounts: (counts: Record<ContactField, number>) => void;
 }
 
 export const useCompanyContactFieldsStore = create<CompanyContactFieldsStore>((set) => ({
@@ -22,5 +23,12 @@ export const useCompanyContactFieldsStore = create<CompanyContactFieldsStore>((s
                 [type]: Math.min(state.counts[type] + 1, 2),
             },
             isPickerOpen: false,
+        })),
+    setCounts: (counts) =>
+        set(() => ({
+            counts: {
+                phone: Math.min(counts.phone, 2),
+                email: Math.min(counts.email, 2),
+            },
         })),
 }))

@@ -2,12 +2,11 @@ import type { AxiosInstance } from "axios";
 import type { User, AuthSession } from "../types/session.types"
 import type { MeResponse } from "../types/api.types"
 
+
 // Преобразует ответ от /auth/me в формат User
 export const mapMeResponseToUser = (meResponse: MeResponse): User => {
     return {
-        id: meResponse.id,
-        email: meResponse.email,
-        name: meResponse.name,
+        id: meResponse.id ?? meResponse.sub ?? "",
         role: meResponse.role
     }
 }

@@ -1,14 +1,32 @@
 'use client';
+import { useEffect } from "react"
+import { useFormContext } from "react-hook-form"
 import { CompanyAccountAddButton } from "@/shared/ui/CompanyAccount/CompanyAccountAddButton"
 import { CompanyAccountField } from "@/shared/ui/CompanyAccount/CompanyAccountField"
 import { CompanyAccountFormBlock } from "@/shared/ui/CompanyAccount/CompanyAccountFormBlock"
 import { CompanyAccountInput } from "@/shared/ui/CompanyAccount/CompanyAccountInput"
 import { CompanyAccountSelect, type CompanyAccountSelectOption } from "@/shared/ui/CompanyAccount/CompanyAccountSelect"
-import { socialLinksConfig, socialLinksOrder } from "../model/config/socialLinksConfig"
+import { socialLinksConfig, socialLinksOrder, type SocialField } from "../model/config/socialLinksConfig"
 import { useCompanySocialLinks } from "../model/hooks/useCompanySocialLinks"
+import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/CompanyAccountForm/model/types/CompanyAccountFormValues.types"
 
 export const CompanySocialLinksEdit = () => {
-    const { fields, isPickerOpen, allAdded, availableFields, togglePicker, addField } = useCompanySocialLinks()
+    const { fields, isPickerOpen, allAdded, availableFields, togglePicker, addField, setFields } = useCompanySocialLinks()
+    const { register, watch } = useFormContext<CompanyAccountFormValues>()
+    const socials = watch("socials")
+
+    useEffect(() => {
+        if (!socials) return
+        const next: Partial<Record<SocialField, boolean>> = {}
+        socialLinksOrder.forEach((key) => {
+            if (socials[key]) {
+                next[key] = true
+            }
+        })
+        if (Object.keys(next).length > 0) {
+            setFields(next)
+        }
+    }, [setFields, socials])
     const selectOptions: CompanyAccountSelectOption[] = availableFields.map((key) => ({
         id: key,
         label: socialLinksConfig[key].label,
@@ -27,7 +45,7 @@ export const CompanySocialLinksEdit = () => {
                     return (
                         <CompanyAccountField key={key} className="w-full items-center" icon={iconLabel}>
                             <div className="flex-1">
-                                <CompanyAccountInput placeholder={placeholder} />
+                                <CompanyAccountInput placeholder={placeholder} {...register(`socials.${key}`)} />
                             </div>
                         </CompanyAccountField>
                     )

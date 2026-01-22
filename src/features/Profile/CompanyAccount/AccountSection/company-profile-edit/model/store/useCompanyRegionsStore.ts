@@ -9,6 +9,7 @@ type CompanyRegionsStoreState = {
     setQuery: (value: string) => void
     addRegion: (region: RegionItemType) => void
     removeRegion: (id: number) => void
+    setSelected: (regions: RegionItemType[]) => void
 }
 
 export const useCompanyRegionsStore = create<CompanyRegionsStoreState>((set) => ({
@@ -25,5 +26,9 @@ export const useCompanyRegionsStore = create<CompanyRegionsStoreState>((set) => 
     removeRegion: (id) =>
         set((state) => ({
             selected: state.selected.filter((item) => item.id !== id),
+        })),
+    setSelected: (regions) =>
+        set(() => ({
+            selected: regions,
         })),
 }))

@@ -8,6 +8,7 @@ type CompanySocialLinksStore = {
     fields: Record<SocialField, boolean>;
     togglePicker: () => void;
     addField: (type: SocialField) => void;
+    setFields: (fields: Partial<Record<SocialField, boolean>>) => void;
 }
 
 export const useCompanySocialLinksStore = create<CompanySocialLinksStore>((set) => ({
@@ -25,5 +26,9 @@ export const useCompanySocialLinksStore = create<CompanySocialLinksStore>((set) 
         set((state) => ({
             fields: { ...state.fields, [type]: true },
             isPickerOpen: false,
+        })),
+    setFields: (fields) =>
+        set((state) => ({
+            fields: { ...state.fields, ...fields },
         })),
 }))

@@ -1,7 +1,7 @@
 "use client"
 
-import { CATALOG_COMPANIES } from "@/entities/Company/model/const/companies"
-import { CompanyCard } from "@/entities/Company/ui/CompanyCard"
+import { CATALOG_COMPANIES } from "@/entities/Profile/Company/model/const/companies"
+import { CompanyCard } from "@/entities/Profile/Company/ui/CompanyCard"
 import { SortIcon } from "@/shared/ui"
 import { StateProvider } from "@/app/providers/State/StateProvider"
 

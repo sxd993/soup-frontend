@@ -13,13 +13,14 @@ export const useRegions = () => {
         staleTime: 10 * 60 * 1000,
     })
 
-    const { query, selected, setQuery, addRegion, removeRegion } = useCompanyRegionsStore(
+    const { query, selected, setQuery, addRegion, removeRegion, setSelected } = useCompanyRegionsStore(
         useShallow((state) => ({
             query: state.query,
             selected: state.selected,
             setQuery: state.setQuery,
             addRegion: state.addRegion,
             removeRegion: state.removeRegion,
+            setSelected: state.setSelected,
         }))
     )
 
@@ -45,5 +46,7 @@ export const useRegions = () => {
         removeRegion,
         filteredRegions,
         handleSelect,
+        setSelected,
+        regions,
     }
 }

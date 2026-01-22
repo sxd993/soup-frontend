@@ -1,2 +1,2 @@
-export { AccountCompanyForm } from './CompanyAccountForm/ui/AccountCompanyForm'
+export { CompanyAccountForm } from './CompanyAccountForm/ui/CompanyAccountForm'
 export { CompanyNavigationSideBar } from './CompanyNavigationSideBar/ui/CompanyNavigationSideBar'

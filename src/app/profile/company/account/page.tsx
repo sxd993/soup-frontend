@@ -1,5 +1,5 @@
-import { AccountCompanyForm } from "@/widgets/Profile/CompanyProfile"
+import { CompanyAccountForm } from "@/widgets/Profile/CompanyProfile"
 
 export default function AccountProfilePage() {
-        return <AccountCompanyForm/>
+        return <CompanyAccountForm/>
 }

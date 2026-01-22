@@ -1,7 +1,8 @@
 // Типы для API ответов
+type AppRole = 'client' | 'company'
+
 export type MeResponse = {
-    id: string
-    email: string
-    name: string
-    role: 'client' | 'company'
+    role: AppRole 
+    sub?: string
+    id?: string
 }

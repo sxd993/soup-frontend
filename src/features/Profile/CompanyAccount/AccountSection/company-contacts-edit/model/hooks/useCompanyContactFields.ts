@@ -6,12 +6,13 @@ import { useCompanyContactFieldsStore, type ContactField } from "../store/useCom
 
 export const useCompanyContactFields = () => {
 
-    const { counts, isPickerOpen, togglePicker, addField } = useCompanyContactFieldsStore(
+    const { counts, isPickerOpen, togglePicker, addField, setCounts } = useCompanyContactFieldsStore(
         useShallow((state) => ({
             counts: state.counts,
             isPickerOpen: state.isPickerOpen,
             togglePicker: state.togglePicker,
             addField: state.addField,
+            setCounts: state.setCounts,
         }))
     )
 
@@ -41,5 +42,6 @@ export const useCompanyContactFields = () => {
         availableFields,
         togglePicker,
         addField,
+        setCounts,
     }
 }
