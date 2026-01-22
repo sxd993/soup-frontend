@@ -14,7 +14,6 @@ export type CompanySocialLinks = {
     whatsapp?: string | null;
     telegram?: string | null;
     yandexDzen?: string | null;
-    yandex_dzen?: string | null;
 }
 
 export type CompanyPhone = {
@@ -32,6 +31,7 @@ export type CompanyProfileResponse = {
     social_links?: CompanySocialLinks | null;
     address?: string | null;
     phones?: CompanyPhone[] | string[] | null;
+    emails?: string[] | null;
     email?: string | null;
     representativeName?: string | null;
 }

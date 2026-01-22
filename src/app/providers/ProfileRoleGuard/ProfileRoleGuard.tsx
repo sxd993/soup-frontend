@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from '@/entities/Session'
-import { StateProvider } from '@/app/providers/State/StateProvider'
+import { useSkeletons } from '@/shared/hooks/useSkeletons'
 
 type ProfileRole = 'client' | 'company'
 
@@ -15,6 +15,7 @@ type ProfileRoleGuardProps = {
 export function ProfileRoleGuard({ role, children }: ProfileRoleGuardProps) {
     const router = useRouter()
     const { data: session, isLoading, isError } = useSession()
+    const { profileSkeleton } = useSkeletons()
 
     useEffect(() => {
         if (isLoading || isError) {
@@ -34,16 +35,15 @@ export function ProfileRoleGuard({ role, children }: ProfileRoleGuardProps) {
     }, [isError, isLoading, role, router, session])
 
     const canRender = !isLoading && !isError && session?.user.role === role
+    const showLoading = isLoading && !session
 
-    return (
-        <StateProvider
-            isLoading={isLoading}
-            isError={isError}
-            errorMessage="У вас нет доступа к этой странице"
-        >
-            <div>
-                {canRender ? children : null}
-            </div>
-        </StateProvider>
-    )
+    if (showLoading) {
+        return profileSkeleton
+    }
+
+    if (isError && !session) {
+        return null
+    }
+
+    return <div>{canRender ? children : null}</div>
 }

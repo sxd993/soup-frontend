@@ -4,7 +4,7 @@ import { LoadingState, ErrorState } from "@/shared/ui";
 // Переиспользуемый компонент для отображения состояний загрузки, ошибок и пустых данных
 
 type StateProviderProps = {
-    isLoading: boolean;
+    isLoading?: boolean;
     isError: boolean;
     isEmpty?: boolean;
     loadingMessage?: string;

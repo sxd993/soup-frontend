@@ -20,6 +20,14 @@ export const mapCompanyToFormValues = (company?: CompanyProfileResponse): Compan
             }
         })
         : []
+    const emails =
+        Array.isArray(company?.emails)
+            ? company?.emails
+                .filter((value): value is string => typeof value === "string")
+                .slice(0, 2)
+            : company?.email
+                ? [company?.email]
+                : []
     return {
         profile: {
             logo: company?.logo_url ?? null,
@@ -30,7 +38,7 @@ export const mapCompanyToFormValues = (company?: CompanyProfileResponse): Compan
         },
         contacts: {
             phones,
-            email: company?.email ?? "",
+            emails,
         },
         socials: {
             website: socialLinks?.website ?? "",
@@ -38,7 +46,7 @@ export const mapCompanyToFormValues = (company?: CompanyProfileResponse): Compan
             youtube: socialLinks?.youtube ?? "",
             whatsapp: socialLinks?.whatsapp ?? "",
             telegram: socialLinks?.telegram ?? "",
-            yandexDzen: socialLinks?.yandexDzen ?? socialLinks?.yandex_dzen ?? "",
+            yandexDzen: socialLinks?.yandexDzen ?? "",
         },
     }
 }

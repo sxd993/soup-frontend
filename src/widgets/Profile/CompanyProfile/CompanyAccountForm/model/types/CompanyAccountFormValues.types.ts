@@ -11,7 +11,7 @@ export interface CompanyAccountFormValues {
             phone: string;
             representativeName?: string;
         }[];
-        email: string;
+        emails: string[];
     };
     socials: {
         website: string;

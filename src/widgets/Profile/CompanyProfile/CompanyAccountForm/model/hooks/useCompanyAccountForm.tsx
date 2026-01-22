@@ -16,7 +16,7 @@ const defaultValues: CompanyAccountFormValues = {
     },
     contacts: {
         phones: [],
-        email: "",
+        emails: [],
     },
     socials: {
         website: "",

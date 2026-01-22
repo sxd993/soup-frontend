@@ -4,7 +4,11 @@ import { EmailIcon } from "@/shared/ui/CompanyAccount/icons/EmailIcon"
 import { useFormContext } from "react-hook-form"
 import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/CompanyAccountForm/model/types/CompanyAccountFormValues.types"
 
-export const CompanyEmailInput = () => {
+type CompanyEmailInputProps = {
+    index: number;
+}
+
+export const CompanyEmailInput = ({ index }: CompanyEmailInputProps) => {
     const { register } = useFormContext<CompanyAccountFormValues>()
     return (
 
@@ -15,7 +19,7 @@ export const CompanyEmailInput = () => {
             <CompanyAccountInput
                 type='email'
                 placeholder='Электронная почта'
-                {...register("contacts.email")}
+                {...register(`contacts.emails.${index}`)}
             />
         </CompanyAccountField>
     )

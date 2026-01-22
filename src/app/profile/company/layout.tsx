@@ -5,6 +5,8 @@ type CompanyProfileLayoutProps = {
     children: React.ReactNode
 }
 
+
+
 export default function CompanyProfileLayout({ children }: CompanyProfileLayoutProps) {
     return (
         <ProfileRoleGuard role="company">

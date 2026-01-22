@@ -14,7 +14,7 @@ export const CompanyContactEdit = () => {
     const { counts, isPickerOpen, allAdded, availableFields, togglePicker, addField, setCounts } = useCompanyContactFields()
     const { watch } = useFormContext<CompanyAccountFormValues>()
     const phones = watch("contacts.phones")
-    const email = watch("contacts.email")
+    const emails = watch("contacts.emails")
 
     useEffect(() => {
         if (phones && phones.length > counts.phone) {
@@ -23,13 +23,13 @@ export const CompanyContactEdit = () => {
                 email: counts.email,
             })
         }
-        if (email && counts.email < 1) {
+        if (emails && emails.length > counts.email) {
             setCounts({
                 phone: counts.phone,
-                email: 1,
+                email: Math.min(emails.length, 2),
             })
         }
-    }, [counts.email, counts.phone, email, phones, setCounts])
+    }, [counts.email, counts.phone, emails, phones, setCounts])
     const selectOptions: CompanyAccountSelectOption[] = availableFields.map((field) => ({
         id: field,
         label: field === "phone" ? "Телефон" : "Почта",
@@ -45,7 +45,7 @@ export const CompanyContactEdit = () => {
                 <CompanyPhoneInput key={`phone-${index}`} index={index} />
             ))}
             {Array.from({ length: counts.email }, (_, index) => (
-                <CompanyEmailInput key={`email-${index}`} />
+                <CompanyEmailInput key={`email-${index}`} index={index} />
             ))}
 
             <div className="relative">

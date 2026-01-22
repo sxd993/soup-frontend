@@ -2,6 +2,7 @@ export type HeaderLink = {
   href: string
   label: string
   devices: Array<'sm' | 'md' | 'lg'>
+  isPlaceholder?: boolean
 }
 
 export const HEADER_LINKS: HeaderLink[] = [

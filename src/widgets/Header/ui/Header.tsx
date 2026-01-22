@@ -14,14 +14,15 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false)
-  const { data: session } = useSession()
+  const { data: session, isLoading: isSessionLoading } = useSession()
   const profileHref = session?.user
     ? session.user.role === 'client'
       ? '/profile/client/account'
       : '/profile/company/account'
     : '/auth/login'
   const notificationsHref = '/notifications'
-  const headerLinks = useHeaderLinks(session?.user?.role)
+  const headerLinks = useHeaderLinks(session?.user?.role, isSessionLoading)
+  const mobileLinks = headerLinks.filter((link) => !link.isPlaceholder)
 
   return (
     <header className="w-full flex justify-between items-center mt-5 rounded-[50px] bg-white pr-4 relative z-30">
@@ -90,7 +91,7 @@ export const Header = () => {
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
         profileHref={profileHref}
-        links={headerLinks}
+        links={mobileLinks}
         isAuthorized={Boolean(session?.user)}
       />
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />

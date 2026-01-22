@@ -18,6 +18,16 @@ export const NavigationLinks = ({ links }: NavigationLinksProps) => {
       {navigationLinks.map((link) => {
         const isActive = pathname?.startsWith(link.href)
 
+        if (link.isPlaceholder) {
+          return (
+            <span
+              key={`${link.href}-placeholder`}
+              className="inline-block h-4 w-28 rounded bg-gray-200"
+              aria-hidden="true"
+            />
+          )
+        }
+
         return (
           <Link
             key={link.href}

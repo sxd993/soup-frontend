@@ -1,4 +1,6 @@
-import { QueryClientProvider } from '@tanstack/react-query'
+'use client'
+
+import { QueryClientProvider, dehydrate, hydrate } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { queryClient } from './client'
 import { AuthBootstrap } from '../Auth/AuthBootstrap'
