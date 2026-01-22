@@ -49,10 +49,18 @@ const CompanyAccountFormSkeleton = () => {
 }
 
 export const CompanyAccountForm = () => {
+
+    // Получение сессии и данных компании
     const { data: session, isLoading: isSessionLoading } = useSession()
     const userId = session?.user?.id
+
+    // Компания пользователя
     const { data: company, isLoading: isCompanyLoading } = useCompanyProfile(userId)
-    const { form, handleSubmit } = useCompanyAccountForm(company)
+
+    // Использование кастомного хука для управления формой
+    const { form, handleSubmit, isPending } = useCompanyAccountForm(company, userId)
+
+    // Показ скелетона, если данные сессии или компании еще загружаются
     const showSkeleton = isSessionLoading || (isCompanyLoading && !company)
 
     if (showSkeleton) {
@@ -68,7 +76,9 @@ export const CompanyAccountForm = () => {
                 <CompannyAddressEdit />
                 <Button
                     type="submit"
-                    className="max-w-1/4 self-end"
+                    className="max-w-[25%] self-end"
+                    disabled={isPending}
+                    aria-disabled={isPending}
                 >
                     Сохранить
                 </Button>
