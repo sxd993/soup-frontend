@@ -9,7 +9,7 @@ export const CompanyAccountForm = () => {
     const { data: session } = useSession()
     const userId = session?.user?.id
     const { data: company } = useCompanyProfile(userId)
-    const { form, handleSubmit } = useCompanyAccountForm(company)
+    const { form, handleSubmit, isPending } = useCompanyAccountForm(company, userId)
 
     return (
         <FormProvider {...form}>
@@ -20,7 +20,9 @@ export const CompanyAccountForm = () => {
                 <CompannyAddressEdit />
                 <Button
                     type="submit"
-                    className="max-w-1/4 self-end"
+                    className="max-w-[25%] self-end"
+                    disabled={isPending}
+                    aria-disabled={isPending}
                 >
                     Сохранить
                 </Button>

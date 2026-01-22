@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import type { CompanyAccountFormValues } from "../types/CompanyAccountFormValues.types"
 import type { CompanyProfileResponse } from "@/entities/Profile/Company/model/types/company.types"
 import { mapCompanyToFormValues } from "../lib/mapCompanyToFormValues"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { editCompanyProfile } from "../../api/editCompanyProfile"
 
 const defaultValues: CompanyAccountFormValues = {
@@ -28,14 +28,15 @@ const defaultValues: CompanyAccountFormValues = {
     },
 }
 
-export const useCompanyAccountForm = (company?: CompanyProfileResponse) => {
+export const useCompanyAccountForm = (company?: CompanyProfileResponse, userId?: string) => {
     const form = useForm<CompanyAccountFormValues>({ defaultValues })
+    const queryClient = useQueryClient()
 
 
     // useEffect для сброса базовых значений формы, если прилетела компания с сервера
     useEffect(() => {
         if (!company) return
-        form.reset(mapCompanyToFormValues(company))
+        form.reset(mapCompanyToFormValues(company), { keepDirtyValues: true })
     }, [company, form])
 
 
@@ -45,7 +46,13 @@ export const useCompanyAccountForm = (company?: CompanyProfileResponse) => {
         mutationFn: editCompanyProfile,
         onSuccess: () => {
             console.log('Company profile updated successfully')
-        }
+            if (userId) {
+                queryClient.invalidateQueries({ queryKey: ["company-profile", userId] })
+            }
+        },
+        onError: (error) => {
+            console.error('Failed to update company profile', error)
+        },
     })
 
     const handleSubmit = form.handleSubmit((data) => {
@@ -54,6 +61,7 @@ export const useCompanyAccountForm = (company?: CompanyProfileResponse) => {
 
     return {
         form,
-        handleSubmit
+        handleSubmit,
+        isPending: mutation.isPending,
     }
 }

@@ -2,6 +2,5 @@ import type { CompanyAccountFormValues } from "../model/types/CompanyAccountForm
 import { AxiosClient } from "@/shared/api/AxiosClient"
 
 export const editCompanyProfile = async (data: CompanyAccountFormValues): Promise<void> => {
-    const response = await AxiosClient.post("/profile/company", data)
-    return response.data
+    await AxiosClient.post("/profile/company", data)
 }
