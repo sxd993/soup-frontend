@@ -7,4 +7,4 @@ export { CompanyAccountForm } from './CompanyAccountForm/ui/CompanyAccountForm'
 export { CompanyNavigationSideBar } from './CompanyNavigationSideBar/ui/CompanyNavigationSideBar'
 
 // Отзывы компании
-export { CompanyReviewsSection } from './ReviewsSection/ui/CompanyReviewsSection'
+export { CompanyReviewsSection } from './CompanyReviewsSection/ui/CompanyReviewsSection'
