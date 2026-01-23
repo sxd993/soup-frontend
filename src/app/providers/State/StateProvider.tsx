@@ -10,6 +10,9 @@ type StateProviderProps = {
     loadingMessage?: string;
     errorMessage?: string;
     emptyMessage?: string;
+    loadingComponent?: React.ReactNode;
+    errorComponent?: React.ReactNode;
+    emptyComponent?: React.ReactNode;
     children: React.ReactNode;
 };
 
@@ -20,21 +23,28 @@ export const StateProvider = ({
     loadingMessage = "Загрузка...",
     errorMessage = "Ошибка при загрузке данных",
     emptyMessage = "Данные не найдены",
+    loadingComponent,
+    errorComponent,
+    emptyComponent,
     children,
 }: StateProviderProps) => {
     if (isLoading) {
-        return <LoadingState className="min-h-125 text-center" message={loadingMessage} />;
+        return loadingComponent ?? (
+            <LoadingState className="min-h-125 text-center" message={loadingMessage} />
+        );
     }
 
     if (isError) {
-        return <ErrorState className="min-h-125" message={errorMessage} />;
+        return errorComponent ?? <ErrorState className="min-h-125" message={errorMessage} />;
     }
 
     if (isEmpty) {
         return (
-            <div className="text-center py-10 min-h-screen">
-                <p className="text-accent-quinary">{emptyMessage}</p>
-            </div>
+            emptyComponent ?? (
+                <div className="text-center py-10 min-h-screen">
+                    <p className="text-accent-quinary">{emptyMessage}</p>
+                </div>
+            )
         );
     }
 

@@ -24,6 +24,17 @@ export type CompanyReview = {
     } | null
 }
 
+export type CompanyOrder = {
+    id: string | number
+    title: string
+    region: string
+    price: number
+    category?: string | null
+    status: string
+    createdAt?: string | null
+    companyLogoUrl?: string | null
+}
+
 export type CompanySocialLinks = {
     website?: string | null;
     vk?: string | null;
