@@ -1,6 +1,8 @@
-export { CompanyReviewsSection } from "./ui/CompanyReviewsSection"
-export { CompanyReviewsHeader } from "./ui/CompanyReviewsHeader"
-export { CompanyReviewsFilter } from "./ui/CompanyReviewsFilter"
-export { CompanyReviews } from "./ui/CompanyReviews"
-export { CompanyReviewsEmpty } from "./ui/CompanyReviewsEmpty"
-export { useReviews } from "./model/hooks/useReviews"
+// Фильтры
+export { CompanyReviewsFilter } from "./filter-company-reviews/ui/CompanyReviewsFilter";
+export { useCompanyReviewsFilterStore } from "./filter-company-reviews/model/store/useCompanyReviewsFilterStore";
+
+// Отзывы
+export { CompanyReviews } from "./get-company-reviews/ui/CompanyReviews";
+export { CompanyReviewsEmpty } from './get-company-reviews/ui/CompanyReviewsEmpty';
+

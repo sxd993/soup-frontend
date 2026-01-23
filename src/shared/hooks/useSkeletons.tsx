@@ -3,6 +3,7 @@
 import { useMemo, type ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 import { CompanyAccountFormSkeleton } from '@/widgets/Profile/CompanyProfile'
+import { CompanyReviewsSkeleton } from '@/features/Profile/CompanyAccount/ReviewsSection/get-company-reviews/ui/CompanyReviewsSkeleton'
 
 const SidebarSkeleton = () => (
     <div className="w-[260px] flex flex-col gap-4">
@@ -38,6 +39,10 @@ export const useSkeletons = () => {
     const profileSkeleton = useMemo(() => {
         if (pathname === '/profile/company/account') {
             return wrapProfileSkeleton(<CompanyAccountFormSkeleton />)
+        }
+
+        if (pathname === '/profile/company/reviews') {
+            return wrapProfileSkeleton(<CompanyReviewsSkeleton />)
         }
 
         return wrapProfileSkeleton(<GenericContentSkeleton />)

@@ -1,11 +1,13 @@
 "use client"
 
-import { ArrowDown } from "@/shared/ui"
+import { SortIcon } from "@/shared/ui"
 import { useShallow } from "zustand/shallow";
-import { REVIEW_SORT_OPTIONS } from "../model/const/reviewSortOptions"
-import { useCompanyReviewsFilterStore } from "../model/store/useCompanyReviewsFilterStore"
+import { REVIEW_SORT_OPTIONS } from "@/features/Profile/CompanyAccount/ReviewsSection/filter-company-reviews/model/const/reviewSortOptions"
+import { useCompanyReviewsFilterStore } from "../model/store/useCompanyReviewsFilterStore";
 
 export const CompanyReviewsFilter = () => {
+
+    // Локальный стор для фильтров
     const { isOpen, selectedSortId, toggleOpen, setOpen, setSelectedSort } =
         useCompanyReviewsFilterStore(
             useShallow((state) => ({
@@ -17,6 +19,7 @@ export const CompanyReviewsFilter = () => {
             }))
         );
 
+    // Выбранный вариант сортировки
     const selectedOption = REVIEW_SORT_OPTIONS.find((option) => option.id === selectedSortId)
 
     return (
@@ -24,12 +27,12 @@ export const CompanyReviewsFilter = () => {
             <button
                 type="button"
                 onClick={toggleOpen}
-                className="flex items-center gap-2 rounded-full border border-[#E5E0D6] bg-white px-4 py-2 text-sm font-semibold text-secondary"
+                className="flex items-center gap-2"
                 aria-expanded={isOpen}
             >
                 {selectedOption?.label ?? "Сортировка"}
                 <span className={`transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}>
-                    <ArrowDown />
+                    <SortIcon />
                 </span>
             </button>
 
@@ -50,9 +53,6 @@ export const CompanyReviewsFilter = () => {
                                     } ${isSelected ? "bg-[#F6F6F6]" : ""}`}
                             >
                                 <span>{option.label}</span>
-                                <span className={`${isSelected ? "text-primary" : "text-transparent"}`}>
-                                    •
-                                </span>
                             </button>
                         )
                     })}

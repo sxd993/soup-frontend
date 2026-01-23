@@ -1,22 +1,6 @@
 import type { CompanyReview } from "../model/types/company.types"
+import { formatDate, formatRating } from "../model/lib/company.entities.helpers"
 
-const formatDate = (value?: string | null) => {
-  if (!value) return null
-  const date = new Date(value)
-  if (Number.isNaN(date.getTime())) return null
-  return date.toLocaleDateString("ru-RU", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  })
-}
-
-const formatRating = (value?: number | string | null) => {
-  if (value === null || value === undefined || value === "") return "—"
-  if (typeof value === "number") return value.toFixed(1)
-  const parsed = Number(value)
-  return Number.isNaN(parsed) ? "—" : parsed.toFixed(1)
-}
 
 export const ReviewsCard = ({ review }: { review: CompanyReview }) => {
   const createdAt = formatDate(review.createdAt)

@@ -1,4 +1,4 @@
-import { CompanyReviewsSection } from "@/features/Profile/CompanyAccount/ReviewsSection"
+import { CompanyReviewsSection } from "@/widgets/Profile/CompanyProfile"
 
 export default function CompanyReviewsPage() {
     return <CompanyReviewsSection />
