@@ -15,6 +15,8 @@ export type CompanyReview = {
     comment?: string | null
     createdAt?: string | null
     serviceName?: string | null
+    companyReplyText?: string | null
+    companyReplyAt?: string | null
 }
 
 export type CompanySocialLinks = {
