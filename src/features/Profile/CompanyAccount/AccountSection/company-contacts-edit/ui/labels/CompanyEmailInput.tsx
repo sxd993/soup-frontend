@@ -7,9 +7,8 @@ import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/
 export const CompanyEmailInput = () => {
     const { register } = useFormContext<CompanyAccountFormValues>()
     return (
-
         <CompanyAccountField
-            className="max-w-1/2"
+            className="w-full sm:max-w-[50%]"
             icon={<EmailIcon />}
         >
             <CompanyAccountInput

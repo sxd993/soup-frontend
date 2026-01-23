@@ -11,7 +11,7 @@ export const CompanyNameInput = () => {
     })
 
     return (
-        <div className="h-13.5 flex justify-between rounded-[10px] border border-[#c5c2c2] pl-3.75 pt-3.75 pb-4.25 pr-2.5 flex-1 gap-5">
+        <div className="h-13.5 flex w-full justify-between gap-5 rounded-[10px] border border-[#c5c2c2] pl-3.75 pt-3.75 pb-4.25 pr-2.5 lg:flex-1">
             <input
                 {...registerName}
                 type="text"

@@ -13,14 +13,14 @@ export const CompanyAccountForm = () => {
 
     return (
         <FormProvider {...form}>
-            <form className="flex flex-col gap-5 max-w-[793px]" noValidate onSubmit={handleSubmit}>
+            <form className="flex w-full flex-col gap-5 px-4 md:max-w-[793px] md:px-0" noValidate onSubmit={handleSubmit}>
                 <CompanyProfileEdit />
                 <CompanyContactEdit />
                 <CompanySocialLinksEdit />
                 <CompannyAddressEdit />
                 <Button
                     type="submit"
-                    className="max-w-[25%] self-end"
+                    className="w-full self-stretch sm:w-auto sm:self-end"
                     disabled={isPending}
                     aria-disabled={isPending}
                 >

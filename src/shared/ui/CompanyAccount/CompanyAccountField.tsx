@@ -6,11 +6,11 @@ interface CompanyAccounеFieldProps {
 
 export const CompanyAccountField = ({ children, icon, className = "" }: CompanyAccounеFieldProps) => {
     return (
-        <div className={`h-[54px] border p-[15px] border-[#c5c2c2] rounded-[10px] flex gap-3 ${className}`}>
-            <div className="flex justify-center items-center">
+        <div className={`h-[54px] w-full border p-[15px] border-[#c5c2c2] rounded-[10px] flex gap-3 ${className}`}>
+            <div className="flex items-center justify-center">
                 {icon}
             </div>
-            <div>
+            <div className="flex-1 min-w-0">
                 {children}
             </div>
         </div>
