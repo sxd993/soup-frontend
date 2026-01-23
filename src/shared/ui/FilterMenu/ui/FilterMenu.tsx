@@ -15,7 +15,7 @@ interface FilterMenuProps {
 export const FilterMenu = ({ items, selectedId, onSelect, className }: FilterMenuProps) => {
     return (
         <div
-            className={`absolute top-full mt-2 right-0 w-[200px] z-10 overflow-hidden rounded-[18px] border border-[#E5E5E5] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.15)] ${className ?? ""}`}
+            className={`absolute top-full mt-2 right-0 w-50 z-10 overflow-hidden rounded-[18px] border border-[#E5E5E5] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.15)] ${className ?? ""}`}
         >
             {items.map((item, index) => {
                 const isSelected = selectedId === item.id

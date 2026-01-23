@@ -14,7 +14,7 @@ export const CompanyAccountInput = ({
         <input
             type={type}
             placeholder={placeholder}
-            className={`h-full focus-visible:outline-none leading-[140%] font-medium text-base placeholder:text-[#c5c2c2] ${className}`}
+            className={`h-full w-full focus-visible:outline-none leading-[140%] font-medium text-base placeholder:text-[#c5c2c2] ${className}`}
             {...rest}
         />
     )

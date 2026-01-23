@@ -11,7 +11,7 @@ type CompanyPhoneInputProps = {
 export const CompanyPhoneInput = ({ index }: CompanyPhoneInputProps) => {
     const { register } = useFormContext<CompanyAccountFormValues>()
     return (
-        <div className="flex gap-5">
+        <div className="flex flex-col gap-3 sm:flex-row sm:gap-5">
             <CompanyAccountField
                 icon={<PhoneIcon />}
                 className="flex-1"
