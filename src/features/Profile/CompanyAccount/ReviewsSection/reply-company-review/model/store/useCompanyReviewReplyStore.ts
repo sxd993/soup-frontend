@@ -2,6 +2,8 @@
 
 import { create } from "zustand"
 
+
+// Данный стор хранит состояние открытия формы ответа на отзыв компании
 interface CompanyReviewReplyStoreState {
     openReviewId: string | number | null
     openReply: (reviewId: string | number) => void
