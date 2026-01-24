@@ -1,6 +1,6 @@
 import { CompanyAccountField } from "@/shared/ui/CompanyAccount/CompanyAccountField"
 import { CompanyAccountInput } from "@/shared/ui/CompanyAccount/CompanyAccountInput"
-import { PhoneIcon } from "@/shared/ui/CompanyAccount/icons/PhoneIcon"
+import { PhoneIcon } from "@/shared/ui/CompanyAccount/icons/AccountSectionIcons/PhoneIcon"
 import { useFormContext } from "react-hook-form"
 import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types"
 

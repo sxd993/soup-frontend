@@ -1,29 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import type { ReactNode } from 'react'
-import { COMPANY_NAV_LINKS } from '../const/companyNavLinks'
-import { AdvertisingIcon } from '@/shared/ui/CompanyAccount/icons/ProfileIcons/AdvertisingIcon'
-import { BlogIcon } from '@/shared/ui/CompanyAccount/icons/ProfileIcons/BlogIcon'
-import { FavoritesIcon } from '@/shared/ui/CompanyAccount/icons/ProfileIcons/FavoritesIcon'
-import { MessagesIcon } from '@/shared/ui/CompanyAccount/icons/ProfileIcons/MessagesIcon'
-import { OrdersIcon } from '@/shared/ui/CompanyAccount/icons/ProfileIcons/OrdersIcon'
-import { ProfileIcon } from '@/shared/ui/CompanyAccount/icons/ProfileIcons/ProfileIcon'
-import { ReviewsIcon } from '@/shared/ui/CompanyAccount/icons/ProfileIcons/ReviewsIcon'
-import { ServicesIcon } from '@/shared/ui/CompanyAccount/icons/ProfileIcons/ServicesIcon'
-import { SettingsIcon } from '@/shared/ui/CompanyAccount/icons/ProfileIcons/SettingsIcon'
+import { ICONS_BY_LABEL, COMPANY_NAV_LINKS } from '../const'
 
-const ICONS_BY_LABEL: Record<string, ReactNode> = {
-    'Профиль': <ProfileIcon className="h-8 w-8" />,
-    'Услуги': <ServicesIcon className="h-8 w-8" />,
-    'Отзывы': <ReviewsIcon className="h-8 w-8" />,
-    'Блог': <BlogIcon className="h-8 w-8" />,
-    'Заказы': <OrdersIcon className="h-8 w-8" />,
-    'Сообщения': <MessagesIcon className="h-8 w-8" />,
-    'Избранное': <FavoritesIcon className="h-8 w-8" />,
-    'Реклама': <AdvertisingIcon className="h-8 w-8" />,
-    'Настройки': <SettingsIcon className="h-8 w-8" />,
-}
 
 type CompanyNavigationSideBarProps = {
     onNavigate?: () => void

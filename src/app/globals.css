@@ -28,12 +28,12 @@ body {
   font-family: var(--font-roboto-flex), sans-serif;
 }
 
-header > div:first-child > div:last-child a {
+header .header-nav-links a {
   position: relative;
   text-decoration: none !important;
 }
 
-header > div:first-child > div:last-child a::after {
+header .header-nav-links a::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -45,7 +45,7 @@ header > div:first-child > div:last-child a::after {
   transition: opacity 0.3s ease-in-out;
 }
 
-header > div:first-child > div:last-child a:hover::after {
+header .header-nav-links a:hover::after {
   opacity: 1;
 }
 
