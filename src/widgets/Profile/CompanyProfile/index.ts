@@ -1,13 +1,13 @@
 // Вкладка профиль
-export { CompanyAccountFormSkeleton } from './CompanyAccountForm/ui/CompanyAccountFormSkeleton'
-export { CompanyAccountForm } from './CompanyAccountForm/ui/CompanyAccountForm'
+export { CompanyAccountFormSkeleton } from './AccountCompanyForm/ui/CompanyAccountFormSkeleton'
+export { CompanyAccountForm } from './AccountCompanyForm/ui/CompanyAccountForm'
 
 
 // Сайдбар навигации по профилю компании
 export { CompanyNavigationSideBar } from './CompanyNavigationSideBar/ui/CompanyNavigationSideBar'
 
 // Отзывы компании
-export { CompanyReviewsSection } from './CompanyReviewsSection/ui/CompanyReviewsSection'
+export { CompanyReviewsSection } from './ReviewsCompanySection/CompanyReviewsSection'
 
 // Заказы компании
-export { OrdersCompanySection } from './OrdersCompanySection/ui/OrdersCompanySection'
+export { OrdersCompanySection } from './OrdersCompanySection/OrdersCompanySection'

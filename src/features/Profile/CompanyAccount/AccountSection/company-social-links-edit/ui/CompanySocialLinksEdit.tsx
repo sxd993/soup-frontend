@@ -8,7 +8,7 @@ import { CompanyAccountInput } from "@/shared/ui/CompanyAccount/CompanyAccountIn
 import { CompanyAccountSelect, type CompanyAccountSelectOption } from "@/shared/ui/CompanyAccount/CompanyAccountSelect"
 import { socialLinksConfig, socialLinksOrder, type SocialField } from "../model/config/socialLinksConfig"
 import { useCompanySocialLinks } from "../model/hooks/useCompanySocialLinks"
-import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/CompanyAccountForm/model/types/CompanyAccountFormValues.types"
+import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types"
 
 export const CompanySocialLinksEdit = () => {
     const { fields, isPickerOpen, allAdded, availableFields, togglePicker, addField, setFields } = useCompanySocialLinks()

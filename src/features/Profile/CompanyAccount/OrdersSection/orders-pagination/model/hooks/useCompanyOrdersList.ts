@@ -1,35 +1,34 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import type { CompanyOrder } from "@/entities/Profile/Company/model/types/company.types"
+import type { Order } from "@/entities/Orders/model/type/order.types"
 import { useCompanyOrders } from "@/features/Profile/CompanyAccount/OrdersSection/get-company-orders/model/hooks/useCompanyOrders"
 import { resolveOrdersData } from "@/features/Profile/CompanyAccount/OrdersSection/get-company-orders/model/lib/resolveOrdersData"
 import { useCompanyOrdersTabsStore } from "@/features/Profile/CompanyAccount/OrdersSection/orders-tabs/model/store/useCompanyOrdersTabsStore"
 import { formatOrderDate, formatOrderPrice } from "../lib/formatOrderMeta"
 import { useOrdersPagination } from "./useOrdersPagination"
 
-type CompanyOrderView = CompanyOrder & {
+type CompanyOrderView = Order & {
     createdAtLabel: string
     priceLabel: string
 }
 
-export const useCompanyOrdersList = (pageSize = 7) => {
+const PAGE_SIZE = 7
+
+export const useCompanyOrdersList = () => {
     const selectedStatus = useCompanyOrdersTabsStore((state) => state.selectedStatus)
     const [totalItems, setTotalItems] = useState(0)
+    const [expandedOrders, setExpandedOrders] = useState<CompanyOrderView[]>([])
 
     const pagination = useOrdersPagination({
         totalItems,
-        pageSize,
+        pageSize: PAGE_SIZE,
         pageParam: "page",
     })
 
-    const queryPage = pagination.isExpanded ? 1 : pagination.queryPage
-    const queryPageSize = pagination.isExpanded ? pagination.visibleCount : pageSize
-
     const { data, isLoading, isError } = useCompanyOrders({
         status: selectedStatus,
-        page: queryPage,
-        pageSize: queryPageSize,
+        page: pagination.queryPage,
     })
 
     const { orders, total } = resolveOrdersData(data)
@@ -52,11 +51,33 @@ export const useCompanyOrdersList = (pageSize = 7) => {
         [orders]
     )
 
+    useEffect(() => {
+        if (!pagination.isExpanded) {
+            setExpandedOrders(viewOrders)
+            return
+        }
+
+        if (pagination.queryPage <= 1) {
+            setExpandedOrders(viewOrders)
+            return
+        }
+
+        setExpandedOrders((prev) => {
+            const merged = prev.length > 0 ? [...prev, ...viewOrders] : viewOrders
+            const seen = new Set<number>()
+            return merged.filter((order) => {
+                if (seen.has(order.id)) return false
+                seen.add(order.id)
+                return true
+            })
+        })
+    }, [pagination.isExpanded, pagination.queryPage, viewOrders])
+
     return {
         isLoading,
         isError,
-        isEmpty: !isLoading && !isError && viewOrders.length === 0,
-        orders: viewOrders,
+        isEmpty: !isLoading && !isError && expandedOrders.length === 0,
+        orders: expandedOrders,
         totalOrders: total,
         pagination,
         shouldShowPagination: !isLoading && !isError && total > 0,

@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react"
 import { useFormContext } from "react-hook-form"
-import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/CompanyAccountForm/model/types/CompanyAccountFormValues.types"
+import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types"
 
 export const CompanyDescriptionInput = () => {
     const [symbols, setSymbols] = useState(0)

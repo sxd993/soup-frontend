@@ -1,6 +1,7 @@
 "use client"
 
-import { useOrdersCompanyTabs } from "@/features/Profile/CompanyAccount/OrdersSection/orders-tabs/model/hooks/useOrdersCompanyTabs"
+import { useOrdersCompanyTabs } from "../model/hooks/useOrdersCompanyTabs"
+
 
 export const OrdersCompanyTabs = () => {
     const { items, selectedStatus, handleSelect } = useOrdersCompanyTabs()
@@ -14,9 +15,8 @@ export const OrdersCompanyTabs = () => {
                         key={item.id}
                         type="button"
                         onClick={() => handleSelect(item.id)}
-                        className={`rounded-[40px] px-6 py-2 text-[16px] font-semibold transition-colors ${
-                            isActive ? "bg-white text-secondary" : "text-accent-septenary"
-                        }`}
+                        className={`rounded-[40px] px-6 py-2 text-[16px] font-semibold transition-colors ${isActive ? "bg-white text-secondary" : "text-accent-septenary"
+                            }`}
                     >
                         {item.label}
                     </button>

@@ -5,7 +5,7 @@ import { CompanyAccountFormBlock } from "@/shared/ui/CompanyAccount/CompanyAccou
 import { CompanyAccountInput } from "@/shared/ui/CompanyAccount/CompanyAccountInput";
 import { AddressIcon } from "@/shared/ui/CompanyAccount/icons/AddressIcon";
 import { useFormContext } from "react-hook-form";
-import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/CompanyAccountForm/model/types/CompanyAccountFormValues.types";
+import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types";
 
 export const CompannyAddressEdit = () => {
     const { register } = useFormContext<CompanyAccountFormValues>()

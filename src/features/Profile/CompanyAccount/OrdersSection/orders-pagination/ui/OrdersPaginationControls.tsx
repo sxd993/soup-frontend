@@ -24,12 +24,16 @@ export const OrdersPaginationControls = ({
 
     return (
         <div className="flex flex-col items-center gap-6">
-            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
             {canShowMore && (
-                <Button type="button" onClick={onShowMore} className="px-12">
+                <Button
+                    type="button"
+                    onClick={onShowMore}
+                    className="px-12 w-full bg-accent-septenary! text-white!"
+                >
                     Показать еще
                 </Button>
             )}
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
         </div>
     )
 }

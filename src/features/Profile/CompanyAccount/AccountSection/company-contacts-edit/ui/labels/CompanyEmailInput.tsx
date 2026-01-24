@@ -2,7 +2,7 @@ import { CompanyAccountField } from "@/shared/ui/CompanyAccount/CompanyAccountFi
 import { CompanyAccountInput } from "@/shared/ui/CompanyAccount/CompanyAccountInput"
 import { EmailIcon } from "@/shared/ui/CompanyAccount/icons/EmailIcon"
 import { useFormContext } from "react-hook-form"
-import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/CompanyAccountForm/model/types/CompanyAccountFormValues.types"
+import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types"
 
 type CompanyEmailInputProps = {
     index: number;
@@ -12,7 +12,7 @@ export const CompanyEmailInput = ({ index }: CompanyEmailInputProps) => {
     const { register } = useFormContext<CompanyAccountFormValues>()
     return (
         <CompanyAccountField
-            className="w-full sm:max-w-[50%]"
+            className="max-w-[48.5%]"
             icon={<EmailIcon />}
         >
             <CompanyAccountInput

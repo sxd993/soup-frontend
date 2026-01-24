@@ -1,6 +1,6 @@
 'use client';
 import { useFormContext } from "react-hook-form"
-import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/CompanyAccountForm/model"
+import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model"
 import { useState } from "react"
 
 export const CompanyNameInput = () => {

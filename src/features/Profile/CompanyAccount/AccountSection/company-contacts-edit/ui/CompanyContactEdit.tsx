@@ -8,7 +8,7 @@ import { EmailIcon } from "@/shared/ui/CompanyAccount/icons/EmailIcon"
 import { PhoneIcon } from "@/shared/ui/CompanyAccount/icons/PhoneIcon"
 import { useCompanyContactFields } from "../model/hooks/useCompanyContactFields"
 import { CompanyEmailInput, CompanyPhoneInput } from "./labels"
-import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/CompanyAccountForm/model/types/CompanyAccountFormValues.types"
+import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types"
 
 export const CompanyContactEdit = () => {
     const { counts, isPickerOpen, allAdded, availableFields, togglePicker, addField, setCounts } = useCompanyContactFields()
@@ -30,6 +30,7 @@ export const CompanyContactEdit = () => {
             })
         }
     }, [counts.email, counts.phone, emails, phones, setCounts])
+    
     const selectOptions: CompanyAccountSelectOption[] = availableFields.map((field) => ({
         id: field,
         label: field === "phone" ? "Телефон" : "Почта",

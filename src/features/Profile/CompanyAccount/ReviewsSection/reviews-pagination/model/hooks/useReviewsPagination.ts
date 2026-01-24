@@ -34,6 +34,11 @@ export const useReviewsPagination = ({
 
   const setPage = (page: number) => {
     const nextPage = Math.max(1, Math.min(page, totalPages))
+    if (nextPage === currentPage) {
+      setIsExpanded(false)
+      setVisibleCount(pageSize)
+      return
+    }
     const params = new URLSearchParams(searchParams?.toString())
     params.set(pageParam, String(nextPage))
     router.push(`${pathname}?${params.toString()}`, { scroll: false })

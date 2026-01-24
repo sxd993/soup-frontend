@@ -2,7 +2,7 @@ import { CompanyAccountField } from "@/shared/ui/CompanyAccount/CompanyAccountFi
 import { CompanyAccountInput } from "@/shared/ui/CompanyAccount/CompanyAccountInput"
 import { PhoneIcon } from "@/shared/ui/CompanyAccount/icons/PhoneIcon"
 import { useFormContext } from "react-hook-form"
-import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/CompanyAccountForm/model/types/CompanyAccountFormValues.types"
+import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types"
 
 type CompanyPhoneInputProps = {
     index: number;

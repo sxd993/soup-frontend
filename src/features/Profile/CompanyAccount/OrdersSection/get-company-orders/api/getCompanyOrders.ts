@@ -5,14 +5,13 @@ import type { CompanyOrdersResponse } from "../model/types/orders.types"
 type GetCompanyOrdersArgs = {
     status?: string
     page?: number
-    pageSize?: number
 }
 
-export const getCompanyOrders = async ({ status, page, pageSize }: GetCompanyOrdersArgs) => {
+export const getCompanyOrders = async ({ status, page }: GetCompanyOrdersArgs) => {
     const response = await AxiosClient.get<CompanyOrdersResponse | CompanyOrder[]>(
         "/profile/company/orders",
         {
-            params: { status, page, pageSize },
+            params: { status, page },
         }
     )
 

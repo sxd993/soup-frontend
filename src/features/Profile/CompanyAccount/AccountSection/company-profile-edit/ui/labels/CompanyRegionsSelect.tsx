@@ -2,7 +2,7 @@
 
 import { useEffect } from "react"
 import { useFormContext } from "react-hook-form"
-import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/CompanyAccountForm/model/types/CompanyAccountFormValues.types"
+import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types"
 import { useRegions } from "../../model/hooks/regions/useRegions"
 
 export const CompanyRegionsSelect = () => {

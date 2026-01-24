@@ -4,13 +4,12 @@ import { getCompanyOrders } from "../../api/getCompanyOrders"
 type UseCompanyOrdersArgs = {
     status?: string
     page?: number
-    pageSize?: number
 }
 
-export const useCompanyOrders = ({ status, page, pageSize }: UseCompanyOrdersArgs) => {
+export const useCompanyOrders = ({ status, page }: UseCompanyOrdersArgs) => {
     return useQuery({
-        queryKey: ["company-orders", status ?? "all", page ?? 1, pageSize ?? 7],
-        queryFn: () => getCompanyOrders({ status, page, pageSize }),
+        queryKey: ["company-orders", status ?? "all", page ?? 1],
+        queryFn: () => getCompanyOrders({ status, page }),
         staleTime: 60 * 1000,
     })
 }
