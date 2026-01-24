@@ -18,7 +18,7 @@ export const OrdersCompanyList = () => {
             emptyComponent={<CompanyOrdersEmpty />}
             errorMessage="Не удалось загрузить заказы"
         >
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
                 {ordersList.orders.map((order) => (
                     <OrdersCard
                         key={order.id}

@@ -7,7 +7,7 @@ import { useOrdersCompanyTabs } from "@/features/Profile/CompanyAccount/OrdersSe
 
 export const OrdersCompanySection = () => {
     return (
-        <section className="flex flex-col gap-8 min-h-screen">
+        <section className="flex flex-col gap-12 min-h-screen">
             <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-7">
                     <SectionTitle

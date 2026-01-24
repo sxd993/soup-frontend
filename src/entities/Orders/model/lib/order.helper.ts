@@ -11,5 +11,5 @@ export const formatOrderDate = (date?: string | null) => {
 
 export const formatOrderPrice = (price?: number | null) => {
     if (price === null || price === undefined) return "—"
-    return `${new Intl.NumberFormat("ru-RU").format(price)} ₽`
+    return `${price} ₽`
 }
