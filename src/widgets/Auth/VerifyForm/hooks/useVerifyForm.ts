@@ -1,15 +1,15 @@
 import { useState, useRef, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { useVerify } from '@/features/Auth/verify'
+import { useResend } from '@/features/Auth/resend'
 import { AUTH_MESSAGES } from '@/entities/Auth'
-import { useRouter, useSearchParams } from 'next/navigation'
 import { getErrorMessage } from '@/shared/lib/error-handler'
 
-export const useVerifyForm = () => {
+export const useVerifyForm = (verificationId: string) => {
     const router = useRouter()
-    const searchParams = useSearchParams()
-    const verificationId = searchParams?.get('id') || ''
     
     const { mutate, isPending } = useVerify()
+    const { mutate: resend, isPending: isResending } = useResend()
     const [serverError, setServerError] = useState<string | null>(null)
     const [code, setCode] = useState<string[]>(['', '', '', ''])
     const inputRefs = useRef<(HTMLInputElement | null)[]>([])
@@ -54,7 +54,7 @@ export const useVerifyForm = () => {
 
         const codeString = code.join('')
         if (codeString.length !== 4) {
-            setServerError('Введите 4-значный код')
+            setServerError(AUTH_MESSAGES.verify.invalidCode)
             return
         }
         
@@ -72,6 +72,28 @@ export const useVerifyForm = () => {
         )
     }
 
+    const onResend = () => {
+        if (!verificationId) {
+            setServerError(AUTH_MESSAGES.verify.missingId)
+            return
+        }
+
+        setServerError(null)
+        resend(
+            { verificationId },
+            {
+                onSuccess: (response) => {
+                    router.replace(`/auth/verify?id=${response.verificationId}`)
+                    setCode(['', '', '', ''])
+                    inputRefs.current[0]?.focus()
+                },
+                onError: (error: Error) => {
+                    setServerError(getErrorMessage(error, AUTH_MESSAGES.verify.resendDefault))
+                },
+            },
+        )
+    }
+
     return {
         code,
         inputRefs,
@@ -79,7 +101,9 @@ export const useVerifyForm = () => {
         handleKeyDown,
         handlePaste,
         onSubmit,
+        onResend,
         isBusy: isPending,
+        isResending,
         serverError,
         verificationId,
     }

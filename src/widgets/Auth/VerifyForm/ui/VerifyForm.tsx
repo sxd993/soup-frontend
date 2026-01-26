@@ -1,10 +1,14 @@
 'use client'
 
-import { Button } from '@/shared/ui'
 import Link from 'next/link'
+import { Button } from '@/shared/ui'
 import { useVerifyForm } from '../hooks/useVerifyForm'
 
-export const VerifyForm = () => {
+type VerifyFormProps = {
+    verificationId?: string
+}
+
+export const VerifyForm = ({ verificationId = '' }: VerifyFormProps) => {
     const {
         code,
         inputRefs,
@@ -12,10 +16,11 @@ export const VerifyForm = () => {
         handleKeyDown,
         handlePaste,
         onSubmit,
+        onResend,
         isBusy,
+        isResending,
         serverError,
-        verificationId
-    } = useVerifyForm()
+    } = useVerifyForm(verificationId)
 
     if (!verificationId) {
         return (
@@ -56,8 +61,20 @@ export const VerifyForm = () => {
                 ))}
             </div>
 
+            {/* Отправить повторно */}
+            <div className="flex justify-center -mt-3">
+                <button
+                    type="button"
+                    onClick={onResend}
+                    disabled={isResending}
+                    className="text-sm text-primary border-b leading-[130%] hover:text-accent transition disabled:text-gray-400 disabled:border-transparent"
+                >
+                    {isResending ? 'Отправка...' : 'Отправить код повторно'}
+                </button>
+            </div>
+
             {/* Кнопка отправки */}
-            <div className="flex justify-center mt-5">
+            <div className="flex justify-center mt-2">
                 <Button
                     onClick={onSubmit}
                     disabled={isBusy || code.join('').length !== 4}
@@ -71,10 +88,10 @@ export const VerifyForm = () => {
             </div>
 
             {/* Ссылка на изменение email */}
-            <div className="flex items-center justify-center gap-2">
-                <span className="text-sm text-gray-500">Не приходит код?</span>
+            <div className="flex flex-col items-center justify-center gap-1 text-center">
+                <span className="text-sm text-gray-500">Не приходит код? Проверьте папку спам или</span>
                 <Link
-                    href="/auth/register"
+                    href={`/auth/change-email?id=${verificationId}`}
                     className="text-sm text-primary border-b leading-[130%] hover:text-accent transition"
                 >
                     Изменить e-mail

@@ -7,7 +7,13 @@ export const AUTH_MESSAGES = {
         invalidCode: "Неверный код подтверждения",
         expiredCode: "Код истёк",
         missingId: "Отсутствует ID сессии подтверждения",
+        resendDefault: "Ошибка при повторной отправке",
         default: "Произошла ошибка при подтверждении",
+    },
+    changeEmail: {
+        missingId: "Отсутствует ID сессии подтверждения",
+        invalidEmail: "Введите корректный e-mail",
+        default: "Ошибка при изменении e-mail",
     },
     register: {
         loading: "Регистрация...",

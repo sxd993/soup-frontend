@@ -1,8 +1,14 @@
-import { Suspense } from 'react'
 import { VerifyForm } from '@/widgets/Auth/VerifyForm'
-import { LoadingState } from '@/shared/ui'
 
-export default function VerifyPage() {
+type VerifyPageProps = {
+    searchParams?: {
+        id?: string
+    }
+}
+
+export default function VerifyPage({ searchParams }: VerifyPageProps) {
+    const verificationId = searchParams?.id || ''
+
     return (
         <main className="flex items-center justify-center px-4 pb-12 py-28 my-auto">
             <div className="w-full max-w-[520px] rounded-[40px] bg-white py-15 px-13">
@@ -13,12 +19,8 @@ export default function VerifyPage() {
                 </h2>
 
                 <div className="mt-10 space-y-5">
-
                     {/* Форма подтверждения */}
-                    <Suspense fallback={<LoadingState />}>
-                        <VerifyForm />
-                    </Suspense>
-
+                    <VerifyForm verificationId={verificationId} />
                 </div>
             </div>
         </main>
