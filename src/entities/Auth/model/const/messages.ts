@@ -27,4 +27,17 @@ export const AUTH_MESSAGES = {
         success: "Вход выполнен",
         default: "Произошла ошибка при входе",
     },
+    forgotPassword: {
+        invalidEmail: "Введите корректный e-mail",
+        missingEmail: "Введите e-mail",
+        success: "Если e-mail зарегистрирован, мы отправили ссылку для сброса пароля.",
+        default: "Ошибка при отправке ссылки",
+    },
+    resetPassword: {
+        missingToken: "Отсутствует токен сброса пароля",
+        passwordMismatch: "Пароли не совпадают",
+        passwordMin: "Минимум 6 символов",
+        success: "Пароль обновлён. Войдите с новым паролем.",
+        default: "Ошибка при сбросе пароля",
+    },
 } as const;

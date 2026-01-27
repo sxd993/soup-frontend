@@ -1,0 +1,1 @@
+export { useProfileRedirect } from './useProfileRedirect'

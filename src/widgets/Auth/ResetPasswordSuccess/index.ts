@@ -1,0 +1,1 @@
+export { ResetPasswordSuccess } from './ui/ResetPasswordSuccess'

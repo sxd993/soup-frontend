@@ -4,10 +4,11 @@ import { useVerify } from '@/features/Auth/verify'
 import { useResend } from '@/features/Auth/resend'
 import { AUTH_MESSAGES } from '@/entities/Auth'
 import { getErrorMessage } from '@/shared/lib/error-handler'
+import { useProfileRedirect } from '@/features/Auth/profileRedirect'
 
 export const useVerifyForm = (verificationId: string) => {
     const router = useRouter()
-    
+    const { onGoProfile } = useProfileRedirect()
     const { mutate, isPending } = useVerify()
     const { mutate: resend, isPending: isResending } = useResend()
     const [serverError, setServerError] = useState<string | null>(null)
@@ -62,7 +63,7 @@ export const useVerifyForm = (verificationId: string) => {
         mutate(
             { verificationId, code: codeString },
             {
-                onSuccess: () => router.push('/auth/login'),
+                onSuccess: () => onGoProfile(),
                 onError: (error: Error) => {
                     setServerError(getErrorMessage(error, AUTH_MESSAGES.verify.default))
                     setCode(['', '', '', ''])
