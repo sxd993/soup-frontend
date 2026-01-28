@@ -13,7 +13,7 @@ export const SearchInput = ({ onClose }: SearchInputProps) => {
       <input
         type="text"
         placeholder="Поиск"
-        className={`w-full pl-10 py-2 rounded-[20px] bg-background focus:outline-none font-semibold text-sm placeholder:text-[#535353]! placeholder:font-normal! ${onClose ? 'pr-10' : 'pr-4'}`}
+        className={`w-full pl-10 py-2 rounded-[20px] bg-background focus:outline-none font-semibold text-sm placeholder:text-accent-septenary! placeholder:font-normal! ${onClose ? 'pr-10' : 'pr-4'}`}
       />
       {onClose && <CloseSearchButton onClose={onClose} />}
     </div>

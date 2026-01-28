@@ -1,4 +1,4 @@
-import { ScrollBlogsList } from "@/widgets/Blogs";
+import { ScrollBlogsList } from "@/widgets/Blogs/ScrollBlogsList";
 import { BLOGS, getPriorityBlog, type BlogItem } from "@/entities/Blogs";
 import { SectionTitle, AdsBanner, SidePanel, BlogSidePanelCard, type SidePanelItem } from "@/shared/ui";
 

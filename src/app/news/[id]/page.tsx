@@ -1,10 +1,6 @@
 import { notFound } from "next/navigation"
-import {
-  NewsContent,
-  type NewsItem,
-} from "@/entities/News"
+import { NewsContent, type NewsItem, getNews, getNewsById } from "@/entities/News"
 import { SidePanel, NewsSidePanelCard, type SidePanelItem } from "@/shared/ui"
-import { getNews, getNewsById } from "@/features/News";
 
 type PageProps = {
   params: Promise<{ id: string }>

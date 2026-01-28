@@ -1,4 +1,4 @@
-import { AxiosClient } from "@/shared/api/AxiosClient"
+import { AxiosClient } from "@/shared/api"
 import { RegionItemType } from '../model/types/RegionItemType'
 
 export const fetchRegions = async (): Promise<RegionItemType[]> => {

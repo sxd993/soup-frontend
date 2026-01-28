@@ -1,5 +1,4 @@
 import { AdsBanner } from '@/shared/ui'
-import { IMAGES } from '@/shared/config'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -9,7 +8,7 @@ export const HeroSection = () => {
       className="relative rounded-[40px] overflow-hidden"
     >
       <Image
-        src={IMAGES.hero.background}
+        src="https://s3.twcstorage.ru/4b615622-soup/hero/background.png"
         alt="Hero background"
         fill
         className="object-cover object-center"

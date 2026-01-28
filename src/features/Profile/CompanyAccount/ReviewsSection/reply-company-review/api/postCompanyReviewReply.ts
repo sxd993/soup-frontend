@@ -1,4 +1,4 @@
-import { AxiosClient } from "@/shared/api/AxiosClient"
+import { AxiosClient } from "@/shared/api"
 import type {
   CompanyReviewReplyRequest,
   CompanyReviewReplyResponse,

@@ -1,4 +1,4 @@
-import { AxiosClient } from "@/shared/api/AxiosClient"
+import { AxiosClient } from "@/shared/api"
 import type { CompanyOrder } from "@/entities/Profile/Company/model/types/company.types"
 import type { CompanyOrdersResponse } from "../model/types/orders.types"
 

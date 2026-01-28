@@ -1,4 +1,3 @@
-import { IMAGES } from "@/shared/config"
 import { RightArrowHome } from "@/shared/ui"
 import Image from "next/image"
 
@@ -33,7 +32,7 @@ export const AdsBanner = ({ hasDescription }: AdsBannerProps) => {
             {/* Изображение */}
             <div className="relative w-full flex-1 min-h-[120px] overflow-hidden rounded-[10px]">
                 <Image
-                    src={IMAGES.hero.advertisement}
+                    src="https://s3.twcstorage.ru/4b615622-soup/ads-mock.svg"
                     alt="Advertisement"
                     fill
                     className="object-cover object-center"

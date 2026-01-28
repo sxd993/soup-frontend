@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query"
-import { AxiosClient } from '@/shared/api/AxiosClient'
+import { AxiosClient } from '@/shared/api'
 import type { VerifyDto, VerifyResponse } from '@/entities/Auth'
 
 export const useVerify = () => {

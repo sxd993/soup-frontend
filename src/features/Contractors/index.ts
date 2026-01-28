@@ -1,1 +1,0 @@
-export { getContractors } from "./get-contractors/getContractors";

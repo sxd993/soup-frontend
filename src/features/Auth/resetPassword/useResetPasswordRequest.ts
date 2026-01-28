@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { AxiosClient } from '@/shared/api/AxiosClient'
+import { AxiosClient } from '@/shared/api'
 import type { ResetPasswordDto, ResetPasswordResponse } from '@/entities/Auth'
 
 export const useResetPasswordRequest = () => {

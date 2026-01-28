@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { AxiosClient } from '@/shared/api/AxiosClient'
+import { AxiosClient } from '@/shared/api'
 import type { LoginFormValues, LoginResponse } from "@/entities/Auth"
 import type { AuthSession } from "@/entities/Session"
 import { fetchSessionFromToken } from "@/entities/Session"

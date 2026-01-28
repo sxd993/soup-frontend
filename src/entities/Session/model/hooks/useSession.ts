@@ -1,5 +1,5 @@
 import type { AuthSession } from "../types/session.types";
-import { AxiosClient } from "@/shared/api/AxiosClient";
+import { AxiosClient } from "@/shared/api";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchSessionFromToken } from "../lib/session.utils";
 

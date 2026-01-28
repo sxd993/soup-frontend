@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { NewsFeedSection, NewsFiltersSection } from "@/widgets/News";
-import type { NewsItem } from "@/entities/News";
-import { SectionTitle } from "@/shared/ui";
-import { getNews } from "@/features/News";
+import { NewsFeedSection, NewsFiltersSection } from "@/widgets/News"
+import { getNews, type NewsItem } from "@/entities/News"
+import { SectionTitle } from "@/shared/ui"
 
 export const metadata: Metadata = {
     title: "Новости",

@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from '@/entities/Session'
-import { useSkeletons } from '@/shared/hooks/useSkeletons'
+import { useSkeletons } from '@/shared/hooks'
 
 type ProfileRole = 'client' | 'company'
 

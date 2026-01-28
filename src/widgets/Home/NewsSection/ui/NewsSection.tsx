@@ -1,7 +1,5 @@
-import { NewsCardSmall, NewsCardBig } from "@/entities/News"
-import type { NewsItem } from "@/entities/News"
+import { NewsCardSmall, NewsCardBig, getNews, type NewsItem } from "@/entities/News"
 import { AdsBanner, SectionTitle, ViewAllButton } from "@/shared/ui"
-import { getNews } from "@/features/News"
 import { getNewsListWithoutPriority, getPriorityNews } from "@/entities/News/model/lib/priorityNews"
 
 export const NewsSection = async () => {

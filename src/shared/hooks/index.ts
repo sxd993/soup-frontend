@@ -1,1 +1,2 @@
-export { useCurrentPath } from './useCurrentPath'
+export { useCurrentPath } from "./useCurrentPath"
+export { useSkeletons } from "./useSkeletons"

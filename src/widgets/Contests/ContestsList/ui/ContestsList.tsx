@@ -1,5 +1,4 @@
-import { ContestItem } from "@/entities/Contests"
-import { getCurrentContests, getPastContests } from "@/features/Contests";
+import { ContestItem, getCurrentContests, getPastContests } from "@/entities/Contests"
 import { ContestsListClient } from "./ContestsListClient";
 
 interface ContestsListProps {

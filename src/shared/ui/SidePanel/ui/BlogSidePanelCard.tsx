@@ -1,7 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Heart, Comment, DetailsIcon } from "@/shared/ui"
-import { IMAGES } from "@/shared/config"
 import type { BlogItem } from "@/entities/Blogs"
 
 type BlogSidePanelCardProps = {
@@ -26,14 +25,16 @@ export const BlogSidePanelCard = ({ item, href }: BlogSidePanelCardProps) => {
                 </div>
 
                 {/* Изображение */}
-                <div className="relative w-full h-[144px] rounded-[20px] overflow-hidden">
-                    <Image
-                        src={item.image || IMAGES.hero.background}
-                        alt={item.title}
-                        fill
-                        className="object-cover"
-                    />
-                </div>
+                {item.image && (
+                    <div className="relative w-full h-[144px] rounded-[20px] overflow-hidden">
+                        <Image
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
+                )}
 
                 {/* Заголовок */}
                 <h3 className="text-[22px] font-bold text-secondary leading-[105%]">{item.title}</h3>

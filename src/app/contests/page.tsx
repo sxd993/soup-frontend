@@ -1,6 +1,8 @@
 import { SectionTitle, Button } from "@/shared/ui";
 import { TimeFilter } from "@/features/TimeFilter";
-import { ContestSearchInput, ContestsList, ContestStatusTabs } from "@/widgets/Contests";
+import { ContestSearchInput } from "@/widgets/Contests/SearchSection";
+import { ContestStatusTabs } from "@/widgets/Contests/ContestStatusTabs";
+import { ContestsList } from "@/widgets/Contests/ContestsList";
 
 type PageProps = {
     searchParams: Promise<{ page?: string; status?: string }>

@@ -1,6 +1,5 @@
 import { SectionTitle } from "@/shared/ui"
-import { ContractorsCard, type ContractorsTypes } from "@/entities/Contractors"
-import { getContractors } from "@/features/Contractors"
+import { ContractorsCard, getContractors, type ContractorsTypes } from "@/entities/Contractors"
 
 export const ContractorsSection = async () => {
     const contractors: ContractorsTypes[] = await getContractors()
