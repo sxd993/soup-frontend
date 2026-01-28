@@ -11,6 +11,7 @@ export const ChangeEmailForm = () => {
     serverError,
     isBusy,
     onSubmit,
+    isFormValid,
   } = useChangeEmail()
 
   if (!verificationId) {
@@ -40,8 +41,8 @@ export const ChangeEmailForm = () => {
       <div className="flex justify-center mt-5">
         <Button
           onClick={onSubmit}
-          disabled={isBusy}
-          className="rounded-full bg-primary px-19 py-2 transition hover:bg-accent flex justify-center"
+          disabled={isBusy || !isFormValid}
+          className="rounded-full px-19 py-2 flex justify-center"
           type="submit"
         >
           <p className="text-accent-senary font-semibold text-base leading-[140%]">

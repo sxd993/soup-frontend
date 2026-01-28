@@ -4,7 +4,7 @@ import { Button, Input, RadioCircleIcon } from '@/shared/ui'
 import { useRegisterForm } from '../hooks/useRegisterForm'
 
 export const RegisterForm = () => {
-   const { handleSubmit, onSubmit, register, isBusy, errors, getValues, serverError } = useRegisterForm()
+   const { handleSubmit, onSubmit, register, isBusy, errors, getValues, serverError, isFormValid } = useRegisterForm()
     return (
         <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
             {/* Ошибка сервера */}
@@ -27,7 +27,7 @@ export const RegisterForm = () => {
                         <RadioCircleIcon aria-hidden="true" />
                         <span className="absolute h-3 w-3 rounded-full bg-accent opacity-0 transition" />
                     </span>
-                    <span className="text-[#535353] transition peer-checked:text-black">
+                    <span className="text-accent-septenary transition peer-checked:text-black">
                         Заказчик
                     </span>
                 </label>
@@ -42,7 +42,7 @@ export const RegisterForm = () => {
                         <RadioCircleIcon aria-hidden="true" />
                         <span className="absolute h-3 w-3 rounded-full bg-accent opacity-0 transition" />
                     </span>
-                    <span className="text-[#535353] transition peer-checked:text-black">
+                    <span className="text-accent-septenary transition peer-checked:text-black">
                         Компания
                     </span>
                 </label>
@@ -112,9 +112,9 @@ export const RegisterForm = () => {
             {/* Создать аккаунт */}
             <div className="flex justify-center mt-5">
                 <Button
-                    className="rounded-full bg-primary px-8 py-2 transition hover:bg-accent flex justify-center cursor-pointer"
+                    className="rounded-full px-8 py-2 flex justify-center cursor-pointer"
                     type="submit"
-                    disabled={isBusy}
+                    disabled={isBusy || !isFormValid}
                 >
                     <p className="text-accent-senary font-semibold text-base leading-[140%]">
                         Создать аккаунт

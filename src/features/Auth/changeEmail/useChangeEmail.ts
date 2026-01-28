@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { getErrorMessage } from '@/shared/lib/error-handler'
-import { EMAIL_PATTERN } from '@/shared/lib'
 import { AUTH_MESSAGES } from '@/entities/Auth'
+import { validateChangeEmailForm, EMAIL_PATTERN } from '@/entities/Auth/model/lib/formValidators'
 import { useChangeEmailRequest } from './useChangeEmailRequest'
 
 export const useChangeEmail = () => {
@@ -13,6 +13,8 @@ export const useChangeEmail = () => {
   const { mutate, isPending } = useChangeEmailRequest()
   const [newEmail, setNewEmail] = useState('')
   const [serverError, setServerError] = useState<string | null>(null)
+
+  const isFormValid = validateChangeEmailForm(newEmail)
 
   const onSubmit = () => {
     if (!verificationId) {
@@ -48,5 +50,6 @@ export const useChangeEmail = () => {
     serverError,
     isBusy: isPending,
     onSubmit,
+    isFormValid,
   }
 }

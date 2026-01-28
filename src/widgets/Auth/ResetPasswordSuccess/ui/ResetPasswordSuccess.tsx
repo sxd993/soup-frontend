@@ -14,7 +14,7 @@ export const ResetPasswordSuccess = () => {
         изменен
       </p>
       <Button
-        className="rounded-full bg-primary px-19 py-2 transition hover:bg-accent flex justify-center"
+        className="rounded-full px-19 py-2 flex justify-center"
         type="button"
         onClick={onGoProfile}
       >

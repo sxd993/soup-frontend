@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useLoginForm } from '../hooks/useLoginForm'
 
 export const LoginForm = () => {
-  const { register, handleSubmit, onSubmit, isBusy, errors, serverError } = useLoginForm()
+  const { register, handleSubmit, onSubmit, isBusy, errors, serverError, isFormValid } = useLoginForm()
 
   return (
     <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
@@ -57,9 +57,9 @@ export const LoginForm = () => {
       {/* Кнопка входа */}
       <div className="flex justify-center mt-5">
         <Button
-          className="rounded-full bg-primary px-19 py-2 transition hover:bg-accent flex justify-center cursor-pointer"
+          className="rounded-full px-19 py-2 flex justify-center cursor-pointer"
           type="submit"
-          disabled={isBusy}
+          disabled={isBusy || !isFormValid}
         >
           <p className="text-accent-senary font-semibold text-base leading-[140%]">
             Войти

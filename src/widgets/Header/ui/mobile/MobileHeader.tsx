@@ -10,7 +10,7 @@ export const MobileHeader = () => {
   return (
     <div className="flex md:hidden w-full justify-between items-center">
       <div className="flex items-center">
-        <Link href="/" className="cursor-pointer">
+        <Link href="/" className="cursor-pointer group">
           <MainIcon className="py-3" />
         </Link>
       </div>

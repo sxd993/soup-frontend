@@ -12,14 +12,14 @@ export const NewsSidePanelCard = ({ item, href }: NewsSidePanelCardProps) => {
     const badgeHref = item.category ? `/news?badge=${encodeURIComponent(item.category)}` : undefined
 
     return (
-        <div className="relative h-full">
+        <div className="relative h-full group">
             <article className="flex flex-col">
                 <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden">
                     <Image
                         src={item.image}
                         alt={item.imageAlt}
                         fill
-                        className="object-cover"
+                        className="object-cover transform transition-transform duration-300 group-hover:scale-115"
                     />
                     {item.category && (
                         <span className="absolute top-3 left-3 z-20">

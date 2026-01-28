@@ -3,6 +3,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { getErrorMessage } from '@/shared/lib/error-handler'
 import { AUTH_MESSAGES, ResetPasswordFormValues } from '@/entities/Auth'
+import { validateResetPasswordForm } from '@/entities/Auth/model/lib/formValidators'
 import { useResetPasswordRequest } from './useResetPasswordRequest'
 
 export const useResetPassword = () => {
@@ -17,8 +18,12 @@ export const useResetPassword = () => {
     register,
     handleSubmit,
     getValues,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<ResetPasswordFormValues>()
+
+  const watchedValues = watch()
+  const isFormValid = validateResetPasswordForm(watchedValues)
 
   const onSubmit = (data: ResetPasswordFormValues) => {
     if (!token) {
@@ -58,5 +63,6 @@ export const useResetPassword = () => {
     errors,
     serverError,
     isSuccess,
+    isFormValid,
   }
 }

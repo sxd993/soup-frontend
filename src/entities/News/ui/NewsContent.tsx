@@ -16,12 +16,12 @@ export function NewsContent({ newsItem }: NewsContentProps) {
     return (
         <article className="flex flex-col gap-6">
             {/* Изображение */}
-            <div className="relative w-full h-[400px] md:h-[520px] overflow-hidden rounded-[40px]">
+            <div className="relative w-full h-[400px] md:h-[520px] overflow-hidden rounded-[40px] group">
                 <Image
                     src={newsItem.image}
                     alt={newsItem.imageAlt}
                     fill
-                    className="object-cover"
+                    className="object-cover transform transition-transform duration-300 group-hover:scale-105"
                 />
                 <span className="absolute top-5 left-5">
                     {badgeHref ? (

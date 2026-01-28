@@ -15,6 +15,7 @@ export const ResetPasswordForm = () => {
     isBusy,
     errors,
     serverError,
+    isFormValid,
   } = useResetPassword()
 
   if (!token) {
@@ -70,9 +71,9 @@ export const ResetPasswordForm = () => {
       {/* Кнопка отправки */}
       <div className="flex justify-center mt-5">
         <Button
-          className="rounded-full bg-primary px-19 py-2 transition hover:bg-accent flex justify-center"
+          className="rounded-full px-19 py-2 flex justify-center"
           type="submit"
-          disabled={isBusy}
+          disabled={isBusy || !isFormValid}
         >
           <p className="text-accent-senary font-semibold text-base leading-[140%]">
             {isBusy ? 'Изменение...' : 'Изменить пароль'}

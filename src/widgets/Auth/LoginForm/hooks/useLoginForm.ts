@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLogin } from '@/features/Auth/login/useLogin'
 import { LoginFormValues, AUTH_MESSAGES } from '@/entities/Auth'
+import { validateLoginForm } from '@/entities/Auth/model/lib/formValidators'
 import type { AuthSession } from '@/entities/Session'
 import { useRouter } from 'next/navigation'
 import { getErrorMessage } from '@/shared/lib/error-handler'
@@ -15,8 +16,12 @@ export const useLoginForm = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { isSubmitting, errors },
   } = useForm<LoginFormValues>()
+
+  const watchedValues = watch()
+  const isFormValid = validateLoginForm(watchedValues)
 
   const onSubmit = (data: LoginFormValues) => {
     setServerError(null)
@@ -42,5 +47,6 @@ export const useLoginForm = () => {
     isBusy,
     errors,
     serverError,
+    isFormValid,
   }
 }

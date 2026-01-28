@@ -67,7 +67,7 @@ export const VerifyForm = ({ verificationId = '' }: VerifyFormProps) => {
                     type="button"
                     onClick={onResend}
                     disabled={isResending}
-                    className="text-sm text-primary border-b leading-[130%] hover:text-accent transition disabled:text-gray-400 disabled:border-transparent"
+                    className="text-sm text-primary border-b leading-[130%] hover:text-accent transition disabled:text-gray-400 disabled:border-transparent cursor-pointer disabled:cursor-not-allowed"
                 >
                     {isResending ? 'Отправка...' : 'Отправить код повторно'}
                 </button>
@@ -78,7 +78,7 @@ export const VerifyForm = ({ verificationId = '' }: VerifyFormProps) => {
                 <Button
                     onClick={onSubmit}
                     disabled={isBusy || code.join('').length !== 4}
-                    className="rounded-full bg-primary px-19 py-2 transition hover:bg-accent flex justify-center"
+                    className="rounded-full px-19 py-2 flex justify-center"
                     type="submit"
                 >
                     <p className="text-accent-senary font-semibold text-base leading-[140%]">

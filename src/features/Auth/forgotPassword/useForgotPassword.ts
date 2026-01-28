@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import { EMAIL_PATTERN } from '@/shared/lib'
 import { getErrorMessage } from '@/shared/lib/error-handler'
 import { AUTH_MESSAGES, ForgotPasswordFormValues } from '@/entities/Auth'
+import { validateForgotPasswordForm, EMAIL_PATTERN } from '@/entities/Auth/model/lib/formValidators'
 import { useForgotPasswordRequest } from './useForgotPasswordRequest'
 
 export const useForgotPassword = () => {
@@ -14,8 +14,12 @@ export const useForgotPassword = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<ForgotPasswordFormValues>()
+
+  const watchedValues = watch()
+  const isFormValid = validateForgotPasswordForm(watchedValues)
 
   const onSubmit = (data: ForgotPasswordFormValues) => {
     setServerError(null)
@@ -42,5 +46,6 @@ export const useForgotPassword = () => {
     errors,
     serverError,
     emailPattern: EMAIL_PATTERN,
+    isFormValid,
   }
 }

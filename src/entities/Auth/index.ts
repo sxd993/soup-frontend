@@ -6,3 +6,4 @@ export type { ForgotPasswordFormValues, ForgotPasswordDto, ForgotPasswordRespons
 export type { ResetPasswordFormValues, ResetPasswordDto, ResetPasswordResponse } from './model/types/reset-password.types';
 export type { ChangeEmailDto, ChangeEmailResponse } from './model/types/change-email.types';
 export { AUTH_MESSAGES } from './model/const/messages';
+export { validateLoginForm, validateRegisterForm, validateForgotPasswordForm, validateResetPasswordForm, validateChangeEmailForm, EMAIL_PATTERN } from './model/lib/formValidators';

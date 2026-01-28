@@ -13,7 +13,7 @@ export const TabletHeader = () => {
   return (
     <div className="hidden md:flex lg:hidden w-full justify-between items-center">
       <div className="flex items-center">
-        <Link href="/" className="cursor-pointer">
+        <Link href="/" className="cursor-pointer group">
           <MainIcon className="py-3" />
         </Link>
       </div>
