@@ -2,9 +2,9 @@
 
 import type { NewsItem } from "@/entities/News";
 import { NewsCardBig } from "@/entities/News";
-import { ScrollNewsList } from "@/widgets/News";
 import { useFilteredNewsList } from "../model/hooks/useFilteredNewsList";
 import { getNewsListWithoutPriority, getPriorityNews } from "@/entities/News/model/lib/priorityNews";
+import { ScrollNewsList } from "./ScrollNewsList";
 
 type NewsFeedSectionProps = {
     news: NewsItem[];

@@ -25,7 +25,7 @@ export const HeroSection = () => {
             </h1>
             {/* Кнопка */}
             <div className='flex-1 flex items-start mb-20 md:mb-0 lg:items-end'>
-              <Link href="/catalog" className="bg-white hover:bg-accent-tertiary transition-all duration-300 text-secondary font-semibold text-base px-10 py-3 rounded-[50px]">
+              <Link href="/catalog" className="bg-white hover:bg-primary transition-all duration-300 text-secondary font-semibold text-base px-10 py-3 rounded-[50px]">
                 Смотреть всех
               </Link>
             </div>

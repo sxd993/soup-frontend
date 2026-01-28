@@ -21,7 +21,7 @@ export const TopBlogCard = ({ blog: blogProp, href: hrefProp, className }: TopBl
     const { logo, company_name, date, title, description, likes, comments, image } = blog
 
     const card = (
-        <div className={`flex flex-col lg:flex-row gap-5 items-center md:items-stretch ${className ?? ""}`}>
+        <div className={`group flex flex-col lg:flex-row gap-5 items-center md:items-stretch ${className ?? ""}`}>
             {/* Изображение */}
             {image && (
                 <div className="w-full flex justify-center md:w-auto">
@@ -46,17 +46,28 @@ export const TopBlogCard = ({ blog: blogProp, href: hrefProp, className }: TopBl
                 <h3 className="text-[22px] font-bold text-secondary leading-[105%]">{title}</h3>
                 <p className="text-base text-secondary-quinary">{description}</p>
 
-                <div className="flex items-center gap-4 text-sm text-accent-quinary">
-                    <span className="flex items-center gap-1"><Heart /> {likes}</span>
-                    <span className="flex items-center gap-1"><Comment /> {comments}</span>
+                <div className="flex items-center justify-between text-sm text-accent-quinary">
+                    <div className="flex items-center gap-4">
+                        <span className="flex items-center gap-1 cursor-pointer"><Heart /> {likes}</span>
+                        <span className="flex items-center gap-1 cursor-pointer"><Comment /> {comments}</span>
+                    </div>
+                    {href && (
+                        <Link
+                            href={href}
+                            className="opacity-0 group-hover:opacity-100 transition-all duration-300"
+                        >
+                            <button
+                                type="button"
+                                className="inline-flex items-center justify-center text-accent-senary font-semibold bg-primary hover:bg-accent transition-all duration-300 text-base px-5 py-1 rounded-[50px] cursor-pointer"
+                            >
+                                Читать
+                            </button>
+                        </Link>
+                    )}
                 </div>
             </article>
         </div>
     );
 
-    return (
-        <Link href={href} className="block cursor-pointer">
-            {card}
-        </Link>
-    )
+    return card
 }

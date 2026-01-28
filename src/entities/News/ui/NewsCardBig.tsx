@@ -22,7 +22,7 @@ export const NewsCardBig = ({ className, item }: NewsCardBigProps = {}) => {
                 src={item.image}
                 alt={item.imageAlt}
                 fill
-                className="object-cover max-h-[480px] lg:max-h-none"
+                className="object-cover max-h-[480px] lg:max-h-none transform transition-transform duration-300 group-hover:scale-105"
             />
 
             <div className="absolute bottom-5 left-5 right-5 max-w-[367px]">
@@ -36,7 +36,7 @@ export const NewsCardBig = ({ className, item }: NewsCardBigProps = {}) => {
                             <Badge badge={item.category} />
                         )}
                     </div>
-                    <div className="rounded-[20px] bg-white p-5 pb-15 shadow-sm fade-out-in">
+                    <div className="rounded-[20px] bg-white p-5 pb-15 shadow-sm">
                         <h3 className="lg:text-[22px] text-xl font-bold leading-snug text-accent-secondary">
                             {item.title}
                         </h3>
@@ -50,7 +50,7 @@ export const NewsCardBig = ({ className, item }: NewsCardBigProps = {}) => {
     )
 
     return (
-        <div className={`relative w-full min-h-[480px] ${className ?? ""}`}>
+        <div className={`relative w-full min-h-[480px] group ${className ?? ""}`}>
             {card}
             <Link
                 href={`/news/${item.id}`}

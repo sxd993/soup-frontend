@@ -17,19 +17,20 @@ export const NewsCardSmall = ({
     href,
     className,
 }: NewsCardSmallProps) => {
-    const articleClasses = ["flex flex-col relative", className].filter(Boolean).join(" ")
+    const articleClasses = ["flex flex-col relative group", className]
+        .filter(Boolean)
+        .join(" ")
     const badgeHref = item.category ? `/news?badge=${encodeURIComponent(item.category)}` : undefined
 
     const card = (
         <article className={articleClasses}>
             {/* Картинка */}
-            <div
-                className="relative w-full aspect-square rounded-2xl overflow-hidden"
-            >
+            <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
                 <Image
                     src={item.image}
                     alt={item.imageAlt}
                     fill
+                    className="object-cover transform transition-transform duration-300 group-hover:scale-115"
                 />
 
                 <span className="absolute top-4 left-3 z-20">
@@ -60,7 +61,7 @@ export const NewsCardSmall = ({
     }
 
     return (
-        <div className="relative h-full">
+        <div className="relative h-full group">
             {card}
             <Link
                 href={href}

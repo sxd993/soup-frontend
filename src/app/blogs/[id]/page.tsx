@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation"
 import { BLOGS, BottomBlogCard, getPriorityBlog, type BlogItem } from "@/entities/Blogs"
 import { CommentsSection } from "@/features/Comments/ui/CommentsSection"
-import { SectionTitle, AdsBanner, SidePanel, BlogSidePanelCard, type SidePanelItem } from "@/shared/ui"
+import { BlogSidePanelCard } from "@/widgets/Blogs/BlogSidePanelCard"
+import { SectionTitle, AdsBanner, SidePanel, type SidePanelItem } from "@/shared/ui"
 
 type BlogSidePanelItem = SidePanelItem & {
   blog: BlogItem
