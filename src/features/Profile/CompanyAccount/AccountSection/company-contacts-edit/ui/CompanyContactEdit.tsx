@@ -1,11 +1,7 @@
 'use client';
 import { useEffect } from "react"
 import { useFormContext } from "react-hook-form"
-import { CompanyAccountAddButton } from "@/shared/ui/CompanyAccount/CompanyAccountAddButton"
-import { CompanyAccountFormBlock } from "@/shared/ui/CompanyAccount/CompanyAccountFormBlock"
-import { CompanyAccountSelect, type CompanyAccountSelectOption } from "@/shared/ui/CompanyAccount/CompanyAccountSelect"
-import { EmailIcon } from "@/shared/ui/CompanyAccount/icons/AccountSectionIcons/EmailIcon"
-import { PhoneIcon } from "@/shared/ui/CompanyAccount/icons/AccountSectionIcons/PhoneIcon"
+import { CompanyAccountAddButton, CompanyAccountFormBlock, CompanyAccountSelect, type CompanyAccountSelectOption, EmailIcon, PhoneIcon } from "@/shared/ui"
 import { useCompanyContactFields } from "../model/hooks/useCompanyContactFields"
 import { CompanyEmailInput, CompanyPhoneInput } from "./labels"
 import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types"

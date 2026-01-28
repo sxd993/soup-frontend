@@ -1,30 +1,23 @@
-export { MainIcon } from './Main'
-export { MainIcon2 } from './MainIcon2'
-export { MenuIcon } from './Menu'
-export { LogoutIcon } from './LogoutIcon'
-export { NotificationIcon } from './NotificationIcon'
-export { RightArrow } from './RighArrow'
-export { ArrowDown } from './ArrowDown'
-export { ArrowUp } from './ArrowUp'
-export { SearchButton } from './SearchButton'
-export { Person } from './Person'
-export { CloseIcon } from './Close'
-export { CloseSearchButton } from './CloseSearchButton'
-export { LeftArrow } from './LeftArrow'
-export { SelectedIcon } from './SelectedIcon'
-export { Comment } from './Comment'
-export { DetailsIcon } from './DetailsIcon'
-export { Heart } from './Heart'
-export { RightArrowHome } from './RightArrowHome'
-export { Search } from './Search'
-export { SortIcon } from './SortIcon'
-export { RadioCircleIcon } from './RadioCircleIcon'
-export { CheckIcon } from './CheckIcon'
-export { DesigningIcon } from './DesigningIcon'
-export { GreeningIcon } from './GreeningIcon'
-export { ProductionIcon } from './ProductionIcon'
-export { InstallationIcon } from './InstallationIcon'
-export { SuppliersIcon } from './SuppliersIcon'
-export { EducationIcon } from './EducationIcon'
-export { PaginationArrowLeft } from './PaginationArrowLeft'
-export { PaginationArrowRight } from './PaginationArrowRight'
+// Header icons
+export * from './Header'
+
+// Catalog icons
+export * from './Catalog'
+
+// Blogs icons
+export * from './Blogs'
+
+// Pagination icons
+export * from './Pagination'
+
+// Filters icons
+export * from './Filters'
+
+// Forms icons
+export * from './Forms'
+
+// FAQ icons
+export * from './FAQ'
+
+// Common icons
+export * from './Common'

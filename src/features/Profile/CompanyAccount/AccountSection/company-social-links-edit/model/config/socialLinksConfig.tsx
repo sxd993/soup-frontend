@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import { WebSiteIcon, VkIcon, YtIcon, WhtspIcon, TgIcon, YndDzenIcon } from "@/shared/ui/CompanyAccount/icons/AccountSectionIcons"
+import { WebSiteIcon, VkIcon, YtIcon, WhtspIcon, TgIcon, YndDzenIcon } from "@/shared/ui"
 
 export type SocialField = "website" | "vk" | "youtube" | "whatsapp" | "telegram" | "yandexDzen"
 

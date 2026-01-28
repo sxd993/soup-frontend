@@ -1,4 +1,4 @@
-import { CompanyAccountFormBlock } from "@/shared/ui/CompanyAccount/CompanyAccountFormBlock"
+import { CompanyAccountFormBlock } from "@/shared/ui"
 import { CompanyLogoUpload, CompanyNameInput, CompanyDescriptionInput, CompanyRegionsSelect } from "./labels/index"
 
 export const CompanyProfileEdit = () => {

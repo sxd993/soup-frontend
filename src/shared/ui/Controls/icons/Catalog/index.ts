@@ -1,0 +1,6 @@
+export { DesigningIcon } from './DesigningIcon'
+export { GreeningIcon } from './GreeningIcon'
+export { ProductionIcon } from './ProductionIcon'
+export { InstallationIcon } from './InstallationIcon'
+export { SuppliersIcon } from './SuppliersIcon'
+export { EducationIcon } from './EducationIcon'

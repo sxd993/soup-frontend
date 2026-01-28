@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ProfileIcon, ServicesIcon, ReviewsIcon, BlogIcon, OrdersIcon, MessagesIcon,FavoritesIcon, AdvertisingIcon, SettingsIcon } from '@/shared/ui/CompanyAccount/icons/SidebarIcons';
+import { ProfileIcon, ServicesIcon, ReviewsIcon, BlogIcon, OrdersIcon, MessagesIcon, FavoritesIcon, AdvertisingIcon, SettingsIcon } from '@/shared/ui';
 
 export const ICONS_BY_LABEL: Record<string, ReactNode> = {
     'Профиль': <ProfileIcon className="h-8 w-8" />,

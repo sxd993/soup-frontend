@@ -1,9 +1,6 @@
 'use client';
 
-import { CompanyAccountField } from "@/shared/ui/CompanyAccount/CompanyAccountField";
-import { CompanyAccountFormBlock } from "@/shared/ui/CompanyAccount/CompanyAccountFormBlock"
-import { CompanyAccountInput } from "@/shared/ui/CompanyAccount/CompanyAccountInput";
-import { AddressIcon } from "@/shared/ui/CompanyAccount/icons/AccountSectionIcons/AddressIcon";
+import { CompanyAccountField, CompanyAccountFormBlock, CompanyAccountInput, AddressIcon } from "@/shared/ui";
 import { useFormContext } from "react-hook-form";
 import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types";
 
