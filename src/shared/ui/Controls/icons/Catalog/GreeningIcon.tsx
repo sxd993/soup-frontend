@@ -1,6 +1,10 @@
 import type { SVGProps } from "react"
 
-export const GreeningIcon = (props: SVGProps<SVGSVGElement>) => (
+type CatalogIconProps = SVGProps<SVGSVGElement> & {
+  isActive?: boolean
+}
+
+export const GreeningIcon = ({ isActive, ...props }: CatalogIconProps) => (
   <svg
     width="32"
     height="32"
@@ -9,8 +13,8 @@ export const GreeningIcon = (props: SVGProps<SVGSVGElement>) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <circle cx="16" cy="16" r="16" fill="white" />
-    <circle cx="16" cy="16" r="16" fill="white" />
+    <circle cx="16" cy="16" r="16" fill={isActive ? "var(--color-background)" : "#FFFFFF"} />
+    <circle cx="16" cy="16" r="16" fill={isActive ? "var(--color-background)" : "#FFFFFF"} />
     <path
       d="M9 26V24H15V20H13C11.6167 20 10.4375 19.5125 9.4625 18.5375C8.4875 17.5625 8 16.3833 8 15C8 14 8.275 13.0792 8.825 12.2375C9.375 11.3958 10.1167 10.7833 11.05 10.4C11.2 9.15 11.7458 8.10417 12.6875 7.2625C13.6292 6.42083 14.7333 6 16 6C17.2667 6 18.3708 6.42083 19.3125 7.2625C20.2542 8.10417 20.8 9.15 20.95 10.4C21.8833 10.7833 22.625 11.3958 23.175 12.2375C23.725 13.0792 24 14 24 15C24 16.3833 23.5125 17.5625 22.5375 18.5375C21.5625 19.5125 20.3833 20 19 20H17V24H23V26H9ZM13 18H19C19.8333 18 20.5417 17.7083 21.125 17.125C21.7083 16.5417 22 15.8333 22 15C22 14.4 21.8292 13.85 21.4875 13.35C21.1458 12.85 20.7 12.4833 20.15 12.25L19.1 11.8L18.95 10.65C18.85 9.9 18.5208 9.27083 17.9625 8.7625C17.4042 8.25417 16.75 8 16 8C15.25 8 14.5958 8.25417 14.0375 8.7625C13.4792 9.27083 13.15 9.9 13.05 10.65L12.9 11.8L11.85 12.25C11.3 12.4833 10.8542 12.85 10.5125 13.35C10.1708 13.85 10 14.4 10 15C10 15.8333 10.2917 16.5417 10.875 17.125C11.4583 17.7083 12.1667 18 13 18Z"
       fill="#535353"

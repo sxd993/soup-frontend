@@ -1,6 +1,10 @@
 import type { SVGProps } from "react"
 
-export const EducationIcon = (props: SVGProps<SVGSVGElement>) => (
+type CatalogIconProps = SVGProps<SVGSVGElement> & {
+  isActive?: boolean
+}
+
+export const EducationIcon = ({ isActive, ...props }: CatalogIconProps) => (
   <svg
     width="32"
     height="32"
@@ -9,7 +13,7 @@ export const EducationIcon = (props: SVGProps<SVGSVGElement>) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <rect width="32" height="32" rx="16" fill="white" />
+    <rect width="32" height="32" rx="16" fill={isActive ? "var(--color-background)" : "#FFFFFF"} />
     <path
       d="M16 25L9 21.2V15.2L5 13L16 7L27 13V21H25V14.1L23 15.2V21.2L16 25ZM16 16.7L22.85 13L16 9.3L9.15 13L16 16.7ZM16 22.725L21 20.025V16.25L16 19L11 16.25V20.025L16 22.725Z"
       fill="#535353"

@@ -3,51 +3,63 @@
 import {
   Button,
   Search,
-  DesigningIcon,
-  GreeningIcon,
-  ProductionIcon,
-  InstallationIcon,
-  SuppliersIcon,
-  EducationIcon,
   CheckIcon,
+  ScrollContainer,
 } from "@/shared/ui"
 import { StateProvider } from "@/app/providers/State/StateProvider"
-import { CATALOG_FILTERS_MESSAGES, REGION_FILTERS } from "@/entities/CatalogFilters/model/const/filters"
-import { useCatalogFiltersData } from "@/entities/CatalogFilters/model/hooks/useCatalogFiltersData"
+import { CATALOG_FILTERS_MESSAGES } from "@/entities/CatalogFilters/model/const/filters"
 import { useCatalogFilters } from "../model/hooks/useCatalogFilters"
 
 export const CatalogFilters = () => {
-  const { openSectionIds, toggleSection } = useCatalogFilters()
-  const { data: sections = [], isLoading, isError } = useCatalogFiltersData()
-  const iconMap: Record<string, React.ReactNode> = {
-    Проектирование: <DesigningIcon />,
-    Озеленение: <GreeningIcon />,
-    Производство: <ProductionIcon />,
-    "Монтажные работы": <InstallationIcon />,
-    Поставщики: <SuppliersIcon />,
-    Обучение: <EducationIcon />,
-  }
+  const {
+    openSectionIds,
+    toggleSection,
+    sections,
+    isLoading,
+    isError,
+    isRegionsLoading,
+    isRegionsError,
+    regionQuery,
+    setRegionQuery,
+    filteredRegions,
+    selectedRegionIds,
+    toggleRegion,
+    selectedSectionItemIds,
+    toggleSectionItem,
+    resetAll,
+    isResetDisabled,
+    getIconForLabel,
+  } = useCatalogFilters()
 
   return (
     <aside className="flex flex-col gap-8">
-          <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2">
         <p className="text-lg font-semibold text-secondary">Регион</p>
         <label className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#C5C2C2]" />
           <input
             type="text"
             placeholder="поиск по региону"
+            value={regionQuery}
+            onChange={(event) => setRegionQuery(event.target.value)}
             className="w-full rounded-full bg-white py-3 pl-9 pr-4 text-sm text-secondary placeholder:text-[#C5C2C2] outline-none"
           />
         </label>
-        <div className="flex flex-col gap-3 pl-4">
-          {REGION_FILTERS.map((region) => (
+        {isRegionsLoading ? (
+          <p className="text-sm text-secondary/70">Загружаем регионы...</p>
+        ) : null}
+        {isRegionsError ? (
+          <p className="text-sm text-red-500">Не удалось загрузить регионы</p>
+        ) : null}
+        <ScrollContainer className="flex h-[180px] flex-col gap-3 pl-4 pr-1">
+          {filteredRegions.map((region) => (
             <label key={region.id} className="flex items-center gap-3 text-sm text-secondary">
               <span className="relative h-5 w-5">
                 <input
                   type="checkbox"
                   className="peer h-5 w-5 appearance-none rounded-[6px] border-primary bg-white checked:bg-primary"
-                  defaultChecked={Boolean(region.isSelected)}
+                  checked={selectedRegionIds.includes(region.id)}
+                  onChange={() => toggleRegion(region.id)}
                 />
                 <span className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity peer-checked:opacity-100">
                   <CheckIcon />
@@ -56,7 +68,7 @@ export const CatalogFilters = () => {
               {region.label}
             </label>
           ))}
-        </div>
+        </ScrollContainer>
       </div>
 
       <div className="flex flex-col gap-4">
@@ -83,7 +95,7 @@ export const CatalogFilters = () => {
                   >
                     <span className="flex items-center gap-3">
                       <span className="flex h-9 w-9 items-center justify-center rounded-full">
-                        {iconMap[section.label] ?? section.label[0]}
+                        {getIconForLabel(section.label, isOpen)}
                       </span>
                       {section.label}
                     </span>
@@ -136,6 +148,8 @@ export const CatalogFilters = () => {
                           <input
                             type="checkbox"
                             className="peer h-5 w-5 appearance-none rounded-[6px] border-primary bg-white checked:bg-primary"
+                            checked={selectedSectionItemIds.includes(item.id)}
+                            onChange={() => toggleSectionItem(item.id)}
                           />
                           <span className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity peer-checked:opacity-100">
                             <CheckIcon />
@@ -150,7 +164,11 @@ export const CatalogFilters = () => {
             })}
           </div>
         </StateProvider>
-        <Button className="mt-3 w-full rounded-full bg-primary text-accent-senary">
+        <Button
+          className="mt-3 w-full rounded-full bg-[#8BC652] text-accent-senary hover:bg-[#7DAF4D] active:bg-[#80D62C] disabled:bg-[#D3EBBB]"
+          onClick={resetAll}
+          disabled={isResetDisabled}
+        >
           Сбросить все
         </Button>
       </div>

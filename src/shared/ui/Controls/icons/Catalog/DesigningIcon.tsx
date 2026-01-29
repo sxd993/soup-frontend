@@ -1,6 +1,10 @@
 import type { SVGProps } from 'react'
 
-export const DesigningIcon = (props: SVGProps<SVGSVGElement>) => (
+type CatalogIconProps = SVGProps<SVGSVGElement> & {
+  isActive?: boolean
+}
+
+export const DesigningIcon = ({ isActive, ...props }: CatalogIconProps) => (
   <svg
     width="32"
     height="32"
@@ -9,7 +13,7 @@ export const DesigningIcon = (props: SVGProps<SVGSVGElement>) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <circle cx="16" cy="16" r="16" fill="white" />
+    <circle cx="16" cy="16" r="16" fill={isActive ? "var(--color-background)" : "#FFFFFF"} />
     <path
       d="M12.8 14.95L14.95 12.775L13.55 11.35L12.45 12.45L11.05 11.05L12.125 9.95L11 8.825L8.825 11L12.8 14.95ZM21 23.175L23.175 21L22.05 19.875L20.95 20.95L19.55 19.55L20.625 18.45L19.2 17.05L17.05 19.2L21 23.175ZM11.25 25H7V20.75L11.375 16.375L6 11L11 6L16.4 11.4L20.175 7.6C20.375 7.4 20.6 7.25 20.85 7.15C21.1 7.05 21.3583 7 21.625 7C21.8917 7 22.15 7.05 22.4 7.15C22.65 7.25 22.875 7.4 23.075 7.6L24.4 8.95C24.6 9.15 24.75 9.375 24.85 9.625C24.95 9.875 25 10.1333 25 10.4C25 10.6667 24.95 10.9208 24.85 11.1625C24.75 11.4042 24.6 11.625 24.4 11.825L20.625 15.625L26 21L21 26L15.625 20.625L11.25 25ZM9 23H10.4L20.2 13.225L18.775 11.8L9 21.6V23ZM19.5 12.525L18.775 11.8L20.2 13.225L19.5 12.525Z"
       fill="#2F2F2F"
