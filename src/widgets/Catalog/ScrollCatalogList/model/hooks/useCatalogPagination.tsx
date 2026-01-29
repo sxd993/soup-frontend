@@ -1,9 +1,14 @@
-import { useMemo } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { useQuery } from "@tanstack/react-query"
 import { getCatalogCompanies } from "@/entities/Profile/Company/model/api/getCatalogCompanies"
 
 const ITEMS_PER_PAGE = 4
+const SORT_OPTIONS = [
+  { id: 1, title: "по умолчанию" },
+  { id: 2, title: "по рейтингу" },
+  { id: 3, title: "по количеству отзывов" },
+]
 
 export const useCatalogPagination = () => {
   const searchParams = useSearchParams()
@@ -12,6 +17,9 @@ export const useCatalogPagination = () => {
     queryFn: getCatalogCompanies,
     staleTime: 5 * 60 * 1000,
   })
+  const [selectedSortId, setSelectedSortId] = useState<number>(SORT_OPTIONS[0].id)
+  const [isSortMenuOpen, setIsSortMenuOpen] = useState(false)
+  const sortMenuRef = useRef<HTMLDivElement | null>(null)
   const rawPage = Number(searchParams?.get("page") ?? "1")
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE)
   const currentPage = Number.isFinite(rawPage)
@@ -24,6 +32,30 @@ export const useCatalogPagination = () => {
     return items.slice(startIndex, endIndex)
   }, [items, currentPage])
 
+  const selectedSortTitle =
+    SORT_OPTIONS.find((option) => option.id === selectedSortId)?.title ??
+    SORT_OPTIONS[0].title
+
+  const toggleSortMenu = () => {
+    setIsSortMenuOpen((prev) => !prev)
+  }
+
+  const selectSort = (id: number) => {
+    setSelectedSortId(id)
+    setIsSortMenuOpen(false)
+  }
+
+  useEffect(() => {
+    if (!isSortMenuOpen) return
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!sortMenuRef.current) return
+      if (sortMenuRef.current.contains(event.target as Node)) return
+      setIsSortMenuOpen(false)
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [isSortMenuOpen])
+
   return {
     paginatedItems,
     currentPage,
@@ -31,5 +63,12 @@ export const useCatalogPagination = () => {
     isLoading,
     isError,
     isEmpty: items.length === 0,
+    sortOptions: SORT_OPTIONS,
+    selectedSortId,
+    selectedSortTitle,
+    isSortMenuOpen,
+    toggleSortMenu,
+    selectSort,
+    sortMenuRef,
   }
 }
