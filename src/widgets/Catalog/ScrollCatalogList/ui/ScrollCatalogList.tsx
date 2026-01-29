@@ -1,6 +1,5 @@
 "use client"
 
-import { CATALOG_COMPANIES } from "@/entities/Profile/Company/model/const/companies"
 import { CompanyCard } from "@/entities/Profile/Company/ui/CompanyCard"
 import { SortIcon } from "@/shared/ui"
 import { ClientPagination } from "@/features/Pagination"
@@ -8,7 +7,8 @@ import { StateProvider } from "@/app/providers/State/StateProvider"
 import { useCatalogPagination } from "../model/hooks/useCatalogPagination"
 
 export const ScrollCatalogList = () => {
-  const { paginatedItems, currentPage, totalPages } = useCatalogPagination(CATALOG_COMPANIES)
+  const { paginatedItems, currentPage, totalPages, isLoading, isError, isEmpty } =
+    useCatalogPagination()
 
   return (
     <section className="flex flex-col gap-6">
@@ -23,9 +23,9 @@ export const ScrollCatalogList = () => {
       </div>
 
       <StateProvider
-        isLoading={false}
-        isError={false}
-        isEmpty={CATALOG_COMPANIES.length === 0}
+        isLoading={isLoading}
+        isError={isError}
+        isEmpty={isEmpty}
         loadingMessage="Загружаем каталог..."
         errorMessage="Не удалось загрузить каталог"
         emptyMessage="Компаний пока нет"

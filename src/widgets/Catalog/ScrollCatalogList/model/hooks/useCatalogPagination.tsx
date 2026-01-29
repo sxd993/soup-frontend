@@ -1,11 +1,17 @@
 import { useMemo } from "react"
 import { useSearchParams } from "next/navigation"
-import type { CompanyCardData } from "@/entities/Profile/Company/model/types/company.types"
+import { useQuery } from "@tanstack/react-query"
+import { getCatalogCompanies } from "@/entities/Profile/Company/model/api/getCatalogCompanies"
 
 const ITEMS_PER_PAGE = 4
 
-export const useCatalogPagination = (items: CompanyCardData[]) => {
+export const useCatalogPagination = () => {
   const searchParams = useSearchParams()
+  const { data: items = [], isLoading, isError } = useQuery({
+    queryKey: ["catalog-companies"],
+    queryFn: getCatalogCompanies,
+    staleTime: 5 * 60 * 1000,
+  })
   const rawPage = Number(searchParams?.get("page") ?? "1")
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE)
   const currentPage = Number.isFinite(rawPage)
@@ -22,5 +28,8 @@ export const useCatalogPagination = (items: CompanyCardData[]) => {
     paginatedItems,
     currentPage,
     totalPages,
+    isLoading,
+    isError,
+    isEmpty: items.length === 0,
   }
 }
