@@ -29,6 +29,7 @@ export const CatalogFilters = () => {
     resetAll,
     isResetDisabled,
     getIconForLabel,
+    getSectionMaxHeight,
   } = useCatalogFilters()
 
   return (
@@ -138,8 +139,9 @@ export const CatalogFilters = () => {
                   </button>
 
                   <div
+                    style={{ maxHeight: getSectionMaxHeight(section.items.length, isOpen) }}
                     className={`flex flex-col gap-3 overflow-hidden pl-4 transition-[max-height,opacity] duration-500 ease-in-out ${
-                      isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+                      isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
                     }`}
                   >
                     {section.items.map((item) => (

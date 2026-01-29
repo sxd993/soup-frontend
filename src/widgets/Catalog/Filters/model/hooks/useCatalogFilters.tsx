@@ -64,6 +64,13 @@ export const useCatalogFilters = () => {
     return Icon ? <Icon isActive={isActive} /> : label[0]
   }
 
+  const getSectionMaxHeight = (itemsCount: number, isOpen: boolean) => {
+    if (!isOpen) return "0px"
+    const rowsHeight = itemsCount * 32
+    const gapsHeight = Math.max(itemsCount - 1, 0) * 12
+    return `${rowsHeight + gapsHeight}px`
+  }
+
   return {
     openSectionIds,
     toggleSection,
@@ -83,5 +90,6 @@ export const useCatalogFilters = () => {
     resetAll,
     isResetDisabled,
     getIconForLabel,
+    getSectionMaxHeight,
   }
 }
