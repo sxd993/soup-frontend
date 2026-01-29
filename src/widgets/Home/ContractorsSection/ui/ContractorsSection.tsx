@@ -3,6 +3,7 @@ import { ContractorsCard, getContractors, type ContractorsTypes } from "@/entiti
 
 export const ContractorsSection = async () => {
     const contractors: ContractorsTypes[] = await getContractors()
+    const filteredContractors = contractors.filter((contractor) => contractor.title !== "Обучение")
 
     return (
         <section className="space-y-6">
@@ -11,7 +12,7 @@ export const ContractorsSection = async () => {
             </div>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {contractors.map((contractor) => (
+                {filteredContractors.map((contractor) => (
                     <ContractorsCard key={contractor.title} contractor={contractor} />
                 ))}
             </div>
