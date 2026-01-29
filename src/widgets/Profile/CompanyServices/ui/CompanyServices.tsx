@@ -122,6 +122,8 @@ export const CompanyServices = () => {
               <input
                 type="text"
                 placeholder="Название услуги"
+                value={serviceModal.serviceName}
+                onChange={(event) => serviceModal.setServiceName(event.target.value)}
                 className="h-32 w-full rounded-[20px] border border-[#DADADA] px-5 text-base text-secondary outline-none placeholder:text-[#C5C2C2]"
               />
             </div>
@@ -166,7 +168,7 @@ export const CompanyServices = () => {
               <Button
                 className="h-12 w-full rounded-full !bg-[#8BC652] !text-accent-senary hover:!bg-[#7DAF4D] active:!bg-[#80D62C] disabled:!bg-[#D3EBBB] sm:w-[240px]"
                 onClick={serviceModal.addService}
-                disabled={!serviceModal.selectedService}
+                disabled={serviceModal.isAddDisabled}
               >
                 Добавить
               </Button>

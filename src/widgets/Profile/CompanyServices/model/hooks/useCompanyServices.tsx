@@ -22,6 +22,7 @@ export const useCompanyServices = () => {
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null)
   const [selectedService, setSelectedService] = useState<string | null>(null)
   const [isServiceSelectOpen, setIsServiceSelectOpen] = useState(false)
+  const [serviceName, setServiceName] = useState("")
   const categoryMenuRef = useRef<HTMLDivElement | null>(null)
 
   const availableCategories = useMemo(
@@ -55,6 +56,7 @@ export const useCompanyServices = () => {
   const openServiceModal = (categoryId: string) => {
     setActiveCategoryId(categoryId)
     setSelectedService(null)
+    setServiceName("")
     setIsServiceSelectOpen(false)
     setIsServiceModalOpen(true)
   }
@@ -62,19 +64,21 @@ export const useCompanyServices = () => {
   const closeServiceModal = () => {
     setIsServiceModalOpen(false)
     setSelectedService(null)
+    setServiceName("")
     setIsServiceSelectOpen(false)
   }
 
   const addServiceToCategory = () => {
-    if (!activeCategoryId || !selectedService) return
+    if (!activeCategoryId || !serviceName.trim() || !selectedService) return
     setSelectedCategories((prev) =>
       prev.map((item) =>
-        item.id === activeCategoryId && !item.services.includes(selectedService)
-          ? { ...item, services: [...item.services, selectedService] }
+        item.id === activeCategoryId
+          ? { ...item, services: [...item.services, serviceName.trim()] }
           : item,
       ),
     )
     setIsServiceModalOpen(false)
+    setServiceName("")
     setIsServiceSelectOpen(false)
   }
 
@@ -133,6 +137,9 @@ export const useCompanyServices = () => {
       selectService: handleSelectService,
       isSelectOpen: isServiceSelectOpen,
       toggleSelect: toggleServiceSelect,
+      isAddDisabled: !serviceName.trim() || !selectedService,
+      serviceName,
+      setServiceName,
     },
   }
 }
