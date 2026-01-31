@@ -16,7 +16,7 @@ export default function CompanyProfileLayout({ children }: CompanyProfileLayoutP
                 <div className="hidden md:block">
                     <CompanyNavigationSideBar />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 w-full px-4 md:max-w-[793px] md:px-0">
                     {children}
                 </div>
             </div>

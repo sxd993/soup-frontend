@@ -1,7 +1,7 @@
 "use client"
 
 import { CompanyBlogTabs, CompanyBlogList } from "@/features/Profile/CompanyAccount/BlogSection"
-import { SectionTitle } from "@/shared/ui"
+import { SectionTitle, ViewAllButton } from "@/shared/ui"
 
 export const BlogCompanySection = () => {
   return (
@@ -10,10 +10,13 @@ export const BlogCompanySection = () => {
         <div className="flex flex-col gap-7">
           <SectionTitle
             className="font-semibold text-[28px]! leading-[110%]!"
-            title="Блог"
+            title="Блоги"
           />
         </div>
-        <CompanyBlogTabs />
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <CompanyBlogTabs />
+          <ViewAllButton href="/profile/company/blog/new" text="+ Новая публикация" />
+        </div>
       </div>
       <CompanyBlogList />
     </section>

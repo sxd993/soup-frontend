@@ -1,23 +1,42 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { DetailsIcon } from "@/shared/ui"
-import { formatDate } from "@/shared/lib"
+import { FilterMenu } from "@/shared/ui/FilterMenu/ui/FilterMenu"
+import { useDropdown } from "@/shared/hooks"
+import { useBottomBlogCard } from "../model/hooks/useBottomBlogCard"
 import type { Blog } from "../model/types/blogs.types"
 
-// Маленькая карточка блога
+export type BlogMenuActionId = 1 | 2 | 3
+
 type BottomBlogCardProps = {
   blog: Blog
   href?: string
   className?: string
   imageHeight?: number | null
+  menuItems?: { id: number; title: string }[]
+  onMenuSelect?: (id: number) => void
 }
 
-export const BottomBlogCard = ({ blog, href, className, imageHeight = 144 }: BottomBlogCardProps) => {
-  const date = formatDate(blog.createdAt)
+export const BottomBlogCard = ({
+  blog,
+  href,
+  className,
+  imageHeight = 144,
+  menuItems,
+  onMenuSelect,
+}: BottomBlogCardProps) => {
+  const { date, articleClasses, imageHeight: height, showMenu, menuItems: items } = useBottomBlogCard(
+    blog,
+    { className, imageHeight, menuItems }
+  )
+  const dropdown = useDropdown()
 
-  const articleClasses = ["flex-1 rounded-2xl flex flex-col justify-start gap-4", className]
-    .filter(Boolean)
-    .join(" ")
+  const handleMenuSelect = (id: number) => {
+    onMenuSelect?.(id)
+    dropdown.close()
+  }
 
   return (
     <article className={`group ${articleClasses}`}>
@@ -31,19 +50,34 @@ export const BottomBlogCard = ({ blog, href, className, imageHeight = 144 }: Bot
             <span className="text-sm text-accent-quinary">{date}</span>
           </div>
         </div>
-        <DetailsIcon />
+        {showMenu && (
+          <div className="relative" ref={dropdown.ref}>
+            <button
+              type="button"
+              onClick={dropdown.toggle}
+              className="p-1 rounded-full hover:bg-[#F5F5F5] transition-colors cursor-pointer"
+              aria-expanded={dropdown.isOpen}
+              aria-haspopup="true"
+            >
+              <DetailsIcon />
+            </button>
+            {dropdown.isOpen && (
+              <FilterMenu items={items} className="w-35!" onSelect={handleMenuSelect} />
+            )}
+          </div>
+        )}
       </div>
 
       {blog.imageUrl && (
         <div
-          className={`overflow-hidden ${imageHeight !== null ? "h-[144px] rounded-[20px]" : "rounded-xl"}`}
+          className={`overflow-hidden ${height !== null ? "h-[144px] rounded-[20px]" : "rounded-xl"}`}
         >
           <Image
             src={blog.imageUrl}
             alt={blog.title}
             width={387}
-            height={imageHeight ?? 144}
-            className={`w-full ${imageHeight === null ? "h-auto object-contain" : "h-full object-cover"}`}
+            height={height ?? 144}
+            className={`w-full ${height === null ? "h-auto object-contain" : "h-full object-cover"}`}
           />
         </div>
       )}

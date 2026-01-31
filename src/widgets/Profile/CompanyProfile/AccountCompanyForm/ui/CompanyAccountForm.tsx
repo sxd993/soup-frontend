@@ -27,7 +27,7 @@ export const CompanyAccountForm = () => {
 
     return (
         <FormProvider {...form}>
-            <form className="flex w-full flex-col gap-5 px-4 md:max-w-[793px] md:px-0" noValidate onSubmit={handleSubmit}>
+            <form className="flex w-full flex-col gap-5" noValidate onSubmit={handleSubmit}>
 
                 {/* Вкладка Название и Описание */}
                 <CompanyProfileEdit />

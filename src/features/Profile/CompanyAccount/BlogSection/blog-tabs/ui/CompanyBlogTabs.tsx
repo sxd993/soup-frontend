@@ -7,7 +7,7 @@ export const CompanyBlogTabs = () => {
   const { items, selectedStatus, handleSelect } = useCompanyBlogTabs()
 
   return (
-    <div className="flex flex-wrap rounded-[40px] p-2">
+    <div className="flex flex-wrap rounded-[40px]">
       {items.map((item) => {
         const isActive = item.id === selectedStatus
         return (
