@@ -1,3 +1,5 @@
+import { BlogCompanySection } from "@/widgets/Profile/CompanyProfile"
+
 export default function CompanyBlogPage() {
-    return <div>Блог</div>
+  return <BlogCompanySection />
 }

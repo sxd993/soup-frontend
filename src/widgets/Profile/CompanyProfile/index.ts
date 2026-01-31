@@ -11,3 +11,6 @@ export { CompanyReviewsSection } from './ReviewsCompanySection/CompanyReviewsSec
 
 // Заказы компании
 export { OrdersCompanySection } from './OrdersCompanySection/OrdersCompanySection'
+
+// Блог компании
+export { BlogCompanySection } from './BlogCompanySection/BlogCompanySection'

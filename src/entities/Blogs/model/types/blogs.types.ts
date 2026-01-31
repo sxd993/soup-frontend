@@ -6,6 +6,7 @@ export interface Blog {
   imageUrl: string
   contentBlocks: unknown[] | null
   createdAt: string
+  status?: "draft" | "published"
   isPinned?: boolean
   company: { name: string; logo_url?: string | null } | null
 }

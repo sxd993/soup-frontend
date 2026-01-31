@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation"
-import { getBlogs, getBlogById, BottomBlogCard } from "@/entities/Blogs"
-import { CommentsSection } from "@/features/Comments/ui/CommentsSection"
+import { getBlogs, getBlogById, BottomBlogCard, BlogContentBlocks } from "@/entities/Blogs"
 import { BlogSidePanelCard } from "@/widgets/Blogs"
 import { SectionTitle, AdsBanner, SidePanel, type SidePanelItem } from "@/shared/ui"
 import type { Blog } from "@/entities/Blogs"
@@ -34,10 +33,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
         <SectionTitle title="Блоги" className="mb-5" />
         <div className="mt-6 bg-white p-5 rounded-[20px]">
           <BottomBlogCard blog={blog} imageHeight={null} />
-        </div>
-        <div className="mt-12 bg-white p-5 rounded-[20px]">
-          <SectionTitle title="Комментарии" className="mb-6 text-secondary! text-[22px]! font-bold!" />
-          <CommentsSection />
+          <BlogContentBlocks blocks={blog.contentBlocks} />
         </div>
       </div>
       <div className="basis-1/3 flex flex-col gap-6 lg:mt-20">

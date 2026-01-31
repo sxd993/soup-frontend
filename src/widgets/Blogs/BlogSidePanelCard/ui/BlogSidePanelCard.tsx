@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Heart, Comment, DetailsIcon } from "@/shared/ui"
+import { DetailsIcon } from "@/shared/ui"
 import { formatDate } from "@/shared/lib"
 import type { Blog } from "@/entities/Blogs"
 
@@ -40,13 +40,9 @@ export const BlogSidePanelCard = ({ item: blog, href }: BlogSidePanelCardProps) 
       )}
 
       <h3 className="text-[22px] font-bold text-secondary leading-[105%]">{blog.title}</h3>
-      <p className="text-base text-secondary-quinary">{blog.description}</p>
+      <p className="text-[16px] font-semibold leading-[140%] text-secondary">{blog.description}</p>
 
-      <div className="flex items-center justify-between text-sm text-accent-quinary">
-        <div className="flex items-center gap-4">
-          <span className="flex items-center gap-1 cursor-pointer"><Heart /> 0</span>
-          <span className="flex items-center gap-1 cursor-pointer"><Comment /> 0</span>
-        </div>
+      <div className="flex justify-end">
         <Link
           href={href}
           className="opacity-0 group-hover:opacity-100 transition-all duration-300"
