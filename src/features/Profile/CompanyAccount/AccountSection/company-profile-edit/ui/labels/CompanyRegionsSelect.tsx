@@ -1,9 +1,6 @@
 'use client';
 
-import { useEffect } from "react"
-import { useFormContext } from "react-hook-form"
-import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types"
-import { useRegions } from "../../model/hooks/regions/useRegions"
+import { useCompanyRegionsSelect } from "../../model/hooks/useCompanyRegionsSelect"
 
 export const CompanyRegionsSelect = () => {
     const {
@@ -13,26 +10,7 @@ export const CompanyRegionsSelect = () => {
         removeRegion,
         filteredRegions,
         handleSelect,
-        setSelected,
-        regions,
-    } = useRegions()
-    const { setValue, watch } = useFormContext<CompanyAccountFormValues>()
-    const formRegions = watch("profile.regions")
-
-    useEffect(() => {
-        setValue("profile.regions", selected.map((region) => region.label))
-    }, [selected, setValue])
-
-    useEffect(() => {
-        if (!regions.length || !formRegions?.length) return
-        const selectedLabels = new Set(selected.map((region) => region.label))
-        const missingLabels = formRegions.filter((label) => !selectedLabels.has(label))
-        if (missingLabels.length === 0) return
-        const mapped = regions.filter((region) => missingLabels.includes(region.label))
-        if (mapped.length > 0) {
-            setSelected([...selected, ...mapped])
-        }
-    }, [formRegions, regions, selected, setSelected])
+    } = useCompanyRegionsSelect()
 
     return (
         <div className="flex flex-col gap-3">

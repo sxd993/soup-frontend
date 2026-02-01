@@ -2,3 +2,4 @@ export { CompannyAddressEdit } from "./company-address-edit/ui/CompannyAddressEd
 export { CompanyContactEdit } from "./company-contacts-edit/ui/CompanyContactEdit";
 export { CompanyProfileEdit } from "./company-profile-edit/ui/CompanyProfileEdit";
 export { CompanySocialLinksEdit } from './company-social-links-edit/ui/CompanySocialLinksEdit'
+export { CompanyUploadLogo } from "./company-upload-logo"

@@ -1,12 +1,12 @@
 import { useMemo } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { useShallow } from "zustand/react/shallow"
-import { useCompanyRegionsStore } from "../../store/useCompanyRegionsStore"
-import type { RegionItemType } from "../../types/RegionItemType"
-import { fetchRegions } from "../../../api/fetchRegions"
+import { useCompanyRegionsStore } from "../store/useCompanyRegionsStore"
+import type { RegionItemType } from "../types/RegionItemType"
+import { fetchRegions } from "../../api/fetchRegions"
 
 export const useRegions = () => {
-    
+
     const { data: regions = [] } = useQuery<RegionItemType[]>({
         queryKey: ["regions"],
         queryFn: fetchRegions,

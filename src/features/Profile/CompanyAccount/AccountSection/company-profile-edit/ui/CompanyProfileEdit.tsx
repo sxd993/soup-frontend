@@ -1,5 +1,6 @@
 import { CompanyAccountFormBlock } from "@/shared/ui"
-import { CompanyLogoUpload, CompanyNameInput, CompanyDescriptionInput, CompanyRegionsSelect } from "./labels/index"
+import { CompanyNameInput, CompanyDescriptionInput, CompanyRegionsSelect } from "./labels/index"
+import { CompanyUploadLogo } from "../../company-upload-logo"
 
 export const CompanyProfileEdit = () => {
     return (
@@ -7,7 +8,7 @@ export const CompanyProfileEdit = () => {
 
             {/* Cмена логотипа и название компании*/}
             <div className="flex flex-col items-center gap-4 lg:flex-row lg:items-end lg:gap-6.5">
-                <CompanyLogoUpload />
+                <CompanyUploadLogo />
                 <CompanyNameInput />
             </div>
 
