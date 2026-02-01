@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import type { Blog } from "@/entities/Blogs"
-import { useCompanyBlogTabsStore } from "@/features/Profile/CompanyAccount/BlogSection/blog-tabs"
+import { useCompanyBlogTabsStore } from "@/features/Profile/CompanyAccount/BlogSection/company-blog-tabs"
 import { useCompanyBlogs } from "./useCompanyBlogs"
 import { publishCompanyBlog, deleteCompanyBlog } from "../.."
 import type { CompanyBlogItem } from "../types/company-blog.types"

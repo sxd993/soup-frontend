@@ -3,6 +3,7 @@
 import { StateProvider } from "@/app/providers/State/StateProvider"
 import { BottomBlogCard } from "@/entities/Blogs"
 import { useCompanyBlogList, type CompanyBlogListCardProps } from ".."
+import { CompanyBlogCardMenu } from "./CompanyBlogCardMenu"
 
 export const CompanyBlogList = () => {
   const { isLoading, isError, isEmpty, cards } = useCompanyBlogList()
@@ -23,8 +24,14 @@ export const CompanyBlogList = () => {
               blog={card.blog}
               href={card.href}
               imageHeight={null}
-              menuItems={card.menuItems}
-              onMenuSelect={card.onMenuSelect}
+              headerActions={
+                card.menuItems.length > 0 ? (
+                  <CompanyBlogCardMenu
+                    items={card.menuItems}
+                    onSelect={card.onMenuSelect}
+                  />
+                ) : undefined
+              }
             />
           </div>
         ))}

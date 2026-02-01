@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
-import { getBlogs, getBlogById, BottomBlogCard, BlogContentBlocks } from "@/entities/Blogs"
+import { getBlogs, getBlogById, BottomBlogCard } from "@/entities/Blogs"
+import { BlogContentBlocks } from "@/features/Profile/CompanyAccount/BlogSection"
 import { BlogSidePanelCard } from "@/widgets/Blogs"
 import { SectionTitle, AdsBanner, SidePanel, type SidePanelItem } from "@/shared/ui"
 import type { Blog } from "@/entities/Blogs"

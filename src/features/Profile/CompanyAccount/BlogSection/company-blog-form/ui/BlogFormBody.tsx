@@ -8,6 +8,7 @@ import type { BlogFormMode } from "../model/hooks/useBlogForm"
 import { BlogFormProvider } from "../model/context/BlogFormContext"
 import { useBlockOptions } from "../model/hooks/useBlockOptions"
 import { AddedBlocksList } from "./AddedBlocksList"
+import { BlogImageUpload } from "./BlogImageUpload"
 
 type BlogFormBodyProps = {
   mode: BlogFormMode
@@ -57,15 +58,7 @@ export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
             </span>
           </div>
 
-          <div className="rounded-[10px] border border-[#c5c2c2] pl-3.75 pt-3.75 pb-4.25 pr-2.5 min-h-[200px] flex flex-col justify-center">
-            <input
-              type="url"
-              placeholder="Добавить главное фото (ссылка)"
-              value={form.imageUrl}
-              onChange={(e) => form.setImageUrl(e.target.value)}
-              className="outline-none w-full text-base placeholder:text-[#c5c2c2]"
-            />
-          </div>
+          <BlogImageUpload />
 
           <div className="h-13.5 flex w-full rounded-[10px] border border-[#c5c2c2] pl-3.75 pt-3.75 pb-4.25 pr-2.5">
             <input

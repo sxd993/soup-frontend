@@ -6,11 +6,10 @@ import type { Blog } from "../types/blogs.types"
 type UseBottomBlogCardOptions = {
   className?: string
   imageHeight?: number | null
-  menuItems?: { id: number; title: string }[]
 }
 
 export function useBottomBlogCard(blog: Blog, options: UseBottomBlogCardOptions = {}) {
-  const { className, imageHeight = 144, menuItems } = options
+  const { className, imageHeight = 144 } = options
 
   const date = formatDate(blog.createdAt)
   const articleClasses = ["flex-1 rounded-2xl flex flex-col justify-start gap-4", className]
@@ -21,7 +20,5 @@ export function useBottomBlogCard(blog: Blog, options: UseBottomBlogCardOptions 
     date,
     articleClasses,
     imageHeight,
-    showMenu: Boolean(menuItems?.length),
-    menuItems: menuItems ?? [],
   }
 }

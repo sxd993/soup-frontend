@@ -2,21 +2,15 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { DetailsIcon } from "@/shared/ui"
-import { FilterMenu } from "@/shared/ui/FilterMenu/ui/FilterMenu"
-import { useDropdown } from "@/shared/hooks"
 import { useBottomBlogCard } from "../model/hooks/useBottomBlogCard"
 import type { Blog } from "../model/types/blogs.types"
-
-export type BlogMenuActionId = 1 | 2 | 3
 
 type BottomBlogCardProps = {
   blog: Blog
   href?: string
   className?: string
   imageHeight?: number | null
-  menuItems?: { id: number; title: string }[]
-  onMenuSelect?: (id: number) => void
+  headerActions?: React.ReactNode
 }
 
 export const BottomBlogCard = ({
@@ -24,19 +18,12 @@ export const BottomBlogCard = ({
   href,
   className,
   imageHeight = 144,
-  menuItems,
-  onMenuSelect,
+  headerActions,
 }: BottomBlogCardProps) => {
-  const { date, articleClasses, imageHeight: height, showMenu, menuItems: items } = useBottomBlogCard(
-    blog,
-    { className, imageHeight, menuItems }
-  )
-  const dropdown = useDropdown()
-
-  const handleMenuSelect = (id: number) => {
-    onMenuSelect?.(id)
-    dropdown.close()
-  }
+  const { date, articleClasses, imageHeight: height } = useBottomBlogCard(blog, {
+    className,
+    imageHeight,
+  })
 
   return (
     <article className={`group ${articleClasses}`}>
@@ -50,22 +37,7 @@ export const BottomBlogCard = ({
             <span className="text-sm text-accent-quinary">{date}</span>
           </div>
         </div>
-        {showMenu && (
-          <div className="relative" ref={dropdown.ref}>
-            <button
-              type="button"
-              onClick={dropdown.toggle}
-              className="p-1 rounded-full hover:bg-[#F5F5F5] transition-colors cursor-pointer"
-              aria-expanded={dropdown.isOpen}
-              aria-haspopup="true"
-            >
-              <DetailsIcon />
-            </button>
-            {dropdown.isOpen && (
-              <FilterMenu items={items} className="w-35!" onSelect={handleMenuSelect} />
-            )}
-          </div>
-        )}
+        {headerActions}
       </div>
 
       {blog.imageUrl && (

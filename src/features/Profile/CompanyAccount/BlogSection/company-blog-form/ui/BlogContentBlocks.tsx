@@ -1,12 +1,8 @@
 import Image from "next/image"
-import type { BlogContentBlock } from "../model/types/content-blocks.types"
+import { parseBlocks } from "../model/lib/parseBlocks"
+import type { ContentBlock } from "../model/types/create-blog.types"
 
-function isBlogContentBlock(block: unknown): block is BlogContentBlock {
-  return typeof block === "object" && block !== null && "type" in block
-}
-
-// Стили по типам блоков: subtitle2, subtitle3, paragraph, divider, bulletList, numberedList, image
-function BlogBlock({ block }: { block: BlogContentBlock }) {
+function BlogBlockView({ block }: { block: ContentBlock }) {
   switch (block.type) {
     case "subtitle2":
       return (
@@ -67,17 +63,15 @@ type BlogContentBlocksProps = {
   blocks: unknown[] | null
 }
 
-// Рендер блоков в порядке, заданном компанией в конструкторе (без фиксированной последовательности)
 export function BlogContentBlocks({ blocks }: BlogContentBlocksProps) {
-  if (!blocks?.length) return null
+  const items = parseBlocks(blocks)
+  if (!items.length) return null
 
   return (
     <div className="mt-6 pt-6 [&>*:first-child]:mt-0">
-      {blocks.map((block, i) =>
-        isBlogContentBlock(block) ? (
-          <BlogBlock key={i} block={block} />
-        ) : null
-      )}
+      {items.map((block, i) => (
+        <BlogBlockView key={i} block={block} />
+      ))}
     </div>
   )
 }
