@@ -45,7 +45,7 @@ export const TopBlogCard = ({ blog, href, className }: TopBlogCardProps) => {
         <div className="flex justify-end">
           <Link
             href={href}
-            className="opacity-0 group-hover:opacity-100 transition-all duration-300"
+            className="transition-all duration-300"
           >
             <button
               type="button"

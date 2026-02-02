@@ -1,11 +1,10 @@
 import { NewsCardSmall, NewsCardBig, getNews, type NewsItem } from "@/entities/News"
 import { AdsBanner, SectionTitle, ViewAllButton } from "@/shared/ui"
-import { getNewsListWithoutPriority, getPriorityNews } from "@/entities/News/model/lib/priorityNews"
 
 export const NewsSection = async () => {
     const news: NewsItem[] = await getNews()
-    const priorityNews = getPriorityNews(news)
-    const rest = getNewsListWithoutPriority(news, priorityNews, 4)
+    const [important, ...restAll] = news
+    const rest = restAll.slice(0, 4)
     const mobileRest = rest.slice(0, 2)
 
     return (
@@ -23,7 +22,7 @@ export const NewsSection = async () => {
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-4.5 items-stretch">
 
                 {/* Левая колонка */}
-                <NewsCardBig item={priorityNews} />
+                {important && <NewsCardBig item={important} />}
                 {/* Правая колонка */}
                 <div className="grid w-full">
                     <div className="grid grid-cols-1 gap-5 md:hidden justify-items-center">

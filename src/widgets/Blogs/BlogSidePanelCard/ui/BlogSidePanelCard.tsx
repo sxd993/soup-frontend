@@ -25,7 +25,6 @@ export const BlogSidePanelCard = ({ item: blog, href }: BlogSidePanelCardProps) 
             <span className="text-sm text-accent-quinary">{date}</span>
           </div>
         </div>
-        <DetailsIcon />
       </div>
 
       {blog.imageUrl && (
@@ -45,7 +44,7 @@ export const BlogSidePanelCard = ({ item: blog, href }: BlogSidePanelCardProps) 
       <div className="flex justify-end">
         <Link
           href={href}
-          className="opacity-0 group-hover:opacity-100 transition-all duration-300"
+          className="transition-all duration-300"
         >
           <button
             type="button"

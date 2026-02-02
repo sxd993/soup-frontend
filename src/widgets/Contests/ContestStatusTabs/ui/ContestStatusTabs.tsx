@@ -24,7 +24,9 @@ export const ContestStatusTabs = ({ status }: ContestStatusTabsProps) => {
                     <p className="text-secondary font-semibold leading-[130%] text-sm">
                         {selectedItem.title}
                     </p>
-                    <SortIcon />
+                    <span className={`transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}>
+                        <SortIcon />
+                    </span>
                 </button>
                 {isOpen && (
                     <FilterMenu

@@ -21,7 +21,9 @@ export const TimeFilter = () => {
                 <p className="text-secondary font-semibold leading-[130%] text-sm">
                     {selectedTime?.title ?? "за все время"}
                 </p>
-                <SortIcon />
+                <span className={`transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}>
+                    <SortIcon />
+                </span>
             </button>
 
             {isOpen && (
