@@ -29,8 +29,16 @@ export const CompanyServices = () => {
               {category.services.map((service, index) => (
                 <div key={`${service.name}-${index}`} className="flex items-center justify-between py-4">
                   <div className="flex items-center gap-4">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-[14px] border border-[#DADADA] bg-[#F6F3EE]">
-                      <MockLogo className="h-10 w-10" />
+                    <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-[14px] border border-[#DADADA] bg-[#F6F3EE]">
+                      {service.imageUrl ? (
+                        <img
+                          src={service.imageUrl}
+                          alt={service.name}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <MockLogo className="h-10 w-10" />
+                      )}
                     </div>
                     <span className="text-[18px] text-secondary">{service.name}</span>
                   </div>
@@ -107,9 +115,30 @@ export const CompanyServices = () => {
             <h3 className="text-[30px] font-semibold text-secondary">Новая услуга</h3>
 
             <div className="mt-6 grid gap-4 md:grid-cols-[140px_1fr]">
-              <div className="flex h-32 w-32 items-center justify-center rounded-[20px] border border-[#DADADA] bg-[#F6F6F6] text-center text-sm text-[#C5C2C2]">
-                Загрузите фотографию
-              </div>
+              <label className="flex h-32 w-32 cursor-pointer items-center justify-center overflow-hidden rounded-[20px] border border-[#DADADA] bg-[#F6F6F6] text-center text-sm text-[#C5C2C2]">
+                <input
+                  type="file"
+                  className="sr-only"
+                  accept="image/png,image/jpeg,image/webp"
+                  onChange={(event) => {
+                    const file = event.target.files?.[0]
+                    if (file) {
+                      serviceModal.handleServiceImageUpload(file)
+                      event.currentTarget.value = ""
+                    }
+                  }}
+                  disabled={serviceModal.isImageUploading}
+                />
+                {serviceModal.serviceImageUrl ? (
+                  <img
+                    src={serviceModal.serviceImageUrl}
+                    alt="Изображение услуги"
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <span>Загрузите фотографию</span>
+                )}
+              </label>
               <input
                 type="text"
                 placeholder="Название услуги"

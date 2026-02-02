@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { getContractors, type ContractorsTypes } from "@/entities/Contractors"
-import { getCompanyServices, saveCompanyServices } from "@/entities/Profile/Company/model/api/company-services.api"
+import {
+  getCompanyServices,
+  saveCompanyServices,
+  uploadCompanyServiceImage,
+} from "@/entities/Profile/Company/model/api/company-services.api"
 import type {
   CompanyServiceCategory,
   CompanyServiceItem,
@@ -36,6 +40,7 @@ export const useCompanyServices = () => {
   const [selectedService, setSelectedService] = useState<string | null>(null)
   const [isServiceSelectOpen, setIsServiceSelectOpen] = useState(false)
   const [serviceName, setServiceName] = useState("")
+  const [serviceImageUrl, setServiceImageUrl] = useState<string | null>(null)
   const categoryMenuRef = useRef<HTMLDivElement | null>(null)
   const isHydratedRef = useRef(false)
   const lastSavedRef = useRef("")
@@ -44,6 +49,13 @@ export const useCompanyServices = () => {
   const saveMutation = useMutation({
     mutationKey: ["save-company-services"],
     mutationFn: (payload: CompanyServiceCategory[]) => saveCompanyServices(payload),
+  })
+  const uploadImageMutation = useMutation({
+    mutationKey: ["upload-company-service-image"],
+    mutationFn: uploadCompanyServiceImage,
+    onSuccess: (data) => {
+      setServiceImageUrl(data.url)
+    },
   })
 
   const availableCategories = useMemo(
@@ -84,6 +96,7 @@ export const useCompanyServices = () => {
     setActiveCategoryId(categoryId)
     setSelectedService(null)
     setServiceName("")
+    setServiceImageUrl(null)
     setIsServiceSelectOpen(false)
     setIsServiceModalOpen(true)
   }
@@ -92,6 +105,7 @@ export const useCompanyServices = () => {
     setIsServiceModalOpen(false)
     setSelectedService(null)
     setServiceName("")
+    setServiceImageUrl(null)
     setIsServiceSelectOpen(false)
   }
 
@@ -104,7 +118,11 @@ export const useCompanyServices = () => {
               ...item,
               services: [
                 ...item.services,
-                { name: serviceName.trim(), subcategory: selectedService },
+                {
+                  name: serviceName.trim(),
+                  subcategory: selectedService,
+                  imageUrl: serviceImageUrl,
+                },
               ],
             }
           : item,
@@ -112,6 +130,7 @@ export const useCompanyServices = () => {
     )
     setIsServiceModalOpen(false)
     setServiceName("")
+    setServiceImageUrl(null)
     setIsServiceSelectOpen(false)
   }
 
@@ -154,6 +173,10 @@ export const useCompanyServices = () => {
   const handleSelectService = (service: string) => {
     setSelectedService(service)
     setIsServiceSelectOpen(false)
+  }
+
+  const handleServiceImageUpload = (file: File) => {
+    uploadImageMutation.mutate(file)
   }
 
   useEffect(() => {
@@ -213,6 +236,9 @@ export const useCompanyServices = () => {
       isAddDisabled: !serviceName.trim() || !selectedService,
       serviceName,
       setServiceName,
+      serviceImageUrl,
+      handleServiceImageUpload,
+      isImageUploading: uploadImageMutation.isPending,
     },
   }
 }

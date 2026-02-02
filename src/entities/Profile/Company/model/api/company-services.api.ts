@@ -9,3 +9,13 @@ export const getCompanyServices = async (): Promise<CompanyServicesResponse> => 
 export const saveCompanyServices = async (categories: CompanyServiceCategory[]) => {
   return AxiosClient.post("/profile/company/services", { categories })
 }
+
+export const uploadCompanyServiceImage = async (file: File): Promise<{ url: string }> => {
+  const formData = new FormData()
+  formData.append("image", file)
+  const response = await AxiosClient.post<{ url: string }>(
+    "/profile/company/services/upload-image",
+    formData,
+  )
+  return response.data
+}
