@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Heart, MockLogo } from "@/shared/ui"
 import type { CompanyCardData } from "../model/types/company.types"
 
@@ -29,7 +30,9 @@ export const CompanyCard = ({ item }: CompanyCardProps) => {
             )}
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="text-lg font-semibold text-secondary">{item.name}</h3>
+            <Link href={`/catalog/${item.id}`} className="text-lg font-semibold text-secondary">
+              {item.name}
+            </Link>
           </div>
         </div>
         <button
