@@ -28,7 +28,7 @@ export const CompanyServices = () => {
             <div className="flex flex-col divide-y divide-[#E5E0D6] border-t border-[#E5E0D6]">
               {category.services.map((service, index) => (
                 <div key={`${service.name}-${index}`} className="flex items-center justify-between py-4">
-                  <div className="flex items-center gap-4">
+                  <div className="flex min-w-0 items-center gap-4">
                     <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-[14px] border border-[#DADADA] bg-[#F6F3EE]">
                       {service.imageUrl ? (
                         <img
@@ -40,7 +40,9 @@ export const CompanyServices = () => {
                         <MockLogo className="h-10 w-10" />
                       )}
                     </div>
-                    <span className="text-[18px] text-secondary">{service.name}</span>
+                    <span className="min-w-0 flex-1 text-[18px] text-secondary break-words">
+                      {service.name}
+                    </span>
                   </div>
                   <button
                     type="button"
@@ -139,13 +141,19 @@ export const CompanyServices = () => {
                   <span>Загрузите фотографию</span>
                 )}
               </label>
-              <input
-                type="text"
-                placeholder="Название услуги"
-                value={serviceModal.serviceName}
-                onChange={(event) => serviceModal.setServiceName(event.target.value)}
-                className="h-32 w-full rounded-[20px] border border-[#DADADA] px-5 text-base text-secondary outline-none placeholder:text-[#C5C2C2]"
-              />
+              <div className="flex h-32 w-full flex-col gap-2">
+                <input
+                  type="text"
+                  placeholder="Название услуги"
+                  value={serviceModal.serviceName}
+                  onChange={(event) => serviceModal.setServiceName(event.target.value)}
+                  maxLength={100}
+                  className="h-full w-full rounded-[20px] border border-[#DADADA] px-5 text-base text-secondary outline-none placeholder:text-[#C5C2C2]"
+                />
+                <span className="text-xs text-accent-quinary">
+                  {serviceModal.serviceName.length}/100
+                </span>
+              </div>
             </div>
 
             <div className="mt-5">
