@@ -1,9 +1,10 @@
-import { useMemo, useState, type ComponentType } from "react"
+import { useEffect, useMemo, useState, type ComponentType } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { useCatalogFiltersData } from "@/entities/CatalogFilters/model/hooks/useCatalogFiltersData"
 import { fetchRegions } from "@/features/Profile/CompanyAccount/AccountSection/company-profile-edit/api/fetchRegions"
 import type { RegionItemType } from "@/features/Profile/CompanyAccount/AccountSection/company-profile-edit/model/types/RegionItemType"
 import { ICONS_BY_LABEL } from "../../const/iconsByLabel"
+import { useCatalogFiltersStore } from "../store/useCatalogFiltersStore"
 
 export const useCatalogFilters = () => {
   const [openSectionIds, setOpenSectionIds] = useState<Set<string>>(() => new Set())
@@ -18,6 +19,10 @@ export const useCatalogFilters = () => {
   const [regionQuery, setRegionQuery] = useState("")
   const [selectedRegionIds, setSelectedRegionIds] = useState<number[]>([])
   const [selectedSectionItemIds, setSelectedSectionItemIds] = useState<string[]>([])
+  const selectedServiceLabel = useCatalogFiltersStore((state) => state.selectedServiceLabel)
+  const clearSelectedServiceLabel = useCatalogFiltersStore(
+    (state) => state.clearSelectedServiceLabel,
+  )
 
   const toggleSection = (sectionId: string) => {
     setOpenSectionIds((prev) => {
@@ -58,6 +63,27 @@ export const useCatalogFilters = () => {
   const isResetDisabled = selectedRegionIds.length === 0 && selectedSectionItemIds.length === 0
 
   const iconMap = ICONS_BY_LABEL as Record<string, ComponentType<{ isActive?: boolean }>>
+
+  useEffect(() => {
+    if (!selectedServiceLabel || sections.length === 0) return
+    const targetSection = sections.find((section) =>
+      section.items.some((item) => item.label === selectedServiceLabel),
+    )
+    if (!targetSection) return
+    const targetItem = targetSection.items.find((item) => item.label === selectedServiceLabel)
+    if (!targetItem) return
+
+    setSelectedSectionItemIds((prev) =>
+      prev.includes(targetItem.id) ? prev : [...prev, targetItem.id],
+    )
+    setOpenSectionIds((prev) => {
+      if (prev.has(targetSection.id)) return prev
+      const next = new Set(prev)
+      next.add(targetSection.id)
+      return next
+    })
+    clearSelectedServiceLabel()
+  }, [sections, selectedServiceLabel, clearSelectedServiceLabel])
 
   const getSectionMaxHeight = (itemsCount: number, isOpen: boolean) => {
     if (!isOpen) return "0px"

@@ -1,5 +1,9 @@
-import Link from 'next/link'
+"use client"
+
+import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Badge, RightArrow } from "@/shared/ui";
+import { useCatalogFiltersStore } from "@/widgets/Catalog/Filters/model/store/useCatalogFiltersStore"
 import type { ContractorsTypes } from "../model/types/contractors.types";
 
 type ContractorsCardProps = {
@@ -7,6 +11,14 @@ type ContractorsCardProps = {
 };
 
 export const ContractorsCard = ({ contractor }: ContractorsCardProps) => {
+    const router = useRouter()
+    const setSelectedServiceLabel = useCatalogFiltersStore((state) => state.setSelectedServiceLabel)
+
+    const handleBadgeClick = (badge: string) => {
+        setSelectedServiceLabel(badge)
+        router.push("/catalog")
+    }
+
     return (
         <div className="flex flex-col gap-6 rounded-2xl bg-white p-5 shadow-sm justify-between">
             {/* Верхний заголовок */}
@@ -24,7 +36,14 @@ export const ContractorsCard = ({ contractor }: ContractorsCardProps) => {
             {/* Бейджы услуг */}
             <div className="flex flex-wrap gap-2">
                 {contractor.badges.map((badge) => (
-                    <Badge key={badge} badge={badge} />
+                    <button
+                        key={badge}
+                        type="button"
+                        onClick={() => handleBadgeClick(badge)}
+                        className="rounded-full"
+                    >
+                        <Badge badge={badge} />
+                    </button>
                 ))}
             </div>
         </div>
