@@ -28,7 +28,7 @@ export const CatalogFilters = () => {
     toggleSectionItem,
     resetAll,
     isResetDisabled,
-    getIconForLabel,
+    iconMap,
     getSectionMaxHeight,
   } = useCatalogFilters()
 
@@ -96,7 +96,14 @@ export const CatalogFilters = () => {
                   >
                     <span className="flex items-center gap-3">
                       <span className="flex h-9 w-9 items-center justify-center rounded-full">
-                        {getIconForLabel(section.label, isOpen)}
+                        {iconMap[section.label] ? (
+                          (() => {
+                            const Icon = iconMap[section.label]
+                            return <Icon isActive={isOpen} />
+                          })()
+                        ) : (
+                          section.label[0]
+                        )}
                       </span>
                       {section.label}
                     </span>

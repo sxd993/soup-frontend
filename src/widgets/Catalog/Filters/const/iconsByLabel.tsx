@@ -6,6 +6,7 @@ import {
   InstallationIcon,
   SuppliersIcon,
   EducationIcon,
+  NetworksIcon,
 } from "@/shared/ui"
 
 type CatalogIconComponent = ComponentType<{ isActive?: boolean }>
@@ -17,4 +18,5 @@ export const ICONS_BY_LABEL: Record<string, CatalogIconComponent> = {
   "Монтажные работы": InstallationIcon,
   Поставщики: SuppliersIcon,
   Обучение: EducationIcon,
+  Сети: NetworksIcon,
 }

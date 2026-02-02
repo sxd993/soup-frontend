@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useMemo, useState, type ComponentType } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { useCatalogFiltersData } from "@/entities/CatalogFilters/model/hooks/useCatalogFiltersData"
 import { fetchRegions } from "@/features/Profile/CompanyAccount/AccountSection/company-profile-edit/api/fetchRegions"
@@ -57,12 +57,7 @@ export const useCatalogFilters = () => {
 
   const isResetDisabled = selectedRegionIds.length === 0 && selectedSectionItemIds.length === 0
 
-  const iconMap = ICONS_BY_LABEL
-
-  const getIconForLabel = (label: string, isActive: boolean) => {
-    const Icon = iconMap[label]
-    return Icon ? <Icon isActive={isActive} /> : label[0]
-  }
+  const iconMap = ICONS_BY_LABEL as Record<string, ComponentType<{ isActive?: boolean }>>
 
   const getSectionMaxHeight = (itemsCount: number, isOpen: boolean) => {
     if (!isOpen) return "0px"
@@ -89,7 +84,7 @@ export const useCatalogFilters = () => {
     toggleSectionItem,
     resetAll,
     isResetDisabled,
-    getIconForLabel,
+    iconMap,
     getSectionMaxHeight,
   }
 }
