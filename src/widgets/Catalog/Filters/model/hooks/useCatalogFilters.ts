@@ -19,10 +19,8 @@ export const useCatalogFilters = () => {
   const [regionQuery, setRegionQuery] = useState("")
   const [selectedRegionIds, setSelectedRegionIds] = useState<number[]>([])
   const [selectedSectionItemIds, setSelectedSectionItemIds] = useState<string[]>([])
-  const selectedServiceLabel = useCatalogFiltersStore((state) => state.selectedServiceLabel)
-  const clearSelectedServiceLabel = useCatalogFiltersStore(
-    (state) => state.clearSelectedServiceLabel,
-  )
+  const selectedService = useCatalogFiltersStore((state) => state.selectedService)
+  const clearSelectedService = useCatalogFiltersStore((state) => state.clearSelectedService)
 
   const toggleSection = (sectionId: string) => {
     setOpenSectionIds((prev) => {
@@ -65,12 +63,10 @@ export const useCatalogFilters = () => {
   const iconMap = ICONS_BY_LABEL as Record<string, ComponentType<{ isActive?: boolean }>>
 
   useEffect(() => {
-    if (!selectedServiceLabel || sections.length === 0) return
-    const targetSection = sections.find((section) =>
-      section.items.some((item) => item.label === selectedServiceLabel),
-    )
+    if (!selectedService || sections.length === 0) return
+    const targetSection = sections.find((section) => section.label === selectedService.category)
     if (!targetSection) return
-    const targetItem = targetSection.items.find((item) => item.label === selectedServiceLabel)
+    const targetItem = targetSection.items.find((item) => item.label === selectedService.service)
     if (!targetItem) return
 
     setSelectedSectionItemIds((prev) =>
@@ -82,8 +78,8 @@ export const useCatalogFilters = () => {
       next.add(targetSection.id)
       return next
     })
-    clearSelectedServiceLabel()
-  }, [sections, selectedServiceLabel, clearSelectedServiceLabel])
+    clearSelectedService()
+  }, [sections, selectedService, clearSelectedService])
 
   const getSectionMaxHeight = (itemsCount: number, isOpen: boolean) => {
     if (!isOpen) return "0px"

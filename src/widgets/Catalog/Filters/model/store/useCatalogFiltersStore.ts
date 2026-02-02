@@ -2,14 +2,19 @@
 
 import { create } from "zustand"
 
+type SelectedCatalogService = {
+  category: string
+  service: string
+}
+
 type CatalogFiltersStoreState = {
-  selectedServiceLabel: string | null
-  setSelectedServiceLabel: (label: string | null) => void
-  clearSelectedServiceLabel: () => void
+  selectedService: SelectedCatalogService | null
+  setSelectedService: (value: SelectedCatalogService | null) => void
+  clearSelectedService: () => void
 }
 
 export const useCatalogFiltersStore = create<CatalogFiltersStoreState>((set) => ({
-  selectedServiceLabel: null,
-  setSelectedServiceLabel: (label) => set(() => ({ selectedServiceLabel: label })),
-  clearSelectedServiceLabel: () => set(() => ({ selectedServiceLabel: null })),
+  selectedService: null,
+  setSelectedService: (value) => set(() => ({ selectedService: value })),
+  clearSelectedService: () => set(() => ({ selectedService: null })),
 }))

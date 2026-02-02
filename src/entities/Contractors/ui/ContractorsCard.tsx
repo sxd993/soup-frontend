@@ -12,10 +12,10 @@ type ContractorsCardProps = {
 
 export const ContractorsCard = ({ contractor }: ContractorsCardProps) => {
     const router = useRouter()
-    const setSelectedServiceLabel = useCatalogFiltersStore((state) => state.setSelectedServiceLabel)
+    const setSelectedService = useCatalogFiltersStore((state) => state.setSelectedService)
 
     const handleBadgeClick = (badge: string) => {
-        setSelectedServiceLabel(badge)
+        setSelectedService({ category: contractor.title, service: badge })
         router.push("/catalog")
     }
 
