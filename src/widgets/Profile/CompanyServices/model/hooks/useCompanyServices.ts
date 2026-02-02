@@ -1,12 +1,16 @@
 import { useEffect, useMemo, useRef, useState } from "react"
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { getContractors, type ContractorsTypes } from "@/entities/Contractors"
+import { getCompanyServices, saveCompanyServices } from "@/entities/Profile/Company/model/api/company-services.api"
+import type {
+  CompanyServiceCategory,
+  CompanyServiceItem,
+} from "@/entities/Profile/Company/model/types/company-services.types"
 
 type ServiceCategory = {
   id: string
   title: string
-  description: string
-  services: string[]
+  services: CompanyServiceItem[]
 }
 
 export const useCompanyServices = () => {
@@ -14,6 +18,15 @@ export const useCompanyServices = () => {
     queryKey: ["company-services-categories"],
     queryFn: getContractors,
     staleTime: 5 * 60 * 1000,
+  })
+  const {
+    data: savedServices,
+    isLoading: isSavedLoading,
+    isError: isSavedError,
+  } = useQuery({
+    queryKey: ["company-services"],
+    queryFn: getCompanyServices,
+    staleTime: 2 * 60 * 1000,
   })
 
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategory[]>([])
@@ -24,6 +37,14 @@ export const useCompanyServices = () => {
   const [isServiceSelectOpen, setIsServiceSelectOpen] = useState(false)
   const [serviceName, setServiceName] = useState("")
   const categoryMenuRef = useRef<HTMLDivElement | null>(null)
+  const isHydratedRef = useRef(false)
+  const lastSavedRef = useRef("")
+  const saveTimeoutRef = useRef<number | null>(null)
+
+  const saveMutation = useMutation({
+    mutationKey: ["save-company-services"],
+    mutationFn: (payload: CompanyServiceCategory[]) => saveCompanyServices(payload),
+  })
 
   const availableCategories = useMemo(
     () => categories.filter((category) => !selectedCategories.some((item) => item.id === category.title)),
@@ -37,20 +58,26 @@ export const useCompanyServices = () => {
 
   const activeCategoryServices = useMemo(() => activeCategory?.badges ?? [], [activeCategory])
 
+  useEffect(() => {
+    if (!savedServices || isHydratedRef.current) return
+    const mapped = savedServices.categories.map((category) => ({
+      id: category.category,
+      title: category.category,
+      services: category.services,
+    }))
+    setSelectedCategories(mapped)
+    isHydratedRef.current = true
+    lastSavedRef.current = JSON.stringify(mapped)
+  }, [savedServices])
+
   const toggleCategoryMenu = () => setIsCategoryMenuOpen((prev) => !prev)
 
   const addCategory = (category: ContractorsTypes) => {
     setSelectedCategories((prev) => [
       ...prev,
-      { id: category.title, title: category.title, description: "", services: [] },
+      { id: category.title, title: category.title, services: [] },
     ])
     setIsCategoryMenuOpen(false)
-  }
-
-  const setCategoryDescription = (id: string, value: string) => {
-    setSelectedCategories((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, description: value } : item)),
-    )
   }
 
   const openServiceModal = (categoryId: string) => {
@@ -73,7 +100,13 @@ export const useCompanyServices = () => {
     setSelectedCategories((prev) =>
       prev.map((item) =>
         item.id === activeCategoryId
-          ? { ...item, services: [...item.services, serviceName.trim()] }
+          ? {
+              ...item,
+              services: [
+                ...item.services,
+                { name: serviceName.trim(), subcategory: selectedService },
+              ],
+            }
           : item,
       ),
     )
@@ -82,14 +115,28 @@ export const useCompanyServices = () => {
     setIsServiceSelectOpen(false)
   }
 
-  const removeServiceFromCategory = (categoryId: string, service: string) => {
-    setSelectedCategories((prev) =>
-      prev.map((item) =>
+  const triggerSaveNow = (nextCategories: ServiceCategory[]) => {
+    const payload: CompanyServiceCategory[] = nextCategories
+      .filter((category) => category.services.length > 0)
+      .map((category) => ({
+        category: category.title,
+        services: category.services,
+      }))
+    lastSavedRef.current = JSON.stringify(payload)
+    saveMutation.mutate(payload)
+  }
+
+  const removeServiceFromCategory = (categoryId: string, index: number) => {
+    let nextCategories: ServiceCategory[] = []
+    setSelectedCategories((prev) => {
+      nextCategories = prev.map((item) =>
         item.id === categoryId
-          ? { ...item, services: item.services.filter((value) => value !== service) }
+          ? { ...item, services: item.services.filter((_, idx) => idx !== index) }
           : item,
-      ),
-    )
+      )
+      return nextCategories
+    })
+    queueMicrotask(() => triggerSaveNow(nextCategories))
   }
 
   useEffect(() => {
@@ -109,11 +156,38 @@ export const useCompanyServices = () => {
     setIsServiceSelectOpen(false)
   }
 
+  useEffect(() => {
+    if (!isHydratedRef.current) return
+    const payload: CompanyServiceCategory[] = selectedCategories
+      .filter((category) => category.services.length > 0)
+      .map((category) => ({
+        category: category.title,
+        services: category.services,
+      }))
+    const next = JSON.stringify(payload)
+    if (next === lastSavedRef.current) return
+
+    if (saveTimeoutRef.current) {
+      window.clearTimeout(saveTimeoutRef.current)
+    }
+
+    saveTimeoutRef.current = window.setTimeout(() => {
+      saveMutation.mutate(payload)
+      lastSavedRef.current = next
+    }, 600)
+
+    return () => {
+      if (saveTimeoutRef.current) {
+        window.clearTimeout(saveTimeoutRef.current)
+      }
+    }
+  }, [selectedCategories, saveMutation])
+
   return {
     request: {
       categories,
-      isLoading,
-      isError,
+      isLoading: isLoading || isSavedLoading,
+      isError: isError || isSavedError,
     },
     categoryMenu: {
       availableCategories,
@@ -124,7 +198,6 @@ export const useCompanyServices = () => {
     },
     categoryServices: {
       selectedCategories,
-      setCategoryDescription,
       openServiceModal,
       removeServiceFromCategory,
     },

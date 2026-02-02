@@ -22,31 +22,22 @@ export const CompanyServices = () => {
         <div key={category.id} className="rounded-[30px] bg-white p-6 shadow-sm">
           <h2 className="text-[26px] font-semibold text-secondary">{category.title}</h2>
 
-          <textarea
-            placeholder="Описание"
-            value={category.description}
-            onChange={(event) =>
-              categoryServices.setCategoryDescription(category.id, event.target.value)
-            }
-            className="mt-4 h-28 w-full resize-none rounded-[20px] border border-[#DADADA] px-5 py-4 text-sm text-secondary outline-none placeholder:text-[#C5C2C2]"
-          />
-
           <div className="mt-6 flex flex-col gap-4">
             <p className="text-[20px] font-semibold text-secondary">Услуги</p>
 
             <div className="flex flex-col divide-y divide-[#E5E0D6] border-t border-[#E5E0D6]">
-              {category.services.map((service) => (
-                <div key={service} className="flex items-center justify-between py-4">
+              {category.services.map((service, index) => (
+                <div key={`${service.name}-${index}`} className="flex items-center justify-between py-4">
                   <div className="flex items-center gap-4">
                     <div className="flex h-14 w-14 items-center justify-center rounded-[14px] border border-[#DADADA] bg-[#F6F3EE]">
                       <MockLogo className="h-10 w-10" />
                     </div>
-                    <span className="text-[18px] text-secondary">{service}</span>
+                    <span className="text-[18px] text-secondary">{service.name}</span>
                   </div>
                   <button
                     type="button"
                     className="flex h-10 w-10 items-center justify-center rounded-full bg-[#EDE8DE]"
-                    onClick={() => categoryServices.removeServiceFromCategory(category.id, service)}
+                    onClick={() => categoryServices.removeServiceFromCategory(category.id, index)}
                     aria-label="Удалить услугу"
                   >
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
