@@ -1,7 +1,5 @@
 import { useEffect, useMemo } from "react";
 import type { NewsItem } from "@/entities/News";
-import { isWithinTimeRange } from "@/shared/lib";
-import { useTimeFilterStore } from "@/features/TimeFilter";
 import { useNewsBadgeFilterState } from "./useNewsBadgeFilterState";
 
 const getNewsBadges = (news: NewsItem[]) => {
@@ -13,7 +11,6 @@ const getNewsBadges = (news: NewsItem[]) => {
 
 export const useFilteredNewsList = (news: NewsItem[]) => {
     const { badges, selectedBadge, setBadges, setSelectedBadge } = useNewsBadgeFilterState();
-    const selectedTimeId = useTimeFilterStore((state) => state.selectedTimeId);
 
     const availableBadges = useMemo(() => getNewsBadges(news), [news]);
 
@@ -28,15 +25,13 @@ export const useFilteredNewsList = (news: NewsItem[]) => {
     const filteredNews = useMemo(() => {
         // Реклама всегда показывается независимо от фильтров.
         if (!selectedBadge) {
-            return news.filter((item) => item.isAds || isWithinTimeRange(item.createdAt, selectedTimeId));
+            return news;
         }
         return news.filter((item) => {
-            if (item.isAds) {
-                return true;
-            }
-            return item.category === selectedBadge && isWithinTimeRange(item.createdAt, selectedTimeId);
+            if (item.isAds) return true;
+            return item.category === selectedBadge;
         });
-    }, [news, selectedBadge, selectedTimeId]);
+    }, [news, selectedBadge]);
 
     return {
         badges,

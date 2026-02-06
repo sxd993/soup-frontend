@@ -1,13 +1,19 @@
-'use client';
+"use client";
 
+import { useState } from "react";
 import { SortIcon } from "@/shared/ui";
 import { FilterMenu } from "@/shared/ui/FilterMenu/ui/FilterMenu";
 import { TIME_BADGES } from "../model/const/timeBadges";
-import { useTimeFilter } from "../model/hooks/useTimeFilter";
+import type { TimeFilterValue } from "../model/types";
 
-export const TimeFilter = () => {
-    const { isOpen, toggleOpen, setOpen, selectedTimeId, setSelectedTime } = useTimeFilter();
-    const selectedTime = TIME_BADGES.find((badge) => badge.id === selectedTimeId);
+type TimeFilterProps = {
+    value: TimeFilterValue;
+    onChange: (next: TimeFilterValue) => void;
+};
+
+export const TimeFilter = ({ value, onChange }: TimeFilterProps) => {
+    const [isOpen, setOpen] = useState(false);
+    const selectedBadge = TIME_BADGES.find((b) => b.value === value) ?? TIME_BADGES[2];
 
     return (
         <div className="relative">
@@ -16,10 +22,10 @@ export const TimeFilter = () => {
                 type="button"
                 className="flex gap-2 items-center cursor-pointer"
                 aria-expanded={isOpen}
-                onClick={toggleOpen}
+                onClick={() => setOpen((prev) => !prev)}
             >
                 <p className="text-secondary font-semibold leading-[130%] text-sm">
-                    {selectedTime?.title ?? "за все время"}
+                    {selectedBadge.title}
                 </p>
                 <span className={`transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}>
                     <SortIcon />
@@ -28,11 +34,12 @@ export const TimeFilter = () => {
 
             {isOpen && (
                 <FilterMenu
-                    items={TIME_BADGES}
-                    selectedId={selectedTimeId}
+                    items={TIME_BADGES.map((b) => ({ id: b.id, title: b.title }))}
+                    selectedId={selectedBadge.id}
                     className="-right-20"
                     onSelect={(id) => {
-                        setSelectedTime(id);
+                        const badge = TIME_BADGES.find((b) => b.id === id);
+                        if (badge) onChange(badge.value);
                         setOpen(false);
                     }}
                 />
