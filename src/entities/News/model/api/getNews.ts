@@ -1,10 +1,13 @@
-import { API_BASE_URL } from "@/shared/api"
-import type { NewsItem } from "@/entities/News"
+import { ISR_REVALIDATE_SECONDS } from "@/shared/config/isr"
+import { buildNewsListUrl, type NewsTimeParam } from "../lib/buildNewsListUrl"
+import type { NewsItem } from "../types/news.types"
 
-type TimeParam = "week" | "month" | "all"
-
-export const getNews = async (time?: TimeParam): Promise<NewsItem[]> => {
-    const url = time && time !== "all" ? `${API_BASE_URL}/news?time=${time}` : `${API_BASE_URL}/news`
-    const response = await fetch(url)
+export const getNews = async (
+    time?: NewsTimeParam,
+    badge?: string,
+): Promise<NewsItem[]> => {
+    const response = await fetch(buildNewsListUrl(time, badge), {
+        next: { revalidate: ISR_REVALIDATE_SECONDS },
+    })
     return response.json()
 }
