@@ -15,6 +15,11 @@ type CompanyOrderView = Order & {
 
 const PAGE_SIZE = 7
 
+const isSameOrders = (next: CompanyOrderView[], prev: CompanyOrderView[]) => {
+    if (next.length !== prev.length) return false
+    return next.every((order, index) => order.id === prev[index]?.id)
+}
+
 export const useCompanyOrdersList = () => {
     const selectedStatus = useCompanyOrdersTabsStore((state) => state.selectedStatus)
     const [totalItems, setTotalItems] = useState(0)
@@ -53,12 +58,16 @@ export const useCompanyOrdersList = () => {
 
     useEffect(() => {
         if (!pagination.isExpanded) {
-            setExpandedOrders(viewOrders)
+            setExpandedOrders((prev) =>
+                isSameOrders(viewOrders, prev) ? prev : viewOrders
+            )
             return
         }
 
         if (pagination.queryPage <= 1) {
-            setExpandedOrders(viewOrders)
+            setExpandedOrders((prev) =>
+                isSameOrders(viewOrders, prev) ? prev : viewOrders
+            )
             return
         }
 

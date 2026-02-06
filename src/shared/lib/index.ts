@@ -1,4 +1,5 @@
 export { getErrorMessage } from './error-handler'
 export { formatDate } from './formatDate'
+export { normalizeTariffName, resolveTariffTitle } from './tariff'
 export { isWithinTimeRange } from './isWithinTimeRange'
 export { normalizeUrl } from './normalizeUrl'

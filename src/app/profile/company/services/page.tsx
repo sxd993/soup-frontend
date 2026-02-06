@@ -1,4 +1,4 @@
-import { CompanyServices } from "@/widgets/Profile/CompanyServices/ui/CompanyServices"
+import { CompanyServices } from "@/widgets/Profile/CompanyProfile/ServicesCompanySection/ui/CompanyServices"
 
 export default function CompanyServicesPage() {
   return (
