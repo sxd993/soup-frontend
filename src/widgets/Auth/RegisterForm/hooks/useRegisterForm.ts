@@ -29,12 +29,14 @@ export const useRegisterForm = () => {
         mutate(data, {
             onSuccess: (response) => {
                 if (response.status === 201) {
-                    const verificationId = response.data?.verificationId
-                    if (verificationId) {
-                        router.push(`/auth/verify?id=${verificationId}`)
-                    } else {
-                        router.push('/auth/login')
-                    }
+                    // Временно без запроса кода — сразу на логин
+                    // const verificationId = response.data?.verificationId
+                    // if (verificationId) {
+                    //     router.push(`/auth/verify?id=${verificationId}`)
+                    // } else {
+                    //     router.push('/auth/login')
+                    // }
+                    router.push('/auth/login')
                 }
             },
             onError: (error: Error) => {
