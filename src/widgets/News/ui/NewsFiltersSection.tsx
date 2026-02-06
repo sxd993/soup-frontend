@@ -1,14 +1,27 @@
-'use client';
+"use client";
 
-import { TimeFilter } from "@/features/TimeFilter";
+import { useEffect } from "react";
+import { TimeFilter, useTimeQueryParam } from "@/features/TimeFilter";
 import { BadgeFilter } from "./BadgeFilter";
+import { useNewsBadgeFilterState } from "../model/hooks/useNewsBadgeFilterState";
 
-export const NewsFiltersSection = () => {
+type NewsFiltersSectionProps = {
+    badges: string[];
+};
+
+export const NewsFiltersSection = ({ badges }: NewsFiltersSectionProps) => {
+    const [time, setTime] = useTimeQueryParam();
+    const { setBadges } = useNewsBadgeFilterState();
+
+    useEffect(() => {
+        setBadges(badges);
+    }, [badges, setBadges]);
+
     return (
         <div className="w-full relative z-20">
             <div className="flex justify-between items-center gap-4">
                 <BadgeFilter />
-                <TimeFilter />
+                <TimeFilter value={time} onChange={setTime} />
             </div>
         </div>
     );

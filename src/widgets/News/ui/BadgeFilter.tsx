@@ -1,50 +1,34 @@
-'use client';
+"use client";
 
-import { useState } from "react";
 import { StateProvider } from "@/app/providers/State/StateProvider";
 import { SortIcon } from "@/shared/ui";
 import { FilterMenu } from "@/shared/ui/FilterMenu/ui/FilterMenu";
-import { useNewsBadgeFilterState } from "../model/hooks/useNewsBadgeFilterState";
-import { useNewsBadgeQuerySync } from "../model/hooks/useNewsBadgeQuerySync";
+import { useBadgeFilter } from "../model/hooks/useBadgeFilter";
 
 export const BadgeFilter = () => {
-    const [isMenuOpen, setMenuOpen] = useState(false);
-    const { badges } = useNewsBadgeFilterState();
-    const { selectedBadge, handleSelect: handleBadgeSelect } = useNewsBadgeQuerySync();
-
-    // Список бейджей строится из доступных новостей.
-    const items = [
-        { id: 0, title: "Все", value: null as string | null },
-        ...badges.map((badge, index) => ({
-            id: index + 1,
-            title: badge,
-            value: badge,
-        })),
-    ];
-
-    const selectedItem = items.find((item) => item.value === selectedBadge) ?? items[0];
-
-    // Выбор категории синхронизируется в query.
-    const handleSelect = (id: number) => {
-        const nextItem = items.find((item) => item.id === id);
-        handleBadgeSelect(nextItem?.value ?? null);
-        setMenuOpen(false);
-    };
+    const {
+        isMenuOpen,
+        toggleMenu,
+        items,
+        selectedItem,
+        handleSelect,
+        handleBadgeSelect,
+        isEmpty,
+    } = useBadgeFilter();
 
     return (
         <div className="relative">
             <StateProvider
                 isLoading={false}
                 isError={false}
-                isEmpty={badges.length === 0}
+                isEmpty={isEmpty}
                 emptyMessage="Фильтры пока отсутствуют"
             >
-                {/* Мобильная версия - выпадающее меню */}
                 <button
                     type="button"
                     className="flex md:hidden gap-2 items-center cursor-pointer"
                     aria-expanded={isMenuOpen}
-                    onClick={() => setMenuOpen((prev) => !prev)}
+                    onClick={toggleMenu}
                 >
                     <p className="text-secondary font-semibold leading-[130%] text-sm">
                         {selectedItem.title}
@@ -63,7 +47,6 @@ export const BadgeFilter = () => {
                     />
                 )}
 
-                {/* Десктопная версия - бейджи */}
                 <div className="hidden md:flex flex-row gap-4">
                     {items.map((item) => {
                         const isSelected = selectedItem.id === item.id;

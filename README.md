@@ -8,6 +8,4 @@ Next.js app (App Router).
 
 NEXT_PUBLIC_API_URL='http://localhost:3005/'
 
-REVALIDATE_SECRET=120
-
 3) `npm run dev` — старт dev-сервера

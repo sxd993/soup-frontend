@@ -23,7 +23,7 @@ export const useNewsBadgeQuerySync = () => {
                 params.delete("badge");
             }
             const query = params.toString();
-            router.push(query ? `/news?${query}` : "/news");
+            router.replace(query ? `/news?${query}` : "/news");
             setSelectedBadge(badge);
         },
         [router, searchParams, setSelectedBadge],
