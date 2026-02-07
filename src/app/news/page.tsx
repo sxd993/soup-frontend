@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { NewsFeedSection, NewsFiltersSection } from "@/widgets/News";
 import { getNews, getUniqueBadgesFromNews, type NewsItem } from "@/entities/News";
@@ -9,14 +10,9 @@ export const metadata: Metadata = {
     description: "Студия уникальных проектов",
 };
 
-type NewsPageProps = {
-    searchParams: Promise<{ time?: string; badge?: string }>;
-};
-
-export default async function NewsPage({ searchParams }: NewsPageProps) {
-    const params = await searchParams;
-    const time = parseTimeParam(params.time ?? null);
-    const badge = params.badge ?? undefined;
+export default async function NewsPage() {
+    const time = parseTimeParam(null);
+    const badge = undefined;
 
     const [news, allForBadges] =
         badge === undefined
@@ -32,10 +28,12 @@ export default async function NewsPage({ searchParams }: NewsPageProps) {
     const listNews = news.filter((n) => n.id !== important?.id);
 
     return (
-        <div className="flex flex-col mt-15">
-            <SectionTitle title="Новости" className="mb-5" />
-            <NewsFiltersSection badges={badges} />
-            <NewsFeedSection important={important} news={listNews} />
-        </div>
+        <Suspense fallback={null}>
+            <div className="flex flex-col mt-15">
+                <SectionTitle title="Новости" className="mb-5" />
+                <NewsFiltersSection badges={badges} />
+                <NewsFeedSection important={important} news={listNews} />
+            </div>
+        </Suspense>
     );
 }

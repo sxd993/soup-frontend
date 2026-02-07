@@ -30,7 +30,7 @@ export const CompanyCard = ({ item }: CompanyCardProps) => {
             )}
           </div>
           <div className="flex flex-col gap-2">
-            <Link href={`/catalog/${item.id}`} className="text-lg font-semibold text-secondary">
+            <Link href={`/catalog/company?id=${item.id}`} className="text-lg font-semibold text-secondary">
               {item.name}
             </Link>
           </div>

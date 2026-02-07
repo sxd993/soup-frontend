@@ -1,17 +1,6 @@
+import { Suspense } from 'react'
 import { ResetPasswordForm } from '@/widgets/Auth/ResetPasswordForm'
-
-type ResetPasswordPageProps = {
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}
-
-const resolveToken = (value?: string | string[]) => {
-  if (Array.isArray(value)) return value[0] ?? ''
-  return value ?? ''
-}
-
-export default async function ResetPasswordPage({ searchParams }: ResetPasswordPageProps) {
-  const params = await searchParams
-  const token = resolveToken(params.token)
+export default function ResetPasswordPage() {
 
   return (
     <main className="flex items-center justify-center px-4 pb-12 py-28 my-auto">
@@ -23,7 +12,9 @@ export default async function ResetPasswordPage({ searchParams }: ResetPasswordP
 
         <div className="mt-10 space-y-5">
           {/* Форма сброса */}
-          <ResetPasswordForm token={token} />
+          <Suspense fallback={null}>
+            <ResetPasswordForm />
+          </Suspense>
         </div>
       </div>
     </main>

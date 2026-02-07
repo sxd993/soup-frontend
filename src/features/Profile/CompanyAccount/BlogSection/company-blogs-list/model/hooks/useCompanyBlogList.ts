@@ -72,7 +72,7 @@ export function useCompanyBlogList() {
     if (id === BLOG_MENU_IDS.publish) {
       publishMutation.mutate(item.id)
     } else if (id === BLOG_MENU_IDS.edit) {
-      router.push(`/profile/company/blog/${item.id}/edit`)
+      router.push(`/profile/company/blog/edit?id=${item.id}`)
     } else if (id === BLOG_MENU_IDS.delete) {
       deleteMutation.mutate(item.id)
     }
@@ -80,7 +80,7 @@ export function useCompanyBlogList() {
 
   const cards: CompanyBlogListCardProps[] = blogs.map((item) => ({
     blog: toBlog(item),
-    href: item.type === "published" ? `/blogs/${item.id}` : undefined,
+    href: item.type === "published" ? `/blogs/item?id=${item.id}` : undefined,
     menuItems: getMenuItems(item),
     onMenuSelect: handleMenuSelect(item),
   }))

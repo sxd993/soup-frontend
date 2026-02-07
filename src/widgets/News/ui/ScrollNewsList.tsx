@@ -21,7 +21,7 @@ export const ScrollNewsList = ({ news }: ScrollNewsListProps) => {
                     return (
                         <NewsCardSmall
                             key={n.id}
-                            href={`/news/${n.id}`}
+                            href={`/news/item?id=${n.id}`}
                             item={n}
                             className="w-full h-full max-w-none"
                         />
