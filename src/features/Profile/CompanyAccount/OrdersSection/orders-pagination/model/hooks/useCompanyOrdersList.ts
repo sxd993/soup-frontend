@@ -73,7 +73,7 @@ export const useCompanyOrdersList = () => {
 
         setExpandedOrders((prev) => {
             const merged = prev.length > 0 ? [...prev, ...viewOrders] : viewOrders
-            const seen = new Set<number>()
+            const seen = new Set<string | number>()
             return merged.filter((order) => {
                 if (seen.has(order.id)) return false
                 seen.add(order.id)

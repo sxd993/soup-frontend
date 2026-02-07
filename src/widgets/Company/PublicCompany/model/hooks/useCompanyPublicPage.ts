@@ -1,13 +1,10 @@
 import { useEffect, useMemo, useState, type ComponentType } from "react"
-import { useParams } from "next/navigation"
 import { useQuery } from "@tanstack/react-query"
 import { getCompanyPublic } from "@/entities/Profile/Company/model/api/getCompanyPublic"
 import type { CompanyPublicResponse } from "@/entities/Profile/Company/model/types/company-public.types"
 import { ICONS_BY_LABEL } from "@/widgets/Catalog/Filters/const/iconsByLabel"
 
-export const useCompanyPublicPage = () => {
-  const params = useParams()
-  const companyId = typeof params?.id === "string" ? params.id : ""
+export const useCompanyPublicPage = (companyId: string) => {
   const [isRegionsExpanded, setIsRegionsExpanded] = useState(false)
   const { data, isLoading, isError } = useQuery<CompanyPublicResponse>({
     queryKey: ["company-public", companyId],

@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useVerify } from '@/features/Auth/verify'
 import { useResend } from '@/features/Auth/resend'
 import { AUTH_MESSAGES } from '@/entities/Auth'
 import { getErrorMessage } from '@/shared/lib/error-handler'
 import { useProfileRedirect } from '@/features/Auth/profileRedirect'
 
-export const useVerifyForm = (verificationId: string) => {
+export const useVerifyForm = () => {
     const router = useRouter()
+    const searchParams = useSearchParams()
+    const verificationId = searchParams?.get('id') || ''
     const { onGoProfile } = useProfileRedirect()
     const { mutate, isPending } = useVerify()
     const { mutate: resend, isPending: isResending } = useResend()

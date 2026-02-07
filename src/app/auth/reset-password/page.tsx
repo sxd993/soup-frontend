@@ -1,6 +1,7 @@
+import { Suspense } from 'react'
 import { ResetPasswordForm } from '@/widgets/Auth/ResetPasswordForm'
-
 export default function ResetPasswordPage() {
+
   return (
     <main className="flex items-center justify-center px-4 pb-12 py-28 my-auto">
       <div className="w-full max-w-[520px] rounded-[40px] bg-white py-15 px-13">
@@ -11,7 +12,9 @@ export default function ResetPasswordPage() {
 
         <div className="mt-10 space-y-5">
           {/* Форма сброса */}
-          <ResetPasswordForm />
+          <Suspense fallback={null}>
+            <ResetPasswordForm />
+          </Suspense>
         </div>
       </div>
     </main>

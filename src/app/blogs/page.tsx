@@ -28,7 +28,7 @@ export default async function BlogsPage() {
         <SidePanel
           items={sidePanelItems}
           title="Самое обсуждаемое"
-          getHref={(item) => `/blogs/${item.id}`}
+          getHref={(item) => `/blogs/item?id=${item.id}`}
           renderItem={(item, href) => (
             <BlogSidePanelCard item={(item as BlogSidePanelItem).blog} href={href} />
           )}

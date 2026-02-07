@@ -10,11 +10,17 @@ type CatalogCompanyResponse = {
 }
 
 export const getCatalogCompanies = async (): Promise<CompanyCardData[]> => {
-  const response = await AxiosClient.get<CatalogCompanyResponse[]>("/companies")
-  return response.data.map((company, index) => ({
-    id: String(company.id ?? company.companyId ?? company.name ?? index),
-    name: company.name ?? "",
-    description: company.description ?? "",
-    logoUrl: company.logo_url ?? null,
-  }))
+  try {
+    const response = await AxiosClient.get<CatalogCompanyResponse[]>("/companies")
+    const items = Array.isArray(response.data) ? response.data : []
+
+    return items.map((company, index) => ({
+      id: String(company.id ?? company.companyId ?? company.name ?? index),
+      name: company.name ?? "",
+      description: company.description ?? "",
+      logoUrl: company.logo_url ?? null,
+    }))
+  } catch {
+    return []
+  }
 }

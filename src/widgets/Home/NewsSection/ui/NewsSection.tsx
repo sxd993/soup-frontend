@@ -38,7 +38,7 @@ export const NewsSection = async () => {
                                 <NewsCardSmall
                                     key={item.id}
                                     item={item}
-                                    href={`/news/${item.id}`}
+                                    href={`/news/item?id=${item.id}`}
                                 />
                             )
                         })}
@@ -57,7 +57,7 @@ export const NewsSection = async () => {
                                 <NewsCardSmall
                                     key={item.id}
                                     item={item}
-                                    href={`/news/${item.id}`}
+                                    href={`/news/item?id=${item.id}`}
                                 />
                             )
                         })}

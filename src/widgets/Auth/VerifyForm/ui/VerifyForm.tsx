@@ -4,12 +4,9 @@ import Link from 'next/link'
 import { Button } from '@/shared/ui'
 import { useVerifyForm } from '../hooks/useVerifyForm'
 
-type VerifyFormProps = {
-    verificationId?: string
-}
-
-export const VerifyForm = ({ verificationId = '' }: VerifyFormProps) => {
+export const VerifyForm = () => {
     const {
+        verificationId,
         code,
         inputRefs,
         handleInputChange,
@@ -20,7 +17,7 @@ export const VerifyForm = ({ verificationId = '' }: VerifyFormProps) => {
         isBusy,
         isResending,
         serverError,
-    } = useVerifyForm(verificationId)
+    } = useVerifyForm()
 
     if (!verificationId) {
         return (

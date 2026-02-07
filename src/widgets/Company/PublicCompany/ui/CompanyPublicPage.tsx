@@ -5,7 +5,11 @@ import { AdsBanner, ArrowDown, ArrowUp, Button, Heart, MockLogo } from "@/shared
 import { StateProvider } from "@/app/providers/State/StateProvider"
 import { useCompanyPublicPage } from "../model/hooks/useCompanyPublicPage"
 
-export const CompanyPublicPage = () => {
+type CompanyPublicPageProps = {
+  companyId: string
+}
+
+export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
   const {
     company,
     isLoading,
@@ -18,7 +22,7 @@ export const CompanyPublicPage = () => {
     openSectionIds,
     toggleSection,
     iconMap,
-  } = useCompanyPublicPage()
+  } = useCompanyPublicPage(companyId)
 
   return (
     <section className="mt-8 pb-16">

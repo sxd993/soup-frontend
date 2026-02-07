@@ -2,18 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { AppProviders } from "./providers/AppProviders";
 import { Footer, Header } from "@/widgets";
-import { Manrope, Roboto_Flex } from "next/font/google";
-
-const manrope = Manrope({
-  subsets: ["latin", "cyrillic"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
-  variable: "--font-manrope",
-});
-
-const robotoFlex = Roboto_Flex({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-roboto-flex",
-});
 
 export const metadata: Metadata = {
   title: "Студия Уникальных Проектов",
@@ -26,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className={`${manrope.variable} ${robotoFlex.variable}`}>
+    <html lang="ru">
       <body>
         <AppProviders>
           <div className="max-w-300 mx-auto px-4 lg:px-0">

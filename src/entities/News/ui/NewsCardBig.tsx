@@ -53,7 +53,7 @@ export const NewsCardBig = ({ className, item }: NewsCardBigProps = {}) => {
         <div className={`relative w-full min-h-[480px] group ${className ?? ""}`}>
             {card}
             <Link
-                href={`/news/${item.id}`}
+                href={`/news/item?id=${item.id}`}
                 aria-label={item.title}
                 className="absolute inset-0 z-10"
             />

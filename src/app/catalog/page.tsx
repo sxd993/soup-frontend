@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import { AdsBanner, Button, Search, SectionTitle } from "@/shared/ui"
 import { CatalogFilters } from "@/widgets/Catalog/Filters/ui/CatalogFilters"
 import { ScrollCatalogList } from "@/widgets/Catalog/ScrollCatalogList/ui/ScrollCatalogList"
@@ -23,7 +24,9 @@ export default function CatalogPage() {
       </div>
       <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[260px_1fr_280px]">
         <CatalogFilters />
-        <ScrollCatalogList />
+        <Suspense fallback={null}>
+          <ScrollCatalogList />
+        </Suspense>
         <aside className="flex flex-col gap-6">
           <div className="rounded-3xl bg-white p-4">
             <AdsBanner hasDescription={true} />
