@@ -6,9 +6,11 @@ Next.js app (App Router).
 1) `npm i` — установка зависимостей
 2) Заполните файл `.env`:
 
-NEXT_PUBLIC_API_URL='http://localhost:3005/'
+NEXT_PUBLIC_API_URL='http://localhost:3005'
 
 3) `npm run dev` — старт dev-сервера
+4) `npm run build` — production сборка
+5) `npm start` — production запуск
 
 ## Docker (SSR, production)
 
