@@ -1,15 +1,17 @@
 import { useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { getErrorMessage } from '@/shared/lib/error-handler'
 import { AUTH_MESSAGES, ResetPasswordFormValues } from '@/entities/Auth'
 import { validateResetPasswordForm } from '@/entities/Auth/model/lib/formValidators'
 import { useResetPasswordRequest } from './useResetPasswordRequest'
 
-export const useResetPassword = () => {
+type UseResetPasswordArgs = {
+  token: string
+}
+
+export const useResetPassword = ({ token }: UseResetPasswordArgs) => {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const token = searchParams?.get('token') || ''
   const { mutate, isPending } = useResetPasswordRequest()
   const [serverError, setServerError] = useState<string | null>(null)
   const [isSuccess, setIsSuccess] = useState(false)

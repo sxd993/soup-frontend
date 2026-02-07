@@ -3,6 +3,11 @@ import { useFormContext } from "react-hook-form"
 import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types"
 import { useRegions } from "./useRegions"
 
+const normalizeRegions = (value: unknown): string[] => {
+    if (!Array.isArray(value)) return []
+    return value.filter((region): region is string => typeof region === "string")
+}
+
 export const useCompanyRegionsSelect = () => {
     const {
         query,
@@ -19,11 +24,11 @@ export const useCompanyRegionsSelect = () => {
 
     useEffect(() => {
         const current = watch("profile.regions")
-        setFormRegions(Array.isArray(current) ? current : [])
+        setFormRegions(normalizeRegions(current))
         const subscription = watch((value, { name }) => {
             if (name && !name.startsWith("profile.regions")) return
             const next = value?.profile?.regions
-            setFormRegions(Array.isArray(next) ? next : [])
+            setFormRegions(normalizeRegions(next))
         })
         return () => subscription.unsubscribe()
     }, [watch])

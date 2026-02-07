@@ -5,9 +5,12 @@ import { StateProvider } from '@/app/providers/State/StateProvider'
 import { AUTH_MESSAGES } from '@/entities/Auth'
 import { useResetPassword } from '@/features/Auth/resetPassword'
 
-export const ResetPasswordForm = () => {
+type ResetPasswordFormProps = {
+  token: string
+}
+
+export const ResetPasswordForm = ({ token }: ResetPasswordFormProps) => {
   const {
-    token,
     register,
     handleSubmit,
     getValues,
@@ -16,7 +19,7 @@ export const ResetPasswordForm = () => {
     errors,
     serverError,
     isFormValid,
-  } = useResetPassword()
+  } = useResetPassword({ token })
 
   if (!token) {
     return (

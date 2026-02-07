@@ -5,10 +5,10 @@ import type { CompanyTariff } from "../types/tariffs.types"
 import { buildTariffFeatureItems, formatTariffPrice } from "../lib/tariffPicker.utils"
 import { normalizeTariffName, resolveTariffTitle } from "@/shared/lib"
 import type { CurrentTariffResponse } from "../../../current-tariff/model/types/current-tariff.types"
+import type { CompanyTariffCardProps } from '@/entities/Profile/Company/model/types/company-tariff-card.types'
 
 const TARIFF_ORDER = ["start", "business", "premium", "vip", "basic"]
 
-import type { CompanyTariffCard } from "@/entities/Profile/Company"
 
 export const useTariffSelection = (tariffs?: CompanyTariff[]) => {
     const currentTariffQuery = useQuery<CurrentTariffResponse>({
@@ -17,7 +17,7 @@ export const useTariffSelection = (tariffs?: CompanyTariff[]) => {
         staleTime: 60 * 1000,
     })
 
-    const cards = useMemo<CompanyTariffCard[]>(() => {
+    const cards = useMemo<CompanyTariffCardProps[]>(() => {
         if (!tariffs?.length) return []
 
         const currentName = normalizeTariffName(

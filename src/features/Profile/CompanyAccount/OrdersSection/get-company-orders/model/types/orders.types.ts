@@ -1,8 +1,8 @@
-import type { CompanyOrder } from "@/entities/Profile/Company/model/types/company.types"
+import type { Order } from "@/entities/Orders/model/type/order.types"
 
 export type CompanyOrdersResponse = {
     total: number
     page: number
     pageSize: number
-    orders: CompanyOrder[]
+    orders: Order[]
 }
