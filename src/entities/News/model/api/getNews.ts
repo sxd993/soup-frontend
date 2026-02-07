@@ -6,8 +6,15 @@ export const getNews = async (
     time?: NewsTimeParam,
     badge?: string,
 ): Promise<NewsItem[]> => {
-    const response = await fetch(buildNewsListUrl(time, badge), {
-        next: { revalidate: ISR_REVALIDATE_SECONDS },
-    })
-    return response.json()
+    try {
+        const response = await fetch(buildNewsListUrl(time, badge), {
+            next: { revalidate: ISR_REVALIDATE_SECONDS },
+        })
+        if (!response.ok) return []
+
+        const data: unknown = await response.json()
+        return Array.isArray(data) ? (data as NewsItem[]) : []
+    } catch {
+        return []
+    }
 }

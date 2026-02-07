@@ -3,11 +3,17 @@ import { ISR_REVALIDATE_SECONDS } from "@/shared/config/isr"
 import type { Blog } from "../types/blogs.types"
 
 export async function getBlogs(): Promise<Blog[]> {
-  const res = await fetch(`${API_BASE_URL}/blogs`, {
-    next: { revalidate: ISR_REVALIDATE_SECONDS },
-  })
-  if (!res.ok) throw new Error(`getBlogs failed: ${res.status}`)
-  return res.json()
+  try {
+    const res = await fetch(`${API_BASE_URL}/blogs`, {
+      next: { revalidate: ISR_REVALIDATE_SECONDS },
+    })
+    if (!res.ok) return []
+
+    const data: unknown = await res.json()
+    return Array.isArray(data) ? (data as Blog[]) : []
+  } catch {
+    return []
+  }
 }
 
 export async function getBlogById(id: string): Promise<Blog | null> {
