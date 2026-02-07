@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRegister } from '@/features/Auth/register/useRegister'
 import { useForm } from 'react-hook-form'
 import { RegisterFormValues, AUTH_MESSAGES } from '@/entities/Auth';
@@ -14,11 +14,16 @@ export const useRegisterForm = () => {
         register,
         handleSubmit,
         getValues,
+        setValue,
         watch,
         formState: { isSubmitting, errors },
     } = useForm<RegisterFormValues>({
         defaultValues: { role: 'client' },
     })
+
+    useEffect(() => {
+        setValue('role', 'client', { shouldValidate: true, shouldDirty: false })
+    }, [setValue])
 
     const watchedValues = watch()
     const isFormValid = validateRegisterForm(watchedValues)

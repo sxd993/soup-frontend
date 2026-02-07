@@ -20,6 +20,7 @@ export const RegisterForm = () => {
                     <input
                         type="radio"
                         value="client"
+                        defaultChecked
                         className="peer sr-only"
                         {...register('role', { required: true })}
                     />
