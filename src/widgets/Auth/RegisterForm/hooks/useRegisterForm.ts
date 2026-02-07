@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRegister } from '@/features/Auth/register/useRegister'
 import { useForm } from 'react-hook-form'
 import { RegisterFormValues, AUTH_MESSAGES } from '@/entities/Auth';
-import { validateRegisterForm } from '@/entities/Auth/model/lib/formValidators'
 import { useRouter } from 'next/navigation'
 import { getErrorMessage } from '@/shared/lib/error-handler'
 
@@ -14,19 +13,13 @@ export const useRegisterForm = () => {
         register,
         handleSubmit,
         getValues,
-        setValue,
-        watch,
-        formState: { isSubmitting, errors },
+        formState: { isSubmitting, errors, isValid },
     } = useForm<RegisterFormValues>({
+        mode: 'onSubmit',
         defaultValues: { role: 'client' },
     })
 
-    useEffect(() => {
-        setValue('role', 'client', { shouldValidate: true, shouldDirty: false })
-    }, [setValue])
-
-    const watchedValues = watch()
-    const isFormValid = validateRegisterForm(watchedValues)
+    const isFormValid = isValid
 
     // Функция отправки формы
     const onSubmit = (data: RegisterFormValues) => {

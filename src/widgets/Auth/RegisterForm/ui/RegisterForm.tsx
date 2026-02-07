@@ -4,7 +4,7 @@ import { Button, Input, RadioCircleIcon } from '@/shared/ui'
 import { useRegisterForm } from '../hooks/useRegisterForm'
 
 export const RegisterForm = () => {
-   const { handleSubmit, onSubmit, register, isBusy, errors, getValues, serverError, isFormValid } = useRegisterForm()
+   const { handleSubmit, onSubmit, register, errors, getValues, serverError } = useRegisterForm()
     return (
         <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
             {/* Ошибка сервера */}
@@ -20,7 +20,6 @@ export const RegisterForm = () => {
                     <input
                         type="radio"
                         value="client"
-                        defaultChecked
                         className="peer sr-only"
                         {...register('role', { required: true })}
                     />
@@ -115,7 +114,6 @@ export const RegisterForm = () => {
                 <Button
                     className="rounded-full px-8 py-2 flex justify-center cursor-pointer"
                     type="submit"
-                    disabled={isBusy || !isFormValid}
                 >
                     <p className="text-accent-senary font-semibold text-base leading-[140%]">
                         Создать аккаунт
