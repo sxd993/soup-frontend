@@ -7,7 +7,7 @@ export function useSession() {
     const queryClient = useQueryClient()
     
     // Проверяем, есть ли данные в кеше
-    const cachedSession = queryClient.getQueryData<AuthSession>(["session"])
+    const cachedSession = queryClient.getQueryData<AuthSession | null>(["session"])
     
     return useQuery<AuthSession>({
         queryKey: ["session"],
@@ -20,10 +20,10 @@ export function useSession() {
             return await fetchSessionFromToken(accessToken, AxiosClient);
         },
         retry: false,
-        initialData: cachedSession ?? undefined,
+        initialData: cachedSession,
         staleTime: Infinity,
         refetchOnMount: false,
         refetchOnWindowFocus: false,
-        enabled: !cachedSession,
+        enabled: cachedSession === undefined,
     });
 }

@@ -9,13 +9,6 @@ export const LoginForm = () => {
 
   return (
     <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
-      {/* Ошибка сервера */}
-      {serverError && (
-        <div className="p-3 rounded-lg bg-red-50 border border-red-200">
-          <p className="text-sm text-red-600 text-center">{serverError}</p>
-        </div>
-      )}
-
       {/* Почта */}
       <Input
         type="email"
@@ -54,8 +47,15 @@ export const LoginForm = () => {
         </p>
       </Link>
 
+      {/* Ошибка сервера */}
+      {serverError && (
+        <div className="p-3 rounded-lg bg-red-50 border border-red-200">
+          <p className="text-sm text-red-600 text-center">{serverError}</p>
+        </div>
+      )}
+
       {/* Кнопка входа */}
-      <div className="flex justify-center mt-5">
+      <div className="flex justify-center">
         <Button
           className="rounded-full px-19 py-2 flex justify-center cursor-pointer"
           type="submit"

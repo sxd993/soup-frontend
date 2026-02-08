@@ -13,10 +13,10 @@ export const useLogout = () => {
             return response.data
         },
         onSuccess: () => {
-            // Очищаем сессию из кеша
-            queryClient.setQueryData<AuthSession>(['session'], null)
-            // Очищаем весь кеш React Query
+            // Сначала очищаем весь кеш React Query
             queryClient.clear()
+            // Сразу помечаем сессию как "нет пользователя", чтобы не запускать refetch и форма входа показалась сразу
+            queryClient.setQueryData<AuthSession | null>(['session'], null)
         }
     })
 }

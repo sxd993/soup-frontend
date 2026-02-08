@@ -7,13 +7,6 @@ export const RegisterForm = () => {
    const { handleSubmit, onSubmit, register, errors, getValues, serverError } = useRegisterForm()
     return (
         <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
-            {/* Ошибка сервера */}
-            {serverError && (
-                <div className="p-3 rounded-lg bg-red-50 border border-red-200">
-                    <p className="text-sm text-red-600 text-center">{serverError}</p>
-                </div>
-            )}
-            
             {/* Роль */}
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
                 <label className="flex items-center gap-2 cursor-pointer">
@@ -109,8 +102,15 @@ export const RegisterForm = () => {
                 </p>
             )}
 
+            {/* Ошибка сервера */}
+            {serverError && (
+                <div className="p-3 rounded-lg bg-red-50 border border-red-200">
+                    <p className="text-sm text-red-600 text-center">{serverError}</p>
+                </div>
+            )}
+
             {/* Создать аккаунт */}
-            <div className="flex justify-center mt-5">
+            <div className="flex justify-center">
                 <Button
                     className="rounded-full px-8 py-2 flex justify-center cursor-pointer"
                     type="submit"
