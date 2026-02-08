@@ -8,10 +8,13 @@ export const HeroSection = () => {
       className="relative rounded-[40px] overflow-hidden"
     >
       <Image
-        src="https://s3.twcstorage.ru/4b615622-soup/hero/background.png"
+        src="https://s3.twcstorage.ru/4b615622-soup/hero/background.webp"
         alt="Hero background"
         fill
         className="object-cover object-center"
+        priority
+        fetchPriority="high"
+        sizes="(min-width: 1024px) 1200px, (min-width: 768px) 900px, 100vw"
       />
       {/* Общий контейнер */}
       <div className="relative z-10 flex py-20 justify-between px-10 mt-20">
