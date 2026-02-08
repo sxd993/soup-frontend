@@ -1,10 +1,10 @@
 import { Suspense } from "react"
-import NewsItemClient from "./NewsItemClient"
+import { NewsItemPage } from "@/widgets/News"
 
-export default function NewsItemPage() {
+export default function NewsItemsPage() {
   return (
     <Suspense fallback={null}>
-      <NewsItemClient />
+      <NewsItemPage />
     </Suspense>
   )
 }

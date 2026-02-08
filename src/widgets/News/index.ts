@@ -3,3 +3,6 @@ export { NewsFeedSection } from './ui/NewsFeedSection';
 export { NewsFiltersSection } from './ui/NewsFiltersSection';
 export { BadgeFilter } from './ui/BadgeFilter';
 export { NewsSidePanelCard } from './ui/NewsSidePanelCard';
+export { NewsItemPage } from './NewsItemPage';
+export { NewsPage, parseNewsPageSearchParams } from './NewsPage';
+export type { NewsPageParams } from './NewsPage';

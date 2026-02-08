@@ -6,7 +6,8 @@ import { CompanyReviewsFilter } from "@/features/Profile/CompanyAccount/ReviewsS
 import { CompanyReviewsHeader } from "./CompanyReviewsHeader"
 import { ReviewsPaginationControls } from "@/features/Profile/CompanyAccount/ReviewsSection/reviews-pagination/ui/ReviewsPaginationControls"
 import { useCompanyReviewsList } from "@/features/Profile/CompanyAccount/ReviewsSection/reviews-pagination/model/hooks/useCompanyReviewsList"
-import { ErrorState, LoadingState } from "@/shared/ui"
+import { CompanyReviewsSkeleton } from "@/features/Profile/CompanyAccount/ReviewsSection/get-company-reviews/ui/CompanyReviewsSkeleton"
+import { StateProvider } from "@/app/providers/State/StateProvider"
 
 export const CompanyReviewsSection = () => {
     const { reviews, isLoading, isError, totalReviews, pagination } = useCompanyReviewsList(4)
@@ -18,20 +19,21 @@ export const CompanyReviewsSection = () => {
                 <CompanyReviewsFilter />
             </div>
 
-            {isLoading ? (
-                <LoadingState className="min-h-125" message="Загружаем отзывы..." />
-            ) : isError ? (
-                <ErrorState className="min-h-125" message="Не удалось загрузить отзывы" />
-            ) : totalReviews === 0 ? (
-                <CompanyReviewsEmpty />
-            ) : (
-                // Отзывы
+            <StateProvider
+                isLoading={isLoading}
+                isError={isError}
+                isEmpty={totalReviews === 0}
+                loadingMessage="Загружаем отзывы..."
+                errorMessage="Не удалось загрузить отзывы"
+                emptyComponent={<CompanyReviewsEmpty />}
+                loadingComponent={<CompanyReviewsSkeleton />}
+            >
                 <div className="flex flex-col gap-6">
                     {reviews.map((review) => (
                         <ReviewsCard key={review.id} review={review} />
                     ))}
                 </div>
-            )}
+            </StateProvider>
             {!isLoading && !isError && totalReviews > 0 && (
                 <ReviewsPaginationControls
                     currentPage={pagination.currentPage}

@@ -5,6 +5,7 @@ import { useSession } from "@/entities/Session"
 import { useCompanyAccountForm, useCompanyProfile } from "../model"
 import { Button } from "@/shared/ui";
 import { CompanyAccountFormSkeleton } from "./CompanyAccountFormSkeleton";
+import { StateProvider } from "@/app/providers/State/StateProvider";
 
 export const CompanyAccountForm = () => {
 
@@ -13,7 +14,7 @@ export const CompanyAccountForm = () => {
     const userId = session?.user?.id
 
     // Компания пользователя
-    const { data: company, isLoading: isCompanyLoading } = useCompanyProfile(userId)
+    const { data: company, isLoading: isCompanyLoading, isError: isCompanyError } = useCompanyProfile(userId)
 
     // Использование кастомного хука для управления формой
     const { form, handleSubmit, isPending } = useCompanyAccountForm(company, userId)
@@ -21,11 +22,13 @@ export const CompanyAccountForm = () => {
     // Показ скелетона, если данные сессии или компании еще загружаются
     const showSkeleton = isSessionLoading || (isCompanyLoading && !company)
 
-    if (showSkeleton) {
-        return <CompanyAccountFormSkeleton />
-    }
-
     return (
+        <StateProvider
+            isLoading={showSkeleton}
+            isError={isCompanyError}
+            loadingComponent={<CompanyAccountFormSkeleton />}
+            errorMessage="Не удалось загрузить данные компании"
+        >
         <FormProvider {...form}>
             <form className="flex w-full flex-col gap-5" noValidate onSubmit={handleSubmit}>
 
@@ -52,5 +55,6 @@ export const CompanyAccountForm = () => {
                 </Button>
             </form>
         </FormProvider>
+        </StateProvider>
     )
 }

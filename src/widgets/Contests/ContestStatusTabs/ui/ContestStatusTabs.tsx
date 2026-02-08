@@ -10,7 +10,8 @@ type ContestStatusTabsProps = {
 };
 
 export const ContestStatusTabs = ({ status }: ContestStatusTabsProps) => {
-    const { items, selectedItem, isOpen, setIsOpen, handleSelect } = useContestStatusTabs(status);
+    const { items, selectedItem, isOpen, setIsOpen, handleSelect, getStatusHref } =
+        useContestStatusTabs(status);
 
     return (
         <>
@@ -40,13 +41,13 @@ export const ContestStatusTabs = ({ status }: ContestStatusTabsProps) => {
 
             <div className="hidden md:inline-flex text-[16px] font-semibold">
                 <Link
-                    href="/contests?status=current"
+                    href={getStatusHref("current")}
                     className={`rounded-[40px] px-6 py-2 ${status === "current" ? "bg-white text-secondary" : "text-accent-septenary"}`}
                 >
                     Текущие
                 </Link>
                 <Link
-                    href="/contests?status=past"
+                    href={getStatusHref("past")}
                     className={`rounded-[40px] px-6 py-2 ${status === "past" ? "bg-white text-secondary" : "text-accent-septenary"}`}
                 >
                     Прошедшие

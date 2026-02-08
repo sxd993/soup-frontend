@@ -1,10 +1,10 @@
 import { Suspense } from "react"
-import BlogsItemClient from "./BlogsItemClient"
+import { BlogItemPage } from "@/widgets/Blogs"
 
 export default function BlogsItemPage() {
   return (
     <Suspense fallback={null}>
-      <BlogsItemClient />
+      <BlogItemPage />
     </Suspense>
   )
 }

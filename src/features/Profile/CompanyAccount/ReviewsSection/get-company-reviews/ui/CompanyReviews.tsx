@@ -1,11 +1,12 @@
 "use client"
 
 import { useMemo } from "react"
-import { ErrorState, LoadingState } from "@/shared/ui"
+import { StateProvider } from "@/app/providers/State/StateProvider"
 import { ReviewsCard } from "@/entities/Profile/Company/ui/ReviewsCard"
 import { useReviews } from "../model/hooks/useReviews"
 import { resolveReviewsData } from "../model/lib/resolveReviewsData"
 import { CompanyReviewsEmpty } from "./CompanyReviewsEmpty"
+import { CompanyReviewsSkeleton } from "./CompanyReviewsSkeleton"
 import { sortReviews } from "../model/lib/sortReviews"
 import { useCompanyReviewsFilterStore } from "@/features/Profile/CompanyAccount/ReviewsSection"
 
@@ -19,23 +20,21 @@ export const CompanyReviews = () => {
         [reviews, selectedSortId]
     )
 
-    if (isLoading) {
-        return <LoadingState className="min-h-125" message="Загружаем отзывы..." />
-    }
-
-    if (isError) {
-        return <ErrorState className="min-h-125" message="Не удалось загрузить отзывы" />
-    }
-
-    if (sortedReviews.length === 0) {
-        return <CompanyReviewsEmpty />
-    }
-
     return (
-        <div className="flex flex-col gap-6">
-            {sortedReviews.map((review) => (
-                <ReviewsCard key={review.id} review={review} />
-            ))}
-        </div>
+        <StateProvider
+            isLoading={isLoading}
+            isError={isError}
+            isEmpty={sortedReviews.length === 0}
+            loadingMessage="Загружаем отзывы..."
+            errorMessage="Не удалось загрузить отзывы"
+            emptyComponent={<CompanyReviewsEmpty />}
+            loadingComponent={<CompanyReviewsSkeleton />}
+        >
+            <div className="flex flex-col gap-6">
+                {sortedReviews.map((review) => (
+                    <ReviewsCard key={review.id} review={review} />
+                ))}
+            </div>
+        </StateProvider>
     )
 }
