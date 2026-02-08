@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { useQuery } from "@tanstack/react-query"
 import { getCatalogCompanies } from "@/entities/Profile/Company/model/api/getCatalogCompanies"
+import { useCatalogFiltersStore } from "@/widgets/Catalog/Filters/model/store/useCatalogFiltersStore"
 
 const ITEMS_PER_PAGE = 4
 const SORT_OPTIONS = [
@@ -12,9 +13,27 @@ const SORT_OPTIONS = [
 
 export const useCatalogPagination = () => {
   const searchParams = useSearchParams()
+  const selectedFilters = useCatalogFiltersStore((state) => state.selectedFilters)
+  const filtersKey = useMemo(
+    () =>
+      selectedFilters
+        .map((item) => `${item.category}||${item.service}`)
+        .sort((a, b) => a.localeCompare(b, "ru", { sensitivity: "base" }))
+        .join(","),
+    [selectedFilters],
+  )
+  const [debouncedFiltersKey, setDebouncedFiltersKey] = useState(filtersKey)
+  const [debouncedFilters, setDebouncedFilters] = useState(selectedFilters)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedFiltersKey(filtersKey)
+      setDebouncedFilters(selectedFilters)
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [filtersKey, selectedFilters])
   const { data: items = [], isLoading, isError } = useQuery({
-    queryKey: ["catalog-companies"],
-    queryFn: getCatalogCompanies,
+    queryKey: ["catalog-companies", debouncedFiltersKey],
+    queryFn: () => getCatalogCompanies(debouncedFilters),
     staleTime: 5 * 60 * 1000,
   })
   const [selectedSortId, setSelectedSortId] = useState<number>(SORT_OPTIONS[0].id)

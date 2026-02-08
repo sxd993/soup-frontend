@@ -1,17 +1,34 @@
+'use client'
+
+import { useState } from 'react'
 import { AdsBanner } from '@/shared/ui'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export const HeroSection = () => {
+  const [isLoaded, setIsLoaded] = useState(false)
+
   return (
     <div
       className="relative rounded-[40px] overflow-hidden"
     >
+      <div
+        className={`absolute inset-0 z-0 transition-opacity duration-500 ${
+          isLoaded ? 'opacity-0' : 'opacity-100'
+        }`}
+        aria-hidden="true"
+      >
+        <div className="h-full w-full animate-pulse bg-gradient-to-r from-[#2f2f2f] via-[#3a3a3a] to-[#2f2f2f]" />
+      </div>
       <Image
-        src="https://s3.twcstorage.ru/4b615622-soup/hero/background.png"
+        src="https://s3.twcstorage.ru/4b615622-soup/hero/background.webp"
         alt="Hero background"
         fill
         className="object-cover object-center"
+        priority
+        fetchPriority="high"
+        sizes="(min-width: 1024px) 1200px, (min-width: 768px) 900px, 100vw"
+        onLoadingComplete={() => setIsLoaded(true)}
       />
       {/* Общий контейнер */}
       <div className="relative z-10 flex py-20 justify-between px-10 mt-20">
