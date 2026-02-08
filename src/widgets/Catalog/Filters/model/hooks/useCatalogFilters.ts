@@ -18,9 +18,12 @@ export const useCatalogFilters = () => {
   })
   const [regionQuery, setRegionQuery] = useState("")
   const [selectedRegionIds, setSelectedRegionIds] = useState<number[]>([])
-  const [selectedSectionItemIds, setSelectedSectionItemIds] = useState<string[]>([])
   const selectedService = useCatalogFiltersStore((state) => state.selectedService)
   const clearSelectedService = useCatalogFiltersStore((state) => state.clearSelectedService)
+  const selectedFilters = useCatalogFiltersStore((state) => state.selectedFilters)
+  const toggleSelectedFilter = useCatalogFiltersStore((state) => state.toggleSelectedFilter)
+  const addSelectedFilter = useCatalogFiltersStore((state) => state.addSelectedFilter)
+  const clearSelectedFilters = useCatalogFiltersStore((state) => state.clearSelectedFilters)
 
   const toggleSection = (sectionId: string) => {
     setOpenSectionIds((prev) => {
@@ -46,19 +49,34 @@ export const useCatalogFilters = () => {
     )
   }
 
+  const sectionItemMap = useMemo(() => {
+    const map = new Map<string, { category: string; service: string }>()
+    sections.forEach((section) => {
+      section.items.forEach((item) => {
+        map.set(item.id, { category: section.label, service: item.label })
+      })
+    })
+    return map
+  }, [sections])
+
+  const selectedSectionItemIds = useMemo(
+    () => selectedFilters.map((item) => `${item.category}-${item.service}`),
+    [selectedFilters],
+  )
+
   const toggleSectionItem = (id: string) => {
-    setSelectedSectionItemIds((prev) =>
-      prev.includes(id) ? prev.filter((value) => value !== id) : [...prev, id],
-    )
+    const target = sectionItemMap.get(id)
+    if (!target) return
+    toggleSelectedFilter(target)
   }
 
   const resetAll = () => {
     setSelectedRegionIds([])
-    setSelectedSectionItemIds([])
+    clearSelectedFilters()
     setRegionQuery("")
   }
 
-  const isResetDisabled = selectedRegionIds.length === 0 && selectedSectionItemIds.length === 0
+  const isResetDisabled = selectedRegionIds.length === 0 && selectedFilters.length === 0
 
   const iconMap = ICONS_BY_LABEL as Record<string, ComponentType<{ isActive?: boolean }>>
 
@@ -69,9 +87,7 @@ export const useCatalogFilters = () => {
     const targetItem = targetSection.items.find((item) => item.label === selectedService.service)
     if (!targetItem) return
 
-    setSelectedSectionItemIds((prev) =>
-      prev.includes(targetItem.id) ? prev : [...prev, targetItem.id],
-    )
+    addSelectedFilter({ category: targetSection.label, service: targetItem.label })
     setOpenSectionIds((prev) => {
       if (prev.has(targetSection.id)) return prev
       const next = new Set(prev)

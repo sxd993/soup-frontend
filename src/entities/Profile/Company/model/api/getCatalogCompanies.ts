@@ -9,9 +9,28 @@ type CatalogCompanyResponse = {
   logo_url?: string | null
 }
 
-export const getCatalogCompanies = async (): Promise<CompanyCardData[]> => {
+type CatalogCompanyFilter = {
+  category: string
+  service: string
+}
+
+export const getCatalogCompanies = async (
+  filters: CatalogCompanyFilter[] = [],
+): Promise<CompanyCardData[]> => {
   try {
-    const response = await AxiosClient.get<CatalogCompanyResponse[]>("/companies")
+    const filtersParam =
+      filters.length > 0
+        ? filters
+            .map(
+              (filter) =>
+                `${encodeURIComponent(filter.category)}||${encodeURIComponent(filter.service)}`,
+            )
+            .join(",")
+        : undefined
+
+    const response = await AxiosClient.get<CatalogCompanyResponse[]>("/companies", {
+      params: filtersParam ? { filters: filtersParam } : undefined,
+    })
     const items = Array.isArray(response.data) ? response.data : []
 
     return items.map((company, index) => ({
