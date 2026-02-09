@@ -28,7 +28,7 @@ export const CompanyNavigationSideBarMobile = () => {
     return (
         <div className="md:hidden">
             <button
-                className="fixed left-0 z-50 flex h-12 w-8 -translate-y-1/2 items-center justify-center rounded-r-full bg-white shadow-lg transition-colors"
+                className="fixed left-0 z-50 flex h-12 w-8 -translate-y-1/2 items-center justify-center rounded-r-full bg-white transition-colors"
                 type="button"
                 onClick={toggle}
                 aria-label="Открыть меню"
@@ -44,7 +44,7 @@ export const CompanyNavigationSideBarMobile = () => {
                 aria-hidden="true"
             />
             <div
-                className={`fixed left-0 top-0 z-50 h-full w-72 bg-accent-octonary px-4 py-6 shadow-lg transition-transform duration-300 ${
+                className={`fixed left-0 top-0 z-50 h-full w-72 bg-accent-octonary px-4 py-6 transition-transform duration-300 ${
                     isOpen ? 'translate-x-0' : '-translate-x-full'
                 }`}
             >

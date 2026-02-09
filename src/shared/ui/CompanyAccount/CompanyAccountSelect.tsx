@@ -12,7 +12,7 @@ interface CompanyAccountSelectProps {
 
 export const CompanyAccountSelect = ({ options, className = "" }: CompanyAccountSelectProps) => {
     return (
-        <div className={`bg-white rounded-[10px] shadow-md border border-[#e3e3e3] overflow-hidden w-[180px] ${className}`}>
+        <div className={`bg-white rounded-[10px] border border-[#e3e3e3] overflow-hidden w-[180px] ${className}`}>
             {options.map((option) => (
                 <button
                     key={option.id}

@@ -10,7 +10,7 @@ export function BlockTypeList({ onAddBlock }: BlockTypeListProps) {
   const { blockOptions } = useBlockOptions()
 
   return (
-    <div className="bg-white rounded-[20px] p-2 shadow-sm shrink-0 w-full lg:w-auto lg:min-w-[240px]">
+    <div className="bg-white rounded-[20px] p-2 shrink-0 w-full lg:w-auto lg:min-w-[240px]">
       <div className="flex flex-col">
         {blockOptions.map(({ type, label }) => (
           <button

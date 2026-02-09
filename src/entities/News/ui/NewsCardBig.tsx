@@ -36,7 +36,7 @@ export const NewsCardBig = ({ className, item }: NewsCardBigProps = {}) => {
                             <Badge badge={item.category} />
                         )}
                     </div>
-                    <div className="rounded-[20px] bg-white p-5 pb-15 shadow-sm">
+                    <div className="rounded-[20px] bg-white p-5 pb-15">
                         <h3 className="lg:text-[22px] text-xl font-bold leading-snug text-accent-secondary">
                             {item.title}
                         </h3>

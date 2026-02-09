@@ -37,7 +37,7 @@ export const CompanyReviewsFilter = () => {
             </button>
 
             {isOpen && (
-                <div className="absolute top-full left-0 z-10 mt-2 w-[260px] overflow-hidden rounded-[18px] border border-[#E5E5E5] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+                <div className="absolute top-full left-0 z-10 mt-2 w-[260px] overflow-hidden rounded-[18px] border border-[#E5E5E5] bg-white">
                     {REVIEW_SORT_OPTIONS.map((option, index) => {
                         const isSelected = option.id === selectedSortId
                         return (

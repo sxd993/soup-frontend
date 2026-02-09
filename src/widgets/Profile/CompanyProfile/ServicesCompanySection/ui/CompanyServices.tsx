@@ -19,7 +19,7 @@ export const CompanyServices = () => {
       </div>
 
       {categoryServices.selectedCategories.map((category) => (
-        <div key={category.id} className="rounded-[30px] bg-white p-6 shadow-sm">
+        <div key={category.id} className="rounded-[30px] bg-white p-6">
           <h2 className="text-[26px] font-semibold text-secondary">{category.title}</h2>
 
           <div className="mt-6 flex flex-col gap-4">
@@ -85,7 +85,7 @@ export const CompanyServices = () => {
         </Button>
 
         {categoryMenu.isOpen ? (
-          <div className="absolute left-0 top-full z-10 mt-2 w-full overflow-hidden rounded-[18px] border border-[#E5E5E5] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+          <div className="absolute left-0 top-full z-10 mt-2 w-full overflow-hidden rounded-[18px] border border-[#E5E5E5] bg-white">
             <StateProvider
               isLoading={request.isLoading}
               isError={request.isError}

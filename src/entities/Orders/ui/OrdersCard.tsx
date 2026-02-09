@@ -10,7 +10,7 @@ export const OrdersCard = ({ order }: OrdersCardProps) => {
     const { title, region, price, createdAt, logoUrl, hasLogo, initials } = useOrdersCard(order)
 
     return (
-        <article className="rounded-[20px] bg-white p-5 shadow-sm transition-shadow duration-200 hover:shadow-md">
+        <article className="rounded-[20px] bg-white p-5">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-start gap-4">
                     <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-[#F3EDE3] flex items-center justify-center text-secondary font-semibold">
