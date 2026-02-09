@@ -17,7 +17,7 @@ const BLOG_MENU_IDS = {
 function toBlog(item: CompanyBlogItem): Blog {
   return {
     id: item.id,
-    companyId: 0,
+    companyId: item.companyId,
     title: item.title,
     description: item.description,
     imageUrl: item.imageUrl,

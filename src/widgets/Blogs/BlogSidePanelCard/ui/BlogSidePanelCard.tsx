@@ -16,35 +16,45 @@ export const BlogSidePanelCard = ({ item: blog, href }: BlogSidePanelCardProps) 
   return (
     <article className="group flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          {blog.company?.logo_url && (
-            <img src={blog.company.logo_url} alt="" className="w-10 h-10 rounded-[10px] object-cover" />
-          )}
-          <div className="flex flex-col justify-between">
-            <h4 className="font-semibold text-base text-secondary">{blog.company?.name}</h4>
-            <span className="text-sm text-accent-quinary">{date}</span>
+        {blog.company ? (
+          <Link href={`/catalog/company?id=${blog.companyId}`} className="flex items-center gap-2">
+            {blog.company?.logo_url && (
+              <img src={blog.company.logo_url} alt="" className="w-10 h-10 rounded-[10px] object-cover" />
+            )}
+            <div className="flex flex-col justify-between">
+              <h4 className="font-semibold text-base text-secondary">{blog.company?.name}</h4>
+              <span className="text-sm text-accent-quinary">{date}</span>
+            </div>
+          </Link>
+        ) : (
+          <div className="flex items-center gap-2">
+            <div className="flex flex-col justify-between">
+              <span className="text-sm text-accent-quinary">{date}</span>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {blog.imageUrl && (
-        <div className="relative w-full h-[144px] rounded-[20px] overflow-hidden">
+        <Link href={href} className="relative w-full h-[144px] rounded-[20px] overflow-hidden">
           <Image
             src={blog.imageUrl}
             alt={blog.title}
             fill
             className="object-cover"
           />
-        </div>
+        </Link>
       )}
 
-      <h3 className="text-[22px] font-bold text-secondary leading-[105%]">{blog.title}</h3>
-      <p className="text-[16px] font-semibold leading-[140%] text-secondary">{blog.description}</p>
+      <Link href={href} className="block">
+        <h3 className="text-[22px] font-bold text-secondary leading-[105%]">{blog.title}</h3>
+        <p className="text-[16px] font-semibold leading-[140%] text-secondary">{blog.description}</p>
+      </Link>
 
       <div className="flex justify-end">
         <Link
           href={href}
-          className="transition-all duration-300"
+          className="transition-opacity duration-300 opacity-0 group-hover:opacity-100"
         >
           <button
             type="button"

@@ -16,7 +16,7 @@ export const TopBlogCard = ({ blog, href, className }: TopBlogCardProps) => {
   return (
     <div className={`group flex flex-col lg:flex-row gap-5 items-center md:items-stretch ${className}`}>
       {blog.imageUrl && (
-        <div className="w-full flex justify-center md:w-auto overflow-hidden rounded-[40px]">
+        <Link href={href} className="w-full flex justify-center md:w-auto overflow-hidden rounded-[40px]">
           <Image
             width={797}
             height={500}
@@ -24,28 +24,38 @@ export const TopBlogCard = ({ blog, href, className }: TopBlogCardProps) => {
             alt={blog.title}
             className="max-w-full h-auto"
           />
-        </div>
+        </Link>
       )}
       <article className="flex-1 rounded-2xl flex flex-col justify-start gap-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            {blog.company?.logo_url && (
-              <img src={blog.company.logo_url} alt="" className="w-10 h-10 rounded-[10px] object-cover" />
-            )}
-            <div className="flex flex-col justify-between">
-              <h4 className="font-semibold text-base text-secondary">{blog.company?.name}</h4>
-              <span className="text-sm text-accent-quinary">{date}</span>
+          {blog.company ? (
+            <Link href={`/catalog/company?id=${blog.companyId}`} className="flex items-center gap-2">
+              {blog.company?.logo_url && (
+                <img src={blog.company.logo_url} alt="" className="w-10 h-10 rounded-[10px] object-cover" />
+              )}
+              <div className="flex flex-col justify-between">
+                <h4 className="font-semibold text-base text-secondary">{blog.company?.name}</h4>
+                <span className="text-sm text-accent-quinary">{date}</span>
+              </div>
+            </Link>
+          ) : (
+            <div className="flex items-center gap-2">
+              <div className="flex flex-col justify-between">
+                <span className="text-sm text-accent-quinary">{date}</span>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
-        <h3 className="text-[22px] font-bold text-secondary leading-[105%]">{blog.title}</h3>
-        <p className="text-[16px] font-semibold leading-[140%] text-secondary">{blog.description}</p>
+        <Link href={href} className="block">
+          <h3 className="text-[22px] font-bold text-secondary leading-[105%]">{blog.title}</h3>
+          <p className="text-[16px] font-semibold leading-[140%] text-secondary">{blog.description}</p>
+        </Link>
 
         <div className="flex justify-end">
           <Link
             href={href}
-            className="transition-all duration-300"
+            className="transition-opacity duration-300 opacity-0 group-hover:opacity-100"
           >
             <button
               type="button"

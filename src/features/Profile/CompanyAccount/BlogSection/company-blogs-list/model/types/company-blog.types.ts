@@ -3,6 +3,7 @@ export type CompanyBlogStatus = "all" | "published" | "drafts"
 export interface CompanyBlogItem {
   id: string
   type: "published" | "draft"
+  companyId: number
   title: string
   description: string
   imageUrl: string
