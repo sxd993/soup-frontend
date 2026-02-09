@@ -1,4 +1,5 @@
 export { getBlogs, getBlogById } from "./model/api/getBlogs"
+export { getCompanyBlogs } from "./model/api/getCompanyBlogs"
 export { TopBlogCard } from "./ui/TopBlogCard"
 export { BottomBlogCard } from "./ui/BottomBlogCard"
 export type { Blog } from "./model/types/blogs.types"

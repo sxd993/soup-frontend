@@ -21,8 +21,8 @@ export const CompanyHeader = ({
   onToggleRegions,
 }: CompanyHeaderProps) => {
   return (
-    <div className="rounded-[30px] bg-white p-6 shadow-sm">
-      <div className="flex items-start justify-between gap-6">
+    <div className="rounded-[30px] bg-white p-6">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
         <div className="flex gap-4">
           <div className="relative h-20 w-20 overflow-hidden rounded-2xl bg-[#F6F3EE] p-2">
             {logoUrl ? (
@@ -38,7 +38,7 @@ export const CompanyHeader = ({
             )}
           </div>
           <div className="flex flex-col gap-2">
-            <h1 className="text-[28px] font-semibold text-secondary">{name}</h1>
+            <h1 className="text-2xl font-semibold text-secondary md:text-[28px]">{name}</h1>
             <p className="text-sm text-accent-quinary">
               {regions[0] ?? "Регион не указан"}
             </p>

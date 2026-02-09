@@ -32,7 +32,7 @@ export const CompanyContactsSection = ({ data }: CompanyContactsSectionProps) =>
   }
 
   return (
-    <div className="rounded-[26px] bg-white p-5 shadow-sm">
+    <div className="rounded-[26px] bg-white p-5">
       <h3 className="text-lg font-semibold text-secondary">Контакты</h3>
       <div className="mt-4 flex flex-col gap-4 text-sm text-secondary">
         {data.phones.map((item) => (
@@ -41,7 +41,7 @@ export const CompanyContactsSection = ({ data }: CompanyContactsSectionProps) =>
             href={item.href}
             className="flex items-center gap-3 text-sm text-secondary hover:text-secondary/80 transition-colors"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#C5C2C2] opacity-80">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#BFBFBF]">
               <PhoneIcon />
             </span>
             <span className="break-words">{item.label}</span>
@@ -54,7 +54,7 @@ export const CompanyContactsSection = ({ data }: CompanyContactsSectionProps) =>
             href={item.href}
             className="flex items-center gap-3 text-sm text-secondary hover:text-secondary/80 transition-colors"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#C5C2C2] opacity-80">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#BFBFBF]">
               <EmailIcon />
             </span>
             <span className="break-words">{item.label}</span>
@@ -68,7 +68,7 @@ export const CompanyContactsSection = ({ data }: CompanyContactsSectionProps) =>
             rel="noreferrer"
             className="flex items-center gap-3 text-sm text-secondary hover:text-secondary/80 transition-colors"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#C5C2C2] opacity-80">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#BFBFBF] [&_path]:fill-[#BFBFBF]">
               <WebSiteIcon />
             </span>
             <span className="break-words">{data.website.label}</span>
@@ -96,7 +96,7 @@ export const CompanyContactsSection = ({ data }: CompanyContactsSectionProps) =>
           <p className="text-base font-semibold text-secondary">Адрес</p>
           {data.address ? (
             <div className="mt-3 flex items-start gap-3 text-sm text-secondary">
-              <span className="mt-1 flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#C5C2C2] opacity-80">
+              <span className="mt-1 flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#BFBFBF] [&_path]:fill-[#BFBFBF]">
                 <AddressIcon />
               </span>
               <span className="break-words">{data.address}</span>

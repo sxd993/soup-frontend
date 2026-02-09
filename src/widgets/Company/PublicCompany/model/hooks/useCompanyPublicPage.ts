@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type ComponentType } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { getCompanyPublic } from "@/entities/Profile/Company/model/api/getCompanyPublic"
+import { getCompanyBlogs } from "@/entities/Blogs"
 import type { CompanyPublicResponse } from "@/entities/Profile/Company/model/types/company-public.types"
 import { ICONS_BY_LABEL } from "@/widgets/Catalog/Filters/const/iconsByLabel"
 
@@ -9,6 +10,12 @@ export const useCompanyPublicPage = (companyId: string) => {
   const { data, isLoading, isError } = useQuery<CompanyPublicResponse>({
     queryKey: ["company-public", companyId],
     queryFn: () => getCompanyPublic(companyId),
+    enabled: Boolean(companyId),
+    staleTime: 3 * 60 * 1000,
+  })
+  const { data: blogs = [], isLoading: isBlogsLoading, isError: isBlogsError } = useQuery({
+    queryKey: ["company-blogs-public", companyId],
+    queryFn: () => getCompanyBlogs(companyId),
     enabled: Boolean(companyId),
     staleTime: 3 * 60 * 1000,
   })
@@ -39,6 +46,16 @@ export const useCompanyPublicPage = (companyId: string) => {
   }
 
   const iconMap = ICONS_BY_LABEL as Record<string, ComponentType<{ isActive?: boolean }>>
+
+  const filteredBlogs = useMemo(() => {
+    const parsedCompanyId = Number(companyId)
+    const byCompany = Number.isFinite(parsedCompanyId)
+      ? blogs.filter((item) => item.companyId === parsedCompanyId)
+      : blogs
+    return [...byCompany].sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    )
+  }, [blogs, companyId])
 
   const contactsData = useMemo(() => {
     if (!company) {
@@ -113,5 +130,8 @@ export const useCompanyPublicPage = (companyId: string) => {
     toggleSection,
     iconMap,
     contactsData,
+    blogs: filteredBlogs,
+    isBlogsLoading,
+    isBlogsError,
   }
 }

@@ -11,7 +11,7 @@ export const CompanyCard = ({ item }: CompanyCardProps) => {
   const hasLogo = Boolean(item.logoUrl)
 
   return (
-    <article className="rounded-3xl bg-white p-6 shadow-sm">
+    <article className="rounded-3xl bg-white p-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
         <div className="flex gap-4">
           <div className="relative h-16 w-16 overflow-hidden rounded-2xl bg-[#F6F3EE] p-2">

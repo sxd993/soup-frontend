@@ -20,7 +20,7 @@ export const CompanyServicesSection = ({
         const isOpen = openSectionIds.has(section.category)
         const Icon = iconMap[section.category]
         return (
-          <div key={section.category} className="rounded-[26px] bg-white p-5 shadow-sm">
+          <div key={section.category} className="rounded-[26px] bg-white p-5">
             <button
               type="button"
               onClick={() => toggleSection(section.category)}

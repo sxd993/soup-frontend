@@ -34,6 +34,9 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
     toggleSection,
     iconMap,
     contactsData,
+    blogs,
+    isBlogsLoading,
+    isBlogsError,
   } = useCompanyPublicPage(companyId)
 
   return (
@@ -72,14 +75,16 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
             ) : null}
 
             {activeTab === "reviews" ? <CompanyReviewsSection /> : null}
-            {activeTab === "blog" ? <CompanyBlogSection /> : null}
+            {activeTab === "blog" ? (
+              <CompanyBlogSection blogs={blogs} isLoading={isBlogsLoading} isError={isBlogsError} />
+            ) : null}
             {activeTab === "contacts" ? (
               <CompanyContactsSection data={contactsData} />
             ) : null}
           </div>
 
           <aside className="flex flex-col gap-6">
-            <div className="rounded-[26px] bg-white p-5 shadow-sm">
+            <div className="rounded-[26px] bg-white p-5">
               <h3 className="text-lg font-semibold text-secondary">Похожие компании</h3>
               <div className="mt-4 flex flex-col gap-4">
                 {Array.from({ length: 5 }).map((_, index) => (
@@ -94,7 +99,7 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
               </div>
             </div>
 
-            <div className="rounded-[26px] bg-white p-4 shadow-sm">
+            <div className="rounded-[26px] bg-white p-4">
               <AdsBanner hasDescription={true} />
             </div>
           </aside>
