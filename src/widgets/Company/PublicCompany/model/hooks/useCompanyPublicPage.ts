@@ -40,6 +40,61 @@ export const useCompanyPublicPage = (companyId: string) => {
 
   const iconMap = ICONS_BY_LABEL as Record<string, ComponentType<{ isActive?: boolean }>>
 
+  const contactsData = useMemo(() => {
+    if (!company) {
+      return {
+        phones: [] as { label: string; href: string }[],
+        emails: [] as { label: string; href: string }[],
+        website: null as { label: string; href: string } | null,
+        socials: [] as { key: string; href: string }[],
+        address: "",
+      }
+    }
+
+    const phones = (Array.isArray(company.phones) ? company.phones : [])
+      .map((item) => item?.phone?.trim())
+      .filter((value): value is string => Boolean(value))
+      .map((phone) => ({ label: phone, href: `tel:${phone.replace(/\\s+/g, "")}` }))
+
+    const emailsList = new Set<string>()
+    const emails = (Array.isArray(company.emails) ? company.emails : [])
+      .map((email) => email?.trim())
+      .filter((value): value is string => Boolean(value))
+    emails.forEach((email) => emailsList.add(email))
+    if (company.email?.trim()) {
+      emailsList.add(company.email.trim())
+    }
+    const dedupedEmails = Array.from(emailsList).map((email) => ({
+      label: email,
+      href: `mailto:${email}`,
+    }))
+
+    const socialLinks = company.socialLinks ?? {}
+    const normalizedWebsite = socialLinks.website?.trim()
+    const websiteHref = normalizedWebsite
+      ? /^https?:\/\//i.test(normalizedWebsite)
+        ? normalizedWebsite
+        : `https://${normalizedWebsite}`
+      : ""
+
+    const socials: { key: string; href: string }[] = []
+    if (socialLinks.telegram) socials.push({ key: "telegram", href: socialLinks.telegram })
+    if (socialLinks.whatsapp) socials.push({ key: "whatsapp", href: socialLinks.whatsapp })
+    if (socialLinks.vk) socials.push({ key: "vk", href: socialLinks.vk })
+    if (socialLinks.youtube) socials.push({ key: "youtube", href: socialLinks.youtube })
+    if (socialLinks.yandexDzen) socials.push({ key: "yandexDzen", href: socialLinks.yandexDzen })
+
+    return {
+      phones,
+      emails: dedupedEmails,
+      website: normalizedWebsite
+        ? { label: normalizedWebsite, href: websiteHref }
+        : null,
+      socials,
+      address: company.address ?? "",
+    }
+  }, [company])
+
   useEffect(() => {
     if (services.length === 0) return
     setOpenSectionIds((prev) => (prev.size === 0 ? new Set([services[0].category]) : prev))
@@ -57,5 +112,6 @@ export const useCompanyPublicPage = (companyId: string) => {
     openSectionIds,
     toggleSection,
     iconMap,
+    contactsData,
   }
 }

@@ -1,0 +1,6 @@
+export { CompanyHeader } from "./CompanyHeader"
+export { CompanyTabs } from "./CompanyTabs"
+export { CompanyServicesSection } from "./CompanyServicesSection"
+export { CompanyReviewsSection } from "./CompanyReviewsSection"
+export { CompanyBlogSection } from "./CompanyBlogSection"
+export { CompanyContactsSection } from "./CompanyContactsSection"
