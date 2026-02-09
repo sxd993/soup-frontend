@@ -5,32 +5,38 @@ import { useCompanyRegionsSelect } from "../../model/hooks/useCompanyRegionsSele
 export const CompanyRegionsSelect = () => {
     const {
         query,
-        selected,
         setQuery,
+        inputRef,
+        isOpen,
+        selected,
         removeRegion,
-        filteredRegions,
-        handleSelect,
+        dropdownRegions,
+        isDropdownVisible,
+        openDropdown,
+        handleSelectRegion,
     } = useCompanyRegionsSelect()
 
     return (
         <div className="flex flex-col gap-3">
             <div className="rounded-[10px] border border-[#c5c2c2] pl-3.75 pt-3.75 pb-4.25 pr-2.5">
                 <input
+                    ref={inputRef}
                     type="text"
-                    placeholder="Введите регион"
+                    placeholder="Выберите регион"
                     className="outline-none w-full text-base placeholder:text-[#c5c2c2]"
                     value={query}
+                    onFocus={openDropdown}
+                    onClick={openDropdown}
                     onChange={(event) => setQuery(event.target.value)}
                 />
-
-                {filteredRegions.length > 0 && (
+                {isOpen && isDropdownVisible && (
                     <div className="mt-5 flex flex-col gap-2 max-h-40 overflow-auto">
-                        {filteredRegions.map((region) => (
+                        {dropdownRegions.map((region) => (
                             <button
                                 key={region.id}
                                 type="button"
                                 className="text-left text-sm text-secondary hover:text-primary"
-                                onClick={() => handleSelect(region)}
+                                onClick={() => handleSelectRegion(region)}
                             >
                                 {region.label}
                             </button>

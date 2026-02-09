@@ -29,7 +29,11 @@ const defaultValues: CompanyAccountFormValues = {
 }
 
 export const useCompanyAccountForm = (company?: CompanyProfileResponse, userId?: string) => {
-    const form = useForm<CompanyAccountFormValues>({ defaultValues })
+    const form = useForm<CompanyAccountFormValues>({
+        defaultValues,
+        mode: "onChange",
+        reValidateMode: "onChange",
+    })
     const queryClient = useQueryClient()
 
 

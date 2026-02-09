@@ -44,7 +44,7 @@ export const CompanyNavigationSideBarMobile = () => {
                 aria-hidden="true"
             />
             <div
-                className={`fixed left-0 top-0 z-50 h-full w-72 bg-[#EBE7DF] px-4 py-6 shadow-lg transition-transform duration-300 ${
+                className={`fixed left-0 top-0 z-50 h-full w-72 bg-accent-octonary px-4 py-6 shadow-lg transition-transform duration-300 ${
                     isOpen ? 'translate-x-0' : '-translate-x-full'
                 }`}
             >

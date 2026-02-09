@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import { useFormContext } from "react-hook-form"
+import { useEffect, useMemo, useRef, useState } from "react"
+import { useFormContext, useWatch } from "react-hook-form"
 import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types"
 import { useRegions } from "./useRegions"
 
@@ -19,46 +19,75 @@ export const useCompanyRegionsSelect = () => {
         setSelected,
         regions,
     } = useRegions()
-    const { setValue, watch } = useFormContext<CompanyAccountFormValues>()
-    const [formRegions, setFormRegions] = useState<string[]>([])
+    const { control, setValue, formState } = useFormContext<CompanyAccountFormValues>()
+    const [isOpen, setIsOpen] = useState(false)
+    const inputRef = useRef<HTMLInputElement | null>(null)
+    const rawFormRegions = useWatch({ control, name: "profile.regions" })
+    const formRegions = useMemo(() => normalizeRegions(rawFormRegions), [rawFormRegions])
 
     useEffect(() => {
-        const current = watch("profile.regions")
-        setFormRegions(normalizeRegions(current))
-        const subscription = watch((value, { name }) => {
-            if (name && !name.startsWith("profile.regions")) return
-            const next = value?.profile?.regions
-            setFormRegions(normalizeRegions(next))
-        })
-        return () => subscription.unsubscribe()
-    }, [watch])
+        setQuery("")
+    }, [setQuery])
 
     useEffect(() => {
+        if (!formState.submitCount) return
+        setIsOpen(false)
+        setQuery("")
+    }, [formState.submitCount, setQuery])
+
+    useEffect(() => {
+        if (!regions.length) return
+        const mapped = regions.filter((region) => formRegions.includes(region.label))
         const selectedLabels = selected.map((region) => region.label)
-        if (formRegions.length > 0 && selectedLabels.length === 0) return
-        const isSameSize = formRegions.length === selectedLabels.length
-        const isSame = isSameSize && formRegions.every((label) => selectedLabels.includes(label))
+        const isSameSize = mapped.length === selectedLabels.length
+        const isSame = isSameSize && mapped.every((region) => selectedLabels.includes(region.label))
         if (isSame) return
-        setValue("profile.regions", selectedLabels)
-    }, [formRegions, selected, setValue])
+        setSelected(mapped)
+    }, [formRegions, regions, selected, setSelected])
+
+    const openDropdown = () => {
+        setIsOpen(true)
+    }
 
     useEffect(() => {
-        if (!regions.length || formRegions.length === 0) return
-        const selectedLabels = new Set(selected.map((region) => region.label))
-        const missingLabels = formRegions.filter((label) => !selectedLabels.has(label))
-        if (missingLabels.length === 0) return
-        const mapped = regions.filter((region) => missingLabels.includes(region.label))
-        if (mapped.length > 0) {
-            setSelected([...selected, ...mapped])
-        }
-    }, [formRegions, regions, selected, setSelected])
+        if (!isOpen) return
+        inputRef.current?.focus()
+    }, [isOpen])
+
+    const handleSelectRegion = (region: Parameters<typeof handleSelect>[0]) => {
+        const alreadySelected = selected.some((item) => item.id === region.id)
+        const nextSelected = alreadySelected ? selected : [...selected, region]
+        setValue(
+            "profile.regions",
+            nextSelected.map((item) => item.label),
+            { shouldDirty: true }
+        )
+        handleSelect(region)
+        setIsOpen(false)
+    }
+
+    const handleRemoveRegion = (id: number) => {
+        const nextSelected = selected.filter((region) => region.id !== id)
+        setValue(
+            "profile.regions",
+            nextSelected.map((item) => item.label),
+            { shouldDirty: true }
+        )
+        removeRegion(id)
+    }
+
+    const isDropdownVisible = isOpen && filteredRegions.length > 0
 
     return {
         query,
-        selected,
         setQuery,
-        removeRegion,
-        filteredRegions,
-        handleSelect,
+        inputRef,
+        isOpen,
+        selected,
+        removeRegion: handleRemoveRegion,
+        dropdownRegions: filteredRegions,
+        isDropdownVisible,
+        openDropdown,
+        handleSelectRegion,
     }
 }

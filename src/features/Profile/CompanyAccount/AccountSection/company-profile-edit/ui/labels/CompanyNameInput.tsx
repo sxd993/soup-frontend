@@ -11,17 +11,17 @@ export const CompanyNameInput = () => {
     })
 
     return (
-        <div className="h-13.5 flex w-full justify-between gap-5 rounded-[10px] border border-[#c5c2c2] pl-3.75 pt-3.75 pb-4.25 pr-2.5 lg:flex-1">
+        <div className="flex h-13.5 w-full min-w-0 items-center justify-between gap-2 rounded-[10px] border border-[#c5c2c2] pl-3.75 pr-2.5 pt-3.75 pb-4.25 lg:flex-1">
             <input
                 {...registerName}
                 type="text"
                 placeholder="Название"
-                className="outline-none flex-1 placeholder:text-[#c5c2c2]"
+                className="min-w-0 flex-1 outline-none placeholder:text-[#c5c2c2]"
                 maxLength={100}
             />
-            <div className="font-normal leading-[130%] text-sm text-[#c5c2c2] pt-1">
+            <span className="shrink-0 font-normal text-sm leading-[130%] text-[#c5c2c2]">
                 {symbols}/100
-            </div>
+            </span>
         </div>
     )
 }

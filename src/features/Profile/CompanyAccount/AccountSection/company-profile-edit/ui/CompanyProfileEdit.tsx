@@ -7,9 +7,13 @@ export const CompanyProfileEdit = () => {
         <CompanyAccountFormBlock label="Название и описание">
 
             {/* Cмена логотипа и название компании*/}
-            <div className="flex flex-col items-center gap-4 lg:flex-row lg:items-end lg:gap-6.5">
-                <CompanyUploadLogo />
-                <CompanyNameInput />
+            <div className="flex flex-row items-end gap-3 lg:gap-6.5">
+                <div className="shrink-0">
+                    <CompanyUploadLogo />
+                </div>
+                <div className="min-w-0 flex-1">
+                    <CompanyNameInput />
+                </div>
             </div>
 
             {/* Описание компании*/}

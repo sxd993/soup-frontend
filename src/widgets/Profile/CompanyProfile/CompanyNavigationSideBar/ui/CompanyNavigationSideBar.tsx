@@ -30,11 +30,11 @@ export const CompanyNavigationSideBar = ({ onNavigate }: CompanyNavigationSideBa
                 return (
                     <li key={link.href}>
                         <Link
-                            className="group flex h-12 items-center gap-3 rounded-full px-3 transition-colors hover:bg-white"
+                            className="group flex h-12 items-center gap-3 rounded-full px-2 transition-colors hover:bg-white"
                             href={link.href}
                             onClick={onNavigate}
                         >
-                            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-white transition-colors group-hover:bg-[#EBE7DF] group-hover:text-[#EBE7DF]">
+                            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-white transition-colors group-hover:bg-accent-octonary group-hover:text-accent-octonary">
                                 {icon}
                             </span>
                             <span className="text-[16px] font-semibold leading-[140%] text-secondary">

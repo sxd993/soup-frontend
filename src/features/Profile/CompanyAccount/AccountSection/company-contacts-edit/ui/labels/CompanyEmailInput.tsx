@@ -1,24 +1,25 @@
 import { CompanyAccountField, CompanyAccountInput } from "@/shared/ui"
 import { EmailIcon } from "@/shared/ui/CompanyAccount/icons/AccountSectionIcons/EmailIcon"
-import { useFormContext } from "react-hook-form"
-import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types"
+import { useCompanyEmailInput } from "../../model/hooks/useCompanyEmailInput"
 
 type CompanyEmailInputProps = {
     index: number;
 }
 
 export const CompanyEmailInput = ({ index }: CompanyEmailInputProps) => {
-    const { register } = useFormContext<CompanyAccountFormValues>()
+    const { emailInputProps, errorMessage, isEmailFilled } = useCompanyEmailInput(index)
     return (
-        <CompanyAccountField
-            className="max-w-[48.5%]"
-            icon={<EmailIcon />}
-        >
-            <CompanyAccountInput
-                type='email'
-                placeholder='Электронная почта'
-                {...register(`contacts.emails.${index}`)}
-            />
-        </CompanyAccountField>
+        <div className="flex w-full flex-col gap-2">
+            <CompanyAccountField
+                icon={<EmailIcon isActive={isEmailFilled} />}
+            >
+                <CompanyAccountInput
+                    type='email'
+                    placeholder='Электронная почта'
+                    {...emailInputProps}
+                />
+            </CompanyAccountField>
+            <p className="text-xs text-red-500">{errorMessage}</p>
+        </div>
     )
 }
