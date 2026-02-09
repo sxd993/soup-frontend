@@ -16,20 +16,25 @@ type CatalogCompanyFilter = {
 
 export const getCatalogCompanies = async (
   filters: CatalogCompanyFilter[] = [],
+  regions: string[] = [],
 ): Promise<CompanyCardData[]> => {
   try {
     const filtersParam =
       filters.length > 0
         ? filters
-            .map(
-              (filter) =>
-                `${encodeURIComponent(filter.category)}||${encodeURIComponent(filter.service)}`,
-            )
+            .map((filter) => `${filter.category}||${filter.service}`)
             .join(",")
         : undefined
+    const regionsParam = regions.length > 0 ? regions.join(",") : undefined
 
     const response = await AxiosClient.get<CatalogCompanyResponse[]>("/companies", {
-      params: filtersParam ? { filters: filtersParam } : undefined,
+      params:
+        filtersParam || regionsParam
+          ? {
+              filters: filtersParam,
+              regions: regionsParam,
+            }
+          : undefined,
     })
     const items = Array.isArray(response.data) ? response.data : []
 

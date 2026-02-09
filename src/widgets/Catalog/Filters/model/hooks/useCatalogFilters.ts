@@ -24,6 +24,8 @@ export const useCatalogFilters = () => {
   const toggleSelectedFilter = useCatalogFiltersStore((state) => state.toggleSelectedFilter)
   const addSelectedFilter = useCatalogFiltersStore((state) => state.addSelectedFilter)
   const clearSelectedFilters = useCatalogFiltersStore((state) => state.clearSelectedFilters)
+  const toggleSelectedRegion = useCatalogFiltersStore((state) => state.toggleSelectedRegion)
+  const clearSelectedRegions = useCatalogFiltersStore((state) => state.clearSelectedRegions)
 
   const toggleSection = (sectionId: string) => {
     setOpenSectionIds((prev) => {
@@ -44,6 +46,10 @@ export const useCatalogFilters = () => {
   }, [regionQuery, regions])
 
   const toggleRegion = (id: number) => {
+    const region = regions.find((item) => item.id === id)
+    if (region) {
+      toggleSelectedRegion(region.label)
+    }
     setSelectedRegionIds((prev) =>
       prev.includes(id) ? prev.filter((value) => value !== id) : [...prev, id],
     )
@@ -73,6 +79,7 @@ export const useCatalogFilters = () => {
   const resetAll = () => {
     setSelectedRegionIds([])
     clearSelectedFilters()
+    clearSelectedRegions()
     setRegionQuery("")
   }
 

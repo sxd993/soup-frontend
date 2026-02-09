@@ -14,6 +14,7 @@ const SORT_OPTIONS = [
 export const useCatalogPagination = () => {
   const searchParams = useSearchParams()
   const selectedFilters = useCatalogFiltersStore((state) => state.selectedFilters)
+  const selectedRegions = useCatalogFiltersStore((state) => state.selectedRegions)
   const filtersKey = useMemo(
     () =>
       selectedFilters
@@ -22,18 +23,29 @@ export const useCatalogPagination = () => {
         .join(","),
     [selectedFilters],
   )
+  const regionsKey = useMemo(
+    () =>
+      [...selectedRegions]
+        .sort((a, b) => a.localeCompare(b, "ru", { sensitivity: "base" }))
+        .join(","),
+    [selectedRegions],
+  )
   const [debouncedFiltersKey, setDebouncedFiltersKey] = useState(filtersKey)
+  const [debouncedRegionsKey, setDebouncedRegionsKey] = useState(regionsKey)
   const [debouncedFilters, setDebouncedFilters] = useState(selectedFilters)
+  const [debouncedRegions, setDebouncedRegions] = useState(selectedRegions)
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedFiltersKey(filtersKey)
+      setDebouncedRegionsKey(regionsKey)
       setDebouncedFilters(selectedFilters)
+      setDebouncedRegions(selectedRegions)
     }, 500)
     return () => clearTimeout(timer)
-  }, [filtersKey, selectedFilters])
+  }, [filtersKey, selectedFilters, regionsKey, selectedRegions])
   const { data: items = [], isLoading, isError } = useQuery({
-    queryKey: ["catalog-companies", debouncedFiltersKey],
-    queryFn: () => getCatalogCompanies(debouncedFilters),
+    queryKey: ["catalog-companies", debouncedFiltersKey, debouncedRegionsKey],
+    queryFn: () => getCatalogCompanies(debouncedFilters, debouncedRegions),
     staleTime: 5 * 60 * 1000,
   })
   const [selectedSortId, setSelectedSortId] = useState<number>(SORT_OPTIONS[0].id)
