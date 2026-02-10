@@ -11,6 +11,9 @@ type BottomBlogCardProps = {
   className?: string
   imageHeight?: number | null
   headerActions?: React.ReactNode
+  titleClassName?: string
+  descriptionClassName?: string
+  descriptionLineClamp?: number
 }
 
 export const BottomBlogCard = ({
@@ -19,11 +22,24 @@ export const BottomBlogCard = ({
   className,
   imageHeight = 144,
   headerActions,
+  titleClassName,
+  descriptionClassName,
+  descriptionLineClamp,
 }: BottomBlogCardProps) => {
   const { date, articleClasses, imageHeight: height } = useBottomBlogCard(blog, {
     className,
     imageHeight,
   })
+
+  const descriptionStyle =
+    typeof descriptionLineClamp === "number"
+      ? {
+          display: "-webkit-box",
+          WebkitLineClamp: descriptionLineClamp,
+          WebkitBoxOrient: "vertical" as const,
+          overflow: "hidden",
+        }
+      : undefined
 
   return (
     <article className={`group ${articleClasses}`}>
@@ -82,13 +98,31 @@ export const BottomBlogCard = ({
 
       {href ? (
         <Link href={href} className="block">
-          <h3 className="text-[22px] font-bold text-secondary leading-[105%]">{blog.title}</h3>
-          <p className="text-[16px] font-semibold leading-[140%] text-secondary">{blog.description}</p>
+          <h3
+            className={titleClassName ?? "text-[22px] font-bold text-secondary leading-[105%]"}
+          >
+            {blog.title}
+          </h3>
+          <p
+            className={descriptionClassName ?? "text-[16px] font-semibold leading-[140%] text-secondary"}
+            style={descriptionStyle}
+          >
+            {blog.description}
+          </p>
         </Link>
       ) : (
         <>
-          <h3 className="text-[22px] font-bold text-secondary leading-[105%]">{blog.title}</h3>
-          <p className="text-[16px] font-semibold leading-[140%] text-secondary">{blog.description}</p>
+          <h3
+            className={titleClassName ?? "text-[22px] font-bold text-secondary leading-[105%]"}
+          >
+            {blog.title}
+          </h3>
+          <p
+            className={descriptionClassName ?? "text-[16px] font-semibold leading-[140%] text-secondary"}
+            style={descriptionStyle}
+          >
+            {blog.description}
+          </p>
         </>
       )}
 

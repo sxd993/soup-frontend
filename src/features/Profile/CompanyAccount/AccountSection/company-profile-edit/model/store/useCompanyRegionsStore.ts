@@ -1,7 +1,7 @@
 'use client';
 
 import { create } from "zustand"
-import type { RegionItemType } from "../types/RegionItemType"
+import type { RegionItemType } from "@/entities/Regions/model/types/RegionItemType"
 
 type CompanyRegionsStoreState = {
     query: string

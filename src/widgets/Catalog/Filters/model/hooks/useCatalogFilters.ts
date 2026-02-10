@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState, type ComponentType } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { useCatalogFiltersData } from "@/entities/CatalogFilters/model/hooks/useCatalogFiltersData"
-import { fetchRegions } from "@/features/Profile/CompanyAccount/AccountSection/company-profile-edit/api/fetchRegions"
-import type { RegionItemType } from "@/features/Profile/CompanyAccount/AccountSection/company-profile-edit/model/types/RegionItemType"
+import { fetchRegions } from "@/entities/Regions/model/api/fetchRegions"
+import type { RegionItemType } from "@/entities/Regions/model/types/RegionItemType"
 import { ICONS_BY_LABEL } from "../../const/iconsByLabel"
 import { useCatalogFiltersStore } from "../store/useCatalogFiltersStore"
 

@@ -37,6 +37,7 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
     blogs,
     isBlogsLoading,
     isBlogsError,
+    handleCall,
   } = useCompanyPublicPage(companyId)
 
   return (
@@ -60,6 +61,8 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
                 canShowAllRegions={canShowAllRegions}
                 isRegionsExpanded={isRegionsExpanded}
                 onToggleRegions={toggleRegions}
+                onCall={handleCall}
+                canCall={contactsData.phones.length > 0}
               />
             ) : null}
 
