@@ -1,22 +1,17 @@
-"use client"
+type CompanyReviewsHeaderProps = {
+  total: number
+  isLoading: boolean
+}
 
-import { SectionTitle } from "@/shared/ui"
-import { useReviews } from "@/features/Profile/CompanyAccount/ReviewsSection/get-company-reviews/model/hooks/useReviews"
-import { resolveReviewsData } from "@/features/Profile/CompanyAccount/ReviewsSection/get-company-reviews/model/lib/resolveReviewsData"
-
-export const CompanyReviewsHeader = () => {
-    const { data, isLoading } = useReviews()
-    const { total } = resolveReviewsData(data)
-
-    return (
-        <div className="flex flex-col gap-7">
-            <SectionTitle
-                className="font-semibold text-[28px]! leading-[110%]!"
-                title="Отзывы"
-            />
-            <span className="text-[18px] leading-[120%] font-semibold">
-                {isLoading ? "Загрузка..." : `${total} отзывов`}
-            </span>
-        </div>
-    )
+export const CompanyReviewsHeader = ({ total, isLoading }: CompanyReviewsHeaderProps) => {
+  return (
+    <div className="flex w-full flex-row items-baseline justify-between gap-7 md:w-auto md:flex-col md:items-start md:justify-start">
+      <h2 className="text-[28px] font-semibold leading-[110%] text-secondary">
+        Отзывы
+      </h2>
+      <span className="text-[14px] font-normal leading-[130%] text-accent-septenary md:text-[18px] md:font-semibold md:text-secondary">
+        {isLoading ? "Загрузка..." : `${total} отзывов`}
+      </span>
+    </div>
+  )
 }

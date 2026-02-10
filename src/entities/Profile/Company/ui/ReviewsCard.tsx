@@ -29,11 +29,11 @@ export const ReviewsCard = ({ review }: { review: CompanyReview }) => {
   } = useCompanyReviewReply(review)
 
   return (
-    <article className="rounded-[20px] bg-white p-5">
-      <div className="flex flex-col gap-6 md:flex-row">
-        <div className="flex flex-col gap-[13px] md:w-32">
+    <article className="rounded-[20px] bg-white px-4 py-3 md:p-5">
+      <div className="flex flex-col gap-4 md:flex-row md:gap-6">
+        <div className="mt-1 flex flex-row items-start justify-between gap-3 md:mt-0 md:flex-col md:items-start md:justify-start md:gap-[13px] md:w-32">
           {/* Рейтинг (звезды) */}
-          <div className="flex items-center gap-1 text-[#7BB34A]">
+          <div className="flex items-center gap-1 text-[#7BB34A] shrink-0">
             {Array.from({ length: 5 }).map((_, index) => {
               const isActive = ratingValue >= index + 1
               return (
@@ -44,32 +44,32 @@ export const ReviewsCard = ({ review }: { review: CompanyReview }) => {
             })}
           </div>
           {/* Дата отзыва */}
-          <span className="font-normal text-[14px] leading-[130%] text-accent-septenary">
+          <span className="text-[12px] font-normal leading-[130%] text-accent-septenary md:text-[14px]">
             {createdAt || "—"}
           </span>
         </div>
 
-        <div className="flex flex-1 flex-col gap-1.75 items-start">
+        <div className="flex flex-1 -mt-0.5 flex-col gap-2 items-start md:gap-1.75">
           {/* Имя автора */}
-          <h3 className="text-[22px] font-bold leading-[115%] text-secondary">
+          <h3 className="text-[18px] font-bold leading-[120%] text-secondary md:text-[22px] md:leading-[115%]">
             {review.authorName || "Анонимный пользователь"}
           </h3>
           {/* Название услуги/заказа */}
           {review.serviceName && (
-            <span className="text-[14px] font-normal leading-[130%] text-accent-septenary">
+            <span className="text-[12px] font-normal leading-[130%] text-accent-septenary md:text-[14px]">
               {review.serviceName}
             </span>
           )}
 
           {/* Текст отзыва */}
-          <p className="text-[16px] font-medium leading-[140%] text-secondary">
+          <p className="text-[14px] font-medium leading-[140%] text-secondary md:text-[16px]">
             {review.comment || "Без текста отзыва"}
           </p>
 
           {!isReplyOpen && !replyText && (
             <button
               type="button"
-              className="text-base font-semibold text-primary mt-6"
+              className="mt-4 text-sm font-semibold text-primary md:mt-6 md:text-base"
               onClick={() => openReply(review.id)}
             >
               Ответить

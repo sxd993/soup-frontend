@@ -14,9 +14,11 @@ export const CompanyReviewsSection = () => {
 
     return (
         <section className="flex flex-col gap-[25px] min-h-screen">
-            <div className="flex flex-row justify-between items-end">
-                <CompanyReviewsHeader />
-                <CompanyReviewsFilter />
+            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                <CompanyReviewsHeader total={totalReviews} isLoading={isLoading} />
+                <div className="flex justify-end">
+                    <CompanyReviewsFilter />
+                </div>
             </div>
 
             <StateProvider
