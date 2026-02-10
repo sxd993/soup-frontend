@@ -1,8 +1,9 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { MainIcon } from "@/shared/ui"
+import { Button, MainIcon } from "@/shared/ui"
 import { useBottomBlogCard } from "../model/hooks/useBottomBlogCard"
 import type { Blog } from "../model/types/blogs.types"
 
@@ -15,6 +16,8 @@ type BottomBlogCardProps = {
   titleClassName?: string
   descriptionClassName?: string
   descriptionLineClamp?: number
+  /** Разворачивать пост по кнопке «Показать все» вместо перехода по ссылке */
+  expandInline?: boolean
 }
 
 export const BottomBlogCard = ({
@@ -26,14 +29,18 @@ export const BottomBlogCard = ({
   titleClassName,
   descriptionClassName,
   descriptionLineClamp,
+  expandInline = false,
 }: BottomBlogCardProps) => {
+  const [isExpanded, setIsExpanded] = useState(false)
   const { date, articleClasses, imageHeight: height } = useBottomBlogCard(blog, {
     className,
     imageHeight,
   })
 
+  const showExpandButton = expandInline && typeof descriptionLineClamp === "number"
+  const useClamp = showExpandButton && !isExpanded
   const descriptionStyle =
-    typeof descriptionLineClamp === "number"
+    useClamp
       ? {
           display: "-webkit-box",
           WebkitLineClamp: descriptionLineClamp,
@@ -41,6 +48,36 @@ export const BottomBlogCard = ({
           overflow: "hidden",
         }
       : undefined
+
+  const imageBlock = blog.imageUrl ? (
+    <div
+      className={`overflow-hidden ${height !== null ? "h-[144px] rounded-[20px]" : "rounded-xl"}`}
+    >
+      <Image
+        src={blog.imageUrl}
+        alt={blog.title}
+        width={387}
+        height={height ?? 144}
+        className={`w-full ${height === null ? "h-auto object-contain" : "h-full object-cover"}`}
+      />
+    </div>
+  ) : null
+
+  const titleAndDescription = (
+    <>
+      <h3
+        className={titleClassName ?? "text-[22px] font-bold text-secondary leading-[105%]"}
+      >
+        {blog.title}
+      </h3>
+      <p
+        className={descriptionClassName ?? "text-[16px] font-semibold leading-[140%] text-secondary"}
+        style={descriptionStyle}
+      >
+        {blog.description}
+      </p>
+    </>
+  )
 
   return (
     <article className={`group ${articleClasses}`}>
@@ -73,69 +110,35 @@ export const BottomBlogCard = ({
         {headerActions}
       </div>
 
-      {href ? (
+      {!expandInline && href ? (
         <Link href={href} className="block">
-          {blog.imageUrl && (
-            <div
-              className={`overflow-hidden ${height !== null ? "h-[144px] rounded-[20px]" : "rounded-xl"}`}
-            >
-              <Image
-                src={blog.imageUrl}
-                alt={blog.title}
-                width={387}
-                height={height ?? 144}
-                className={`w-full ${height === null ? "h-auto object-contain" : "h-full object-cover"}`}
-              />
-            </div>
-          )}
+          {imageBlock}
         </Link>
       ) : (
-        blog.imageUrl && (
-          <div
-            className={`overflow-hidden ${height !== null ? "h-[144px] rounded-[20px]" : "rounded-xl"}`}
-          >
-            <Image
-              src={blog.imageUrl}
-              alt={blog.title}
-              width={387}
-              height={height ?? 144}
-              className={`w-full ${height === null ? "h-auto object-contain" : "h-full object-cover"}`}
-            />
-          </div>
-        )
+        imageBlock
       )}
 
-      {href ? (
+      {!expandInline && href ? (
         <Link href={href} className="block">
-          <h3
-            className={titleClassName ?? "text-[22px] font-bold text-secondary leading-[105%]"}
-          >
-            {blog.title}
-          </h3>
-          <p
-            className={descriptionClassName ?? "text-[16px] font-semibold leading-[140%] text-secondary"}
-            style={descriptionStyle}
-          >
-            {blog.description}
-          </p>
+          {titleAndDescription}
         </Link>
       ) : (
-        <>
-          <h3
-            className={titleClassName ?? "text-[22px] font-bold text-secondary leading-[105%]"}
-          >
-            {blog.title}
-          </h3>
-          <p
-            className={descriptionClassName ?? "text-[16px] font-semibold leading-[140%] text-secondary"}
-            style={descriptionStyle}
-          >
-            {blog.description}
-          </p>
-        </>
+        titleAndDescription
       )}
 
-      {href && (
+      {expandInline && showExpandButton ? (
+        <div className="flex justify-end">
+          <Button
+            type="button"
+            onClick={() => setIsExpanded((v) => !v)}
+            className="px-5 py-1 rounded-full active:bg-[#80D62C]"
+          >
+            {isExpanded ? "Свернуть" : "Показать все"}
+          </Button>
+        </div>
+      ) : null}
+
+      {!expandInline && href ? (
         <div className="flex justify-end">
           <Link
             href={href}
@@ -149,7 +152,7 @@ export const BottomBlogCard = ({
             </button>
           </Link>
         </div>
-      )}
+      ) : null}
     </article>
   )
 }

@@ -22,12 +22,12 @@ export const CompanyBlogSection = ({ blogs, isLoading, isError }: CompanyBlogSec
           <BottomBlogCard
             key={blog.id}
             blog={blog}
-            href={`/blogs/item?id=${blog.id}`}
             imageHeight={144}
             className="rounded-[26px] bg-white p-5"
             titleClassName="mt-0 text-lg font-semibold text-secondary"
             descriptionClassName="mt-2 text-sm text-secondary leading-[150%]"
             descriptionLineClamp={5}
+            expandInline
           />
         ))}
       </div>
