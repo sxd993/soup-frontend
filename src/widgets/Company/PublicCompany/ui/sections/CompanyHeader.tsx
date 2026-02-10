@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Button, Heart, MockLogo } from "@/shared/ui"
+import { Button, Heart, MainIcon } from "@/shared/ui"
 
 type CompanyHeaderProps = {
   name: string
@@ -28,7 +28,7 @@ export const CompanyHeader = ({
     <div className="rounded-[30px] bg-white p-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
         <div className="flex gap-4">
-          <div className="relative h-20 w-20 overflow-hidden rounded-2xl bg-[#F6F3EE] p-2">
+          <div className="relative h-20 w-20 overflow-hidden rounded-2xl bg-white p-2">
             {logoUrl ? (
               <Image
                 src={logoUrl}
@@ -38,7 +38,7 @@ export const CompanyHeader = ({
                 className="h-full w-full object-cover"
               />
             ) : (
-              <MockLogo className="h-full w-full" />
+              <MainIcon className="h-full w-full" />
             )}
           </div>
           <div className="flex flex-col gap-2">

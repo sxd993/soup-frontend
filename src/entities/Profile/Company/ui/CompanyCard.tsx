@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Heart, MockLogo } from "@/shared/ui"
+import { Heart, MainIcon } from "@/shared/ui"
 import type { CompanyCardData } from "../model/types/company.types"
 
 type CompanyCardProps = {
@@ -14,7 +14,7 @@ export const CompanyCard = ({ item }: CompanyCardProps) => {
     <article className="rounded-3xl bg-white p-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
         <div className="flex gap-4">
-          <div className="relative h-16 w-16 overflow-hidden rounded-2xl bg-[#F6F3EE] p-2">
+          <div className="relative h-16 w-16 overflow-hidden rounded-2xl bg-white p-2">
             {hasLogo ? (
               <Image
                 src={item.logoUrl!}
@@ -24,9 +24,7 @@ export const CompanyCard = ({ item }: CompanyCardProps) => {
                 className="h-full w-full object-cover"
               />
             ) : (
-              <span className="text-[10px] font-semibold text-secondary text-center leading-tight">
-                Нет логотипа
-              </span>
+              <MainIcon className="h-full w-full" />
             )}
           </div>
           <div className="flex flex-col gap-2">
