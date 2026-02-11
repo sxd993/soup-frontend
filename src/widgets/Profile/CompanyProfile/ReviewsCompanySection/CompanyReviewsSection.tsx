@@ -15,27 +15,13 @@ export const CompanyReviewsSection = () => {
     return (
         <section className="flex flex-col gap-[25px] min-h-screen">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                <CompanyReviewsHeader total={totalReviews} isLoading={isLoading} />
+                <CompanyReviewsHeader total={totalReviews} />
                 <div className="flex justify-end">
                     <CompanyReviewsFilter />
                 </div>
             </div>
 
-            <StateProvider
-                isLoading={isLoading}
-                isError={isError}
-                isEmpty={totalReviews === 0}
-                loadingMessage="Загружаем отзывы..."
-                errorMessage="Не удалось загрузить отзывы"
-                emptyComponent={<CompanyReviewsEmpty />}
-                loadingComponent={<CompanyReviewsSkeleton />}
-            >
-                <div className="flex flex-col gap-6">
-                    {reviews.map((review) => (
-                        <ReviewsCard key={review.id} review={review} />
-                    ))}
-                </div>
-            </StateProvider>
+            <CompanyReviewsEmpty />
             {!isLoading && !isError && totalReviews > 0 && (
                 <ReviewsPaginationControls
                     currentPage={pagination.currentPage}
