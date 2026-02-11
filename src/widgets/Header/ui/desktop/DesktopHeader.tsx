@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { MainIcon, NotificationIcon, Person, SearchButton } from '@/shared/ui'
+import { MainIcon, Person, SearchButton } from '@/shared/ui'
 import { LogoutIconButton } from '@/features/Auth/logout'
 import { StateProvider } from '@/app/providers/State/StateProvider'
 import { SearchInput } from '@/features/Search'
@@ -11,7 +11,7 @@ import { useHeaderStore } from '../../model/store/useHeaderStore'
 
 export const DesktopHeader = () => {
   const { isDesktopSearchOpen, openDesktopSearch, closeDesktopSearch } = useHeaderStore()
-  const { isSessionLoading, isAuthorized, profileHref, notificationsHref } = useHeaderSession()
+  const { isSessionLoading, isAuthorized, profileHref } = useHeaderSession()
 
   return (
     <div className="hidden lg:flex w-full justify-between items-center">
@@ -22,19 +22,21 @@ export const DesktopHeader = () => {
         <DesktopNavLinks />
       </div>
       <div className="flex items-center gap-3 md:ml-4">
-        {!isDesktopSearchOpen ? (
-          <button
-            type="button"
-            className="hidden lg:block cursor-pointer"
-            aria-label="Открыть поиск"
-            onClick={openDesktopSearch}
-          >
-            <SearchButton className="rounded-[22px] w-8 h-8" />
-          </button>
-        ) : (
-          <div className="hidden lg:block">
-            <SearchInput onClose={closeDesktopSearch} />
-          </div>
+        {!isSessionLoading && (
+          !isDesktopSearchOpen ? (
+            <button
+              type="button"
+              className="hidden lg:block cursor-pointer"
+              aria-label="Открыть поиск"
+              onClick={openDesktopSearch}
+            >
+              <SearchButton className="rounded-[22px] w-8 h-8" />
+            </button>
+          ) : (
+            <div className="hidden lg:block">
+              <SearchInput onClose={closeDesktopSearch} />
+            </div>
+          )
         )}
         <StateProvider
           isLoading={isSessionLoading}
@@ -48,11 +50,6 @@ export const DesktopHeader = () => {
           )}
         >
           <div className="hidden lg:flex items-center gap-3">
-            {isAuthorized && (
-              <Link href={notificationsHref} className="cursor-pointer" aria-label="Уведомления">
-                <NotificationIcon className="w-8 h-8" />
-              </Link>
-            )}
             <Link href={profileHref} className="cursor-pointer" aria-label="Профиль">
               <Person className="w-8 h-8" />
             </Link>

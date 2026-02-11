@@ -7,7 +7,7 @@ import { useHeaderSession } from './useHeaderSession'
 import { useHeaderStore } from '../store/useHeaderStore'
 
 export const useMobileMenu = () => {
-  const { role, isSessionLoading, isAuthorized, profileHref, notificationsHref } = useHeaderSession()
+  const { role, isSessionLoading, isAuthorized, profileHref } = useHeaderSession()
   const { mobileLinks, mobileSkeletons } = useHeaderNavigation(role, isSessionLoading)
   const { isMenuOpen, closeMenu } = useHeaderStore()
   const { handleLogout, isPending } = useLogoutRedirect()
@@ -22,7 +22,6 @@ export const useMobileMenu = () => {
     isSessionLoading,
     isAuthorized,
     profileHref,
-    notificationsHref,
     mobileLinks,
     mobileSkeletons,
     closeMenu,

@@ -12,13 +12,11 @@ export const useHeaderSession = () => {
       ? '/profile/client/account'
       : '/profile/company/account'
     : '/auth/login'
-  const notificationsHref = '/notifications'
 
   return {
     role,
     isSessionLoading,
     isAuthorized,
     profileHref,
-    notificationsHref,
   }
 }

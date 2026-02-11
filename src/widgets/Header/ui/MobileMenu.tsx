@@ -9,7 +9,6 @@ export const MobileMenu = () => {
     isSessionLoading,
     isAuthorized,
     profileHref,
-    notificationsHref,
     mobileLinks,
     mobileSkeletons,
     closeMenu,
@@ -63,15 +62,6 @@ export const MobileMenu = () => {
                   {link.label}
                 </Link>
               ))}
-              {isAuthorized && (
-                <Link
-                  href={notificationsHref}
-                  onClick={closeMenu}
-                  className="py-4 border-b border-[#EBE7DF]/20 md:border-b-0"
-                >
-                  Уведомления
-                </Link>
-              )}
               {isAuthorized && (
                 <button
                   type="button"
