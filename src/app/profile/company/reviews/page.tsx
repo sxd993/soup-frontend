@@ -1,5 +1,12 @@
-import { CompanyReviewsSection } from "@/widgets/Profile/CompanyProfile"
+import { CompanyReviewsSection, parseReviewsPageParams } from "@/widgets/Profile/CompanyProfile"
 
-export default function CompanyReviewsPage() {
-    return <CompanyReviewsSection />
+type PageProps = {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export default async function CompanyReviewsPage({ searchParams }: PageProps) {
+    const params = await searchParams
+    const { currentPage } = parseReviewsPageParams(params)
+
+    return <CompanyReviewsSection currentPage={currentPage} />
 }

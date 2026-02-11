@@ -69,7 +69,7 @@ export const ReviewsCard = ({ review }: { review: CompanyReview }) => {
           {!isReplyOpen && !replyText && (
             <button
               type="button"
-              className="mt-4 text-sm font-semibold text-primary md:mt-6 md:text-base"
+              className="mt-4 cursor-pointer text-sm font-semibold text-primary md:mt-6 md:text-base hover:underline"
               onClick={() => openReply(review.id)}
             >
               Ответить

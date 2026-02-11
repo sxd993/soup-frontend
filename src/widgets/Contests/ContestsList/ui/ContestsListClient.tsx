@@ -4,7 +4,7 @@ import type { ContestItem } from "@/entities/Contests";
 import { ContestsCard } from "@/entities/Contests";
 import { ClientPagination } from "@/features/Pagination";
 
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 6;
 
 type ContestsListClientProps = {
     contests: ContestItem[];

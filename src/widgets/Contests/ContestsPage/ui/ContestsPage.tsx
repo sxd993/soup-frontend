@@ -8,10 +8,10 @@ import type { TimeFilterValue } from "@/features/TimeFilter";
 type ContestsPageProps = {
     time: TimeFilterValue;
     status: "current" | "past";
+    currentPage: number;
 };
 
-export const ContestsPage = ({ time, status }: ContestsPageProps) => {
-    const currentPage = 1;
+export const ContestsPage = ({ time, status, currentPage }: ContestsPageProps) => {
 
     return (
         <div className="flex flex-col mt-15">

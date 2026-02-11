@@ -7,7 +7,7 @@ import { sortReviews } from "@/features/Profile/CompanyAccount/ReviewsSection/ge
 import { useCompanyReviewsFilterStore } from "@/features/Profile/CompanyAccount/ReviewsSection/filter-company-reviews/model/store/useCompanyReviewsFilterStore"
 import { useReviewsPagination } from "./useReviewsPagination"
 
-export const useCompanyReviewsList = (pageSize = 4) => {
+export const useCompanyReviewsList = (pageSize = 4, currentPageFromServer = 1) => {
   const selectedSortId = useCompanyReviewsFilterStore((state) => state.selectedSortId)
   const { data, isLoading, isError } = useReviews()
   const { reviews } = resolveReviewsData(data)
@@ -21,6 +21,7 @@ export const useCompanyReviewsList = (pageSize = 4) => {
     totalItems: sortedReviews.length,
     pageSize,
     pageParam: "page",
+    currentPageFromServer,
   })
 
   const pagedReviews = useMemo(() => {

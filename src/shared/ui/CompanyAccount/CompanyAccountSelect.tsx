@@ -17,7 +17,7 @@ export const CompanyAccountSelect = ({ options, className = "" }: CompanyAccount
                 <button
                     key={option.id}
                     type="button"
-                    className="w-full flex items-center gap-3 px-4 py-2 text-sm hover:bg-[#f5f5f5]"
+                    className="w-full cursor-pointer flex items-center gap-3 px-4 py-2 text-sm hover:bg-[#f5f5f5]"
                     onClick={option.onSelect}
                 >
                     {option.icon}

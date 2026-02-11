@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@/shared/ui"
+import { BlackButton } from "@/shared/ui"
 import { Pagination } from "@/shared/ui/Pagination/ui/Pagination"
 
 type ReviewsPaginationControlsProps = {
@@ -25,12 +25,9 @@ export const ReviewsPaginationControls = ({
   return (
     <div className="flex flex-col items-center gap-6">
       {canShowMore && (
-        <Button type="button" 
-        onClick={onShowMore} 
-        className="px-12 w-full bg-accent-septenary! text-white!"
-        >
+        <BlackButton type="button" onClick={onShowMore} className="px-12 w-full">
           Показать еще
-        </Button>
+        </BlackButton>
       )}
       <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
     </div>

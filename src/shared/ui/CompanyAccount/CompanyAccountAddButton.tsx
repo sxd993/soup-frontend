@@ -1,3 +1,5 @@
+import { BlackButton } from "@/shared/ui"
+
 interface CompanyAccountAddButtonProps {
     label?: string;
     onClick: () => void;
@@ -12,13 +14,8 @@ export const CompanyAccountAddButton = ({
     className = "",
 }: CompanyAccountAddButtonProps) => {
     return (
-        <button
-            type="button"
-            className={`bg-[#2f2f2f] text-white rounded-[20px] h-[40px] px-10 text-sm font-medium disabled:opacity-50 ${className}`}
-            onClick={onClick}
-            disabled={disabled}
-        >
+        <BlackButton type="button" onClick={onClick} disabled={disabled} className={className}>
             {label}
-        </button>
+        </BlackButton>
     )
 }

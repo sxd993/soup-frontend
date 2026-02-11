@@ -9,8 +9,12 @@ import { useCompanyReviewsList } from "@/features/Profile/CompanyAccount/Reviews
 import { CompanyReviewsSkeleton } from "@/features/Profile/CompanyAccount/ReviewsSection/get-company-reviews/ui/CompanyReviewsSkeleton"
 import { StateProvider } from "@/app/providers/State/StateProvider"
 
-export const CompanyReviewsSection = () => {
-    const { reviews, isLoading, isError, totalReviews, pagination } = useCompanyReviewsList(4)
+type CompanyReviewsSectionProps = {
+    currentPage: number
+}
+
+export const CompanyReviewsSection = ({ currentPage }: CompanyReviewsSectionProps) => {
+    const { reviews, isLoading, isError, totalReviews, pagination } = useCompanyReviewsList(3, currentPage)
 
     return (
         <section className="flex flex-col gap-[25px] min-h-screen">
@@ -21,16 +25,29 @@ export const CompanyReviewsSection = () => {
                 </div>
             </div>
 
-            <CompanyReviewsEmpty />
-            {!isLoading && !isError && totalReviews > 0 && (
-                <ReviewsPaginationControls
-                    currentPage={pagination.currentPage}
-                    totalPages={pagination.totalPages}
-                    onShowMore={pagination.showMore}
-                    canShowMore={pagination.canShowMore}
-                    onPageChange={pagination.setPage}
-                />
-            )}
+            <StateProvider
+                isLoading={isLoading}
+                isError={isError}
+                isEmpty={totalReviews === 0}
+                errorTitle="Не удалось загрузить отзывы"
+                loadingComponent={<CompanyReviewsSkeleton />}
+                emptyComponent={<CompanyReviewsEmpty />}
+            >
+                <div className="flex flex-col gap-6">
+                    {reviews.map((review) => (
+                        <ReviewsCard key={review.id} review={review} />
+                    ))}
+                </div>
+                {totalReviews > 0 && (
+                    <ReviewsPaginationControls
+                        currentPage={pagination.currentPage}
+                        totalPages={pagination.totalPages}
+                        onShowMore={pagination.showMore}
+                        canShowMore={pagination.canShowMore}
+                        onPageChange={pagination.setPage}
+                    />
+                )}
+            </StateProvider>
         </section>
     )
 }

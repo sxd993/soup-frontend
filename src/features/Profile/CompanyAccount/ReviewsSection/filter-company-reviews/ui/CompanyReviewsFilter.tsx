@@ -27,7 +27,7 @@ export const CompanyReviewsFilter = () => {
             <button
                 type="button"
                 onClick={toggleOpen}
-                className="flex items-center gap-2"
+                className="flex cursor-pointer items-center gap-2"
                 aria-expanded={isOpen}
             >
                 {selectedOption?.label ?? "Сортировка"}
@@ -48,7 +48,7 @@ export const CompanyReviewsFilter = () => {
                                     setSelectedSort(option.id)
                                     setOpen(false)
                                 }}
-                                className={`flex w-full items-center justify-between px-4 py-2 text-left text-sm font-medium text-[#171717] transition-colors hover:bg-[#F5F5F5] ${index === 0 ? "rounded-t-[18px]" : ""
+                                className={`flex w-full cursor-pointer items-center justify-between px-4 py-2 text-left text-sm font-medium text-[#171717] transition-colors hover:bg-[#F5F5F5] ${index === 0 ? "rounded-t-[18px]" : ""
                                     } ${index === REVIEW_SORT_OPTIONS.length - 1 ? "rounded-b-[18px]" : ""
                                     } ${isSelected ? "bg-[#F6F6F6]" : ""}`}
                             >

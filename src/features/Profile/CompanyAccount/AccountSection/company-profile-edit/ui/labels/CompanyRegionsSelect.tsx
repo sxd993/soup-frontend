@@ -35,7 +35,7 @@ export const CompanyRegionsSelect = () => {
                             <button
                                 key={region.id}
                                 type="button"
-                                className="text-left text-sm text-secondary hover:text-primary"
+                                className="cursor-pointer text-left text-sm text-secondary hover:text-primary"
                                 onClick={() => handleSelectRegion(region)}
                             >
                                 {region.label}
@@ -50,7 +50,7 @@ export const CompanyRegionsSelect = () => {
                         <button
                             key={region.id}
                             type="button"
-                            className="group inline-flex items-center gap-2 w-fit px-4 py-1 text-[11px] font-medium bg-[#f1f3ec] hover:bg-[#f1f3ec] transition-all duration-300 text-secondary rounded-full"
+                            className="group inline-flex cursor-pointer items-center gap-2 w-fit px-4 py-1 text-[11px] font-medium bg-[#f1f3ec] hover:bg-[#f1f3ec] transition-all duration-300 text-secondary rounded-full"
                             onClick={() => removeRegion(region.id)}
                         >
                             {region.label}

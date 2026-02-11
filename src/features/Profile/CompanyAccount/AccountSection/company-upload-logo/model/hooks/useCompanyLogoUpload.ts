@@ -1,17 +1,16 @@
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useRef } from "react"
 import type { ChangeEvent } from "react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useFormContext, useWatch } from "react-hook-form"
+import { getErrorMessage } from "@/shared/lib/error-handler"
+import { showErrorToast, showSuccessToast } from "@/shared/ui"
 import { uploadCompanyLogo } from "../api/uploadCompanyLogo"
 import type { CompanyAccountFormValues } from "@/widgets/Profile/CompanyProfile/AccountCompanyForm/model/types/CompanyAccountFormValues.types"
 
-const ALLOWED_MIME_TYPES = ["image/png", "image/jpeg", "image/webp", "image/svg+xml"]
-const MAX_SIZE_BYTES = 2 * 1024 * 1024
+const DEFAULT_ERROR = "Не удалось загрузить логотип. Попробуйте другой файл или позже."
 
 export const useCompanyLogoUpload = () => {
     const inputRef = useRef<HTMLInputElement | null>(null)
-    const [localPreview, setLocalPreview] = useState<string | null>(null)
-    const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
     const { control, setValue } = useFormContext<CompanyAccountFormValues>()
     const logoUrl = useWatch({ control, name: "profile.logo" })
@@ -25,49 +24,20 @@ export const useCompanyLogoUpload = () => {
             if (nextLogo) {
                 setValue("profile.logo", nextLogo, { shouldDirty: true })
             }
-            setLocalPreview(null)
             queryClient.invalidateQueries({ queryKey: ["company-profile"], exact: false })
+            showSuccessToast("Изображение изменено", "Логотип компании обновлён.")
         },
-        onError: () => {
-            setErrorMessage("Не удалось загрузить логотип")
+        onError: (error: Error) => {
+            showErrorToast("Ошибка загрузки логотипа", getErrorMessage(error, DEFAULT_ERROR))
         },
     })
 
-    const previewUrl = useMemo(() => {
-        if (localPreview) return localPreview
-        return typeof logoUrl === "string" ? logoUrl : null
-    }, [localPreview, logoUrl])
-
-    useEffect(() => {
-        return () => {
-            if (localPreview) {
-                URL.revokeObjectURL(localPreview)
-            }
-        }
-    }, [localPreview])
+    const previewUrl = typeof logoUrl === "string" ? logoUrl : null
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0]
         if (!file) return
-
-        setErrorMessage(null)
-
-        if (!ALLOWED_MIME_TYPES.includes(file.type)) {
-            setErrorMessage("Недопустимый формат логотипа")
-            return
-        }
-
-        if (file.size > MAX_SIZE_BYTES) {
-            setErrorMessage("Размер файла превышает 2 МБ")
-            return
-        }
-
-        if (localPreview) {
-            URL.revokeObjectURL(localPreview)
-        }
-        setLocalPreview(URL.createObjectURL(file))
         mutation.mutate(file)
-
         if (inputRef.current) {
             inputRef.current.value = ""
         }
@@ -77,8 +47,6 @@ export const useCompanyLogoUpload = () => {
         inputRef,
         previewUrl,
         isUploading: mutation.isPending,
-        isError: Boolean(errorMessage),
-        errorMessage,
         handleFileChange,
     }
 }

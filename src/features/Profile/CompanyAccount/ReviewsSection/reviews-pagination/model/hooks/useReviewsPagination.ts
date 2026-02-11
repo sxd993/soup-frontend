@@ -8,12 +8,14 @@ type UseReviewsPaginationArgs = {
   totalItems: number
   pageSize: number
   pageParam?: string
+  currentPageFromServer: number
 }
 
 export const useReviewsPagination = ({
   totalItems,
   pageSize,
   pageParam = "page",
+  currentPageFromServer,
 }: UseReviewsPaginationArgs) => {
   const router = useRouter()
   const pathname = useCurrentPath()
@@ -22,11 +24,7 @@ export const useReviewsPagination = ({
   const [visibleCount, setVisibleCount] = useState(pageSize)
 
   const totalPages = Math.max(1, Math.ceil(totalItems / pageSize))
-  const currentPageParam = Number(searchParams?.get(pageParam) ?? "1")
-  const currentPage =
-    Number.isNaN(currentPageParam) || currentPageParam < 1
-      ? 1
-      : Math.min(currentPageParam, totalPages)
+  const currentPage = Math.max(1, Math.min(currentPageFromServer, totalPages))
 
   const startIndex = (currentPage - 1) * pageSize
   const endIndex = startIndex + pageSize
@@ -39,7 +37,7 @@ export const useReviewsPagination = ({
       setVisibleCount(pageSize)
       return
     }
-    const params = new URLSearchParams(searchParams?.toString())
+    const params = new URLSearchParams(searchParams?.toString() ?? "")
     params.set(pageParam, String(nextPage))
     router.push(`${pathname}?${params.toString()}`, { scroll: false })
     setIsExpanded(false)
@@ -49,7 +47,7 @@ export const useReviewsPagination = ({
   const showMore = () => {
     if (currentPage >= totalPages) return
     const nextPage = Math.min(currentPage + 1, totalPages)
-    const params = new URLSearchParams(searchParams?.toString())
+    const params = new URLSearchParams(searchParams?.toString() ?? "")
     params.set(pageParam, String(nextPage))
     router.push(`${pathname}?${params.toString()}`, { scroll: false })
     setIsExpanded(true)

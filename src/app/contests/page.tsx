@@ -7,11 +7,11 @@ type ContestsPageProps = {
 
 export default async function ContestsRoute({ searchParams }: ContestsPageProps) {
     const params = await searchParams;
-    const { time, status } = parseContestsPageSearchParams(params);
+    const { time, status, currentPage } = parseContestsPageSearchParams(params);
 
     return (
         <Suspense fallback={null}>
-            <ContestsPage time={time} status={status} />
+            <ContestsPage time={time} status={status} currentPage={currentPage} />
         </Suspense>
     );
 }

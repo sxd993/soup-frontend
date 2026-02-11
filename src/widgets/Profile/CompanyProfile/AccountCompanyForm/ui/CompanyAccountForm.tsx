@@ -47,7 +47,7 @@ export const CompanyAccountForm = () => {
                 {/* Кнопка сохранения настроек */}
                 <Button
                     type="submit"
-                    className="w-full self-stretch sm:w-auto sm:self-end"
+                    className="w-full cursor-pointer disabled:cursor-not-allowed"
                     disabled={isPending}
                     aria-disabled={isPending}
                 >

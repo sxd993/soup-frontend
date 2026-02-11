@@ -8,6 +8,7 @@ export { CompanyNavigationSideBar } from './CompanyNavigationSideBar/ui/CompanyN
 
 // Отзывы компании
 export { CompanyReviewsSection } from './ReviewsCompanySection/CompanyReviewsSection'
+export { parseReviewsPageParams } from './ReviewsCompanySection/lib/parseReviewsPageParams'
 
 // Заказы компании
 export { OrdersCompanySection } from './OrdersCompanySection/OrdersCompanySection'

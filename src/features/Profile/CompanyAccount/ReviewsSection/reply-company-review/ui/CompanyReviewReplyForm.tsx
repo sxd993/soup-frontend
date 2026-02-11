@@ -42,14 +42,14 @@ export const CompanyReviewReplyForm = ({
         </div>
       </div>
       <div className="flex justify-end">
-        <button
+        <Button
           type="button"
           onClick={onSubmit}
           disabled={!replyDraft.trim() || isSubmitting}
-          className="rounded-full bg-[#8BC652] px-10 py-2  disabled:cursor-not-allowed disabled:bg-[#d3ebbb] disabled:text-[#627773]"
+          className="cursor-pointer"
         >
-          <span className="font-semibold text-base text-[#06352d]"> {isSubmitting ? "Отправка..." : "Ответить"} </span>
-        </button>
+          {isSubmitting ? "Отправка..." : "Ответить"}
+        </Button>
       </div>
     </div>
   )
