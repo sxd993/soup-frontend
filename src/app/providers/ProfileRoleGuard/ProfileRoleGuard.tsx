@@ -43,7 +43,6 @@ export function ProfileRoleGuard({ role, children }: ProfileRoleGuardProps) {
             isLoading={showLoading}
             isError={Boolean(isError && !session)}
             loadingComponent={profileSkeleton}
-            errorComponent={null}
         >
             <div>{canRender ? children : null}</div>
         </StateProvider>

@@ -54,7 +54,6 @@ export const CompanyUploadLogo = () => {
             isError={isError}
             errorMessage={errorMessage ?? "Не удалось загрузить логотип"}
             loadingComponent={content}
-            errorComponent={content}
         >
             {content}
         </StateProvider>

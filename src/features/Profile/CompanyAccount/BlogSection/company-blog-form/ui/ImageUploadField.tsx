@@ -70,7 +70,6 @@ export function ImageUploadField({
       isError={Boolean(errorMessage)}
       errorMessage={errorMessage ?? "Не удалось загрузить фото"}
       loadingComponent={content}
-      errorComponent={content}
     >
       {content}
     </StateProvider>

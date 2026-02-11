@@ -88,7 +88,6 @@ export const ResetPasswordForm = () => {
       isLoading={isBusy}
       isError={Boolean(serverError)}
       loadingComponent={formContent}
-      errorComponent={formContent}
     >
       {formContent}
     </StateProvider>

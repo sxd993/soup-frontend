@@ -6,6 +6,7 @@ import { validateLoginForm } from '@/entities/Auth/model/lib/formValidators'
 import type { AuthSession } from '@/entities/Session'
 import { useRouter } from 'next/navigation'
 import { getErrorMessage } from '@/shared/lib/error-handler'
+import { showErrorToast } from '@/shared/ui'
 import { useQueryClient } from '@tanstack/react-query'
 
 export const useLoginForm = () => {
@@ -35,6 +36,7 @@ export const useLoginForm = () => {
       onError: (error: Error) => {
         const errorMessage = getErrorMessage(error, AUTH_MESSAGES.login.default)
         setServerError(errorMessage)
+        showErrorToast('Ошибка входа', errorMessage)
       }
   })
   }

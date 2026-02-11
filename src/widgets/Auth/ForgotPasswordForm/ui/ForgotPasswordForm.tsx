@@ -61,7 +61,6 @@ export const ForgotPasswordForm = () => {
       isLoading={isBusy}
       isError={Boolean(serverError)}
       loadingComponent={formContent}
-      errorComponent={formContent}
     >
       {formContent}
     </StateProvider>

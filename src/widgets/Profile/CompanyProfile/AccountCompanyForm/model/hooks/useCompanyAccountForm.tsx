@@ -4,6 +4,7 @@ import type { CompanyAccountFormValues } from "../types/CompanyAccountFormValues
 import type { CompanyProfileResponse } from "@/entities/Profile/Company/model/types/company.types"
 import { mapCompanyToFormValues } from "../lib/mapCompanyToFormValues"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { showSuccessToast } from "@/shared/ui"
 import { editCompanyProfile } from "../../api/editCompanyProfile"
 
 const defaultValues: CompanyAccountFormValues = {
@@ -49,7 +50,7 @@ export const useCompanyAccountForm = (company?: CompanyProfileResponse, userId?:
         mutationKey: ['editCompanyProfile'],
         mutationFn: editCompanyProfile,
         onSuccess: () => {
-            console.log('Company profile updated successfully')
+            showSuccessToast("Сохранено", "Данные компании обновлены.")
             if (userId) {
                 queryClient.invalidateQueries({ queryKey: ["company-profile", userId] })
             }

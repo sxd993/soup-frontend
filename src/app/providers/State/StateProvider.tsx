@@ -1,17 +1,17 @@
-import React from "react";
-import { LoadingState, ErrorState } from "@/shared/ui";
+"use client";
 
-// Переиспользуемый компонент для отображения состояний загрузки, ошибок и пустых данных
+import React from "react";
+import { EmptyState, ErrorState, LoadingState, useErrorToast } from "@/shared/ui";
+
+// Переиспользуемый компонент для отображения состояний загрузки, ошибок и пустых данных. При ошибке показывается тост и блок ErrorState.
 
 type StateProviderProps = {
     isLoading?: boolean;
     isError: boolean;
     isEmpty?: boolean;
-    loadingMessage?: string;
+    errorTitle?: string;
     errorMessage?: string;
-    emptyMessage?: string;
     loadingComponent?: React.ReactNode;
-    errorComponent?: React.ReactNode;
     emptyComponent?: React.ReactNode;
     children: React.ReactNode;
 };
@@ -20,32 +20,29 @@ export const StateProvider = ({
     isLoading,
     isError,
     isEmpty = false,
-    loadingMessage = "Загрузка...",
-    errorMessage = "Ошибка при загрузке данных",
-    emptyMessage = "Данные не найдены",
+    errorTitle,
+    errorMessage,
     loadingComponent,
-    errorComponent,
     emptyComponent,
     children,
 }: StateProviderProps) => {
+    useErrorToast(isError, errorMessage, errorTitle);
+
     if (isLoading) {
-        return loadingComponent ?? (
-            <LoadingState className="min-h-125 text-center" message={loadingMessage} />
-        );
+        return <>{loadingComponent ?? <LoadingState />}</>;
     }
 
     if (isError) {
-        return errorComponent ?? <ErrorState className="min-h-125" message={errorMessage} />;
+        return (
+            <ErrorState
+                title={errorTitle}
+                subTitle={errorMessage}
+            />
+        );
     }
 
     if (isEmpty) {
-        return (
-            emptyComponent ?? (
-                <div className="text-center py-10 min-h-screen">
-                    <p className="text-accent-quinary">{emptyMessage}</p>
-                </div>
-            )
-        );
+        return <>{emptyComponent ?? <EmptyState />}</>;
     }
 
     return <>{children}</>;
