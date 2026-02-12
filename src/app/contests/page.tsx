@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { LoadingState } from "@/shared/ui";
 import { ContestsPage, parseContestsPageSearchParams } from "@/widgets/Contests";
 
 type ContestsPageProps = {
@@ -10,7 +11,7 @@ export default async function ContestsRoute({ searchParams }: ContestsPageProps)
     const { time, status, currentPage } = parseContestsPageSearchParams(params);
 
     return (
-        <Suspense fallback={null}>
+        <Suspense fallback={<LoadingState />}>
             <ContestsPage time={time} status={status} currentPage={currentPage} />
         </Suspense>
     );

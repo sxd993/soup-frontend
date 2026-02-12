@@ -87,6 +87,8 @@ export const ResetPasswordForm = () => {
     <StateProvider
       isLoading={isBusy}
       isError={Boolean(serverError)}
+      errorTitle="Ошибка сброса пароля"
+      errorMessage={serverError ?? undefined}
       loadingComponent={formContent}
     >
       {formContent}

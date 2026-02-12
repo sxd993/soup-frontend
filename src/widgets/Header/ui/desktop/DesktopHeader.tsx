@@ -41,6 +41,7 @@ export const DesktopHeader = () => {
         <StateProvider
           isLoading={isSessionLoading}
           isError={false}
+          errorTitle="Не удалось загрузить профиль"
           loadingComponent={(
             <div className="hidden lg:flex items-center gap-3">
               <span className="inline-block w-8 h-8 rounded-full bg-gray-200" aria-hidden="true" />

@@ -22,7 +22,6 @@ export const BadgeFilter = () => {
                 isLoading={false}
                 isError={false}
                 isEmpty={isEmpty}
-                emptyMessage="Фильтры пока отсутствуют"
             >
                 <button
                     type="button"

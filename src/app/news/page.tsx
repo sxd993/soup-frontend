@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { LoadingState } from "@/shared/ui"
 import { NewsPage, parseNewsPageSearchParams } from "@/widgets/News";
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default async function NewsRoute({ searchParams }: NewsRouteProps) {
     const { time, badge } = parseNewsPageSearchParams(params);
 
     return (
-        <Suspense fallback={null}>
+        <Suspense fallback={<LoadingState />}>
             <NewsPage time={time} badge={badge} />
         </Suspense>
     );

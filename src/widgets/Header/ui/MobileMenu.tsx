@@ -38,12 +38,13 @@ export const MobileMenu = () => {
           <StateProvider
             isLoading={isSessionLoading}
             isError={false}
+            errorTitle="Не удалось загрузить профиль"
             loadingComponent={(
               <div className="flex flex-col">
                 {mobileSkeletons.map((index) => (
                   <span
                     key={`mobile-header-link-skeleton-${index}`}
-                    className="py-4 border-b border-[#EBE7DF]/20 md:border-b-0"
+                    className="py-4 border-b border-accent-octonary/20 md:border-b-0"
                   >
                     <span className="inline-block h-5 w-40 rounded bg-[#F3EDE3]/40" aria-hidden="true" />
                   </span>
@@ -57,7 +58,7 @@ export const MobileMenu = () => {
                   key={link.href}
                   href={link.label === 'Личный кабинет' ? profileHref : link.href}
                   onClick={closeMenu}
-                  className="py-4 border-b border-[#EBE7DF]/20 md:border-b-0"
+                  className="py-4 border-b border-accent-octonary/20 md:border-b-0"
                 >
                   {link.label}
                 </Link>
@@ -65,7 +66,7 @@ export const MobileMenu = () => {
               {isAuthorized && (
                 <button
                   type="button"
-                  className="py-4 border-b border-[#EBE7DF]/20 md:border-b-0 text-left disabled:opacity-50"
+                  className="py-4 border-b border-accent-octonary/20 md:border-b-0 text-left disabled:opacity-50"
                   onClick={handleLogoutAndClose}
                   disabled={isPending}
                 >

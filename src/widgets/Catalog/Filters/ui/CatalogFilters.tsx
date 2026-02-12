@@ -78,9 +78,7 @@ export const CatalogFilters = () => {
           isLoading={isLoading}
           isError={isError}
           isEmpty={sections.length === 0}
-          loadingMessage={CATALOG_FILTERS_MESSAGES.loading}
-          errorMessage={CATALOG_FILTERS_MESSAGES.error}
-          emptyMessage={CATALOG_FILTERS_MESSAGES.empty}
+          errorTitle={CATALOG_FILTERS_MESSAGES.error}
         >
           <div className="flex flex-col gap-2">
             {sections.map((section) => {

@@ -16,8 +16,7 @@ export function BlogItemPage() {
       isLoading={isLoading}
       isError={isError}
       isEmpty={isEmpty}
-      errorMessage="Не удалось загрузить блог"
-      emptyMessage="Блог не найден"
+      errorTitle="Не удалось загрузить блог"
       loadingComponent={<BlogItemSkeleton />}
     >
       {blog && (

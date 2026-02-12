@@ -15,8 +15,7 @@ export function NewsItemPage() {
       isLoading={isLoading}
       isError={isError}
       isEmpty={isEmpty}
-      errorMessage="Не удалось загрузить новость"
-      emptyMessage="Новость не найдена"
+      errorTitle="Не удалось загрузить новость"
       loadingComponent={<NewsItemSkeleton />}
     >
       {newsItem && (

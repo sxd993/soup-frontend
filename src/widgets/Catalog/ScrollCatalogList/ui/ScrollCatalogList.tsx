@@ -47,9 +47,7 @@ export const ScrollCatalogList = () => {
         isLoading={isLoading}
         isError={isError}
         isEmpty={isEmpty}
-        loadingMessage="Загружаем каталог..."
-        errorMessage="Не удалось загрузить каталог"
-        emptyMessage="Компаний пока нет"
+        errorTitle="Не удалось загрузить каталог"
       >
         <div className="flex flex-col gap-6">
           {paginatedItems.map((item) => (

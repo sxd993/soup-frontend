@@ -60,6 +60,8 @@ export const ForgotPasswordForm = () => {
     <StateProvider
       isLoading={isBusy}
       isError={Boolean(serverError)}
+      errorTitle="Ошибка восстановления пароля"
+      errorMessage={serverError ?? undefined}
       loadingComponent={formContent}
     >
       {formContent}

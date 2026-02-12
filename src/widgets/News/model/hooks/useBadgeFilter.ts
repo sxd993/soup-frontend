@@ -8,7 +8,7 @@ type FilterItem = { id: number; title: string; value: string | null };
 
 export const useBadgeFilter = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
-    const { badges } = useNewsBadgeFilterState();
+    const { badges, badgesInitialized } = useNewsBadgeFilterState();
     const { selectedBadge, handleSelect: handleBadgeSelect } = useNewsBadgeQuerySync();
 
     const items: FilterItem[] = useMemo(
@@ -48,6 +48,6 @@ export const useBadgeFilter = () => {
         selectedItem,
         handleSelect,
         handleBadgeSelect,
-        isEmpty: badges.length === 0,
+        isEmpty: badgesInitialized && badges.length === 0,
     };
 };

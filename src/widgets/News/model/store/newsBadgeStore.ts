@@ -5,6 +5,7 @@ import { create } from "zustand";
 type NewsBadgeStoreState = {
     badges: string[];
     selectedBadge: string | null;
+    badgesInitialized: boolean;
     setBadges: (badges: string[]) => void;
     setSelectedBadge: (badge: string | null) => void;
 };
@@ -12,6 +13,7 @@ type NewsBadgeStoreState = {
 export const useNewsBadgeStore = create<NewsBadgeStoreState>((set) => ({
     badges: [],
     selectedBadge: null,
-    setBadges: (badges) => set(() => ({ badges })),
+    badgesInitialized: false,
+    setBadges: (badges) => set(() => ({ badges, badgesInitialized: true })),
     setSelectedBadge: (badge) => set(() => ({ selectedBadge: badge })),
 }));

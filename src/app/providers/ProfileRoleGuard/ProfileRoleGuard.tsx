@@ -37,16 +37,12 @@ export function ProfileRoleGuard({ role, children }: ProfileRoleGuardProps) {
     const hasError = Boolean(isError && !session)
     const canRender = !showLoading && !hasError && session?.user.role === role
 
-    useEffect(() => {
-        if (hasError) {
-            alert('Не удалось загрузить профиль. Попробуйте позже.')
-        }
-    }, [hasError])
-
     return (
         <StateProvider
             isLoading={showLoading}
             isError={hasError}
+            errorTitle="Не удалось загрузить профиль"
+            errorMessage="Попробуйте позже."
         >
             <div>{canRender ? children : null}</div>
         </StateProvider>

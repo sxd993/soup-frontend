@@ -46,9 +46,7 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
         isLoading={isLoading}
         isError={isError}
         isEmpty={!company}
-        loadingMessage="Загружаем компанию..."
-        errorMessage="Не удалось загрузить компанию"
-        emptyMessage="Компания не найдена"
+        errorTitle="Не удалось загрузить компанию"
       >
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_300px]">
           <div className="flex flex-col gap-6">

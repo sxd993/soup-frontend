@@ -10,12 +10,10 @@ type CompanyBlogSectionProps = {
 export const CompanyBlogSection = ({ blogs, isLoading, isError }: CompanyBlogSectionProps) => {
   return (
     <StateProvider
-      isLoading={isLoading}
-      isError={isError}
+      isLoading={isLoading ?? false}
+      isError={isError ?? false}
       isEmpty={blogs.length === 0}
-      loadingMessage="Загружаем публикации..."
-      errorMessage="Не удалось загрузить публикации"
-      emptyMessage="Записей пока нет"
+      errorTitle="Не удалось загрузить публикации"
     >
       <div className="flex flex-col gap-4">
         {blogs.map((blog) => (

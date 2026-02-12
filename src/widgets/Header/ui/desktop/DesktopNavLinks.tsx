@@ -13,6 +13,7 @@ export const DesktopNavLinks = () => {
     <StateProvider
       isLoading={isSessionLoading}
       isError={false}
+      errorTitle="Не удалось загрузить навигацию"
       loadingComponent={(
         <div className="hidden lg:flex pl-5 gap-8 text-center items-center text-nowrap header-nav-links">
           {desktopSkeletons.map((index) => (
