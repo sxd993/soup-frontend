@@ -4,6 +4,7 @@ import { getErrorMessage } from '@/shared/lib/error-handler'
 import { AUTH_MESSAGES } from '@/entities/Auth'
 import { validateChangeEmailForm, EMAIL_PATTERN } from '@/entities/Auth/model/lib/formValidators'
 import { useChangeEmailRequest } from './useChangeEmailRequest'
+import { showErrorToast } from '@/shared/ui'
 
 export const useChangeEmail = () => {
   const router = useRouter()
@@ -19,12 +20,14 @@ export const useChangeEmail = () => {
   const onSubmit = () => {
     if (!verificationId) {
       setServerError(AUTH_MESSAGES.changeEmail.missingId)
+      showErrorToast(AUTH_MESSAGES.changeEmail.default, AUTH_MESSAGES.changeEmail.missingId)
       return
     }
 
     const trimmedEmail = newEmail.trim()
     if (!EMAIL_PATTERN.test(trimmedEmail)) {
       setServerError(AUTH_MESSAGES.changeEmail.invalidEmail)
+      showErrorToast(AUTH_MESSAGES.changeEmail.default, AUTH_MESSAGES.changeEmail.invalidEmail)
       return
     }
 
@@ -37,7 +40,9 @@ export const useChangeEmail = () => {
           router.replace(`/auth/verify?id=${response.verificationId}`)
         },
         onError: (error: Error) => {
-          setServerError(getErrorMessage(error, AUTH_MESSAGES.changeEmail.default))
+          const msg = getErrorMessage(error, AUTH_MESSAGES.changeEmail.default)
+          setServerError(msg)
+          showErrorToast(AUTH_MESSAGES.changeEmail.default, msg)
         },
       },
     )

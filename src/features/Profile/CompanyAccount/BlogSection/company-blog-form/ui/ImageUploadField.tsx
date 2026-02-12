@@ -58,9 +58,6 @@ export function ImageUploadField({
           </span>
         )}
       </label>
-      {errorMessage && (
-        <p className="text-xs text-red-500">{errorMessage}</p>
-      )}
     </div>
   )
 

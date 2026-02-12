@@ -29,13 +29,6 @@ export const VerifyForm = () => {
 
     return (
         <form className="flex flex-col gap-5" onSubmit={(e) => { e.preventDefault(); onSubmit(); }}>
-            {/* Ошибка сервера */}
-            {serverError && (
-                <div className="p-3 rounded-lg bg-red-50 border border-red-200">
-                    <p className="text-sm text-red-600 text-center">{serverError}</p>
-                </div>
-            )}
-
             {/* Текст с инструкцией */}
             <p className="text-base font-normal leading-[110%] text-center text-secondary">
                 На указанный e-mail отправили код подтверждения.

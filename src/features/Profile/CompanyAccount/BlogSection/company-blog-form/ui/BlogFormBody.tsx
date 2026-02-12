@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { StateProvider } from "@/app/providers/State/StateProvider"
 import { Button } from "@/shared/ui"
 import { useBlogForm } from "../model/hooks/useBlogForm"
@@ -21,24 +20,11 @@ export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
     useBlogForm(mode, blogId)
   const { blockOptions } = useBlockOptions()
 
-  if (blogNotFound) {
-    return (
-      <div className="bg-white p-5 rounded-[20px] flex flex-col gap-4">
-        <p className="text-secondary">Блог не найден или недоступен для редактирования.</p>
-        <Link
-          href="/profile/company/blog"
-          className="text-base font-semibold text-primary hover:underline"
-        >
-          ← К списку блогов
-        </Link>
-      </div>
-    )
-  }
-
   return (
     <StateProvider
       isLoading={companyLoading}
       isError={false}
+      isEmpty={blogNotFound}
       loadingComponent={<BlogFormBodySkeleton />}
     >
       <BlogFormProvider value={form}>
@@ -114,10 +100,6 @@ export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
               Опубликовать
             </Button>
           </div>
-
-          {form.isError && (
-            <p className="text-sm text-red-600">Не удалось сохранить. Попробуйте ещё раз.</p>
-          )}
         </form>
       </BlogFormProvider>
     </StateProvider>

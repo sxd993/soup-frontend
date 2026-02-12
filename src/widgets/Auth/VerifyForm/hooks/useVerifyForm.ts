@@ -5,6 +5,7 @@ import { useResend } from '@/features/Auth/resend'
 import { AUTH_MESSAGES } from '@/entities/Auth'
 import { getErrorMessage } from '@/shared/lib/error-handler'
 import { useProfileRedirect } from '@/features/Auth/profileRedirect'
+import { showErrorToast } from '@/shared/ui'
 
 export const useVerifyForm = () => {
     const router = useRouter()
@@ -58,6 +59,7 @@ export const useVerifyForm = () => {
         const codeString = code.join('')
         if (codeString.length !== 4) {
             setServerError(AUTH_MESSAGES.verify.invalidCode)
+            showErrorToast(AUTH_MESSAGES.verify.error, AUTH_MESSAGES.verify.invalidCode)
             return
         }
         
@@ -67,7 +69,9 @@ export const useVerifyForm = () => {
             {
                 onSuccess: () => onGoProfile(),
                 onError: (error: Error) => {
-                    setServerError(getErrorMessage(error, AUTH_MESSAGES.verify.default))
+                    const msg = getErrorMessage(error, AUTH_MESSAGES.verify.default)
+                    setServerError(msg)
+                    showErrorToast(AUTH_MESSAGES.verify.error, msg)
                     setCode(['', '', '', ''])
                     inputRefs.current[0]?.focus()
                 }
@@ -78,6 +82,7 @@ export const useVerifyForm = () => {
     const onResend = () => {
         if (!verificationId) {
             setServerError(AUTH_MESSAGES.verify.missingId)
+            showErrorToast(AUTH_MESSAGES.verify.error, AUTH_MESSAGES.verify.missingId)
             return
         }
 
@@ -91,7 +96,9 @@ export const useVerifyForm = () => {
                     inputRefs.current[0]?.focus()
                 },
                 onError: (error: Error) => {
-                    setServerError(getErrorMessage(error, AUTH_MESSAGES.verify.resendDefault))
+                    const msg = getErrorMessage(error, AUTH_MESSAGES.verify.resendDefault)
+                    setServerError(msg)
+                    showErrorToast(AUTH_MESSAGES.verify.resendDefault, msg)
                 },
             },
         )

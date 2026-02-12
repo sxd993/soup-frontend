@@ -4,7 +4,8 @@ import type { CompanyAccountFormValues } from "../types/CompanyAccountFormValues
 import type { CompanyProfileResponse } from "@/entities/Profile/Company/model/types/company.types"
 import { mapCompanyToFormValues } from "../lib/mapCompanyToFormValues"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { showSuccessToast } from "@/shared/ui"
+import { showErrorToast, showSuccessToast } from "@/shared/ui"
+import { getErrorMessage } from "@/shared/lib/error-handler"
 import { editCompanyProfile } from "../../api/editCompanyProfile"
 
 const defaultValues: CompanyAccountFormValues = {
@@ -57,6 +58,7 @@ export const useCompanyAccountForm = (company?: CompanyProfileResponse, userId?:
         },
         onError: (error) => {
             console.error('Failed to update company profile', error)
+            showErrorToast('Не удалось сохранить данные компании', getErrorMessage(error, 'Попробуйте ещё раз.'))
         },
     })
 

@@ -24,12 +24,6 @@ export const ChangeEmailForm = () => {
 
   return (
     <form className="flex flex-col gap-5" onSubmit={(e) => { e.preventDefault(); onSubmit(); }}>
-      {serverError && (
-        <div className="p-3 rounded-lg bg-red-50 border border-red-200">
-          <p className="text-sm text-red-600 text-center">{serverError}</p>
-        </div>
-      )}
-
       <Input
         type="email"
         placeholder="E-mail"

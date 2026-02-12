@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { RegisterFormValues, AUTH_MESSAGES } from '@/entities/Auth';
 import { useRouter } from 'next/navigation'
 import { getErrorMessage } from '@/shared/lib/error-handler'
+import { showErrorToast } from '@/shared/ui'
 
 export const useRegisterForm = () => {
     const router = useRouter()
@@ -40,6 +41,7 @@ export const useRegisterForm = () => {
             onError: (error: Error) => {
                 const errorMessage = getErrorMessage(error, AUTH_MESSAGES.register.default)
                 setServerError(errorMessage)
+                showErrorToast(AUTH_MESSAGES.register.error, errorMessage)
             }
         })
     }
