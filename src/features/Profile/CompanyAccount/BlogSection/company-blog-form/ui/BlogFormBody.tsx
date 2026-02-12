@@ -89,7 +89,7 @@ export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
                 key={type}
                 type="button"
                 onClick={() => form.addBlock(type)}
-                className="rounded-[20px] px-4 py-2 text-sm font-medium bg-[#f0f0f0] text-secondary hover:bg-[#e5e5e5] transition-colors"
+                className="rounded-[20px] px-3 py-1.5 text-xs font-medium bg-[#f0f0f0] text-secondary hover:bg-[#e5e5e5] transition-colors lg:px-4 lg:py-2 lg:text-sm"
               >
                 {label}
               </button>
@@ -101,7 +101,7 @@ export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
               type="button"
               onClick={form.handleSubmit(false)}
               disabled={isSubmitDisabled}
-              className="w-full lg:w-auto bg-[#2f2f2f]! text-white! hover:bg-[#1a1a1a]!"
+              className="w-full lg:w-auto text-sm! px-6! py-2! lg:text-base! lg:px-15! bg-[#2f2f2f]! text-white! hover:bg-[#1a1a1a]!"
             >
               {leftButtonLabel}
             </Button>
@@ -109,7 +109,7 @@ export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
               type="button"
               onClick={form.handleSubmit(true)}
               disabled={isSubmitDisabled}
-              className="w-full lg:w-auto"
+              className="w-full lg:w-auto text-sm! px-6! py-2! lg:text-base! lg:px-15!"
             >
               Опубликовать
             </Button>

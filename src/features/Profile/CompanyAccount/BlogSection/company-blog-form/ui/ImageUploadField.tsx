@@ -33,7 +33,7 @@ export function ImageUploadField({
     <div className="flex flex-col gap-2">
       <label
         htmlFor={id}
-        style={{ minHeight }}
+        style={{ height: minHeight, minHeight }}
         className="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-[10px] border border-[#c5c2c2] transition-colors"
       >
         <input
@@ -49,7 +49,7 @@ export function ImageUploadField({
           <img
             src={displayUrl}
             alt=""
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover object-center"
           />
         ) : (
           <span className="flex flex-col items-center justify-center gap-2 text-center text-base text-[#BFBFBF]">

@@ -38,7 +38,7 @@ export const CompanyBlogTabs = () => {
           <FilterMenu
             items={menuItems}
             selectedId={selectedMenuId}
-            className="left-0 right-auto"
+            className="right-0 left-auto lg:left-0 lg:right-auto"
             onSelect={handleMenuSelect}
           />
         )}

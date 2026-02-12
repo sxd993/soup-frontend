@@ -13,9 +13,15 @@ export const BlogCompanySection = () => {
             title="Блоги"
           />
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <CompanyBlogTabs />
-          <ViewAllButton href="/profile/company/blog/new" text="+ Новая публикация" />
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="self-end lg:order-1 lg:self-auto">
+            <CompanyBlogTabs />
+          </div>
+          <ViewAllButton
+            href="/profile/company/blog/new"
+            text="+ Новая публикация"
+            className="w-auto! text-sm! py-2! md:text-base! lg:order-2"
+          />
         </div>
       </div>
       <CompanyBlogList />
