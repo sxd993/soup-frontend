@@ -27,7 +27,7 @@ export const CompanyAccountForm = () => {
             isLoading={showSkeleton}
             isError={isCompanyError}
             loadingComponent={<CompanyAccountFormSkeleton />}
-            errorMessage="Не удалось загрузить данные компании"
+            errorTitle="Не удалось загрузить данные компании"
         >
         <FormProvider {...form}>
             <form className="flex w-full flex-col gap-5" noValidate onSubmit={handleSubmit}>

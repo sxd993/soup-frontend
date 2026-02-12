@@ -42,7 +42,15 @@ export const StateProvider = ({
     }
 
     if (isEmpty) {
-        return <>{emptyComponent ?? <EmptyState />}</>;
+        if (emptyComponent) {
+            return <>{emptyComponent}</>;
+        }
+
+        return (
+            <div className="flex w-full min-h-[60vh] justify-center items-center">
+                <EmptyState />
+            </div>
+        );
     }
 
     return <>{children}</>;

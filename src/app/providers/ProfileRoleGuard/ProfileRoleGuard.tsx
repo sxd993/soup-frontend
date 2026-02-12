@@ -3,7 +3,6 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from '@/entities/Session'
-import { useSkeletons } from '@/shared/hooks'
 import { StateProvider } from '@/app/providers/State/StateProvider'
 
 type ProfileRole = 'client' | 'company'
@@ -16,7 +15,6 @@ type ProfileRoleGuardProps = {
 export function ProfileRoleGuard({ role, children }: ProfileRoleGuardProps) {
     const router = useRouter()
     const { data: session, isLoading, isError } = useSession()
-    const { profileSkeleton } = useSkeletons()
 
     useEffect(() => {
         if (isLoading || isError) {
@@ -35,14 +33,20 @@ export function ProfileRoleGuard({ role, children }: ProfileRoleGuardProps) {
         }
     }, [isError, isLoading, role, router, session])
 
-    const canRender = !isLoading && !isError && session?.user.role === role
     const showLoading = isLoading && !session
+    const hasError = Boolean(isError && !session)
+    const canRender = !showLoading && !hasError && session?.user.role === role
+
+    useEffect(() => {
+        if (hasError) {
+            alert('Не удалось загрузить профиль. Попробуйте позже.')
+        }
+    }, [hasError])
 
     return (
         <StateProvider
             isLoading={showLoading}
-            isError={Boolean(isError && !session)}
-            loadingComponent={profileSkeleton}
+            isError={hasError}
         >
             <div>{canRender ? children : null}</div>
         </StateProvider>

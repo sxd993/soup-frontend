@@ -3,17 +3,18 @@
 import { StateProvider } from "@/app/providers/State/StateProvider"
 import { Button } from "@/shared/ui"
 import { useCurrentTariff } from "../model/hooks/useCurrentTariff"
+import { CurrentTariffSkeleton } from "./CurrentTariffSkeleton"
 
 export const CurrentTariff = () => {
     const { isLoading, isError, isEmpty, view } = useCurrentTariff()
-    console.log(view)
 
     return (
         <StateProvider
             isLoading={isLoading}
             isError={isError}
             isEmpty={isEmpty}
-            emptyMessage="Тариф не выбран"
+            errorTitle="Не удалось загрузить выбранный тариф"
+            loadingComponent={<CurrentTariffSkeleton />}
         >
             {view && (
                 <section className="bg-white rounded-[30px] p-5">

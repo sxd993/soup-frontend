@@ -9,6 +9,7 @@ import { BlogFormProvider } from "../model/context/BlogFormContext"
 import { useBlockOptions } from "../model/hooks/useBlockOptions"
 import { AddedBlocksList } from "./AddedBlocksList"
 import { BlogImageUpload } from "./BlogImageUpload"
+import { BlogFormBodySkeleton } from "./BlogFormBodySkeleton"
 
 type BlogFormBodyProps = {
   mode: BlogFormMode
@@ -38,7 +39,7 @@ export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
     <StateProvider
       isLoading={companyLoading}
       isError={false}
-      loadingMessage="Загружаем..."
+      loadingComponent={<BlogFormBodySkeleton />}
     >
       <BlogFormProvider value={form}>
         <form

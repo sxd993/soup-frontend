@@ -174,7 +174,7 @@ export const CatalogFilters = () => {
           </div>
         </StateProvider>
         <Button
-          className="mt-3 w-full rounded-full bg-[#8BC652] text-accent-senary hover:bg-[#7DAF4D] active:bg-[#80D62C] disabled:bg-[#D3EBBB]"
+          className="mt-3 w-full rounded-full bg-primary text-accent-senary hover:bg-accent active:bg-[#80D62C] disabled:bg-[#D3EBBB]"
           onClick={resetAll}
           disabled={isResetDisabled}
         >

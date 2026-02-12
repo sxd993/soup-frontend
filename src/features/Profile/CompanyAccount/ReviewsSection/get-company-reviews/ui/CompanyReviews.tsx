@@ -25,8 +25,7 @@ export const CompanyReviews = () => {
             isLoading={isLoading}
             isError={isError}
             isEmpty={sortedReviews.length === 0}
-            loadingMessage="Загружаем отзывы..."
-            errorMessage="Не удалось загрузить отзывы"
+            errorTitle="Не удалось загрузить отзывы"
             emptyComponent={<CompanyReviewsEmpty />}
             loadingComponent={<CompanyReviewsSkeleton />}
         >

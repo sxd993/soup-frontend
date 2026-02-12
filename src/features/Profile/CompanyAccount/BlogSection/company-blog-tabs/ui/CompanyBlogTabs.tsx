@@ -1,28 +1,66 @@
 "use client"
 
+import { SortIcon } from "@/shared/ui"
+import { FilterMenu } from "@/shared/ui/FilterMenu/ui/FilterMenu"
 import { useCompanyBlogTabs } from "../model/hooks/useCompanyBlogTabs"
 import type { BlogTabStatus } from "../model/const/blogTabs"
 
 export const CompanyBlogTabs = () => {
-  const { items, selectedStatus, handleSelect } = useCompanyBlogTabs()
+  const {
+    items,
+    selectedStatus,
+    selectedItem,
+    isOpen,
+    setIsOpen,
+    handleSelect,
+    menuItems,
+    selectedMenuId,
+    handleMenuSelect,
+  } = useCompanyBlogTabs()
 
   return (
-    <div className="flex flex-wrap rounded-[40px]">
-      {items.map((item) => {
-        const isActive = item.id === selectedStatus
-        return (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => handleSelect(item.id as BlogTabStatus)}
-            className={`rounded-[40px] px-6 py-2 text-[16px] font-semibold transition-colors ${
-              isActive ? "bg-white text-secondary" : "text-accent-septenary"
-            }`}
-          >
-            {item.label}
-          </button>
-        )
-      })}
-    </div>
+    <>
+      <div className="relative lg:hidden">
+        <button
+          type="button"
+          className="flex gap-2 items-center cursor-pointer"
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
+          <p className="text-secondary font-semibold leading-[130%] text-sm">
+            {selectedItem.label}
+          </p>
+          <span className={`transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}>
+            <SortIcon />
+          </span>
+        </button>
+        {isOpen && (
+          <FilterMenu
+            items={menuItems}
+            selectedId={selectedMenuId}
+            className="left-0 right-auto"
+            onSelect={handleMenuSelect}
+          />
+        )}
+      </div>
+
+      <div className="hidden lg:inline-flex flex-wrap rounded-[40px]">
+        {items.map((item) => {
+          const isActive = item.id === selectedStatus
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => handleSelect(item.id as BlogTabStatus)}
+              className={`rounded-[40px] px-6 py-2 text-[16px] font-semibold transition-colors ${
+                isActive ? "bg-white text-secondary" : "text-accent-septenary"
+              }`}
+            >
+              {item.label}
+            </button>
+          )
+        })}
+      </div>
+    </>
   )
 }

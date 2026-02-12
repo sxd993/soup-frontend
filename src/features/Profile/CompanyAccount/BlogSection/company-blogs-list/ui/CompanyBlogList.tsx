@@ -3,6 +3,7 @@
 import { StateProvider } from "@/app/providers/State/StateProvider"
 import { BottomBlogCard } from "@/entities/Blogs"
 import { useCompanyBlogList, type CompanyBlogListCardProps } from ".."
+import { CompanyBlogListSkeleton } from "./CompanyBlogListSkeleton"
 import { CompanyBlogCardMenu } from "./CompanyBlogCardMenu"
 
 export const CompanyBlogList = () => {
@@ -13,9 +14,8 @@ export const CompanyBlogList = () => {
       isLoading={isLoading}
       isError={isError}
       isEmpty={isEmpty}
-      loadingMessage="Загружаем блоги..."
-      errorMessage="Не удалось загрузить блоги"
-      emptyMessage="У вашей компании пока нет блогов"
+      loadingComponent={<CompanyBlogListSkeleton />}
+      errorTitle="Не удалось загрузить блоги"
     >
       <div className="flex flex-col gap-5">
         {cards.map((card: CompanyBlogListCardProps) => (

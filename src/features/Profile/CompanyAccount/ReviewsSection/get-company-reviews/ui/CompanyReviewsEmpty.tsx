@@ -13,7 +13,7 @@ const EmptyStarIcon = () => {
 export const CompanyReviewsEmpty = () => {
     return (
         <div className="flex min-h-[230px] rounded-[20px] flex-col items-center justify-center gap-[35px]  bg-white">
-            <div className="font-bold text-[16px] sm:text-[22px] text-center font-normal leading-[115%] text-black">
+            <div className="font-bold text-[16px] sm:text-[22px] text-center leading-[115%] text-black">
                 У вашей компании пока нет отзывов
             </div>
 
