@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button, MainIcon } from "@/shared/ui"
@@ -16,8 +15,6 @@ type BottomBlogCardProps = {
   titleClassName?: string
   descriptionClassName?: string
   descriptionLineClamp?: number
-  /** Разворачивать пост по кнопке «Показать все» вместо перехода по ссылке */
-  expandInline?: boolean
 }
 
 export const BottomBlogCard = ({
@@ -29,18 +26,14 @@ export const BottomBlogCard = ({
   titleClassName,
   descriptionClassName,
   descriptionLineClamp,
-  expandInline = false,
 }: BottomBlogCardProps) => {
-  const [isExpanded, setIsExpanded] = useState(false)
   const { date, articleClasses, imageHeight: height } = useBottomBlogCard(blog, {
     className,
     imageHeight,
   })
 
-  const showExpandButton = expandInline && typeof descriptionLineClamp === "number"
-  const useClamp = showExpandButton && !isExpanded
   const descriptionStyle =
-    useClamp
+    typeof descriptionLineClamp === "number"
       ? {
           display: "-webkit-box",
           WebkitLineClamp: descriptionLineClamp,
@@ -110,7 +103,7 @@ export const BottomBlogCard = ({
         {headerActions}
       </div>
 
-      {!expandInline && href ? (
+      {href ? (
         <Link href={href} className="block">
           {imageBlock}
         </Link>
@@ -118,7 +111,7 @@ export const BottomBlogCard = ({
         imageBlock
       )}
 
-      {!expandInline && href ? (
+      {href ? (
         <Link href={href} className="block">
           {titleAndDescription}
         </Link>
@@ -126,30 +119,15 @@ export const BottomBlogCard = ({
         titleAndDescription
       )}
 
-      {expandInline && showExpandButton ? (
-        <div className="flex justify-end">
-          <Button
-            type="button"
-            onClick={() => setIsExpanded((v) => !v)}
-            className="px-5 py-1 rounded-full active:bg-[#80D62C]"
-          >
-            {isExpanded ? "Свернуть" : "Показать все"}
-          </Button>
-        </div>
-      ) : null}
-
-      {!expandInline && href ? (
+      {href ? (
         <div className="flex justify-end">
           <Link
             href={href}
             className="transition-opacity duration-300 opacity-0 group-hover:opacity-100"
           >
-            <button
-              type="button"
-              className="inline-flex items-center justify-center text-accent-senary font-semibold bg-primary hover:bg-accent transition-all duration-300 text-base px-5 py-1 rounded-[50px] cursor-pointer"
-            >
+            <Button type="button" className="px-5 py-1 rounded-full active:bg-[#80D62C]">
               Читать
-            </button>
+            </Button>
           </Link>
         </div>
       ) : null}

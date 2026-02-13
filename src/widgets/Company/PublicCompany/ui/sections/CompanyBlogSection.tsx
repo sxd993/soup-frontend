@@ -1,5 +1,6 @@
 import { StateProvider } from "@/app/providers/State/StateProvider"
-import { BottomBlogCard, type Blog } from "@/entities/Blogs"
+import type { Blog } from "@/entities/Blogs"
+import { CompanyBlogPostCard } from "./CompanyBlogPostCard"
 
 type CompanyBlogSectionProps = {
   blogs: Blog[]
@@ -17,16 +18,7 @@ export const CompanyBlogSection = ({ blogs, isLoading, isError }: CompanyBlogSec
     >
       <div className="flex flex-col gap-4">
         {blogs.map((blog) => (
-          <BottomBlogCard
-            key={blog.id}
-            blog={blog}
-            imageHeight={144}
-            className="rounded-[26px] bg-white p-5"
-            titleClassName="mt-0 text-lg font-semibold text-secondary"
-            descriptionClassName="mt-2 text-sm text-secondary leading-[150%]"
-            descriptionLineClamp={5}
-            expandInline
-          />
+          <CompanyBlogPostCard key={blog.id} blog={blog} />
         ))}
       </div>
     </StateProvider>
