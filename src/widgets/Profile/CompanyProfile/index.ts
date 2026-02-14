@@ -10,8 +10,5 @@ export { CompanyNavigationSideBar } from './CompanyNavigationSideBar/ui/CompanyN
 export { CompanyReviewsSection } from './ReviewsCompanySection/CompanyReviewsSection'
 export { parseReviewsPageParams } from './ReviewsCompanySection/lib/parseReviewsPageParams'
 
-// Заказы компании
-export { OrdersCompanySection } from './OrdersCompanySection/OrdersCompanySection'
-
 // Блог компании
 export { BlogCompanySection } from './BlogCompanySection/BlogCompanySection'

@@ -1,4 +1,5 @@
 export { getErrorMessage } from './error-handler'
 export { formatDate } from './formatDate'
+export { deadlineToISO } from './deadlineToISO'
 export { normalizeTariffName, resolveTariffTitle } from './tariff'
 export { normalizeUrl } from './normalizeUrl'

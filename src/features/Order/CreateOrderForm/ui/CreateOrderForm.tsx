@@ -18,7 +18,7 @@ import { CreateOrderFormFilesInput } from "./CreateOrderFormFiles";
 import { CreateOrderFormFilesList } from "./CreateOrderFormFiles";
 
 export const CreateOrderForm = () => {
-  const { formMethods, handleSubmit, badges, isLoading, isError } =
+  const { formMethods, handleSubmit, badges, isLoading, isError, isPending } =
     useCreateOrderForm();
   const { register, control } = formMethods;
 
@@ -118,8 +118,9 @@ export const CreateOrderForm = () => {
           type="submit"
           form="create-order-form"
           className="cursor-pointer"
+          disabled={isPending}
         >
-          Продолжить
+          {isPending ? "Отправка…" : "Продолжить"}
         </Button>
       </div>
     </div>
