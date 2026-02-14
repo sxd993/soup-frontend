@@ -1,10 +1,9 @@
 import { Suspense } from "react"
-import { LoadingState } from "@/shared/ui"
-import { BlogsPage } from "@/widgets/Blogs"
+import { BlogsPage, BlogsPageSkeleton } from "@/widgets/Blogs"
 
 export default function BlogsRoute() {
   return (
-    <Suspense fallback={<LoadingState />}>
+    <Suspense fallback={<BlogsPageSkeleton />}>
       <BlogsPage />
     </Suspense>
   )

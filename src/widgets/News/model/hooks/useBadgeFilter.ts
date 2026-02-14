@@ -49,5 +49,6 @@ export const useBadgeFilter = () => {
         handleSelect,
         handleBadgeSelect,
         isEmpty: badgesInitialized && badges.length === 0,
+        isLoading: !badgesInitialized,
     };
 };

@@ -1,6 +1,5 @@
 import { Suspense } from "react";
-import { LoadingState } from "@/shared/ui";
-import { ContestsPage, parseContestsPageSearchParams } from "@/widgets/Contests";
+import { ContestsPage, parseContestsPageSearchParams, ContestsPageSkeleton } from "@/widgets/Contests";
 
 type ContestsPageProps = {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -11,7 +10,7 @@ export default async function ContestsRoute({ searchParams }: ContestsPageProps)
     const { time, status, currentPage } = parseContestsPageSearchParams(params);
 
     return (
-        <Suspense fallback={<LoadingState />}>
+        <Suspense fallback={<ContestsPageSkeleton />}>
             <ContestsPage time={time} status={status} currentPage={currentPage} />
         </Suspense>
     );

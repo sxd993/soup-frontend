@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { AdsBanner } from "@/shared/ui"
-import { StateProvider } from "@/app/providers/State/StateProvider"
-import { useCompanyPublicPage } from "../model/hooks/useCompanyPublicPage"
+import { useState } from "react";
+import { AdsBanner } from "@/shared/ui";
+import { StateProvider } from "@/app/providers/State/StateProvider";
+import { useCompanyPublicPage } from "../model/hooks/useCompanyPublicPage";
 import {
   CompanyBlogSection,
   CompanyContactsSection,
@@ -11,16 +11,17 @@ import {
   CompanyReviewsSection,
   CompanyServicesSection,
   CompanyTabs,
-} from "./sections"
+} from "./sections";
+import { CompanyPublicPageSkeleton } from "./CompanyPublicPageSkeleton";
 
 type CompanyPublicPageProps = {
-  companyId: string
-}
+  companyId: string;
+};
 
-type CompanyTab = "services" | "reviews" | "blog" | "contacts"
+type CompanyTab = "services" | "reviews" | "blog" | "contacts";
 
 export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
-  const [activeTab, setActiveTab] = useState<CompanyTab>("services")
+  const [activeTab, setActiveTab] = useState<CompanyTab>("services");
   const {
     company,
     isLoading,
@@ -38,7 +39,7 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
     isBlogsLoading,
     isBlogsError,
     handleCall,
-  } = useCompanyPublicPage(companyId)
+  } = useCompanyPublicPage(companyId);
 
   return (
     <section className="mt-8 pb-16">
@@ -47,7 +48,7 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
         isError={isError}
         isEmpty={!company}
         errorTitle="Не удалось загрузить компанию"
-      >
+        loadingComponent={<CompanyPublicPageSkeleton />}>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_300px]">
           <div className="flex flex-col gap-6">
             {company ? (
@@ -67,21 +68,12 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
             <CompanyTabs activeTab={activeTab} onChange={setActiveTab} />
 
             {activeTab === "services" ? (
-              <CompanyServicesSection
-                services={services}
-                openSectionIds={openSectionIds}
-                toggleSection={toggleSection}
-                iconMap={iconMap}
-              />
+              <CompanyServicesSection services={services} openSectionIds={openSectionIds} toggleSection={toggleSection} iconMap={iconMap} />
             ) : null}
 
             {activeTab === "reviews" ? <CompanyReviewsSection /> : null}
-            {activeTab === "blog" ? (
-              <CompanyBlogSection blogs={blogs} isLoading={isBlogsLoading} isError={isBlogsError} />
-            ) : null}
-            {activeTab === "contacts" ? (
-              <CompanyContactsSection data={contactsData} />
-            ) : null}
+            {activeTab === "blog" ? <CompanyBlogSection blogs={blogs} isLoading={isBlogsLoading} isError={isBlogsError} /> : null}
+            {activeTab === "contacts" ? <CompanyContactsSection data={contactsData} /> : null}
           </div>
 
           <aside className="flex flex-col gap-6">
@@ -107,5 +99,5 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
         </div>
       </StateProvider>
     </section>
-  )
-}
+  );
+};

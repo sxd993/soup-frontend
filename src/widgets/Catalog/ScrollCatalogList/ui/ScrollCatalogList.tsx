@@ -1,10 +1,11 @@
-"use client"
+"use client";
 
-import { CompanyCard } from "@/entities/Profile/Company/ui/CompanyCard"
-import { FilterMenu, SortIcon } from "@/shared/ui"
-import { ClientPagination } from "@/features/Pagination"
-import { StateProvider } from "@/app/providers/State/StateProvider"
-import { useCatalogPagination } from "../model/hooks/useCatalogPagination"
+import { CompanyCard } from "@/entities/Profile/Company/ui/CompanyCard";
+import { FilterMenu, SortIcon } from "@/shared/ui";
+import { ClientPagination } from "@/features/Pagination";
+import { StateProvider } from "@/app/providers/State/StateProvider";
+import { useCatalogPagination } from "../model/hooks/useCatalogPagination";
+import { ScrollCatalogListSkeleton } from "./ScrollCatalogListSkeleton";
 
 export const ScrollCatalogList = () => {
   const {
@@ -21,7 +22,7 @@ export const ScrollCatalogList = () => {
     toggleSortMenu,
     selectSort,
     sortMenuRef,
-  } = useCatalogPagination()
+  } = useCatalogPagination();
 
   return (
     <section className="flex flex-col gap-6">
@@ -29,18 +30,11 @@ export const ScrollCatalogList = () => {
         <button
           type="button"
           className="flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold text-secondary transition-colors hover:bg-white/70"
-          onClick={toggleSortMenu}
-        >
+          onClick={toggleSortMenu}>
           {selectedSortTitle}
           <SortIcon />
         </button>
-        {isSortMenuOpen ? (
-          <FilterMenu
-            items={sortOptions}
-            selectedId={selectedSortId}
-            onSelect={selectSort}
-          />
-        ) : null}
+        {isSortMenuOpen ? <FilterMenu items={sortOptions} selectedId={selectedSortId} onSelect={selectSort} /> : null}
       </div>
 
       <StateProvider
@@ -48,7 +42,7 @@ export const ScrollCatalogList = () => {
         isError={isError}
         isEmpty={isEmpty}
         errorTitle="Не удалось загрузить каталог"
-      >
+        loadingComponent={<ScrollCatalogListSkeleton />}>
         <div className="flex flex-col gap-6">
           {paginatedItems.map((item) => (
             <CompanyCard key={item.id} item={item} />
@@ -62,5 +56,5 @@ export const ScrollCatalogList = () => {
         </div>
       )}
     </section>
-  )
-}
+  );
+};

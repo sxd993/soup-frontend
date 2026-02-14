@@ -9,6 +9,8 @@ import {
 import { StateProvider } from "@/app/providers/State/StateProvider"
 import { CATALOG_FILTERS_MESSAGES } from "@/entities/CatalogFilters/model/const/filters"
 import { useCatalogFilters } from "../model/hooks/useCatalogFilters"
+import { CatalogFiltersSkeleton } from "./CatalogFiltersSkeleton"
+import { RegionsListSkeleton } from "./RegionsListSkeleton"
 
 export const CatalogFilters = () => {
   const {
@@ -46,30 +48,32 @@ export const CatalogFilters = () => {
             className="w-full rounded-full bg-white py-3 pl-9 pr-4 text-sm text-secondary placeholder:text-[#C5C2C2] outline-none"
           />
         </label>
-        {isRegionsLoading ? (
-          <p className="text-sm text-secondary/70">Загружаем регионы...</p>
-        ) : null}
-        {isRegionsError ? (
-          <p className="text-sm text-red-500">Не удалось загрузить регионы</p>
-        ) : null}
-        <ScrollContainer className="flex h-[180px] flex-col gap-3 pl-4 pr-1">
-          {filteredRegions.map((region) => (
-            <label key={region.id} className="flex items-center gap-3 text-sm text-secondary">
-              <span className="relative h-5 w-5">
-                <input
-                  type="checkbox"
-                  className="peer h-5 w-5 appearance-none rounded-[6px] border-primary bg-white checked:bg-primary"
-                  checked={selectedRegionIds.includes(region.id)}
-                  onChange={() => toggleRegion(region.id)}
-                />
-                <span className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity peer-checked:opacity-100">
-                  <CheckIcon />
+        <StateProvider
+          isLoading={isRegionsLoading}
+          isError={isRegionsError}
+          isEmpty={filteredRegions.length === 0}
+          errorTitle="Не удалось загрузить регионы"
+          loadingComponent={<RegionsListSkeleton />}
+        >
+          <ScrollContainer className="flex h-[180px] flex-col gap-3 pl-4 pr-1">
+            {filteredRegions.map((region) => (
+              <label key={region.id} className="flex items-center gap-3 text-sm text-secondary">
+                <span className="relative h-5 w-5">
+                  <input
+                    type="checkbox"
+                    className="peer h-5 w-5 appearance-none rounded-[6px] border-primary bg-white checked:bg-primary"
+                    checked={selectedRegionIds.includes(region.id)}
+                    onChange={() => toggleRegion(region.id)}
+                  />
+                  <span className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity peer-checked:opacity-100">
+                    <CheckIcon />
+                  </span>
                 </span>
-              </span>
-              {region.label}
-            </label>
-          ))}
-        </ScrollContainer>
+                {region.label}
+              </label>
+            ))}
+          </ScrollContainer>
+        </StateProvider>
       </div>
 
       <div className="flex flex-col gap-4">
@@ -79,6 +83,7 @@ export const CatalogFilters = () => {
           isError={isError}
           isEmpty={sections.length === 0}
           errorTitle={CATALOG_FILTERS_MESSAGES.error}
+          loadingComponent={<CatalogFiltersSkeleton />}
         >
           <div className="flex flex-col gap-2">
             {sections.map((section) => {

@@ -1,6 +1,5 @@
 import { Suspense } from 'react'
-import { ChangeEmailForm } from '@/widgets/Auth/ChangeEmailForm'
-import { LoadingState } from '@/shared/ui'
+import { ChangeEmailForm, ChangeEmailFormSkeleton } from '@/widgets/Auth/ChangeEmailForm'
 
 export default function ChangeEmailPage() {
   return (
@@ -11,7 +10,7 @@ export default function ChangeEmailPage() {
         </h2>
 
         <div className="mt-10 space-y-5">
-          <Suspense fallback={<LoadingState />}>
+          <Suspense fallback={<ChangeEmailFormSkeleton />}>
             <ChangeEmailForm />
           </Suspense>
         </div>

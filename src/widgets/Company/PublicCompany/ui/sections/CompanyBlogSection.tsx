@@ -1,12 +1,13 @@
-import { StateProvider } from "@/app/providers/State/StateProvider"
-import type { Blog } from "@/entities/Blogs"
-import { CompanyBlogPostCard } from "./CompanyBlogPostCard"
+import { StateProvider } from "@/app/providers/State/StateProvider";
+import type { Blog } from "@/entities/Blogs";
+import { CompanyBlogPostCard } from "./CompanyBlogPostCard";
+import { CompanyBlogSectionSkeleton } from "./CompanyBlogSectionSkeleton";
 
 type CompanyBlogSectionProps = {
-  blogs: Blog[]
-  isLoading?: boolean
-  isError?: boolean
-}
+  blogs: Blog[];
+  isLoading?: boolean;
+  isError?: boolean;
+};
 
 export const CompanyBlogSection = ({ blogs, isLoading, isError }: CompanyBlogSectionProps) => {
   return (
@@ -15,12 +16,12 @@ export const CompanyBlogSection = ({ blogs, isLoading, isError }: CompanyBlogSec
       isError={isError ?? false}
       isEmpty={blogs.length === 0}
       errorTitle="Не удалось загрузить публикации"
-    >
+      loadingComponent={<CompanyBlogSectionSkeleton />}>
       <div className="flex flex-col gap-4">
         {blogs.map((blog) => (
           <CompanyBlogPostCard key={blog.id} blog={blog} />
         ))}
       </div>
     </StateProvider>
-  )
-}
+  );
+};

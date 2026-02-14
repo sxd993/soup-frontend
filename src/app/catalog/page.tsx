@@ -1,15 +1,12 @@
-import { Suspense } from "react"
-import { AdsBanner, Button, Search, SectionTitle } from "@/shared/ui"
-import { CatalogFilters } from "@/widgets/Catalog/Filters/ui/CatalogFilters"
-import { ScrollCatalogList } from "@/widgets/Catalog/ScrollCatalogList/ui/ScrollCatalogList"
+import { Suspense } from "react";
+import { AdsBanner, Button, Search, SectionTitle } from "@/shared/ui";
+import { CatalogFilters } from "@/widgets/Catalog/Filters/ui/CatalogFilters";
+import { ScrollCatalogList } from "@/widgets/Catalog/ScrollCatalogList/ui/ScrollCatalogList";
 
 export default function CatalogPage() {
   return (
     <div className="mt-10 pb-20">
-      <SectionTitle
-        title="Каталог"
-        className="text-[40px] leading-[110%] font-bold text-secondary"
-      />
+      <SectionTitle title="Каталог" className="text-[40px] leading-[110%] font-bold text-secondary" />
       <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-center">
         <label className="relative flex-1">
           <span className="sr-only">Поиск по названию или услуге</span>
@@ -34,5 +31,5 @@ export default function CatalogPage() {
         </aside>
       </div>
     </div>
-  )
+  );
 }

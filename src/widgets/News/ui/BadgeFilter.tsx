@@ -4,6 +4,7 @@ import { StateProvider } from "@/app/providers/State/StateProvider";
 import { SortIcon } from "@/shared/ui";
 import { FilterMenu } from "@/shared/ui/FilterMenu/ui/FilterMenu";
 import { useBadgeFilter } from "../model/hooks/useBadgeFilter";
+import { BadgeFilterSkeleton } from "./BadgeFilterSkeleton";
 
 export const BadgeFilter = () => {
     const {
@@ -14,14 +15,16 @@ export const BadgeFilter = () => {
         handleSelect,
         handleBadgeSelect,
         isEmpty,
+        isLoading,
     } = useBadgeFilter();
 
     return (
         <div className="relative">
             <StateProvider
-                isLoading={false}
+                isLoading={isLoading}
                 isError={false}
                 isEmpty={isEmpty}
+                loadingComponent={<BadgeFilterSkeleton />}
             >
                 <button
                     type="button"

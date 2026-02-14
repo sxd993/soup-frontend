@@ -1,6 +1,5 @@
 import { Suspense } from 'react'
-import { LoadingState } from '@/shared/ui'
-import { ResetPasswordForm } from '@/widgets/Auth/ResetPasswordForm'
+import { ResetPasswordForm, ResetPasswordFormSkeleton } from '@/widgets/Auth/ResetPasswordForm'
 export default function ResetPasswordPage() {
 
   return (
@@ -13,7 +12,7 @@ export default function ResetPasswordPage() {
 
         <div className="mt-10 space-y-5">
           {/* Форма сброса */}
-          <Suspense fallback={<LoadingState />}>
+          <Suspense fallback={<ResetPasswordFormSkeleton />}>
             <ResetPasswordForm />
           </Suspense>
         </div>
