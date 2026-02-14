@@ -5,8 +5,8 @@ import { ScrollCatalogList } from "@/widgets/Catalog/ScrollCatalogList/ui/Scroll
 
 export default function CatalogPage() {
   return (
-    <div className="mt-10 pb-20">
-      <SectionTitle title="Каталог" className="text-[40px] leading-[110%] font-bold text-secondary" />
+    <div className="mt-15 pb-20">
+      <SectionTitle title="Каталог" className="mb-5 text-[40px] leading-[110%] font-bold text-secondary" />
       <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-center">
         <label className="relative flex-1">
           <span className="sr-only">Поиск по названию или услуге</span>

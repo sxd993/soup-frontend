@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, MockLogo } from "@/shared/ui"
+import { Button, MockLogo, SectionTitle } from "@/shared/ui"
 import { StateProvider } from "@/app/providers/State/StateProvider"
 import { useCompanyServices } from "../model/hooks/useCompanyServices"
 import { CompanyServicesSkeleton } from "./CompanyServicesSkeleton"
@@ -25,13 +25,17 @@ export const CompanyServices = () => {
       errorTitle="Не удалось загрузить услуги"
     >
       <section className="flex flex-col gap-6">
-        <div className="flex items-center justify-between">
-          <h1 className="text-[32px] font-semibold text-secondary">Услуги</h1>
-        </div>
+        <SectionTitle
+          className="font-semibold text-[28px]! leading-[110%]!"
+          title="Услуги"
+        />
 
         {categoryServices.selectedCategories.map((category) => (
           <div key={category.id} className="rounded-[30px] bg-white p-6">
-            <h2 className="text-[26px] font-semibold text-secondary">{category.title}</h2>
+            <SectionTitle
+              className="text-[26px] font-semibold text-secondary"
+              title={category.title}
+            />
 
             <div className="mt-6 flex flex-col gap-4">
               <p className="text-[20px] font-semibold text-secondary">Услуги</p>
@@ -117,7 +121,10 @@ export const CompanyServices = () => {
         {serviceModal.isOpen ? (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
             <div className="w-full max-w-[760px] rounded-[30px] bg-white p-8">
-              <h3 className="text-[30px] font-semibold text-secondary">Новая услуга</h3>
+              <SectionTitle
+                className="text-[30px] font-semibold text-secondary"
+                title="Новая услуга"
+              />
 
               <div className="mt-6 grid gap-4 md:grid-cols-[140px_1fr]">
                 <label className="flex h-32 w-32 cursor-pointer items-center justify-center overflow-hidden rounded-[20px] border border-[#DADADA] bg-[#F6F6F6] text-center text-sm text-[#C5C2C2]">

@@ -1,6 +1,6 @@
 export const BlogsPageSkeleton = () => {
   return (
-    <div className="flex flex-col lg:flex-row gap-5 mt-20 animate-pulse" aria-busy="true">
+    <div className="flex flex-col lg:flex-row gap-5 mt-15 animate-pulse" aria-busy="true">
       <div className="flex-1 flex flex-col basis-2/3">
         {/* Заголовок */}
         <div className="h-7 w-24 bg-gray-200 rounded mb-5" />

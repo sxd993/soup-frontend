@@ -14,7 +14,7 @@ export async function BlogsPage() {
   }))
 
   return (
-    <div className="flex flex-col lg:flex-row gap-5 mt-20">
+    <div className="flex flex-col lg:flex-row gap-5 mt-15">
       <div className="flex-1 flex flex-col basis-2/3">
         <SectionTitle title="Блоги" className="mb-5" />
         <div className="mt-6">

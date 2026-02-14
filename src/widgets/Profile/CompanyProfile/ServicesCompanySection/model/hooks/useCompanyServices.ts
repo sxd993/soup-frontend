@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { useMutation, useQuery } from "@tanstack/react-query"
-import { getContractors, type ContractorsTypes } from "@/entities/Contractors"
+import { type ContractorsTypes, useContractors } from "@/entities/Contractors"
 import {
   getCompanyServices,
   saveCompanyServices,
@@ -18,11 +18,7 @@ type ServiceCategory = {
 }
 
 export const useCompanyServices = () => {
-  const { data: categories = [], isLoading, isError } = useQuery<ContractorsTypes[]>({
-    queryKey: ["company-services-categories"],
-    queryFn: getContractors,
-    staleTime: 5 * 60 * 1000,
-  })
+  const { data: categories = [], isLoading, isError } = useContractors()
   const {
     data: savedServices,
     isLoading: isSavedLoading,

@@ -1,7 +1,7 @@
 'use client';
 
 import { StateProvider } from "@/app/providers/State/StateProvider"
-import { Button } from "@/shared/ui"
+import { Button, SectionTitle } from "@/shared/ui"
 import { useCurrentTariff } from "../model/hooks/useCurrentTariff"
 import { CurrentTariffSkeleton } from "./CurrentTariffSkeleton"
 
@@ -18,7 +18,10 @@ export const CurrentTariff = () => {
         >
             {view && (
                 <section className="bg-white rounded-[30px] p-5">
-                    <h2 className="text-secondary text-[22px] leading-[115%] font-bold">Выбранный тариф</h2>
+                    <SectionTitle
+                        className="text-[22px] font-bold leading-[115%] text-secondary"
+                        title="Выбранный тариф"
+                    />
 
                     {/* Текущий тариф чела */}
                     <div
