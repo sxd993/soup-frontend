@@ -1,6 +1,11 @@
 'use client';
 
-import { ClientContactEdit, ClientProfileEdit } from "@/features/Profile/ClientAccount"
+import {
+    ClientContactEdit,
+    ClientNotificationsSettings,
+    ClientPrivacySettings,
+    ClientProfileEdit,
+} from "@/features/Profile/ClientAccount"
 import { Button } from "@/shared/ui"
 
 export const ClientAccountCompanyForm = () => {
@@ -9,6 +14,8 @@ export const ClientAccountCompanyForm = () => {
         <form className="flex w-full flex-col gap-5" noValidate>
             <ClientProfileEdit />
             <ClientContactEdit />
+            <ClientNotificationsSettings />
+            <ClientPrivacySettings />
 
             <Button type="button" className="w-full cursor-pointer">
                 Сохранить

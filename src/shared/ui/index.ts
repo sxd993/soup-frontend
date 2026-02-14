@@ -18,6 +18,9 @@ export * from './CompanyAccount'
 // Account UI
 export * from './Account'
 
+// Client account UI
+export * from './ClientAccount'
+
 // SidePanel
 export * from './SidePanel'
 
