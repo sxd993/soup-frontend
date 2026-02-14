@@ -2,15 +2,14 @@
 
 import { useState } from "react"
 
-type PrivacyOption = "phone" | "email" | "telegram" | "none"
+type PrivacyOption = "phone" | "email" | "social_links"
 
 type PrivacyState = Record<PrivacyOption, boolean>
 
 const initialState: PrivacyState = {
     phone: false,
     email: false,
-    telegram: false,
-    none: false,
+    social_links: false,
 }
 
 export const useClientPrivacySettings = () => {
@@ -18,19 +17,9 @@ export const useClientPrivacySettings = () => {
 
     const toggle = (option: PrivacyOption) => {
         setSettings((prev) => {
-            if (option === "none") {
-                return {
-                    phone: false,
-                    email: false,
-                    telegram: false,
-                    none: !prev.none,
-                }
-            }
-
             return {
                 ...prev,
                 [option]: !prev[option],
-                none: false,
             }
         })
     }

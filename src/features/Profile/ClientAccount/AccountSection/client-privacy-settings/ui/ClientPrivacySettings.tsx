@@ -1,11 +1,18 @@
 'use client';
 
-import { AccountFormBlock, ClientAccountCheckbox } from "@/shared/ui"
+import { AccountFormBlock } from "@/shared/ui"
+import { ClientAccountCheckbox } from "@/shared/ui/ClientAccount"
+import { useFormContext, useWatch } from "react-hook-form"
+import type { ClientAccountFormValues } from "@/widgets/Profile/ClientProfile/AccountCompanyForm/model"
 import { PRIVACY_OPTIONS } from "../model/const/privacyOptions"
-import { useClientPrivacySettings } from "../model/hooks/useClientPrivacySettings"
 
 export const ClientPrivacySettings = () => {
-    const { settings, toggle } = useClientPrivacySettings()
+    const { control, setValue } = useFormContext<ClientAccountFormValues>()
+    const settings = useWatch({ control, name: "privacy_settings" })
+
+    const toggle = (option: "phone" | "email" | "social_links") => {
+        setValue(`privacy_settings.${option}`, !Boolean(settings?.[option]), { shouldDirty: true })
+    }
 
     return (
         <AccountFormBlock label="Показывать контакты компаниям">
@@ -13,7 +20,7 @@ export const ClientPrivacySettings = () => {
                 {PRIVACY_OPTIONS.map((option) => (
                     <label key={option.id} className="flex cursor-pointer items-center gap-3.25">
                         <ClientAccountCheckbox
-                            checked={settings[option.id]}
+                            checked={Boolean(settings?.[option.id])}
                             onChange={() => toggle(option.id)}
                         />
                         <span className="flex min-h-5 items-center">

@@ -1,10 +1,22 @@
 import { AccountField, AccountInput } from "@/shared/ui"
-import { ContactPlaceholderIcon } from "./ContactPlaceholderIcon"
+import { PhoneIcon } from "@/shared/ui/CompanyAccount/icons/AccountSectionIcons/PhoneIcon"
+import { useFormContext } from "react-hook-form"
+import type { ClientAccountFormValues } from "@/widgets/Profile/ClientProfile/AccountCompanyForm/model"
 
-export const ClientPhoneInput = () => {
+type ClientPhoneInputProps = {
+    index: number;
+}
+
+export const ClientPhoneInput = ({ index }: ClientPhoneInputProps) => {
+    const { register } = useFormContext<ClientAccountFormValues>()
+
     return (
-        <AccountField icon={<ContactPlaceholderIcon label="P" />}>
-            <AccountInput type="tel" placeholder="Номер телефона" />
+        <AccountField icon={<PhoneIcon color="#C5C2C2" />}>
+            <AccountInput
+                type="tel"
+                placeholder="Номер телефона"
+                {...register(`contacts.${index}.value`)}
+            />
         </AccountField>
     )
 }

@@ -9,7 +9,7 @@ import { StateProvider } from "@/app/providers/State/StateProvider";
 
 export const CompanyAccountForm = () => {
 
-    // Получение сессии и данных компании
+    // Получение сессии
     const { data: session, isLoading: isSessionLoading } = useSession()
     const userId = session?.user?.id
 

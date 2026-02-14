@@ -1,11 +1,18 @@
 'use client';
 
-import { AccountFormBlock, ClientAccountCheckbox } from "@/shared/ui"
+import { AccountFormBlock } from "@/shared/ui"
+import { ClientAccountCheckbox } from "@/shared/ui/ClientAccount"
+import { useFormContext, useWatch } from "react-hook-form"
+import type { ClientAccountFormValues } from "@/widgets/Profile/ClientProfile/AccountCompanyForm/model"
 import { NOTIFICATION_OPTIONS } from "../model/const/notificationOptions"
-import { useClientNotificationsSettings } from "../model/hooks/useClientNotificationsSettings"
 
 export const ClientNotificationsSettings = () => {
-    const { settings, toggle } = useClientNotificationsSettings()
+    const { control, setValue } = useFormContext<ClientAccountFormValues>()
+    const settings = useWatch({ control, name: "notification_settings" })
+
+    const toggle = (option: "sms" | "email") => {
+        setValue(`notification_settings.${option}`, !Boolean(settings?.[option]), { shouldDirty: true })
+    }
 
     return (
         <AccountFormBlock label="Уведомления о новых откликах">
@@ -13,7 +20,7 @@ export const ClientNotificationsSettings = () => {
                 {NOTIFICATION_OPTIONS.map((option) => (
                     <label key={option.id} className="flex items-end cursor-pointer gap-3.25">
                         <ClientAccountCheckbox
-                            checked={settings[option.id]}
+                            checked={Boolean(settings?.[option.id])}
                             onChange={() => toggle(option.id)}
                         />
                         <span className="flex min-h-5 items-start">
