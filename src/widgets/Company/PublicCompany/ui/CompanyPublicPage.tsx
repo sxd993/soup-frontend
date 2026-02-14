@@ -52,6 +52,7 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
           <div className="flex flex-col gap-6">
             {company ? (
               <CompanyHeader
+                companyId={companyId}
                 name={company.name}
                 description={company.description}
                 logoUrl={company.logoUrl}

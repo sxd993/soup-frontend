@@ -1,10 +1,13 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"
 import { Button, Heart, HeartActive, MainIcon } from "@/shared/ui"
+import { useSession } from "@/entities/Session"
+import { useFavoritesList, useToggleFavorite } from "@/entities/Favorites"
+import { showErrorToast } from "@/shared/ui/State"
 
 type CompanyHeaderProps = {
+  companyId: string
   name: string
   description: string
   logoUrl: string | null
@@ -17,6 +20,7 @@ type CompanyHeaderProps = {
 }
 
 export const CompanyHeader = ({
+  companyId,
   name,
   description,
   logoUrl,
@@ -27,7 +31,20 @@ export const CompanyHeader = ({
   onCall,
   canCall,
 }: CompanyHeaderProps) => {
-  const [isFavorite, setIsFavorite] = useState(false)
+  const companyIdNum = Number(companyId)
+  const { data: session } = useSession()
+  const isLoggedIn = !!session?.user
+  const { data: favorites } = useFavoritesList({ enabled: isLoggedIn })
+  const toggleFavorite = useToggleFavorite()
+  const isFavorite = (favorites?.companyIds ?? []).includes(companyIdNum)
+
+  const handleFavoriteClick = () => {
+    if (!isLoggedIn) {
+      showErrorToast("Войдите в аккаунт, чтобы сохранять в избранное")
+      return
+    }
+    toggleFavorite.mutate({ companyId: companyIdNum, isCurrentlyFavorite: isFavorite })
+  }
 
   return (
     <div className="rounded-[30px] bg-white p-6">
@@ -55,8 +72,9 @@ export const CompanyHeader = ({
         </div>
         <button
           type="button"
-          onClick={() => setIsFavorite((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center text-accent-quinary outline-none"
+          onClick={handleFavoriteClick}
+          disabled={toggleFavorite.isPending}
+          className="flex h-10 w-10 items-center justify-center text-accent-quinary outline-none disabled:opacity-60"
           aria-label={isFavorite ? "Убрать из избранного" : "Добавить в избранное"}
         >
           {isFavorite ? <HeartActive /> : <Heart />}

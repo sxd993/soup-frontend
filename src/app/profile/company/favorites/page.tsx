@@ -1,3 +1,5 @@
+import { FavoritesContent } from "./FavoritesContent"
+
 export default function CompanyFavoritesPage() {
-    return <div>Избранное</div>
+  return <FavoritesContent />
 }
