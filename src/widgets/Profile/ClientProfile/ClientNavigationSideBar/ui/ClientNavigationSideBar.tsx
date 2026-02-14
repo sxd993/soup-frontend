@@ -1,0 +1,55 @@
+'use client'
+
+import Link from 'next/link'
+import { ICONS_BY_LABEL, CLIENT_NAV_LINKS } from '../const'
+
+
+type ClientNavigationSideBarProps = {
+    onNavigate?: () => void
+}
+
+export const ClientNavigationSideBar = ({ onNavigate }: ClientNavigationSideBarProps) => {
+    const mockMessagesCount = 0
+
+    const links = CLIENT_NAV_LINKS.map((link) => {
+        if (link.href !== '/profile/client/messages') {
+            return link
+        }
+
+        if (mockMessagesCount <= 0) {
+            return link
+        }
+
+        return { ...link, badge: mockMessagesCount }
+    })
+
+    return (
+        <ul className="flex flex-col gap-2">
+            {links.map((link) => {
+                const icon = ICONS_BY_LABEL[link.label]
+
+                return (
+                    <li key={link.href}>
+                        <Link
+                            className="group flex h-12 items-center gap-3 rounded-full px-2 transition-colors hover:bg-white"
+                            href={link.href}
+                            onClick={onNavigate}
+                        >
+                            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-white transition-colors group-hover:bg-accent-octonary group-hover:text-accent-octonary">
+                                {icon}
+                            </span>
+                            <span className="text-[16px] font-semibold leading-[140%] text-secondary">
+                                {link.label}
+                            </span>
+                            {link.badge ? (
+                                <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-lime-500 px-2 text-xs text-white">
+                                    {link.badge}
+                                </span>
+                            ) : null}
+                        </Link>
+                    </li>
+                )
+            })}
+        </ul>
+    )
+}

@@ -15,6 +15,9 @@ export * from './Controls/icons'
 // Company account UI
 export * from './CompanyAccount'
 
+// Account UI
+export * from './Account'
+
 // SidePanel
 export * from './SidePanel'
 
