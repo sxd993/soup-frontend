@@ -1,5 +1,8 @@
+"use client"
+
 import Image from "next/image"
-import { Button, Heart, MainIcon } from "@/shared/ui"
+import { useState } from "react"
+import { Button, Heart, HeartActive, MainIcon } from "@/shared/ui"
 
 type CompanyHeaderProps = {
   name: string
@@ -24,6 +27,8 @@ export const CompanyHeader = ({
   onCall,
   canCall,
 }: CompanyHeaderProps) => {
+  const [isFavorite, setIsFavorite] = useState(false)
+
   return (
     <div className="rounded-[30px] bg-white p-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
@@ -50,10 +55,11 @@ export const CompanyHeader = ({
         </div>
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E5E0D6] text-accent-quinary"
-          aria-label="Добавить в избранное"
+          onClick={() => setIsFavorite((v) => !v)}
+          className="flex h-10 w-10 items-center justify-center text-accent-quinary outline-none"
+          aria-label={isFavorite ? "Убрать из избранного" : "Добавить в избранное"}
         >
-          <Heart />
+          {isFavorite ? <HeartActive /> : <Heart />}
         </button>
       </div>
 

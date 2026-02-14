@@ -1,6 +1,9 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
-import { Heart, MainIcon } from "@/shared/ui"
+import { useState } from "react"
+import { Heart, HeartActive, MainIcon } from "@/shared/ui"
 import type { CompanyCardData } from "../model/types/company.types"
 
 type CompanyCardProps = {
@@ -9,6 +12,7 @@ type CompanyCardProps = {
 
 export const CompanyCard = ({ item }: CompanyCardProps) => {
   const hasLogo = Boolean(item.logoUrl)
+  const [isFavorite, setIsFavorite] = useState(false)
 
   return (
     <article className="rounded-3xl bg-white p-6">
@@ -35,10 +39,11 @@ export const CompanyCard = ({ item }: CompanyCardProps) => {
         </div>
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E5E0D6] text-accent-quinary"
-          aria-label="Добавить в избранное"
+          onClick={() => setIsFavorite((v) => !v)}
+          className="flex h-10 w-10 items-center justify-center text-accent-quinary outline-none"
+          aria-label={isFavorite ? "Убрать из избранного" : "Добавить в избранное"}
         >
-          <Heart />
+          {isFavorite ? <HeartActive /> : <Heart />}
         </button>
       </div>
       <p className="mt-4 text-sm text-secondary leading-[150%]">{item.description}</p>
