@@ -5,8 +5,8 @@ import { OrderChevronDownIcon } from "@/shared/ui";
 import { useOrderCategoryDropdown } from "../model/hooks/useOrderCategoryDropdown";
 
 export const OrderCategoryDropdown = () => {
-  const { control, badges, isOpen, ref, toggle, close } =
-    useOrderCategoryDropdown();
+  const { control, categories, isOpen, ref, toggle, close } =
+    useOrderCategoryDropdown()
 
   return (
     <Controller
@@ -30,19 +30,19 @@ export const OrderCategoryDropdown = () => {
           </button>
           {isOpen && (
             <div className="absolute top-full left-0 right-0 z-10 mt-1 max-h-52 overflow-auto rounded-[18px] border border-[#E5E5E5] bg-white py-1">
-              {badges.map((badge) => (
+              {categories.map((section) => (
                 <button
-                  key={badge}
+                  key={section.id}
                   type="button"
                   onClick={() => {
-                    field.onChange(badge);
-                    close();
+                    field.onChange(section.label)
+                    close()
                   }}
                   className={`flex w-full px-4 py-2 text-left text-sm font-medium text-[#171717] transition-colors hover:bg-[#F5F5F5] ${
-                    field.value === badge ? "bg-[#F6F6F6]" : ""
+                    field.value === section.label ? "bg-[#F6F6F6]" : ""
                   }`}
                 >
-                  {badge}
+                  {section.label}
                 </button>
               ))}
             </div>
@@ -50,5 +50,5 @@ export const OrderCategoryDropdown = () => {
         </div>
       )}
     />
-  );
-};
+  )
+}

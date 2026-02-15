@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ORDER_TABS, type OrderTabStatus } from "../../../model/const/orderTabs";
-import { useOrderTabsStore } from "../../../model/store/useOrderTabsStore";
+import { ORDER_TABS, type OrderTabStatus } from "../const/orderTabs"
+import { useOrderTabsStore } from "../store/useOrderTabsStore"
 
 export const useOrderTabs = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -3,11 +3,12 @@
 import { SortIcon } from "@/shared/ui";
 import { FilterMenu } from "@/shared/ui";
 import { useOrderTabs } from "../model/hooks/useOrderTabs";
-import type { OrderTabStatus } from "../../model/const/orderTabs";
+import type { OrderTabStatus } from "../model/const/orderTabs"
 
 export const OrderTabs = () => {
   const {
     items,
+    selectedStatus,
     selectedItem,
     isOpen,
     setIsOpen,
@@ -15,7 +16,7 @@ export const OrderTabs = () => {
     menuItems,
     selectedMenuId,
     handleMenuSelect,
-  } = useOrderTabs();
+  } = useOrderTabs()
 
   return (
     <>
@@ -47,7 +48,7 @@ export const OrderTabs = () => {
 
       <div className="hidden lg:inline-flex flex-wrap rounded-[40px]">
         {items.map((item) => {
-          const isActive = item.id === selectedItem.id;
+          const isActive = item.id === selectedStatus
           return (
             <button
               key={item.id}

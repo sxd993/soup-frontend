@@ -7,12 +7,12 @@ import { createOrder } from "@/entities/Orders/api/createOrder";
 import { CLIENT_ORDERS_QUERY_KEY } from "@/entities/Orders/model/constants";
 import type { CreateOrderFormValues } from "../types/types";
 import { defaultCreateOrderFormValues } from "../types/types";
-import { useOrderServiceBadges } from "./useOrderServiceBadges";
+import { useOrderCategories } from "./useOrderCategories"
 
 export const useCreateOrderForm = () => {
-  const router = useRouter();
-  const queryClient = useQueryClient();
-  const { badges, isLoading, isError } = useOrderServiceBadges();
+  const router = useRouter()
+  const queryClient = useQueryClient()
+  const { isLoading, isError } = useOrderCategories()
   const formMethods = useForm<CreateOrderFormValues>({
     defaultValues: defaultCreateOrderFormValues,
     mode: "onChange",
@@ -36,7 +36,7 @@ export const useCreateOrderForm = () => {
   });
 
   const handleSubmit = formMethods.handleSubmit((values) => {
-    const budget = Number(values.budget) || 0;
+    const budget = Number(values.budget) || 0
     mutation.mutate({
       title: values.title.trim(),
       description: values.description?.trim() || undefined,
@@ -45,15 +45,18 @@ export const useCreateOrderForm = () => {
       budget,
       deadline: deadlineToISO(values.deadline),
       hidePhone: values.hidePhone,
-    });
-  });
+      fileUrls:
+        values.fileUrls.length > 0
+          ? values.fileUrls.map((f) => f.url)
+          : undefined,
+    })
+  })
 
   return {
     formMethods,
     handleSubmit,
-    badges,
     isLoading,
     isError,
     isPending: mutation.isPending,
-  };
+  }
 };

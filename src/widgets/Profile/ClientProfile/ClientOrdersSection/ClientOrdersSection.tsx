@@ -13,7 +13,7 @@ export const ClientOrdersSection = () => {
         <div className="flex flex-col gap-7">
           <SectionTitle
             className="font-semibold text-[28px]! leading-[110%]!"
-            title="Заказы"
+            title="Мои заказы"
           />
         </div>
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">

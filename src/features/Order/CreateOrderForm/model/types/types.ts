@@ -1,3 +1,5 @@
+export type OrderFileItem = { url: string; name: string }
+
 export type CreateOrderFormValues = {
   title: string
   description: string
@@ -6,7 +8,7 @@ export type CreateOrderFormValues = {
   budget: string
   deadline: string
   hidePhone: boolean
-  files: FileList | null
+  fileUrls: OrderFileItem[]
 }
 
 export const defaultCreateOrderFormValues: CreateOrderFormValues = {
@@ -17,5 +19,5 @@ export const defaultCreateOrderFormValues: CreateOrderFormValues = {
   budget: "",
   deadline: "",
   hidePhone: false,
-  files: null,
+  fileUrls: [],
 }

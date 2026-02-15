@@ -7,18 +7,18 @@ import {
   Switch,
   SectionTitle,
   OrderBudgetIcon,
-  OrderLocationIcon,
   OrderCalendarIcon,
-} from "@/shared/ui";
+} from "@/shared/ui"
 import { StateProvider } from "@/app/providers/State/StateProvider";
 import { useCreateOrderForm } from "../model/hooks/useCreateOrderForm";
-import { CreateOrderFormCategorySkeleton } from "./CreateOrderFormCategorySkeleton";
-import { OrderCategoryDropdown } from "./OrderCategoryDropdown";
-import { CreateOrderFormFilesInput } from "./CreateOrderFormFiles";
+import { CreateOrderFormCategorySkeleton } from "./CreateOrderFormCategorySkeleton"
+import { OrderCategoryDropdown } from "./OrderCategoryDropdown"
+import { OrderRegionDropdown } from "./OrderRegionDropdown"
+import { CreateOrderFormFilesInput } from "./CreateOrderFormFiles"
 import { CreateOrderFormFilesList } from "./CreateOrderFormFiles";
 
 export const CreateOrderForm = () => {
-  const { formMethods, handleSubmit, badges, isLoading, isError, isPending } =
+  const { formMethods, handleSubmit, isLoading, isError, isPending } =
     useCreateOrderForm();
   const { register, control } = formMethods;
 
@@ -55,15 +55,7 @@ export const CreateOrderForm = () => {
             </label>
 
             <div className="grid grid-cols-2 gap-6">
-              <label className="flex w-full items-center gap-2 rounded-[20px] text-base bg-background p-2 text-accent-septenary font-medium outline-none transition">
-                <OrderLocationIcon className="shrink-0 text-accent-septenary" />
-                <input
-                  type="text"
-                  placeholder="Где нужно оказать услугу"
-                  className="min-w-0 flex-1 border-0 bg-transparent text-accent-secondary placeholder:text-accent-quinary outline-none"
-                  {...register("location")}
-                />
-              </label>
+              <OrderRegionDropdown />
               <StateProvider
                 isLoading={isLoading}
                 isError={isError}

@@ -1,14 +1,15 @@
 import { AxiosClient } from "@/shared/api";
 
 export type CreateOrderPayload = {
-  title: string;
-  description?: string;
-  location: string;
-  category: string;
-  budget: number;
-  deadline?: string;
-  hidePhone?: boolean;
-};
+  title: string
+  description?: string
+  location: string
+  category: string
+  budget: number
+  deadline?: string
+  hidePhone?: boolean
+  fileUrls?: string[]
+}
 
 export const createOrder = async (
   payload: CreateOrderPayload,

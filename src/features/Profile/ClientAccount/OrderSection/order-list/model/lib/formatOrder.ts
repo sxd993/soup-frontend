@@ -10,6 +10,17 @@ export const formatOrderDate = (dateStr: string): string => {
   });
 };
 
+export const formatOrderCreatedLabel = (dateStr: string): string => {
+  const d = new Date(dateStr);
+  if (Number.isNaN(d.getTime())) return "Создано —";
+  const date = d.toLocaleDateString("ru-RU", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit",
+  });
+  return `Создано ${date}.`;
+};
+
 export const formatOrderPrice = (price: number): string =>
   `${price.toLocaleString("ru-RU")} ₽`;
 

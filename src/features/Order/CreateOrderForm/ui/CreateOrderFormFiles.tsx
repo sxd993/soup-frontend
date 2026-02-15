@@ -1,42 +1,33 @@
-"use client";
+"use client"
 
-import { Controller } from "react-hook-form";
-import { OrderPlusCircleIcon } from "@/shared/ui";
-import { useCreateOrderFormFiles } from "../model/hooks/useCreateOrderFormFiles";
+import { OrderPlusCircleIcon } from "@/shared/ui"
+import { useCreateOrderFormFiles } from "../model/hooks/useCreateOrderFormFiles"
 
 export const CreateOrderFormFilesInput = () => {
-  const { control, handleFilesChange } = useCreateOrderFormFiles();
+  const { handleFilesInputChange, isUploading } = useCreateOrderFormFiles()
 
   return (
-    <Controller
-      name="files"
-      control={control}
-      render={({ field: { value, onChange, ref } }) => (
-        <label className="flex w-full cursor-pointer items-center gap-2 rounded-[20px] text-base bg-background p-2 text-accent-septenary font-medium outline-none transition">
-          <OrderPlusCircleIcon className="shrink-0 text-accent-septenary" />
-          <span className="min-w-0 flex-1 text-accent-quinary">Фото/файлы</span>
-          <input
-            ref={ref}
-            type="file"
-            multiple
-            accept="image/*,.pdf"
-            className="sr-only"
-            onChange={(e) => {
-              const added = e.target.files ? Array.from(e.target.files) : [];
-              handleFilesChange(added, value);
-              e.target.value = "";
-            }}
-          />
-        </label>
-      )}
-    />
-  );
-};
+    <label className="flex w-full cursor-pointer items-center gap-2 rounded-[20px] text-base bg-background p-2 text-accent-septenary font-medium outline-none transition">
+      <OrderPlusCircleIcon className="shrink-0 text-accent-septenary" />
+      <span className="min-w-0 flex-1 text-accent-quinary">
+        {isUploading ? "Загрузка…" : "Фото/файлы"}
+      </span>
+      <input
+        type="file"
+        multiple
+        accept="image/png,image/jpeg,image/webp,application/pdf"
+        className="sr-only"
+        disabled={isUploading}
+        onChange={handleFilesInputChange}
+      />
+    </label>
+  )
+}
 
 export const CreateOrderFormFilesList = () => {
-  const { photoEntries, fileEntries, removeFile } = useCreateOrderFormFiles();
+  const { photoEntries, fileEntries, removeFile } = useCreateOrderFormFiles()
 
-  if (photoEntries.length === 0 && fileEntries.length === 0) return null;
+  if (photoEntries.length === 0 && fileEntries.length === 0) return null
 
   return (
     <div className="flex flex-col gap-4 pt-2">
@@ -46,9 +37,9 @@ export const CreateOrderFormFilesList = () => {
             Прикрепленные фото
           </p>
           <div className="flex flex-wrap gap-3">
-            {photoEntries.map(({ file, i }) => (
+            {photoEntries.map(({ item, i }) => (
               <div
-                key={`${file.name}-${i}`}
+                key={`${item.url}-${i}`}
                 className="group relative rounded-[12px] bg-background p-2"
               >
                 <button
@@ -70,7 +61,7 @@ export const CreateOrderFormFilesList = () => {
                   </svg>
                 </button>
                 <img
-                  src={URL.createObjectURL(file)}
+                  src={item.url}
                   alt=""
                   className="h-16 w-16 rounded-lg object-cover"
                 />
@@ -85,9 +76,9 @@ export const CreateOrderFormFilesList = () => {
             Прикрепленные файлы
           </p>
           <div className="flex flex-wrap gap-3">
-            {fileEntries.map(({ file, i }) => (
+            {fileEntries.map(({ item, i }) => (
               <div
-                key={`${file.name}-${i}`}
+                key={`${item.url}-${i}`}
                 className="group relative rounded-[12px] bg-background px-3 py-2 pr-8"
               >
                 <button
@@ -109,7 +100,7 @@ export const CreateOrderFormFilesList = () => {
                   </svg>
                 </button>
                 <span className="text-sm text-accent-secondary">
-                  {file.name}
+                  {item.name}
                 </span>
               </div>
             ))}
@@ -117,5 +108,5 @@ export const CreateOrderFormFilesList = () => {
         </div>
       ) : null}
     </div>
-  );
-};
+  )
+}
