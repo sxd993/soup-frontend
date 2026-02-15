@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getOrders } from "@/entities/Orders/api/getOrders";
-import { ORDERS_QUERY_KEY } from "@/entities/Orders/model/constants";
+import { ORDERS_QUERY_KEY } from "@/entities/Orders/model/constants/constants";
 import type { Order } from "@/entities/Orders/model/types/order.types";
 import { useOrderFindFiltersStore } from "@/widgets/OrderFind/Filters/model/store/useOrderFindFiltersStore";
 const ITEMS_PER_PAGE = 6;
