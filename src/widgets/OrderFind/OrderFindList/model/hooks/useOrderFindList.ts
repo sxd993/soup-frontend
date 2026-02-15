@@ -14,7 +14,11 @@ export function useOrderFindList() {
   const selectedFilters = useOrderFindFiltersStore((s) => s.selectedFilters);
   const selectedRegions = useOrderFindFiltersStore((s) => s.selectedRegions);
 
-  const { data: orders = [], isLoading, isError } = useQuery({
+  const {
+    data: orders = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: [...ORDERS_QUERY_KEY, "active"],
     queryFn: () => getOrders({ status: "active" }),
     staleTime: 2 * 60 * 1000,
@@ -37,7 +41,10 @@ export function useOrderFindList() {
   }, [orders, selectedCategories, selectedRegions]);
 
   const rawPage = Number(searchParams?.get("page") ?? "1");
-  const totalPages = Math.max(1, Math.ceil(filteredOrders.length / ITEMS_PER_PAGE));
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredOrders.length / ITEMS_PER_PAGE),
+  );
   const currentPage = Number.isFinite(rawPage)
     ? Math.min(Math.max(rawPage, 1), totalPages)
     : 1;

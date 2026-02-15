@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CreateOrderForm } from "@/features/Order/CreateOrderForm";
+import { OrderCreatePageContent } from "./OrderCreatePageContent";
 
 export const metadata: Metadata = {
   title: "Разместить заказ",
@@ -7,11 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function OrderCreatePage() {
-  return (
-    <main className="mt-[34px] pb-20">
-      <div className="mx-auto flex w-full max-w-[700px] flex-col gap-6">
-        <CreateOrderForm />
-      </div>
-    </main>
-  );
+  return <OrderCreatePageContent />;
 }
