@@ -1,6 +1,6 @@
 "use client";
 
-import { OrderCard } from "@/entities/Orders/ui/OrderCard";
+import { OrderCard } from "@/entities/Orders";
 import { StateProvider } from "@/app/providers/State/StateProvider";
 import { ClientPagination } from "@/features/Pagination";
 import { useOrderFindList } from "../model/hooks/useOrderFindList";

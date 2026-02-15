@@ -1,12 +1,8 @@
 "use client";
 
 import { StateProvider } from "@/app/providers/State/StateProvider";
-import {
-  OrderCardHeader,
-  OrderDetails,
-  OrderResponses,
-} from "@/features/Profile/ClientAccount/OrderSection";
-import { OrderStatus } from "@/entities/Orders";
+import { OrderDetails, OrderResponses } from "@/features/Profile/ClientAccount/OrderSection";
+import { OrderCard, OrderStatus } from "@/entities/Orders";
 import { BlackButton } from "@/shared/ui";
 import { useCancelOrder } from "../model/hooks/useCancelOrder";
 import { useOrderDetailPage } from "../model/hooks/useOrderDetailPage";
@@ -20,7 +16,6 @@ type OrderDetailPageProps = {
 export const OrderDetailPage = ({ orderId }: OrderDetailPageProps) => {
   const page = useOrderDetailPage(orderId);
   const { cancelOrder, isCancelPending } = useCancelOrder(page.order?.id ?? null);
-  const Icon = page.Icon;
 
   return (
     <StateProvider
@@ -30,17 +25,9 @@ export const OrderDetailPage = ({ orderId }: OrderDetailPageProps) => {
       errorTitle="Не удалось загрузить заказ"
       loadingComponent={<OrderDetailSkeleton />}
     >
-      {page.order && Icon && (
+      {page.order && (
         <div className="flex flex-col gap-4">
-          <OrderCardHeader
-            Icon={Icon}
-            title={page.order.title}
-            region={page.order.region}
-            priceText={page.priceText}
-            createdLabel={page.createdLabel}
-            titleAs="h1"
-            className="flex flex-col gap-3 rounded-[20px] bg-white p-5"
-          />
+          <OrderCard order={page.order} href={null} />
 
           <OrderDetailTabs
             activeTab={page.activeTab}

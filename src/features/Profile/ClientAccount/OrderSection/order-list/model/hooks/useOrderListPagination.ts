@@ -15,7 +15,7 @@ function parsePage(value: string | null): number {
 }
 
 export const useOrderListPagination = () => {
-  const { orderItems, isEmpty, isLoading, isError } = useOrderList();
+  const { orders, orderItems, isEmpty, isLoading, isError } = useOrderList();
   const searchParams = useSearchParams();
   const currentPageFromServer = parsePage(
     searchParams?.get(PAGE_PARAM) ?? null,
@@ -41,7 +41,21 @@ export const useOrderListPagination = () => {
     pagination.expandedEndIndex,
   ]);
 
+  const pagedOrders = useMemo(() => {
+    if (pagination.isExpanded) {
+      return orders.slice(0, pagination.expandedEndIndex);
+    }
+    return orders.slice(pagination.startIndex, pagination.endIndex);
+  }, [
+    orders,
+    pagination.isExpanded,
+    pagination.startIndex,
+    pagination.endIndex,
+    pagination.expandedEndIndex,
+  ]);
+
   return {
+    orders: pagedOrders,
     orderItems: pagedOrderItems,
     totalOrders: orderItems.length,
     isEmpty,

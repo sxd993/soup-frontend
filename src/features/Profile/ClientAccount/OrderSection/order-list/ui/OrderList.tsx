@@ -1,15 +1,14 @@
 "use client";
 
-import Link from "next/link";
+import { OrderCard } from "@/entities/Orders";
 import { StateProvider } from "@/app/providers/State/StateProvider";
-import { OrderCardHeader } from "../../order-card-header";
 import { useOrderListPagination } from "../model/hooks/useOrderListPagination";
 import { OrderListSkeleton } from "./OrderListSkeleton";
 import { OrderPaginationControls } from "./OrderPaginationControls";
 
 export const OrderList = () => {
   const {
-    orderItems,
+    orders,
     isEmpty,
     isLoading,
     isError,
@@ -27,26 +26,11 @@ export const OrderList = () => {
     >
       <div className="flex flex-col gap-6">
         <ul className="flex flex-col gap-4">
-          {orderItems.map((item) => {
-            const Icon = item.Icon;
-            return (
-              <li key={item.id}>
-                <Link
-                  href={`/profile/client/orders/${item.id}`}
-                  className="flex flex-col gap-3 rounded-[20px] bg-white p-5 transition-opacity hover:opacity-90"
-                >
-                  <OrderCardHeader
-                    Icon={Icon}
-                    title={item.title}
-                    region={item.region}
-                    priceText={item.priceText}
-                    createdLabel={item.createdLabel}
-                    titleAs="h3"
-                  />
-                </Link>
-              </li>
-            );
-          })}
+          {orders.map((order) => (
+            <li key={order.id}>
+              <OrderCard order={order} href={`/profile/client/orders/${order.id}`} />
+            </li>
+          ))}
         </ul>
         {totalOrders > 0 && (
           <OrderPaginationControls

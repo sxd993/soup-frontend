@@ -49,6 +49,7 @@ export const useOrderList = () => {
   );
 
   return {
+    orders,
     orderItems,
     isEmpty: orderItems.length === 0,
     isLoading: query.isLoading,

@@ -12,3 +12,4 @@ export {
   type OrderStatusType,
 } from "./model/types/order.types";
 export { getOrderIcon } from "@/shared/lib/order";
+export { OrderCard } from "./ui/OrderCard";

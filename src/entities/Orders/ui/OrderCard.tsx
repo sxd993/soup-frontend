@@ -3,37 +3,26 @@
 import Link from "next/link";
 import type { Order } from "../model/types/order.types";
 import { ICONS_BY_LABEL } from "@/shared/config/catalogServiceIcons";
+import { formatOrderPrice, formatOrderCreatedLabel } from "@/shared/lib/order";
 
 type OrderCardProps = {
   order: Order;
+  href?: string | null;
 };
 
-function formatPrice(price: number): string {
-  return `${Number(price).toLocaleString("ru-RU", { useGrouping: false })} ₽`;
-}
+const cardContentClassName =
+  "flex gap-4 rounded-[20px] bg-white px-5 pb-5 pt-4 min-h-[116px]";
 
-function formatCreatedAt(isoDate: string): string {
-  try {
-    const d = new Date(isoDate);
-    const day = String(d.getDate()).padStart(2, "0");
-    const month = String(d.getMonth() + 1).padStart(2, "0");
-    const year = String(d.getFullYear()).slice(-2);
-    return `Создано ${day}.${month}.${year}`;
-  } catch {
-    return "";
-  }
-}
-
-export function OrderCard({ order }: OrderCardProps) {
+export function OrderCard({ order, href }: OrderCardProps) {
   const IconComponent = order.category ? ICONS_BY_LABEL[order.category] : null;
+  const defaultHref = `/order/find/${order.id}`;
+  const linkHref = href === undefined ? defaultHref : href;
 
-  return (
-    <Link href={`/order/find/${order.id}`} className="block transition-opacity hover:opacity-90">
-      <article
-        className="flex cursor-pointer gap-4 rounded-[20px] bg-white px-5 pb-5 pt-4"
-        style={{ minHeight: 116 }}
-      >
-      <div className="flex h-[50px] w-[50px] shrink-0 items-center justify-center self-center [&_svg]:h-[50px] [&_svg]:w-[50px] [&_svg]:shrink-0 [&_svg_circle]:!hidden [&_svg_path]:fill-transparent [&_svg_path]:stroke-[#8BC652]">
+  const content = (
+    <article
+      className={`${cardContentClassName} ${linkHref != null ? "cursor-pointer" : ""}`}
+    >
+      <div className="flex h-[50px] w-[50px] shrink-0 items-center justify-center self-center [&_svg]:h-[50px] [&_svg]:w-[50px] [&_svg]:shrink-0 [&_svg_circle]:hidden! [&_svg_path]:fill-transparent [&_svg_path]:stroke-primary">
         {IconComponent ? (
           <IconComponent />
         ) : (
@@ -47,12 +36,27 @@ export function OrderCard({ order }: OrderCardProps) {
           {order.title}
         </h3>
         <h2 className="text-right text-[28px] font-semibold leading-[110%] tracking-normal text-secondary">
-          {formatPrice(order.price)}
+          {formatOrderPrice(order.price)}
         </h2>
-        <p className="text-sm text-[#2F2F2F]">{order.region}</p>
-        <p className="text-right text-sm text-[#2F2F2F]">{formatCreatedAt(order.createdAt)}</p>
+        <p className="text-[14px] font-normal leading-[130%] text-accent-septenary">
+          {order.region}
+        </p>
+        <p className="text-right text-[14px] font-normal leading-[130%] text-accent-septenary">
+          {formatOrderCreatedLabel(order.createdAt)}
+        </p>
       </div>
     </article>
-    </Link>
   );
+
+  if (linkHref != null) {
+    return (
+      <Link
+        href={linkHref}
+        className="block transition-opacity hover:opacity-90"
+      >
+        {content}
+      </Link>
+    );
+  }
+  return content;
 }
