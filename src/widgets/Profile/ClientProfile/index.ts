@@ -2,3 +2,4 @@ export { ClientNavigationSideBarMobile } from "./ClientNavigationSideBar/ui/Clie
 export { ClientNavigationSideBar } from "./ClientNavigationSideBar/ui/ClientNavigationSideBar";
 export { ClientAccountCompanyForm } from "./AccountCompanyForm";
 export { ClientOrdersSection } from "./ClientOrdersSection/ClientOrdersSection";
+export { OrderDetailPage } from "./OrderDetailSection";

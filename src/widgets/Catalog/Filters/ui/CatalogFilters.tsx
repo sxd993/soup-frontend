@@ -7,7 +7,7 @@ import {
   ScrollContainer,
 } from "@/shared/ui"
 import { StateProvider } from "@/app/providers/State/StateProvider"
-import { CATALOG_FILTERS_MESSAGES } from "@/entities/CatalogFilters/model/const/filters"
+import { CATALOG_FILTERS_MESSAGES } from "../const/filters"
 import { useCatalogFilters } from "../model/hooks/useCatalogFilters"
 import { CatalogFiltersSkeleton } from "./CatalogFiltersSkeleton"
 import { RegionsListSkeleton } from "./RegionsListSkeleton"

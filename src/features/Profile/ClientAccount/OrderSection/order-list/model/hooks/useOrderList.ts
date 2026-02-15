@@ -3,11 +3,13 @@
 import type { ComponentType } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
-import { getClientOrders } from "@/entities/Orders/api/getClientOrders";
-import { CLIENT_ORDERS_QUERY_KEY } from "@/entities/Orders/model/constants";
+import { getClientOrders, CLIENT_ORDERS_QUERY_KEY } from "@/entities/Orders";
 import { useOrderTabsStore } from "../../../order-tabs/model/store/useOrderTabsStore";
-import { formatOrderPrice, formatOrderCreatedLabel } from "../lib/formatOrder";
-import { getOrderIcon } from "../lib/getOrderIcon";
+import {
+  formatOrderPrice,
+  formatOrderCreatedLabel,
+  getOrderIcon,
+} from "@/shared/lib/order";
 
 export type OrderStatusFilter = "active" | "completed" | "moderation";
 

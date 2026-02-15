@@ -3,8 +3,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { showErrorToast, showSuccessToast } from "@/shared/ui";
 import { getErrorMessage, deadlineToISO } from "@/shared/lib";
-import { createOrder } from "@/entities/Orders/api/createOrder";
-import { CLIENT_ORDERS_QUERY_KEY } from "@/entities/Orders/model/constants";
+import { createOrder, CLIENT_ORDERS_QUERY_KEY } from "@/entities/Orders";
 import type { CreateOrderFormValues } from "../types/types";
 import { defaultCreateOrderFormValues } from "../types/types";
 import { useOrderCategories } from "./useOrderCategories"

@@ -18,4 +18,5 @@ export type Order = {
   deadline: string | null;
   createdAt: string;
   updatedAt: string;
+  fileUrls?: string[];
 };

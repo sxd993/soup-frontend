@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type ComponentType } from "react"
 import { useQuery } from "@tanstack/react-query"
-import { useCatalogFiltersData } from "@/entities/CatalogFilters/model/hooks/useCatalogFiltersData"
+import { mapContractorsToSections } from "@/shared/lib/catalogFilters"
+import { useContractors } from "@/entities/Contractors"
 import { fetchRegions } from "@/entities/Regions/model/api/fetchRegions"
 import type { RegionItemType } from "@/entities/Regions/model/types/RegionItemType"
 import { ICONS_BY_LABEL } from "../../const/iconsByLabel"
@@ -8,7 +9,8 @@ import { useCatalogFiltersStore } from "../store/useCatalogFiltersStore"
 
 export const useCatalogFilters = () => {
   const [openSectionIds, setOpenSectionIds] = useState<Set<string>>(() => new Set())
-  const { data: sections = [], isLoading, isError } = useCatalogFiltersData()
+  const { data: contractors = [], isLoading, isError } = useContractors()
+  const sections = useMemo(() => mapContractorsToSections(contractors), [contractors])
   const { data: regions = [], isLoading: isRegionsLoading, isError: isRegionsError } = useQuery<
     RegionItemType[]
   >({

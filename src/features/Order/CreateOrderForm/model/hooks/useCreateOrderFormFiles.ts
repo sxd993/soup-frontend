@@ -5,7 +5,7 @@ import { useMutation } from "@tanstack/react-query"
 import { useFormContext, useWatch } from "react-hook-form"
 import { showErrorToast } from "@/shared/ui"
 import { getErrorMessage } from "@/shared/lib"
-import { uploadOrderFile } from "@/entities/Orders/api/uploadOrderFile"
+import { uploadOrderFile } from "@/entities/Orders"
 import type { CreateOrderFormValues, OrderFileItem } from "../types/types"
 
 const ALLOWED_IMAGE_TYPES = ["image/png", "image/jpeg", "image/webp"]
