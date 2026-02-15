@@ -4,7 +4,6 @@ import { useSession } from "@/entities/Session";
 import { StateProvider } from "@/app/providers/State/StateProvider";
 import { Button } from "@/shared/ui";
 import Link from "next/link";
-import { CreateOrderPageSkeleton } from "@/features/Order/CreateOrderForm/ui/CreateOrderPageSkeleton";
 import { CreateOrderForm } from "@/features/Order/CreateOrderForm";
 
 const ACCESS_DENIED_MESSAGE =
@@ -12,8 +11,7 @@ const ACCESS_DENIED_MESSAGE =
 
 export function OrderCreatePageContent() {
   const { data: session, isLoading } = useSession();
-
-  const isEmpty = session?.user?.role === "company";
+  const isEmpty = !isLoading && session?.user?.role === "company";
 
   const emptyComponent = (
     <div className="mt-[34px] flex min-h-[40vh] flex-col items-center justify-center gap-4 pb-20">
@@ -28,10 +26,9 @@ export function OrderCreatePageContent() {
 
   return (
     <StateProvider
-      isLoading={isLoading}
+      isLoading={false}
       isError={false}
       isEmpty={isEmpty}
-      loadingComponent={<CreateOrderPageSkeleton />}
       emptyComponent={emptyComponent}
     >
       <main className="mt-[34px] pb-20">
