@@ -2,12 +2,13 @@ import { useState } from 'react'
 import { useRegister } from '@/features/Auth/register/useRegister'
 import { useForm } from 'react-hook-form'
 import { RegisterFormValues, AUTH_MESSAGES } from '@/entities/Auth';
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { getErrorMessage } from '@/shared/lib/error-handler'
 import { showErrorToast } from '@/shared/ui'
 
 export const useRegisterForm = () => {
     const router = useRouter()
+    const searchParams = useSearchParams()
     const { mutate, isPending } = useRegister()
     const [serverError, setServerError] = useState<string | null>(null)
     const {
@@ -35,7 +36,11 @@ export const useRegisterForm = () => {
                     // } else {
                     //     router.push('/auth/login')
                     // }
-                    router.push('/auth/login')
+                    const returnUrl = searchParams?.get('returnUrl')
+                    const loginUrl = returnUrl
+                        ? `/auth/login?returnUrl=${encodeURIComponent(returnUrl)}`
+                        : '/auth/login'
+                    router.push(loginUrl)
                 }
             },
             onError: (error: Error) => {

@@ -1,6 +1,6 @@
 "use client";
 
-import type { Order } from "@/entities/Orders";
+import type { Order } from "../model/types/order.types";
 import { formatOrderDeadline } from "@/shared/lib/order";
 import { OrderDetailsFiles } from "./OrderDetailsFiles";
 

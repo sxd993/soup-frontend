@@ -13,3 +13,15 @@ export {
 } from "./model/types/order.types";
 export { getOrderIcon } from "@/shared/lib/order";
 export { OrderCard } from "./ui/OrderCard";
+export { OrderDetails } from "./ui/OrderDetails";
+export { OrderDetailsFiles } from "./ui/OrderDetailsFiles";
+export {
+  useOrderDetailsFiles,
+  type OrderDetailsFileItem,
+} from "./model/hooks/useOrderDetailsFiles";
+export {
+  savePendingOrder,
+  getPendingOrder,
+  clearPendingOrder,
+  hadPendingOrderRedirect,
+} from "./lib/pendingOrderStorage";

@@ -1,7 +1,8 @@
 "use client";
 
 import { StateProvider } from "@/app/providers/State/StateProvider";
-import { OrderDetails, OrderResponses } from "@/features/Profile/ClientAccount/OrderSection";
+import { OrderDetails } from "@/entities/Orders";
+import { OrderResponses } from "@/features/Profile/ClientAccount/OrderSection";
 import { OrderCard, OrderStatus } from "@/entities/Orders";
 import { BlackButton } from "@/shared/ui";
 import { useCancelOrder } from "../model/hooks/useCancelOrder";

@@ -4,13 +4,14 @@ import { useLogin } from '@/features/Auth/login/useLogin'
 import { LoginFormValues, AUTH_MESSAGES } from '@/entities/Auth'
 import { validateLoginForm } from '@/entities/Auth/model/lib/formValidators'
 import type { AuthSession } from '@/entities/Session'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { getErrorMessage } from '@/shared/lib/error-handler'
 import { showErrorToast } from '@/shared/ui'
 import { useQueryClient } from '@tanstack/react-query'
 
 export const useLoginForm = () => {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const queryClient = useQueryClient()
   const { mutate, isPending } = useLogin()
   const [serverError, setServerError] = useState<string | null>(null)
@@ -28,6 +29,11 @@ export const useLoginForm = () => {
     setServerError(null)
     mutate(data, {
       onSuccess: () => {
+        const returnUrl = searchParams?.get('returnUrl')
+        if (returnUrl?.startsWith('/')) {
+          router.push(returnUrl)
+          return
+        }
         const session = queryClient.getQueryData<AuthSession>(['session'])
         const role = session?.user.role
         const target = role === 'client' ? '/profile/client/account' : role === 'company' ? '/profile/company/account' : '/profile'
