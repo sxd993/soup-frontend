@@ -28,7 +28,7 @@ export const HeroSection = () => {
         priority
         fetchPriority="high"
         sizes="(min-width: 1024px) 1200px, (min-width: 768px) 900px, 100vw"
-        onLoadingComplete={() => setIsLoaded(true)}
+        onLoad={() => setIsLoaded(true)}
       />
       {/* Общий контейнер */}
       <div className="relative z-10 flex py-20 justify-between px-10 mt-20">
