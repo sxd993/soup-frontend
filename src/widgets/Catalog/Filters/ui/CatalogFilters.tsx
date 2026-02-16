@@ -61,7 +61,7 @@ export const CatalogFilters = () => {
                 <span className="relative h-5 w-5">
                   <input
                     type="checkbox"
-                    className="peer h-5 w-5 appearance-none rounded-[6px] border-primary bg-white checked:bg-primary"
+                    className="peer h-5 w-5 appearance-none rounded-[6px] border border-primary bg-white checked:bg-primary"
                     checked={selectedRegionIds.includes(region.id)}
                     onChange={() => toggleRegion(region.id)}
                   />
@@ -85,7 +85,7 @@ export const CatalogFilters = () => {
           errorTitle={CATALOG_FILTERS_MESSAGES.error}
           loadingComponent={<CatalogFiltersSkeleton />}
         >
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-3">
             {sections.map((section) => {
               const isOpen = openSectionIds.has(section.id)
               return (
@@ -93,7 +93,7 @@ export const CatalogFilters = () => {
                   <button
                     type="button"
                     onClick={() => toggleSection(section.id)}
-                    className={`group flex h-12 items-center justify-between rounded-full px-4 text-[16px] font-semibold leading-[140%] text-secondary ${
+                    className={`group flex h-12 items-center justify-between rounded-full pl-1.5 pr-4 text-[16px] font-semibold leading-[140%] text-secondary ${
                       isOpen ? "bg-white hover:bg-white" : "bg-transparent"
                     }`}
                   >
@@ -159,7 +159,7 @@ export const CatalogFilters = () => {
                         <span className="relative h-5 w-5">
                           <input
                             type="checkbox"
-                            className="peer h-5 w-5 appearance-none rounded-[6px] border-primary bg-white checked:bg-primary"
+                            className="peer h-5 w-5 appearance-none rounded-[6px] border border-primary bg-white checked:bg-primary"
                             checked={selectedSectionItemIds.includes(item.id)}
                             onChange={() => toggleSectionItem(item.id)}
                           />
