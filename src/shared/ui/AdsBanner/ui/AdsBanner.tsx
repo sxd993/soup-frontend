@@ -9,16 +9,16 @@ interface AdsBannerProps {
 
 export const AdsBanner = ({ hasDescription }: AdsBannerProps) => {
     return (
-        <div className="p-5 bg-primary rounded-[20px] flex flex-col flex-1 justify-between h-full gap-4">
+        <div className="min-w-[240px] p-5 bg-primary rounded-[20px] flex flex-col flex-1 justify-between h-full gap-4">
 
             {/* Верхняя часть: метка "Реклама" и кнопка */}
             <div className="flex items-center justify-between">
-                <p className="text-white opacity-50 font-medium text-xs items-center">Реклама</p>
-                <RightArrowHome className="cursor-pointer right-arrow-home" />
+                <p className="text-white opacity-50 font-medium text-[12px] leading-none">Реклама</p>
+                <RightArrowHome className="h-6 w-6 shrink-0 cursor-pointer" aria-hidden />
             </div>
 
             {/* Заголовок */}
-            <h3 className="text-white text-xl font-bold leading-[115%]">
+            <h3 className="-mt-2 text-white text-[16px] font-medium leading-[20px] tracking-wide">
                 Комплексное благоустройство <br /> территорий
             </h3>
 

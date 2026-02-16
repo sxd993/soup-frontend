@@ -58,11 +58,3 @@ header input[type="text"]::placeholder {
   color: #000000 !important;
 }
 
-/* RightArrowHome hover: remove white background circle */
-svg.right-arrow-home circle {
-  transition: fill 0.2s ease-in-out;
-}
-
-svg.right-arrow-home:hover circle {
-  fill: transparent;
-}
