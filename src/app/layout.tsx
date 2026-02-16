@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="ru" className={manrope.variable}>
       <body>
         <AppProviders>
-          <div className="max-w-300 mx-auto px-4 lg:px-0">
+          <div className="max-w-300 min-h-screen mx-auto px-4">
             <Header />
             {children}
           </div>
