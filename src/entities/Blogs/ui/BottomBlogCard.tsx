@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { PinnedIcon } from "@/shared/ui";
+import { BlogLikeButton } from "@/features/LikeBlog";
 import { useBottomBlogCard } from "../model/hooks/useBottomBlogCard";
 import type { Blog } from "../model/types/blogs.types";
 
@@ -13,6 +14,7 @@ type BottomBlogCardProps = {
   imageHeight?: number | null;
   headerActions?: React.ReactNode;
   showPinnedIcon?: boolean;
+  showLikes?: boolean;
 };
 
 export const BottomBlogCard = ({
@@ -22,6 +24,7 @@ export const BottomBlogCard = ({
   imageHeight = 400,
   headerActions,
   showPinnedIcon = false,
+  showLikes = false,
 }: BottomBlogCardProps) => {
   const {
     date,
@@ -81,6 +84,11 @@ export const BottomBlogCard = ({
       <p className="text-[16px] font-semibold leading-[140%] text-secondary">
         {blog.description}
       </p>
+      {showLikes && blog.status === "published" && (
+        <div className="flex justify-start mt-2">
+          <BlogLikeButton blogId={blog.id} />
+        </div>
+      )}
     </>
   );
 

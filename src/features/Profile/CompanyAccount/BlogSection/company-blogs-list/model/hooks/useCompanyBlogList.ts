@@ -31,6 +31,7 @@ function toBlog(item: CompanyBlogItem): Blog {
     isPinned: item.isPinned,
     pinnedByCompany: item.pinnedByCompany,
     company: { name: item.companyName, logo_url: item.companyLogoUrl },
+    likesCount: item.likesCount,
   }
 }
 

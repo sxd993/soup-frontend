@@ -10,4 +10,6 @@ export interface Blog {
   isPinned?: boolean
   pinnedByCompany?: boolean
   company: { name: string; logo_url?: string | null } | null
+  likesCount?: number
+  likedByMe?: boolean
 }

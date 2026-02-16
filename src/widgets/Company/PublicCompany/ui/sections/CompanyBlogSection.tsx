@@ -29,6 +29,7 @@ export const CompanyBlogSection = ({
               blog={blog}
               href={`/blogs/item?id=${blog.id}`}
               showPinnedIcon={true}
+              showLikes={true}
             />
           </div>
         ))}

@@ -1,16 +1,29 @@
-import { getBlogs, type Blog, BottomBlogCard } from "@/entities/Blogs"
-import { SectionTitle, AdsBanner, SidePanel, type SidePanelItem } from "@/shared/ui"
-import { ScrollBlogsList } from "../../ScrollBlogsList"
+import {
+  getBlogs,
+  getTopLikedBlogs,
+  type Blog,
+  BottomBlogCard,
+} from "@/entities/Blogs";
+import {
+  SectionTitle,
+  AdsBanner,
+  SidePanel,
+  type SidePanelItem,
+} from "@/shared/ui";
+import { ScrollBlogsList } from "../../ScrollBlogsList";
 
-type BlogSidePanelItem = SidePanelItem & { blog: Blog }
+type BlogSidePanelItem = SidePanelItem & { blog: Blog };
 
 export async function BlogsPage() {
-  const blogs = await getBlogs()
-  const sidePanelItems: BlogSidePanelItem[] = blogs.slice(0, 5).map((blog) => ({
+  const [blogs, topLikedBlogs] = await Promise.all([
+    getBlogs(),
+    getTopLikedBlogs(5),
+  ]);
+  const sidePanelItems: BlogSidePanelItem[] = topLikedBlogs.map((blog) => ({
     id: blog.id,
     isAds: false,
     blog,
-  }))
+  }));
 
   return (
     <div className="flex flex-col lg:flex-row gap-5 mt-15">
@@ -26,13 +39,18 @@ export async function BlogsPage() {
         </div>
         <SidePanel
           items={sidePanelItems}
-          title="Самое обсуждаемое"
+          title="Самые популярные"
           getHref={(item) => `/blogs/item?id=${item.id}`}
-            renderItem={(item, href) => (
-              <BottomBlogCard blog={(item as BlogSidePanelItem).blog} href={href} imageHeight={144} />
-            )}
+          renderItem={(item, href) => (
+            <BottomBlogCard
+              blog={(item as BlogSidePanelItem).blog}
+              href={href}
+              imageHeight={144}
+              showLikes={true}
+            />
+          )}
         />
       </div>
     </div>
-  )
+  );
 }

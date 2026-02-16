@@ -13,4 +13,5 @@ export interface CompanyBlogItem {
   pinnedByCompany: boolean
   companyName: string
   companyLogoUrl: string | null
+  likesCount?: number
 }

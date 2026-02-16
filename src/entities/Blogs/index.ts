@@ -1,4 +1,4 @@
-export { getBlogs, getBlogById } from "./model/api/getBlogs"
+export { getBlogs, getBlogById, getTopLikedBlogs } from "./model/api/getBlogs"
 export { getCompanyBlogs } from "./model/api/getCompanyBlogs"
 export { TopBlogCard } from "./ui/TopBlogCard"
 export { BottomBlogCard } from "./ui/BottomBlogCard"

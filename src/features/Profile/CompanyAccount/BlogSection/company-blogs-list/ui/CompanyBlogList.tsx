@@ -24,6 +24,7 @@ export const CompanyBlogList = () => {
               blog={card.blog}
               href={card.href}
               showPinnedIcon={true}
+              showLikes={true}
               headerActions={
                 card.menuItems.length > 0 ? (
                   <CompanyBlogCardMenu

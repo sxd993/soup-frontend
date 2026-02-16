@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 import { useSearchParams } from "next/navigation"
-import { getBlogs, getBlogById } from "@/entities/Blogs"
+import { getBlogById, getTopLikedBlogs } from "@/entities/Blogs"
 import type { Blog } from "@/entities/Blogs"
 import type { SidePanelItem } from "@/shared/ui"
 
@@ -12,7 +12,7 @@ export function useBlogItemPage() {
   const searchParams = useSearchParams()
   const blogId = searchParams?.get("id") || ""
   const [blog, setBlog] = useState<Blog | null>(null)
-  const [allBlogs, setAllBlogs] = useState<Blog[]>([])
+  const [topLikedBlogs, setTopLikedBlogs] = useState<Blog[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
 
@@ -21,7 +21,7 @@ export function useBlogItemPage() {
     const load = async () => {
       if (!blogId) {
         setBlog(null)
-        setAllBlogs([])
+        setTopLikedBlogs([])
         setIsLoading(false)
         setIsError(false)
         return
@@ -30,10 +30,10 @@ export function useBlogItemPage() {
       setIsLoading(true)
       setIsError(false)
       try {
-        const [blogData, blogsData] = await Promise.all([getBlogById(blogId), getBlogs()])
+        const [blogData, topBlogsData] = await Promise.all([getBlogById(blogId), getTopLikedBlogs(5)])
         if (!active) return
         setBlog(blogData)
-        setAllBlogs(blogsData)
+        setTopLikedBlogs(topBlogsData)
       } catch {
         if (active) setIsError(true)
       } finally {
@@ -49,7 +49,7 @@ export function useBlogItemPage() {
 
   const sidePanelItems: BlogSidePanelItem[] = useMemo(
     () =>
-      allBlogs
+      topLikedBlogs
         .filter((item) => item.id !== blogId)
         .slice(0, 5)
         .map((item) => ({
@@ -57,7 +57,7 @@ export function useBlogItemPage() {
           isAds: false,
           blog: item,
         })),
-    [allBlogs, blogId]
+    [topLikedBlogs, blogId]
   )
 
   return {

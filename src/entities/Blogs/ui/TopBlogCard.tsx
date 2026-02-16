@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { formatDate } from "@/shared/lib";
+import { BlogLikeButton } from "@/features/LikeBlog";
 import type { Blog } from "../model/types/blogs.types";
 
 // Большая карточка блога
@@ -8,9 +9,10 @@ type TopBlogCardProps = {
   blog: Blog;
   href: string;
   className?: string;
+  showLikes?: boolean;
 };
 
-export const TopBlogCard = ({ blog, href, className }: TopBlogCardProps) => {
+export const TopBlogCard = ({ blog, href, className, showLikes = false }: TopBlogCardProps) => {
   const date = formatDate(blog.createdAt);
 
   return (
@@ -54,6 +56,11 @@ export const TopBlogCard = ({ blog, href, className }: TopBlogCardProps) => {
           <p className="text-[16px] font-semibold leading-[140%] text-secondary">
             {blog.description}
           </p>
+          {showLikes && blog.status === "published" && (
+            <div className="flex justify-start mt-2">
+              <BlogLikeButton blogId={blog.id} />
+            </div>
+          )}
         </article>
       </Link>
     </div>
