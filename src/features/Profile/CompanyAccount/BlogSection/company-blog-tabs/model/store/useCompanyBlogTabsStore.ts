@@ -9,6 +9,6 @@ interface CompanyBlogTabsStoreState {
 }
 
 export const useCompanyBlogTabsStore = create<CompanyBlogTabsStoreState>((set) => ({
-  selectedStatus: BLOG_TABS[0]?.id ?? "all",
+  selectedStatus: BLOG_TABS[0]?.id ?? "published",
   setSelectedStatus: (value) => set(() => ({ selectedStatus: value })),
 }))

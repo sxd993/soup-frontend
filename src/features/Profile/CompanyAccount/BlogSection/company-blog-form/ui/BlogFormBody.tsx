@@ -97,7 +97,7 @@ export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
               disabled={isSubmitDisabled}
               className="w-full lg:w-auto text-sm! px-6! py-2! lg:text-base! lg:px-15!"
             >
-              Опубликовать
+              Отправить на модерацию
             </Button>
           </div>
         </form>
