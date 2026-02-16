@@ -1,14 +1,19 @@
-"use client"
+"use client";
 
-import { BottomBlogCard } from "@/entities/Blogs"
-import { BlogContentBlocks } from "@/features/Profile/CompanyAccount/BlogSection"
-import { SectionTitle, AdsBanner, SidePanel } from "@/shared/ui"
-import { StateProvider } from "@/app/providers/State/StateProvider"
-import { BlogItemSkeleton } from "./BlogItemSkeleton"
-import { useBlogItemPage, type BlogSidePanelItem } from "../model/hooks/useBlogItemPage"
+import { BottomBlogCard } from "@/entities/Blogs";
+import { BlogLikeButton } from "@/features/LikeBlog";
+import { BlogContentBlocks } from "@/features/Profile/CompanyAccount/BlogSection";
+import { SectionTitle, AdsBanner, SidePanel } from "@/shared/ui";
+import { StateProvider } from "@/app/providers/State/StateProvider";
+import { BlogItemSkeleton } from "./BlogItemSkeleton";
+import {
+  useBlogItemPage,
+  type BlogSidePanelItem,
+} from "../model/hooks/useBlogItemPage";
 
 export function BlogItemPage() {
-  const { blog, isLoading, isError, isEmpty, sidePanelItems } = useBlogItemPage()
+  const { blog, isLoading, isError, isEmpty, sidePanelItems } =
+    useBlogItemPage();
 
   return (
     <StateProvider
@@ -23,8 +28,13 @@ export function BlogItemPage() {
           <div className="flex-1 flex flex-col basis-2/3">
             <SectionTitle title="Блоги" className="mb-5" />
             <div className="mt-6 bg-white p-5 rounded-[20px]">
-              <BottomBlogCard blog={blog} imageHeight={null} />
+              <BottomBlogCard blog={blog} />
               <BlogContentBlocks blocks={blog.contentBlocks} />
+              {blog.status === "published" && (
+                <div className="flex justify-start mt-4">
+                  <BlogLikeButton blogId={blog.id} />
+                </div>
+              )}
             </div>
           </div>
           <div className="basis-1/3 flex flex-col gap-6 lg:mt-20">
@@ -33,15 +43,20 @@ export function BlogItemPage() {
             </div>
             <SidePanel
               items={sidePanelItems}
-              title="Самое обсуждаемое"
+              title="Самые популярные"
               getHref={(item) => `/blogs/item?id=${item.id}`}
               renderItem={(item, href) => (
-                <BottomBlogCard blog={(item as BlogSidePanelItem).blog} href={href} />
+                <BottomBlogCard
+                  blog={(item as BlogSidePanelItem).blog}
+                  href={href}
+                  imageHeight={144}
+                  showLikes={true}
+                />
               )}
             />
           </div>
         </div>
       )}
     </StateProvider>
-  )
+  );
 }

@@ -1,6 +1,6 @@
 export const BLOG_TABS = [
-  { id: "all", label: "Все", menuId: 1 },
-  { id: "published", label: "Опубликованные", menuId: 2 },
+  { id: "published", label: "Опубликованные", menuId: 1 },
+  { id: "moderation", label: "На модерации", menuId: 2 },
   { id: "drafts", label: "Черновики", menuId: 3 },
 ] as const
 

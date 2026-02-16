@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation"
 import { useMutation } from "@tanstack/react-query"
 import { useSession } from "@/entities/Session"
 import { useCompanyProfile } from "@/entities/Profile/Company/model/hooks/useCompanyProfile"
+import { showSuccessToast, showErrorToast } from "@/shared/ui/State/toast"
+import { getErrorMessage } from "@/shared/lib"
 import { createCompanyBlog } from "../api/createCompanyBlog"
 import { createEmptyBlock } from "../const/block-options"
 import { normalizeBlocks } from "../lib/normalizeBlocks"
@@ -23,7 +25,20 @@ export function useCreateBlogForm() {
 
   const mutation = useMutation({
     mutationFn: createCompanyBlog,
-    onSuccess: () => router.push("/profile/company/blog"),
+    onSuccess: (_, variables) => {
+      if (variables.publish) {
+        showSuccessToast("Блог отправлен на модерацию", "Ваш блог успешно отправлен на модерацию.")
+      } else {
+        showSuccessToast("Черновик сохранен", "Ваш черновик успешно сохранен.")
+      }
+      router.push("/profile/company/blog")
+    },
+    onError: (error) => {
+      showErrorToast(
+        "Не удалось создать блог",
+        getErrorMessage(error, "Попробуйте ещё раз.")
+      )
+    },
   })
 
   const addBlock = (type: ContentBlock["type"]) => {

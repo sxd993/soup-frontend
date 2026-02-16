@@ -18,7 +18,7 @@ export const BlogsSection = async () => {
         </div>
       </div>
 
-      {topBlog && <TopBlogCard blog={topBlog} href={`/blogs/item?id=${topBlog.id}`} />}
+      {topBlog && <TopBlogCard blog={topBlog} href={`/blogs/item?id=${topBlog.id}`} showLikes={true} />}
       <div className="mt-8 space-y-8">
         <div className="lg:hidden grid gap-5 grid-cols-1 md:grid-cols-2">
           {bottomBlogsMd.map((blog) => (
@@ -27,6 +27,7 @@ export const BlogsSection = async () => {
               blog={blog}
               href={`/blogs/item?id=${blog.id}`}
               imageHeight={144}
+              showLikes={true}
             />
           ))}
         </div>
@@ -37,6 +38,7 @@ export const BlogsSection = async () => {
               blog={blog}
               href={`/blogs/item?id=${blog.id}`}
               imageHeight={144}
+              showLikes={true}
             />
           ))}
         </div>

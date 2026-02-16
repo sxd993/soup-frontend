@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useSession } from "@/entities/Session"
 import { useCompanyProfile } from "@/entities/Profile/Company/model/hooks/useCompanyProfile"
+import { showSuccessToast, showErrorToast } from "@/shared/ui/State/toast"
+import { getErrorMessage } from "@/shared/lib"
 import { getCompanyBlog, updateCompanyBlog, publishCompanyBlog } from "@/features/Profile/CompanyAccount/BlogSection/company-blogs-list"
 import { createEmptyBlock } from "../const/block-options"
 import { normalizeBlocks } from "../lib/normalizeBlocks"
@@ -43,6 +45,13 @@ export function useEditBlogForm(blogId: string) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["company-blog", blogId] })
       queryClient.invalidateQueries({ queryKey: ["company-blogs"] })
+      showSuccessToast("Изменения сохранены", "Ваши изменения успешно сохранены.")
+    },
+    onError: (error) => {
+      showErrorToast(
+        "Не удалось сохранить изменения",
+        getErrorMessage(error, "Попробуйте ещё раз.")
+      )
     },
   })
 
@@ -50,7 +59,14 @@ export function useEditBlogForm(blogId: string) {
     mutationFn: () => publishCompanyBlog(blogId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["company-blogs"] })
+      showSuccessToast("Блог отправлен на модерацию", "Ваш блог успешно отправлен на модерацию.")
       router.push("/profile/company/blog")
+    },
+    onError: (error) => {
+      showErrorToast(
+        "Не удалось отправить блог на модерацию",
+        getErrorMessage(error, "Попробуйте ещё раз.")
+      )
     },
   })
 

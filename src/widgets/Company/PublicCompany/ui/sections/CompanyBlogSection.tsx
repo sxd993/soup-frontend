@@ -28,7 +28,8 @@ export const CompanyBlogSection = ({
             <BottomBlogCard
               blog={blog}
               href={`/blogs/item?id=${blog.id}`}
-              imageHeight={null}
+              showPinnedIcon={true}
+              showLikes={true}
             />
           </div>
         ))}

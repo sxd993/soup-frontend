@@ -13,7 +13,7 @@ export const ScrollBlogsList = ({ blogs }: ScrollBlogsListProps) => (
         <BottomBlogCard
           blog={blog}
           href={`/blogs/item?id=${blog.id}`}
-          imageHeight={null}
+          showLikes={true}
         />
       </div>
     ))}
