@@ -2,7 +2,6 @@
 
 import { BottomBlogCard } from "@/entities/Blogs"
 import { BlogContentBlocks } from "@/features/Profile/CompanyAccount/BlogSection"
-import { BlogSidePanelCard } from "../../BlogSidePanelCard"
 import { SectionTitle, AdsBanner, SidePanel } from "@/shared/ui"
 import { StateProvider } from "@/app/providers/State/StateProvider"
 import { BlogItemSkeleton } from "./BlogItemSkeleton"
@@ -37,7 +36,7 @@ export function BlogItemPage() {
               title="Самое обсуждаемое"
               getHref={(item) => `/blogs/item?id=${item.id}`}
               renderItem={(item, href) => (
-                <BlogSidePanelCard item={(item as BlogSidePanelItem).blog} href={href} />
+                <BottomBlogCard blog={(item as BlogSidePanelItem).blog} href={href} />
               )}
             />
           </div>

@@ -8,28 +8,30 @@ import {
   WhtspIcon,
   YndDzenIcon,
   YtIcon,
-} from "@/shared/ui"
+} from "@/shared/ui";
 
 type ContactsData = {
-  phones: { label: string; href: string }[]
-  emails: { label: string; href: string }[]
-  website: { label: string; href: string } | null
-  socials: { key: string; href: string }[]
-  address: string
-}
+  phones: { label: string; href: string }[];
+  emails: { label: string; href: string }[];
+  website: { label: string; href: string } | null;
+  socials: { key: string; href: string }[];
+  address: string;
+};
 
 type CompanyContactsSectionProps = {
-  data: ContactsData
-}
+  data: ContactsData;
+};
 
-export const CompanyContactsSection = ({ data }: CompanyContactsSectionProps) => {
+export const CompanyContactsSection = ({
+  data,
+}: CompanyContactsSectionProps) => {
   const iconByKey: Record<string, React.ReactNode> = {
     telegram: <TgIcon />,
     whatsapp: <WhtspIcon />,
     vk: <VkIcon />,
     youtube: <YtIcon />,
     yandexDzen: <YndDzenIcon />,
-  }
+  };
 
   return (
     <div className="rounded-[26px] bg-white p-5">
@@ -107,5 +109,5 @@ export const CompanyContactsSection = ({ data }: CompanyContactsSectionProps) =>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

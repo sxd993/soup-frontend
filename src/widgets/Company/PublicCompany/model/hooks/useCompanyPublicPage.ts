@@ -47,16 +47,6 @@ export const useCompanyPublicPage = (companyId: string) => {
 
   const iconMap = ICONS_BY_LABEL as Record<string, ComponentType<{ isActive?: boolean }>>
 
-  const filteredBlogs = useMemo(() => {
-    const parsedCompanyId = Number(companyId)
-    const byCompany = Number.isFinite(parsedCompanyId)
-      ? blogs.filter((item) => item.companyId === parsedCompanyId)
-      : blogs
-    return [...byCompany].sort(
-      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-    )
-  }, [blogs, companyId])
-
   const contactsData = useMemo(() => {
     if (!company) {
       return {
@@ -138,7 +128,7 @@ export const useCompanyPublicPage = (companyId: string) => {
     toggleSection,
     iconMap,
     contactsData,
-    blogs: filteredBlogs,
+    blogs,
     isBlogsLoading,
     isBlogsError,
     handleCall,

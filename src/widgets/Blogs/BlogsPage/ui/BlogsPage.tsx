@@ -1,7 +1,6 @@
-import { getBlogs, type Blog } from "@/entities/Blogs"
+import { getBlogs, type Blog, BottomBlogCard } from "@/entities/Blogs"
 import { SectionTitle, AdsBanner, SidePanel, type SidePanelItem } from "@/shared/ui"
 import { ScrollBlogsList } from "../../ScrollBlogsList"
-import { BlogSidePanelCard } from "../../BlogSidePanelCard"
 
 type BlogSidePanelItem = SidePanelItem & { blog: Blog }
 
@@ -30,7 +29,7 @@ export async function BlogsPage() {
           title="Самое обсуждаемое"
           getHref={(item) => `/blogs/item?id=${item.id}`}
           renderItem={(item, href) => (
-            <BlogSidePanelCard item={(item as BlogSidePanelItem).blog} href={href} />
+            <BottomBlogCard blog={(item as BlogSidePanelItem).blog} href={href} />
           )}
         />
       </div>
