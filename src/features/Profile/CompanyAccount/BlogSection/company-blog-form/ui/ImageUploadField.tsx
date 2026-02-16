@@ -9,7 +9,7 @@ type ImageUploadFieldProps = {
   onChange: (url: string) => void
   id?: string
   label?: string
-  minHeight?: string
+  height?: string
 }
 
 export function ImageUploadField({
@@ -17,7 +17,7 @@ export function ImageUploadField({
   onChange,
   id = "image-upload",
   label = "Добавить фото",
-  minHeight = "200px",
+  height,
 }: ImageUploadFieldProps) {
   const {
     inputRef,
@@ -33,8 +33,8 @@ export function ImageUploadField({
     <div className="flex flex-col gap-2">
       <label
         htmlFor={id}
-        style={{ height: minHeight, minHeight }}
-        className="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-[10px] border border-[#c5c2c2] transition-colors"
+        style={height ? { height } : undefined}
+        className="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-[20px] border border-[#c5c2c2] transition-colors"
       >
         <input
           id={id}

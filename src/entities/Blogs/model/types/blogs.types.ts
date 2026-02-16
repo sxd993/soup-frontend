@@ -8,5 +8,6 @@ export interface Blog {
   createdAt: string
   status?: "draft" | "published"
   isPinned?: boolean
+  pinnedByCompany?: boolean
   company: { name: string; logo_url?: string | null } | null
 }

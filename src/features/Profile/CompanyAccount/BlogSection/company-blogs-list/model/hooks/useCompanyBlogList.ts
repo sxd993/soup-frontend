@@ -5,13 +5,15 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import type { Blog } from "@/entities/Blogs"
 import { useCompanyBlogTabsStore } from "@/features/Profile/CompanyAccount/BlogSection/company-blog-tabs"
 import { useCompanyBlogs } from "./useCompanyBlogs"
-import { publishCompanyBlog, deleteCompanyBlog } from "../.."
+import { publishCompanyBlog, deleteCompanyBlog, pinByCompanyBlog, unpinByCompanyBlog } from "../.."
 import type { CompanyBlogItem } from "../types/company-blog.types"
 
 const BLOG_MENU_IDS = {
   publish: 1,
   edit: 2,
-  delete: 3,
+  pin: 3,
+  unpin: 4,
+  delete: 5,
 } as const
 
 function toBlog(item: CompanyBlogItem): Blog {
@@ -25,6 +27,7 @@ function toBlog(item: CompanyBlogItem): Blog {
     createdAt: item.createdAt,
     status: item.type,
     isPinned: item.isPinned,
+    pinnedByCompany: item.pinnedByCompany,
     company: { name: item.companyName, logo_url: item.companyLogoUrl },
   }
 }
@@ -34,6 +37,12 @@ function getMenuItems(item: CompanyBlogItem): { id: number; title: string }[] {
   if (item.type === "draft") {
     items.push({ id: BLOG_MENU_IDS.publish, title: "Опубликовать" })
     items.push({ id: BLOG_MENU_IDS.edit, title: "Редактировать" })
+  } else if (item.type === "published") {
+    if (item.pinnedByCompany) {
+      items.push({ id: BLOG_MENU_IDS.unpin, title: "Открепить" })
+    } else {
+      items.push({ id: BLOG_MENU_IDS.pin, title: "Закрепить" })
+    }
   }
   items.push({ id: BLOG_MENU_IDS.delete, title: "Удалить" })
   return items
@@ -66,6 +75,20 @@ export function useCompanyBlogList() {
     },
   })
 
+  const pinByCompanyMutation = useMutation({
+    mutationFn: (blogId: string) => pinByCompanyBlog(blogId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["company-blogs"] })
+    },
+  })
+
+  const unpinByCompanyMutation = useMutation({
+    mutationFn: (blogId: string) => unpinByCompanyBlog(blogId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["company-blogs"] })
+    },
+  })
+
   const isEmpty = !isLoading && !isError && blogs.length === 0
 
   const handleMenuSelect = (item: CompanyBlogItem) => (id: number) => {
@@ -73,6 +96,10 @@ export function useCompanyBlogList() {
       publishMutation.mutate(item.id)
     } else if (id === BLOG_MENU_IDS.edit) {
       router.push(`/profile/company/blog/edit?id=${item.id}`)
+    } else if (id === BLOG_MENU_IDS.pin) {
+      pinByCompanyMutation.mutate(item.id)
+    } else if (id === BLOG_MENU_IDS.unpin) {
+      unpinByCompanyMutation.mutate(item.id)
     } else if (id === BLOG_MENU_IDS.delete) {
       deleteMutation.mutate(item.id)
     }

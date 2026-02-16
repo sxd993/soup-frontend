@@ -12,7 +12,7 @@ export function BlogImageUpload() {
       onChange={setImageUrl}
       id="blog-main-image-upload"
       label="Загрузите главное фото"
-      minHeight="200px"
+      height="400px"
     />
   )
 }

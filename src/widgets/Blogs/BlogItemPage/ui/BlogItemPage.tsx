@@ -23,7 +23,7 @@ export function BlogItemPage() {
           <div className="flex-1 flex flex-col basis-2/3">
             <SectionTitle title="Блоги" className="mb-5" />
             <div className="mt-6 bg-white p-5 rounded-[20px]">
-              <BottomBlogCard blog={blog} imageHeight={null} />
+              <BottomBlogCard blog={blog} />
               <BlogContentBlocks blocks={blog.contentBlocks} />
             </div>
           </div>
@@ -36,7 +36,7 @@ export function BlogItemPage() {
               title="Самое обсуждаемое"
               getHref={(item) => `/blogs/item?id=${item.id}`}
               renderItem={(item, href) => (
-                <BottomBlogCard blog={(item as BlogSidePanelItem).blog} href={href} />
+                <BottomBlogCard blog={(item as BlogSidePanelItem).blog} href={href} imageHeight={144} />
               )}
             />
           </div>

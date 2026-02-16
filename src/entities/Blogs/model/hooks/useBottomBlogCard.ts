@@ -9,7 +9,7 @@ type UseBottomBlogCardOptions = {
 }
 
 export function useBottomBlogCard(blog: Blog, options: UseBottomBlogCardOptions = {}) {
-  const { className, imageHeight = 144 } = options
+  const { className, imageHeight = 400 } = options
 
   const date = formatDate(blog.createdAt)
   const articleClasses = ["flex-1 rounded-2xl flex flex-col justify-start gap-4", className]

@@ -19,13 +19,13 @@ export const TopBlogCard = ({ blog, href, className }: TopBlogCardProps) => {
     >
       <Link href={href} className="contents">
         {blog.imageUrl && (
-          <div className="w-full flex justify-center md:w-auto overflow-hidden rounded-[40px]">
+          <div className="w-full flex justify-center md:w-auto overflow-hidden rounded-[40px] h-[400px]">
             <Image
               width={797}
-              height={500}
+              height={400}
               src={blog.imageUrl}
               alt={blog.title}
-              className="max-w-full h-auto"
+              className="w-full h-full object-cover"
             />
           </div>
         )}

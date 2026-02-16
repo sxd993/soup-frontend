@@ -1,29 +1,37 @@
-"use client"
+"use client";
 
-import { DetailsIcon } from "@/shared/ui"
-import { FilterMenu } from "@/shared/ui/FilterMenu/ui/FilterMenu"
-import { useDropdown } from "@/shared/hooks"
+import { DetailsIcon } from "@/shared/ui";
+import { FilterMenu } from "@/shared/ui/FilterMenu/ui/FilterMenu";
+import { useDropdown } from "@/shared/hooks";
 
 type CompanyBlogCardMenuProps = {
-  items: { id: number; title: string }[]
-  onSelect: (id: number) => void
-}
+  items: { id: number; title: string }[];
+  onSelect: (id: number) => void;
+};
 
-export function CompanyBlogCardMenu({ items, onSelect }: CompanyBlogCardMenuProps) {
-  const dropdown = useDropdown()
+export function CompanyBlogCardMenu({
+  items,
+  onSelect,
+}: CompanyBlogCardMenuProps) {
+  const dropdown = useDropdown();
 
   const handleSelect = (id: number) => {
-    onSelect(id)
-    dropdown.close()
-  }
+    onSelect(id);
+    dropdown.close();
+  };
 
-  if (!items.length) return null
+  if (!items.length) return null;
+
+  const handleToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    dropdown.toggle();
+  };
 
   return (
-    <div className="relative" ref={dropdown.ref}>
+    <div className="relative z-50" ref={dropdown.ref} onClick={(e) => e.stopPropagation()}>
       <button
         type="button"
-        onClick={dropdown.toggle}
+        onClick={handleToggle}
         className="p-1 rounded-full hover:bg-[#F5F5F5] transition-colors cursor-pointer"
         aria-expanded={dropdown.isOpen}
         aria-haspopup="true"
@@ -31,8 +39,14 @@ export function CompanyBlogCardMenu({ items, onSelect }: CompanyBlogCardMenuProp
         <DetailsIcon />
       </button>
       {dropdown.isOpen && (
-        <FilterMenu items={items} className="w-35!" onSelect={handleSelect} />
+        <div onClick={(e) => e.stopPropagation()}>
+          <FilterMenu
+            items={items}
+            className="w-35! z-100"
+            onSelect={handleSelect}
+          />
+        </div>
       )}
     </div>
-  )
+  );
 }

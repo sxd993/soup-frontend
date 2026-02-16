@@ -23,7 +23,7 @@ export const CompanyBlogList = () => {
             <BottomBlogCard
               blog={card.blog}
               href={card.href}
-              imageHeight={null}
+              showPinnedIcon={true}
               headerActions={
                 card.menuItems.length > 0 ? (
                   <CompanyBlogCardMenu

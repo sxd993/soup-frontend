@@ -28,9 +28,9 @@ export async function BlogsPage() {
           items={sidePanelItems}
           title="Самое обсуждаемое"
           getHref={(item) => `/blogs/item?id=${item.id}`}
-          renderItem={(item, href) => (
-            <BottomBlogCard blog={(item as BlogSidePanelItem).blog} href={href} />
-          )}
+            renderItem={(item, href) => (
+              <BottomBlogCard blog={(item as BlogSidePanelItem).blog} href={href} imageHeight={144} />
+            )}
         />
       </div>
     </div>

@@ -38,7 +38,7 @@ export function AddedBlocksList() {
                     }
                     id={`block-image-${index}`}
                     label={label}
-                    minHeight="120px"
+                    height="400px"
                   />
                 </div>
               )}

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { PinnedIcon } from "@/shared/ui";
 import { useBottomBlogCard } from "../model/hooks/useBottomBlogCard";
 import type { Blog } from "../model/types/blogs.types";
 
@@ -11,14 +12,16 @@ type BottomBlogCardProps = {
   className?: string;
   imageHeight?: number | null;
   headerActions?: React.ReactNode;
+  showPinnedIcon?: boolean;
 };
 
 export const BottomBlogCard = ({
   blog,
   href,
   className,
-  imageHeight = 144,
+  imageHeight = 400,
   headerActions,
+  showPinnedIcon = false,
 }: BottomBlogCardProps) => {
   const {
     date,
@@ -29,37 +32,45 @@ export const BottomBlogCard = ({
     imageHeight,
   });
 
-  const content = (
-    <>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          {blog.company?.logo_url && (
-            <img
-              src={blog.company.logo_url}
-              alt=""
-              className="w-10 h-10 rounded-[10px] object-cover"
-            />
-          )}
-          <div className="flex flex-col justify-between">
-            <h4 className="font-semibold text-base text-secondary">
-              {blog.company?.name}
-            </h4>
-            <span className="text-sm text-accent-quinary">{date}</span>
-          </div>
+  const headerContent = (
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-2">
+        {blog.company?.logo_url && (
+          <img
+            src={blog.company.logo_url}
+            alt=""
+            className="w-10 h-10 rounded-[10px] object-cover"
+          />
+        )}
+        <div className="flex flex-col justify-between">
+          <h4 className="font-semibold text-base text-secondary">
+            {blog.company?.name}
+          </h4>
+          <span className="text-sm text-accent-quinary">{date}</span>
         </div>
+      </div>
+      <div className="flex items-center gap-2">
+        {showPinnedIcon && blog.pinnedByCompany && (
+          <PinnedIcon className="w-7 h-7 shrink-0" />
+        )}
         {headerActions}
       </div>
+    </div>
+  );
 
+  const content = (
+    <>
       {blog.imageUrl && (
         <div
-          className={`overflow-hidden ${height !== null ? "h-[144px] rounded-[20px]" : "rounded-xl"}`}
+          className="overflow-hidden rounded-[20px]"
+          style={{ height: height !== null ? `${height}px` : "400px" }}
         >
           <Image
             src={blog.imageUrl}
             alt={blog.title}
             width={387}
-            height={height ?? 144}
-            className={`w-full ${height === null ? "h-auto object-contain" : "h-full object-cover"}`}
+            height={height ?? 400}
+            className="w-full h-full object-cover"
           />
         </div>
       )}
@@ -75,7 +86,14 @@ export const BottomBlogCard = ({
 
   return (
     <article className={`group ${articleClasses}`}>
-      {href ? <Link href={href} className="contents">{content}</Link> : content}
+      {headerContent}
+      {href ? (
+        <Link href={href} className="contents">
+          {content}
+        </Link>
+      ) : (
+        content
+      )}
     </article>
   );
 };

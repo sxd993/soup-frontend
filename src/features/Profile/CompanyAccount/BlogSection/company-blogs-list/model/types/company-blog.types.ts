@@ -10,6 +10,7 @@ export interface CompanyBlogItem {
   contentBlocks: unknown[] | null
   createdAt: string
   isPinned: boolean
+  pinnedByCompany: boolean
   companyName: string
   companyLogoUrl: string | null
 }
