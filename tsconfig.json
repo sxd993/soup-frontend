@@ -25,7 +25,8 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ]
+      ],
+      "@/widgets/*": ["./src/widgets/*"]
     }
   },
   "include": [
