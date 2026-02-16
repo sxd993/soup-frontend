@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { PinnedIcon } from "@/shared/ui";
 import { BlogLikeButton } from "@/features/LikeBlog";
 import { useBottomBlogCard } from "../model/hooks/useBottomBlogCard";
+import { createCompanyClickHandler } from "../model/lib/navigateToCompany";
 import type { Blog } from "../model/types/blogs.types";
 
 type BottomBlogCardProps = {
@@ -26,6 +28,7 @@ export const BottomBlogCard = ({
   showPinnedIcon = false,
   showLikes = false,
 }: BottomBlogCardProps) => {
+  const router = useRouter();
   const {
     date,
     articleClasses,
@@ -35,23 +38,46 @@ export const BottomBlogCard = ({
     imageHeight,
   });
 
+  const handleCompanyClick = createCompanyClickHandler(blog.companyId, router);
+
   const headerContent = (
     <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        {blog.company?.logo_url && (
-          <img
-            src={blog.company.logo_url}
-            alt=""
-            className="w-10 h-10 rounded-[10px] object-cover"
-          />
-        )}
-        <div className="flex flex-col justify-between">
-          <h4 className="font-semibold text-base text-secondary">
-            {blog.company?.name}
-          </h4>
-          <span className="text-sm text-accent-quinary">{date}</span>
+      {blog.companyId ? (
+        <div 
+          onClick={handleCompanyClick}
+          className="flex items-center gap-2 cursor-pointer"
+        >
+          {blog.company?.logo_url && (
+            <img
+              src={blog.company.logo_url}
+              alt=""
+              className="w-10 h-10 rounded-[10px] object-cover"
+            />
+          )}
+          <div className="flex flex-col justify-between">
+            <h4 className="font-semibold text-base text-secondary">
+              {blog.company?.name}
+            </h4>
+            <span className="text-sm text-accent-quinary">{date}</span>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="flex items-center gap-2">
+          {blog.company?.logo_url && (
+            <img
+              src={blog.company.logo_url}
+              alt=""
+              className="w-10 h-10 rounded-[10px] object-cover"
+            />
+          )}
+          <div className="flex flex-col justify-between">
+            <h4 className="font-semibold text-base text-secondary">
+              {blog.company?.name}
+            </h4>
+            <span className="text-sm text-accent-quinary">{date}</span>
+          </div>
+        </div>
+      )}
       <div className="flex items-center gap-2">
         {showPinnedIcon && blog.pinnedByCompany && (
           <PinnedIcon className="w-7 h-7 shrink-0" />

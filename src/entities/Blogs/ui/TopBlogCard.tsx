@@ -1,7 +1,11 @@
+"use client"
+
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { formatDate } from "@/shared/lib";
 import { BlogLikeButton } from "@/features/LikeBlog";
+import { createCompanyClickHandler } from "../model/lib/navigateToCompany";
 import type { Blog } from "../model/types/blogs.types";
 
 // Большая карточка блога
@@ -14,6 +18,8 @@ type TopBlogCardProps = {
 
 export const TopBlogCard = ({ blog, href, className, showLikes = false }: TopBlogCardProps) => {
   const date = formatDate(blog.createdAt);
+  const router = useRouter();
+  const handleCompanyClick = createCompanyClickHandler(blog.companyId, router);
 
   return (
     <div
@@ -33,21 +39,42 @@ export const TopBlogCard = ({ blog, href, className, showLikes = false }: TopBlo
         )}
         <article className="flex-1 rounded-2xl flex flex-col justify-start gap-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              {blog.company?.logo_url && (
-                <img
-                  src={blog.company.logo_url}
-                  alt=""
-                  className="w-10 h-10 rounded-[10px] object-cover"
-                />
-              )}
-              <div className="flex flex-col justify-between">
-                <h4 className="font-semibold text-base text-secondary">
-                  {blog.company?.name}
-                </h4>
-                <span className="text-sm text-accent-quinary">{date}</span>
+            {blog.companyId ? (
+              <div 
+                onClick={handleCompanyClick}
+                className="flex items-center gap-2 cursor-pointer"
+              >
+                {blog.company?.logo_url && (
+                  <img
+                    src={blog.company.logo_url}
+                    alt=""
+                    className="w-10 h-10 rounded-[10px] object-cover"
+                  />
+                )}
+                <div className="flex flex-col justify-between">
+                  <h4 className="font-semibold text-base text-secondary">
+                    {blog.company?.name}
+                  </h4>
+                  <span className="text-sm text-accent-quinary">{date}</span>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                {blog.company?.logo_url && (
+                  <img
+                    src={blog.company.logo_url}
+                    alt=""
+                    className="w-10 h-10 rounded-[10px] object-cover"
+                  />
+                )}
+                <div className="flex flex-col justify-between">
+                  <h4 className="font-semibold text-base text-secondary">
+                    {blog.company?.name}
+                  </h4>
+                  <span className="text-sm text-accent-quinary">{date}</span>
+                </div>
+              </div>
+            )}
           </div>
 
           <h3 className="text-[22px] font-bold text-secondary leading-[105%]">
