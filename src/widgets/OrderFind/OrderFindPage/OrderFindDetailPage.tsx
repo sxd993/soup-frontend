@@ -9,17 +9,28 @@ import {
 type OrderFindDetailPageProps = {
   order: Order;
   relatedOrders: Order[];
+  isResponded?: boolean;
+  onRespond?: () => void;
+  isRespondPending?: boolean;
 };
 
 export function OrderFindDetailPage({
   order,
   relatedOrders,
+  isResponded,
+  onRespond,
+  isRespondPending,
 }: OrderFindDetailPageProps) {
   return (
     <div className="mt-15 pb-20">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_340px]">
         <section className="flex flex-col gap-4">
-          <OrderFindDetailCard order={order} />
+          <OrderFindDetailCard
+            order={order}
+            isResponded={isResponded}
+            onRespond={onRespond}
+            isRespondPending={isRespondPending}
+          />
           <OrderDetails order={order} />
           <OrderFindClientContactsCard orderId={order.id} fallbackCity={order.region} />
         </section>

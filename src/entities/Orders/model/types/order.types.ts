@@ -19,4 +19,6 @@ export type Order = {
   createdAt: string;
   updatedAt: string;
   fileUrls?: string[];
+  responsesCount?: number;
+  isResponded?: boolean;
 };

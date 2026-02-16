@@ -3,7 +3,6 @@
 import { StateProvider } from "@/app/providers/State/StateProvider";
 import { EmailIcon, PhoneIcon, TgIcon } from "@/shared/ui";
 import { useOrderFindClientContacts } from "../../../features/Order/get-client-contacts/model/hooks/useOrderFindClientContacts";
-import { OrderFindClientContactsSkeleton } from "../../../features/Order/get-client-contacts/ui/states/OrderFindClientContactsSkeleton";
 
 type OrderFindClientContactsCardProps = {
   orderId: number;
@@ -22,7 +21,6 @@ export function OrderFindClientContactsCard({
       isError={card.isError}
       isEmpty={card.isEmpty}
       errorTitle="Не удалось загрузить контакты заказчика"
-      loadingComponent={<OrderFindClientContactsSkeleton />}
       emptyComponent={null}
     >
       <section className="rounded-[20px] bg-white p-5">

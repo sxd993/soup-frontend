@@ -6,13 +6,20 @@ import type { Order } from "@/entities/Orders";
 type OrderFindDetailCardProps = {
   order: Order;
   responsesCount?: number;
+  isResponded?: boolean;
+  onRespond?: () => void;
+  isRespondPending?: boolean;
 };
 
 export function OrderFindDetailCard({
   order,
-  responsesCount = 0,
+  responsesCount,
+  isResponded = false,
+  onRespond,
+  isRespondPending = false,
 }: OrderFindDetailCardProps) {
   const IconComponent = order.category ? ICONS_BY_LABEL[order.category] : null;
+  const displayedResponsesCount = responsesCount ?? order.responsesCount ?? 0;
 
   return (
     <article className="rounded-[20px] bg-white px-5 pb-5 pt-4">
@@ -35,7 +42,19 @@ export function OrderFindDetailCard({
             <p className="text-[14px] font-normal leading-[130%] text-accent-septenary">
               {order.region}
             </p>
-            <Button className="max-w-3/7 mt-2 font-medium!">Откликнуться</Button>
+            {isResponded ? (
+              <p className="mt-3 text-[16px] font-semibold leading-[130%] text-primary">
+                Вы откликнулись
+              </p>
+            ) : (
+              <Button
+                className="max-w-3/7 mt-2 font-medium!"
+                onClick={onRespond}
+                disabled={isRespondPending}
+              >
+                {isRespondPending ? "Отправка..." : "Откликнуться"}
+              </Button>
+            )}
           </div>
 
           <div className="flex flex-col items-end h-full justify-between">
@@ -46,7 +65,7 @@ export function OrderFindDetailCard({
               {formatOrderCreatedLabel(order.createdAt)}
             </p>
             <p className="text-right text-[14px] leading-[130%] text-accent-septenary">
-              {responsesCount} откликов
+              {displayedResponsesCount} откликов
             </p>
           </div>
         </div>
