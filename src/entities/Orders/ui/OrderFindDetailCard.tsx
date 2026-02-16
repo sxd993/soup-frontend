@@ -1,6 +1,6 @@
 import { Button } from "@/shared/ui";
-import { ICONS_BY_LABEL } from "@/shared/config/catalogServiceIcons";
 import { formatOrderCreatedLabel, formatOrderPrice } from "@/shared/lib/order";
+import { getOrderIcon } from "@/shared/lib/order";
 import type { Order } from "@/entities/Orders";
 
 type OrderFindDetailCardProps = {
@@ -18,20 +18,14 @@ export function OrderFindDetailCard({
   onRespond,
   isRespondPending = false,
 }: OrderFindDetailCardProps) {
-  const IconComponent = order.category ? ICONS_BY_LABEL[order.category] : null;
+  const IconComponent = getOrderIcon(order.category);
   const displayedResponsesCount = responsesCount ?? order.responsesCount ?? 0;
 
   return (
     <article className="rounded-[20px] bg-white px-5 pb-5 pt-4">
       <div className="flex items-start gap-4">
         <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center self-start [&_svg]:h-[64px] [&_svg]:w-[64px] [&_svg]:shrink-0 [&_svg_circle]:hidden! [&_svg_path]:fill-transparent [&_svg_path]:stroke-primary">
-          {IconComponent ? (
-            <IconComponent />
-          ) : (
-            <span className="text-2xl font-semibold text-primary">
-              {order.category?.[0] ?? "?"}
-            </span>
-          )}
+          <IconComponent />
         </div>
 
         <div className="grid min-h-0 min-w-0 flex-1 grid-cols-[1fr_auto] items-start gap-x-4 gap-y-1">

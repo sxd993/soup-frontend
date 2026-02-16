@@ -64,7 +64,10 @@ export const useCompanyServices = () => {
     [categories, activeCategoryId],
   )
 
-  const activeCategoryServices = useMemo(() => activeCategory?.badges ?? [], [activeCategory])
+  const activeCategoryServices = useMemo(
+    () => activeCategory?.subcategories.map((subcategory) => subcategory.title) ?? [],
+    [activeCategory],
+  )
 
   useEffect(() => {
     if (!savedServices || isHydratedRef.current) return

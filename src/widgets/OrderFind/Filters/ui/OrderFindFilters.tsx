@@ -29,7 +29,6 @@ export const OrderFindFilters = () => {
     toggleSectionItem,
     resetAll,
     isResetDisabled,
-    iconMap,
     getSectionMaxHeight,
   } = useOrderFindFilters();
 
@@ -98,11 +97,12 @@ export const OrderFindFilters = () => {
                   >
                     <span className="flex items-center gap-3">
                       <span className="flex h-9 w-9 items-center justify-center rounded-full">
-                        {iconMap[section.label] ? (
-                          (() => {
-                            const Icon = iconMap[section.label];
-                            return <Icon isActive={isOpen} />;
-                          })()
+                        {section.logoUrl ? (
+                          <img
+                            src={section.logoUrl}
+                            alt={section.label}
+                            className="h-9 w-9 rounded-full object-cover"
+                          />
                         ) : (
                           section.label[0]
                         )}

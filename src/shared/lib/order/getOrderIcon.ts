@@ -1,8 +1,9 @@
-import type { ComponentType } from "react";
-import { ICONS_BY_LABEL } from "@/shared/config/catalogServiceIcons";
+import { createElement, type ComponentType } from "react";
 import { OrderLocationIcon } from "@/shared/ui";
 
 export const getOrderIcon = (
-  category: string,
-): ComponentType<{ isActive?: boolean }> =>
-  ICONS_BY_LABEL[category] ?? OrderLocationIcon;
+  _category: string,
+): ComponentType<{ isActive?: boolean }> => {
+  const Icon = () => createElement(OrderLocationIcon);
+  return Icon;
+};

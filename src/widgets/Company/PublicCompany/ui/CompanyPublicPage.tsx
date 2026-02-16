@@ -33,7 +33,6 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
     services,
     openSectionIds,
     toggleSection,
-    iconMap,
     contactsData,
     blogs,
     isBlogsLoading,
@@ -69,7 +68,7 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
             <CompanyTabs activeTab={activeTab} onChange={setActiveTab} />
 
             {activeTab === "services" ? (
-              <CompanyServicesSection services={services} openSectionIds={openSectionIds} toggleSection={toggleSection} iconMap={iconMap} />
+              <CompanyServicesSection services={services} openSectionIds={openSectionIds} toggleSection={toggleSection} />
             ) : null}
 
             {activeTab === "reviews" ? <CompanyReviewsSection /> : null}

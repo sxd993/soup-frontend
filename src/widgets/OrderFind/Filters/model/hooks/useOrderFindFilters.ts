@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ComponentType } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useContractors } from "@/entities/Contractors";
 import { fetchRegions } from "@/entities/Regions/model/api/fetchRegions";
 import type { RegionItemType } from "@/entities/Regions/model/types/RegionItemType";
 import { mapContractorsToSections } from "@/shared/lib/catalogFilters";
-import { ICONS_BY_LABEL } from "@/shared/config/catalogServiceIcons";
 import { useOrderFindFiltersStore } from "../store/useOrderFindFiltersStore";
 
 export const useOrderFindFilters = () => {
@@ -86,7 +85,6 @@ export const useOrderFindFilters = () => {
   }, [regions, selectedRegions]);
 
   const isResetDisabled = selectedRegionIds.length === 0 && selectedFilters.length === 0;
-  const iconMap = ICONS_BY_LABEL as Record<string, ComponentType<{ isActive?: boolean }>>;
 
   const getSectionMaxHeight = (itemsCount: number, isOpen: boolean) => {
     if (!isOpen) return "0px";
@@ -111,7 +109,6 @@ export const useOrderFindFilters = () => {
     toggleSectionItem,
     resetAll,
     isResetDisabled,
-    iconMap,
     getSectionMaxHeight,
   };
 };

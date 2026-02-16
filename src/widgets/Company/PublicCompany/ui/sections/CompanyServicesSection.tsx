@@ -5,20 +5,17 @@ type CompanyServicesSectionProps = {
   services: CompanyServiceCategory[]
   openSectionIds: Set<string>
   toggleSection: (id: string) => void
-  iconMap: Record<string, React.ComponentType<{ isActive?: boolean }>>
 }
 
 export const CompanyServicesSection = ({
   services,
   openSectionIds,
   toggleSection,
-  iconMap,
 }: CompanyServicesSectionProps) => {
   return (
     <div className="flex flex-col gap-4">
       {services.map((section) => {
         const isOpen = openSectionIds.has(section.category)
-        const Icon = iconMap[section.category]
         return (
           <div key={section.category} className="rounded-[26px] bg-white p-5">
             <button
@@ -28,7 +25,7 @@ export const CompanyServicesSection = ({
             >
               <span className="flex items-center gap-3">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white">
-                  {Icon ? <Icon isActive={isOpen} /> : null}
+                  {section.category[0]}
                 </span>
                 <span className="text-[20px] font-semibold text-secondary">
                   {section.category}

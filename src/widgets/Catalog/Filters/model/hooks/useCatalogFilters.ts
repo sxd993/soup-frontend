@@ -1,10 +1,9 @@
-import { useEffect, useMemo, useState, type ComponentType } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { mapContractorsToSections } from "@/shared/lib/catalogFilters"
 import { useContractors } from "@/entities/Contractors"
 import { fetchRegions } from "@/entities/Regions/model/api/fetchRegions"
 import type { RegionItemType } from "@/entities/Regions/model/types/RegionItemType"
-import { ICONS_BY_LABEL } from "../../const/iconsByLabel"
 import { useCatalogFiltersStore } from "../store/useCatalogFiltersStore"
 
 export const useCatalogFilters = () => {
@@ -87,8 +86,6 @@ export const useCatalogFilters = () => {
 
   const isResetDisabled = selectedRegionIds.length === 0 && selectedFilters.length === 0
 
-  const iconMap = ICONS_BY_LABEL as Record<string, ComponentType<{ isActive?: boolean }>>
-
   useEffect(() => {
     if (!selectedService || sections.length === 0) return
     const targetSection = sections.find((section) => section.label === selectedService.category)
@@ -131,7 +128,6 @@ export const useCatalogFilters = () => {
     toggleSectionItem,
     resetAll,
     isResetDisabled,
-    iconMap,
     getSectionMaxHeight,
   }
 }

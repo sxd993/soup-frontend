@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useState, type ComponentType } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { getCompanyPublic } from "@/entities/Profile/Company/model/api/getCompanyPublic"
 import { getCompanyBlogs } from "@/entities/Blogs"
 import type { CompanyPublicResponse } from "@/entities/Profile/Company/model/types/company-public.types"
-import { ICONS_BY_LABEL } from "@/shared/config/catalogServiceIcons"
 
 export const useCompanyPublicPage = (companyId: string) => {
   const [isRegionsExpanded, setIsRegionsExpanded] = useState(false)
@@ -44,8 +43,6 @@ export const useCompanyPublicPage = (companyId: string) => {
       return next
     })
   }
-
-  const iconMap = ICONS_BY_LABEL as Record<string, ComponentType<{ isActive?: boolean }>>
 
   const contactsData = useMemo(() => {
     if (!company) {
@@ -126,7 +123,6 @@ export const useCompanyPublicPage = (companyId: string) => {
     services,
     openSectionIds,
     toggleSection,
-    iconMap,
     contactsData,
     blogs,
     isBlogsLoading,
