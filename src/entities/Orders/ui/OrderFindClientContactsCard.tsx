@@ -14,6 +14,7 @@ export function OrderFindClientContactsCard({
   fallbackCity,
 }: OrderFindClientContactsCardProps) {
   const card = useOrderFindClientContacts(orderId, fallbackCity);
+  console.log("card", card);
 
   return (
     <StateProvider
@@ -33,10 +34,10 @@ export function OrderFindClientContactsCard({
             <img
               src={card.avatarUrl}
               alt={card.fullName ?? "Аватар заказчика"}
-              className="h-[104px] w-[104px] rounded-[20px] object-cover"
+              className="h-[64px] w-[64px] rounded-[20px] object-cover"
             />
           ) : (
-            <div className="h-[104px] w-[104px] rounded-[20px] bg-[#C5C5C7]" />
+            <div className="h-[48px] w-[48px] rounded-[20px] bg-[#C5C5C7]" />
           )}
 
           <div className="min-w-0">
