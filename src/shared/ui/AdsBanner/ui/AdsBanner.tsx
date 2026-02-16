@@ -9,7 +9,7 @@ interface AdsBannerProps {
 
 export const AdsBanner = ({ hasDescription }: AdsBannerProps) => {
     return (
-        <div className="min-w-[240px] p-5 bg-primary rounded-[20px] flex flex-col flex-1 justify-between h-full gap-4">
+        <div className="h-[420px] min-w-[300px] shrink-0 p-5 bg-primary rounded-[20px] flex flex-col justify-between gap-4">
 
             {/* Верхняя часть: метка "Реклама" и кнопка */}
             <div className="flex items-center justify-between">
