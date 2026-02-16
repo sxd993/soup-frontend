@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { Button } from "@/shared/ui"
 
 export const NotFound = () => {
   return (
@@ -15,9 +14,12 @@ export const NotFound = () => {
           Возможно, страница была удалена или вы перешли по неверной ссылке.
         </p>
       </div>
-      <Button className="h-12 rounded-full !bg-[#535353] !text-white hover:!bg-[#2F2F2F] active:!bg-[#201F1F] disabled:!bg-[#C5C2C2] md:h-13 lg:h-14">
-        <Link href="/">На главную</Link>
-      </Button>
+      <Link
+        href="/"
+        className="inline-flex h-12 items-center justify-center rounded-[60px] bg-accent-septenary px-12 text-sm font-medium text-white transition-colors duration-200 hover:bg-secondary active:bg-[#201F1F] md:h-13 lg:h-14"
+      >
+        На главную
+      </Link>
     </section>
   )
 }

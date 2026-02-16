@@ -7,6 +7,8 @@ type CatalogCompanyResponse = {
   name?: string | null
   description?: string | null
   logo_url?: string | null
+  rating?: number | null
+  reviews_count?: number | null
 }
 
 type CatalogCompanyFilter = {
@@ -43,6 +45,8 @@ export const getCatalogCompanies = async (
       name: company.name ?? "",
       description: company.description ?? "",
       logoUrl: company.logo_url ?? null,
+      rating: company.rating != null ? Number(company.rating) : 0,
+      reviewsCount: company.reviews_count != null ? Number(company.reviews_count) : 0,
     }))
   } catch {
     return []

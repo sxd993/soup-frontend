@@ -15,3 +15,4 @@ export {
   type CatalogFilterItem,
   type CatalogFilterSection,
 } from "./catalogFilters";
+export { getReviewWordByCount } from "./getReviewWordByCount";

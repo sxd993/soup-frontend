@@ -25,9 +25,7 @@ export default function CatalogPage() {
           <ScrollCatalogList />
         </Suspense>
         <aside className="flex flex-col gap-6">
-          <div className="rounded-3xl bg-white p-4">
-            <AdsBanner hasDescription={true} />
-          </div>
+          <AdsBanner hasDescription={true} />
         </aside>
       </div>
     </div>

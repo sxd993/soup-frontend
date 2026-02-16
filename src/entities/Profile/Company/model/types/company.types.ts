@@ -3,6 +3,10 @@ export type CompanyCardData = {
   name: string
   description: string
   logoUrl?: string | null
+  /** Средний рейтинг 0–5 для отображения звёзд */
+  rating?: number
+  /** Количество отзывов */
+  reviewsCount?: number
 }
 
 export type CompanyReview = {

@@ -15,7 +15,7 @@ const wrapperClassName =
   "mt-15 flex min-h-[40vh] flex-col items-center justify-center gap-4 pb-20";
 
 export function OrderFindPageContent() {
-  const { data: session, isLoading } = useSession();
+  const { data: session, isLoading, isError } = useSession();
 
   const isEmpty = !session?.user || session.user.role !== "company";
 
@@ -42,7 +42,7 @@ export function OrderFindPageContent() {
   return (
     <StateProvider
       isLoading={isLoading}
-      isError={false}
+      isError={isError}
       isEmpty={isEmpty}
       loadingComponent={<OrderFindPageSkeleton />}
       emptyComponent={emptyComponent}

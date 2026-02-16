@@ -92,9 +92,7 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
               </div>
             </div>
 
-            <div className="rounded-[26px] bg-white p-4">
-              <AdsBanner hasDescription={true} />
-            </div>
+            <AdsBanner hasDescription={true} />
           </aside>
         </div>
       </StateProvider>
