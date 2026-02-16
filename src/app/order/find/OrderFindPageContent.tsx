@@ -4,7 +4,7 @@ import { useSession } from "@/entities/Session";
 import { StateProvider } from "@/app/providers/State/StateProvider";
 import { SectionTitle, AdsBanner, Button } from "@/shared/ui";
 import Link from "next/link";
-import { OrderFindPageSkeleton } from "@/widgets/OrderFind/OrderFindPage/ui/OrderFindPageSkeleton";
+import { OrderFindPageSkeleton } from "@/widgets/OrderFind/OrderFindPage/skeletons/OrderFindPageSkeleton";
 import { OrderFindFilters } from "@/widgets/OrderFind/Filters/ui/OrderFindFilters";
 import { OrderFindList } from "@/widgets/OrderFind/OrderFindList/ui/OrderFindList";
 

@@ -1,0 +1,46 @@
+import {
+  OrderCard,
+  OrderDetails,
+  OrderFindDetailCard,
+  OrderFindClientContactsCard,
+  type Order,
+} from "@/entities/Orders";
+
+type OrderFindDetailPageProps = {
+  order: Order;
+  relatedOrders: Order[];
+};
+
+export function OrderFindDetailPage({
+  order,
+  relatedOrders,
+}: OrderFindDetailPageProps) {
+  return (
+    <div className="mt-15 pb-20">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_340px]">
+        <section className="flex flex-col gap-4">
+          <OrderFindDetailCard order={order} />
+          <OrderDetails order={order} />
+          <OrderFindClientContactsCard orderId={order.id} fallbackCity={order.region} />
+        </section>
+
+        <aside className="flex flex-col gap-5">
+          <h2 className="text-[22px] font-bold leading-[110%] text-secondary">
+            Похожие заказы
+          </h2>
+          {relatedOrders.length > 0 ? (
+            <div className="flex flex-col gap-4">
+              {relatedOrders.map((item) => (
+                <OrderCard key={item.id} order={item} />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-[20px] bg-white p-5 text-[14px] text-accent-septenary">
+              Похожие заказы пока не найдены
+            </div>
+          )}
+        </aside>
+      </div>
+    </div>
+  );
+}

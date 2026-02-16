@@ -1,3 +1,4 @@
+export { OrderFindClientContactsCard } from "./ui/OrderFindClientContactsCard";
 export { getClientOrders } from "./api/getClientOrders";
 export { getClientOrder } from "./api/getClientOrder";
 export { createOrder } from "./api/createOrder";
@@ -15,6 +16,7 @@ export { getOrderIcon } from "@/shared/lib/order";
 export { OrderCard } from "./ui/OrderCard";
 export { OrderDetails } from "./ui/OrderDetails";
 export { OrderDetailsFiles } from "./ui/OrderDetailsFiles";
+export { OrderFindDetailCard } from "./ui/OrderFindDetailCard";
 export {
   useOrderDetailsFiles,
   type OrderDetailsFileItem,
