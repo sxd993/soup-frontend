@@ -1,24 +1,29 @@
-"use client"
+"use client";
 
-import { StateProvider } from "@/app/providers/State/StateProvider"
-import { Button } from "@/shared/ui"
-import { useBlogForm } from "../model/hooks/useBlogForm"
-import type { BlogFormMode } from "../model/hooks/useBlogForm"
-import { BlogFormProvider } from "../model/context/BlogFormContext"
-import { useBlockOptions } from "../model/hooks/useBlockOptions"
-import { AddedBlocksList } from "./AddedBlocksList"
-import { BlogImageUpload } from "./BlogImageUpload"
-import { BlogFormBodySkeleton } from "./BlogFormBodySkeleton"
+import { StateProvider } from "@/app/providers/State/StateProvider";
+import { Button } from "@/shared/ui";
+import { useBlogForm } from "../model/hooks/useBlogForm";
+import type { BlogFormMode } from "../model/hooks/useBlogForm";
+import { BlogFormProvider } from "../model/context/BlogFormContext";
+import { useBlockOptions } from "../model/hooks/useBlockOptions";
+import { AddedBlocksList } from "./AddedBlocksList";
+import { BlogImageUpload } from "./BlogImageUpload";
+import { BlogFormBodySkeleton } from "./BlogFormBodySkeleton";
 
 type BlogFormBodyProps = {
-  mode: BlogFormMode
-  blogId?: string
-}
+  mode: BlogFormMode;
+  blogId?: string;
+};
 
 export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
-  const { companyLoading, blogNotFound, form, leftButtonLabel, isSubmitDisabled } =
-    useBlogForm(mode, blogId)
-  const { blockOptions } = useBlockOptions()
+  const {
+    companyLoading,
+    blogNotFound,
+    form,
+    leftButtonLabel,
+    isSubmitDisabled,
+  } = useBlogForm(mode, blogId);
+  const { blockOptions } = useBlockOptions();
 
   return (
     <StateProvider
@@ -53,7 +58,7 @@ export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
               placeholder="Заголовок"
               value={form.title}
               onChange={(e) => form.setTitle(e.target.value)}
-              className="outline-none flex-1 placeholder:text-[#c5c2c2]"
+              className="outline-none flex-1 placeholder:text-[#c5c2c2] text-[22px] font-bold text-secondary leading-[105%]"
             />
           </div>
 
@@ -63,7 +68,7 @@ export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
               value={form.description}
               onChange={(e) => form.setDescription(e.target.value)}
               rows={5}
-              className="outline-none flex-1 resize-none placeholder:text-[#c5c2c2]"
+              className="outline-none flex-1 resize-none placeholder:text-[#c5c2c2] text-[16px] font-semibold leading-[140%] text-secondary"
             />
           </div>
 
@@ -103,5 +108,5 @@ export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
         </form>
       </BlogFormProvider>
     </StateProvider>
-  )
+  );
 }
