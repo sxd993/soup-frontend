@@ -24,7 +24,7 @@ export function OrderFindDetailPage({
   return (
     <div className="mt-15 pb-20">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_340px]">
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-8">
           <OrderFindDetailCard
             order={order}
             isResponded={isResponded}
@@ -32,7 +32,7 @@ export function OrderFindDetailPage({
             isRespondPending={isRespondPending}
           />
           <OrderDetails order={order} />
-          <OrderFindClientContactsCard orderId={order.id} fallbackCity={order.region} />
+          <OrderFindClientContactsCard orderId={order.id} />
         </section>
 
         <aside className="flex flex-col gap-5">

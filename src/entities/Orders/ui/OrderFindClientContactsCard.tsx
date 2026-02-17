@@ -1,20 +1,17 @@
 "use client";
 
 import { StateProvider } from "@/app/providers/State/StateProvider";
-import { EmailIcon, PhoneIcon, TgIcon } from "@/shared/ui";
+import { EmailIcon, PhoneIcon, TgIcon, MaxIcon } from "@/shared/ui";
 import { useOrderFindClientContacts } from "../../../features/Order/get-client-contacts/model/hooks/useOrderFindClientContacts";
 
 type OrderFindClientContactsCardProps = {
   orderId: number;
-  fallbackCity: string;
 };
 
 export function OrderFindClientContactsCard({
   orderId,
-  fallbackCity,
 }: OrderFindClientContactsCardProps) {
-  const card = useOrderFindClientContacts(orderId, fallbackCity);
-  console.log("card", card);
+  const card = useOrderFindClientContacts(orderId);
 
   return (
     <StateProvider
@@ -24,72 +21,70 @@ export function OrderFindClientContactsCard({
       errorTitle="Не удалось загрузить контакты заказчика"
       emptyComponent={null}
     >
-      <section className="rounded-[20px] bg-white p-5">
-        <h2 className="text-[48px] font-semibold leading-[110%] text-secondary">
+      <section className="rounded-[20px] bg-white p-5 flex flex-col gap-5">
+
+        <h2 className="text-[22px] font-semibold leading-[115%] text-secondary">
           Контакты заказчика
         </h2>
 
-        <div className="mt-8 flex items-start gap-4">
+        {/* Аватарка + ФИО + Город*/}
+        <div className="flex items-start gap-5">
+
+          {/* Аватарка */}
           {card.avatarUrl ? (
             <img
               src={card.avatarUrl}
               alt={card.fullName ?? "Аватар заказчика"}
-              className="h-[64px] w-[64px] rounded-[20px] object-cover"
+              className="h-[48px] w-[48px] rounded-[10px] object-cover"
             />
           ) : (
-            <div className="h-[48px] w-[48px] rounded-[20px] bg-[#C5C5C7]" />
+            <div className="h-[48px] w-[48px] rounded-[10px] bg-[#C5C5C7]" />
           )}
 
-          <div className="min-w-0">
+          {/* ФИО */}
+          <div className="flex flex-col gap-1">
+
             {card.fullName ? (
-              <p className="text-[52px] font-semibold leading-[100%] text-secondary">
+              <p className="text-[22px] font-bold leading-[115%] text-secondary">
                 {card.fullName}
               </p>
             ) : null}
+
+            {/* Город */}
             {card.city ? (
-              <p className="mt-2 text-[50px] font-normal leading-[100%] text-secondary">
+              <p className="text-[14px] font-normal leading-[130%] text-secondary">
                 {card.city}
               </p>
             ) : null}
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col gap-3">
-          {card.contacts.map((item) => (
-            <div
-              key={`${item.type}-${item.value}`}
-              className="flex items-center gap-3 text-secondary"
-            >
-              <span className="flex h-8 w-8 items-center justify-center text-[#B4B4B6] [&_path]:fill-[#B4B4B6]">
-                {item.type === "phone" ? (
-                  <PhoneIcon />
-                ) : item.type === "email" ? (
-                  <EmailIcon />
-                ) : item.type === "telegram" ? (
-                  <TgIcon />
-                ) : (
-                  <span className="text-[16px] font-semibold leading-none text-[#B4B4B6]">
-                    M
-                  </span>
-                )}
-              </span>
-              {item.href ? (
-                <a
-                  href={item.href}
-                  target={item.type === "telegram" ? "_blank" : undefined}
-                  rel={item.type === "telegram" ? "noreferrer" : undefined}
-                  className="text-[22px] font-normal leading-[130%] hover:opacity-80"
-                >
-                  {item.value}
-                </a>
-              ) : (
-                <span className="text-[22px] font-normal leading-[130%]">
+        {/* Телефон + почта + соц сети*/}
+        {card.contacts.length > 0 ? (
+          <div className="flex flex-col gap-2">
+            {card.contacts.map((item) => (
+              <div
+                key={`${item.type}-${item.value}`}
+                className="flex items-center gap-3 text-secondary"
+              >
+                <span className="flex h-8 w-8 items-center justify-center text-[#B4B4B6] [&_path]:fill-[#B4B4B6]">
+                  {item.type === "phone" ? (
+                    <PhoneIcon />
+                  ) : item.type === "email" ? (
+                    <EmailIcon />
+                  ) : item.type === "telegram" ? (
+                    <TgIcon />
+                  ) : (
+                    <MaxIcon/>
+                  )}
+                </span>
+                <span className="text-[16px] font-normal leading-[110%]">
                   {item.value}
                 </span>
-              )}
-            </div>
-          ))}
-        </div>
+              </div>
+            ))}
+          </div>
+        ) : null}
       </section>
     </StateProvider>
   );

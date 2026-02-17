@@ -3,11 +3,13 @@ export { formatDate } from "./formatDate";
 export { deadlineToISO } from "./deadlineToISO";
 export { normalizeTariffName, resolveTariffTitle } from "./tariff";
 export { normalizeUrl } from "./normalizeUrl";
+export { formatRuCountWithWord, getRuPluralWord } from "./pluralizeRu";
 export {
   formatOrderDate,
   formatOrderCreatedLabel,
   formatOrderDeadline,
   formatOrderPrice,
+  formatOrderResponsesCount,
   getOrderIcon,
 } from "./order";
 export {

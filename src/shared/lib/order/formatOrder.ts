@@ -1,3 +1,5 @@
+import { formatRuCountWithWord } from "../pluralizeRu";
+
 export const formatOrderDate = (dateStr: string): string => {
   const d = new Date(dateStr);
   if (Number.isNaN(d.getTime())) return "—";
@@ -33,3 +35,6 @@ export const formatOrderDeadline = (dateStr: string | null): string => {
 
 export const formatOrderPrice = (price: number): string =>
   `${price.toLocaleString("ru-RU")} ₽`;
+
+export const formatOrderResponsesCount = (count: number): string =>
+  formatRuCountWithWord(count, ["отклик", "отклика", "откликов"]);

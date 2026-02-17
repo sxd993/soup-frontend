@@ -12,6 +12,7 @@ export { SearchOverlay } from "./SearchOverlay";
 
 // Иконки
 export * from "./Controls/icons";
+export { MaxIcon } from "./ClientAccount";
 
 // Company account UI
 export * from "./CompanyAccount";
