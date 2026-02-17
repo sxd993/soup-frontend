@@ -53,14 +53,14 @@ export const CompanyCard = ({ item }: CompanyCardProps) => {
       <div className="relative z-10 flex min-h-0 flex-1 flex-col pointer-events-none">
         <div className="flex shrink-0 flex-row items-start justify-between gap-3">
           <div className="flex min-w-0 flex-1 gap-3 sm:gap-4">
-            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-white p-1.5 md:h-32 md:w-32 md:p-2">
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-[10px] bg-white p-1.5 md:h-32 md:w-32 md:p-2">
               {hasLogo ? (
                 <Image
                   src={item.logoUrl!}
                   alt={item.name}
                   width={128}
                   height={128}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover overflow-hidden rounded-[10px]"
                 />
               ) : (
                 <MainIcon className="h-full w-full" />
