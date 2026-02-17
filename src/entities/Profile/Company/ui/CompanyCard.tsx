@@ -70,17 +70,25 @@ export const CompanyCard = ({ item }: CompanyCardProps) => {
               <span className="text-[22px] font-semibold leading-tight text-secondary">
                 {item.name}
               </span>
-              <div className="mt-auto flex items-center gap-2 md:mt-0">
-                <span className="flex shrink-0 items-center gap-0.5">
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <span key={index}>
-                      <StarIcon fill={rating >= index + 1 ? "#8BC652" : "#C5C2C2"} />
-                    </span>
-                  ))}
-                </span>
-                <span className="text-sm text-accent-quinary">
-                  {reviewsCount} {getReviewWordByCount(reviewsCount)}
-                </span>
+              <div className="mt-auto flex flex-col gap-1 md:mt-0">
+                <div className="flex items-center gap-2">
+                  <span className="flex shrink-0 items-center gap-0.5">
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <span key={index}>
+                        <StarIcon fill={rating >= index + 1 ? "#8BC652" : "#C5C2C2"} />
+                      </span>
+                    ))}
+                  </span>
+                  <span className="text-sm text-accent-quinary" aria-hidden>·</span>
+                  <span className="text-sm text-accent-quinary">
+                    {reviewsCount} {getReviewWordByCount(reviewsCount)}
+                  </span>
+                </div>
+                {item.address?.trim() ? (
+                  <p className="line-clamp-2 text-sm text-secondary">
+                    {item.address}
+                  </p>
+                ) : null}
               </div>
             </div>
           </div>

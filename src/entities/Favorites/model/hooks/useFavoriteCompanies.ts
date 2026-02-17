@@ -14,6 +14,7 @@ async function fetchFavoriteCompanies(companyIds: number[]): Promise<CompanyCard
       name: r.value.company.name,
       description: r.value.company.description,
       logoUrl: r.value.company.logoUrl ?? null,
+      address: r.value.company.address ?? null,
     }))
 }
 
