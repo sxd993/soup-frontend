@@ -16,9 +16,12 @@ type CatalogCompanyFilter = {
   service: string
 }
 
+type SortOption = "default" | "rating" | "reviews"
+
 export const getCatalogCompanies = async (
   filters: CatalogCompanyFilter[] = [],
   regions: string[] = [],
+  sort?: SortOption,
 ): Promise<CompanyCardData[]> => {
   try {
     const filtersParam =
@@ -28,15 +31,15 @@ export const getCatalogCompanies = async (
             .join(",")
         : undefined
     const regionsParam = regions.length > 0 ? regions.join(",") : undefined
+    const sortParam = sort && sort !== "default" ? sort : undefined
+
+    const params: Record<string, string> = {}
+    if (filtersParam) params.filters = filtersParam
+    if (regionsParam) params.regions = regionsParam
+    if (sortParam) params.sort = sortParam
 
     const response = await AxiosClient.get<CatalogCompanyResponse[]>("/companies", {
-      params:
-        filtersParam || regionsParam
-          ? {
-              filters: filtersParam,
-              regions: regionsParam,
-            }
-          : undefined,
+      params: Object.keys(params).length > 0 ? params : undefined,
     })
     const items = Array.isArray(response.data) ? response.data : []
 

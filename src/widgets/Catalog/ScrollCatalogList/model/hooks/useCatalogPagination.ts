@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { useQuery } from "@tanstack/react-query"
 import { getCatalogCompanies } from "@/entities/Profile/Company/model/api/getCatalogCompanies"
@@ -6,9 +6,9 @@ import { useCatalogFiltersStore } from "@/widgets/Catalog/Filters/model/store/us
 
 const ITEMS_PER_PAGE = 4
 const SORT_OPTIONS = [
-  { id: 1, title: "по умолчанию" },
-  { id: 2, title: "по рейтингу" },
-  { id: 3, title: "по количеству отзывов" },
+  { id: 1, title: "по умолчанию", value: "default" as const },
+  { id: 2, title: "по рейтингу", value: "rating" as const },
+  { id: 3, title: "по количеству отзывов", value: "reviews" as const },
 ]
 
 export const useCatalogPagination = () => {
@@ -34,6 +34,11 @@ export const useCatalogPagination = () => {
   const [debouncedRegionsKey, setDebouncedRegionsKey] = useState(regionsKey)
   const [debouncedFilters, setDebouncedFilters] = useState(selectedFilters)
   const [debouncedRegions, setDebouncedRegions] = useState(selectedRegions)
+  const [selectedSortId, setSelectedSortId] = useState<number>(SORT_OPTIONS[0].id)
+  const selectedSort = SORT_OPTIONS.find((option) => option.id === selectedSortId)?.value ?? "default"
+  const sortKey = useMemo(() => selectedSort, [selectedSort])
+  const [debouncedSortKey, setDebouncedSortKey] = useState(sortKey)
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedFiltersKey(filtersKey)
@@ -43,14 +48,20 @@ export const useCatalogPagination = () => {
     }, 500)
     return () => clearTimeout(timer)
   }, [filtersKey, selectedFilters, regionsKey, selectedRegions])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSortKey(sortKey)
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [sortKey])
+
   const { data: items = [], isLoading, isError } = useQuery({
-    queryKey: ["catalog-companies", debouncedFiltersKey, debouncedRegionsKey],
-    queryFn: () => getCatalogCompanies(debouncedFilters, debouncedRegions),
+    queryKey: ["catalog-companies", debouncedFiltersKey, debouncedRegionsKey, debouncedSortKey],
+    queryFn: () => getCatalogCompanies(debouncedFilters, debouncedRegions, debouncedSortKey),
     staleTime: 5 * 60 * 1000,
   })
-  const [selectedSortId, setSelectedSortId] = useState<number>(SORT_OPTIONS[0].id)
-  const [isSortMenuOpen, setIsSortMenuOpen] = useState(false)
-  const sortMenuRef = useRef<HTMLDivElement | null>(null)
+
   const rawPage = Number(searchParams?.get("page") ?? "1")
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE)
   const currentPage = Number.isFinite(rawPage)
@@ -67,25 +78,9 @@ export const useCatalogPagination = () => {
     SORT_OPTIONS.find((option) => option.id === selectedSortId)?.title ??
     SORT_OPTIONS[0].title
 
-  const toggleSortMenu = () => {
-    setIsSortMenuOpen((prev) => !prev)
-  }
-
   const selectSort = (id: number) => {
     setSelectedSortId(id)
-    setIsSortMenuOpen(false)
   }
-
-  useEffect(() => {
-    if (!isSortMenuOpen) return
-    const handleClickOutside = (event: MouseEvent) => {
-      if (!sortMenuRef.current) return
-      if (sortMenuRef.current.contains(event.target as Node)) return
-      setIsSortMenuOpen(false)
-    }
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [isSortMenuOpen])
 
   return {
     paginatedItems,
@@ -97,9 +92,6 @@ export const useCatalogPagination = () => {
     sortOptions: SORT_OPTIONS,
     selectedSortId,
     selectedSortTitle,
-    isSortMenuOpen,
-    toggleSortMenu,
     selectSort,
-    sortMenuRef,
   }
 }

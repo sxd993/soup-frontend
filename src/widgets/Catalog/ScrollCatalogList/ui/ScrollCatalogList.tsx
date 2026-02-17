@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { CompanyCard } from "@/entities/Profile/Company/ui/CompanyCard";
 import { FilterMenu, SortIcon } from "@/shared/ui";
 import { ClientPagination } from "@/features/Pagination";
@@ -18,23 +19,36 @@ export const ScrollCatalogList = () => {
     sortOptions,
     selectedSortId,
     selectedSortTitle,
-    isSortMenuOpen,
-    toggleSortMenu,
     selectSort,
-    sortMenuRef,
   } = useCatalogPagination();
+
+  const [isOpen, setOpen] = useState(false);
 
   return (
     <section className="flex flex-col gap-6">
-      <div ref={sortMenuRef} className="relative flex items-center justify-end">
+      <div className="relative flex items-center justify-end">
         <button
           type="button"
-          className="flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold text-secondary transition-colors hover:bg-white/70"
-          onClick={toggleSortMenu}>
-          {selectedSortTitle}
-          <SortIcon />
+          className="flex items-center gap-2 cursor-pointer"
+          aria-expanded={isOpen}
+          onClick={() => setOpen((prev) => !prev)}>
+          <p className="text-secondary font-semibold leading-[130%] text-sm">
+            {selectedSortTitle}
+          </p>
+          <span className={`transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}>
+            <SortIcon />
+          </span>
         </button>
-        {isSortMenuOpen ? <FilterMenu items={sortOptions} selectedId={selectedSortId} onSelect={selectSort} /> : null}
+        {isOpen && (
+          <FilterMenu
+            items={sortOptions}
+            selectedId={selectedSortId}
+            onSelect={(id) => {
+              selectSort(id);
+              setOpen(false);
+            }}
+          />
+        )}
       </div>
 
       <StateProvider
