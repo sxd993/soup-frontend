@@ -1,28 +1,64 @@
 "use client";
 
+import { SortIcon } from "@/shared/ui";
+import { FilterMenu } from "@/shared/ui/FilterMenu/ui/FilterMenu";
 import type { CompanyOrderTabStatus } from "../model/const/orderTabs";
 import { useCompanyOrderTabs } from "../model/hooks/useCompanyOrderTabs";
 
 export const CompanyOrderTabs = () => {
-  const { items, selectedStatus, handleSelect } = useCompanyOrderTabs();
+  const {
+    items,
+    selectedStatus,
+    selectedItem,
+    isOpen,
+    setIsOpen,
+    handleSelect,
+    menuItems,
+    selectedMenuId,
+    handleMenuSelect,
+  } = useCompanyOrderTabs();
 
   return (
-    <div className="inline-flex flex-wrap rounded-[40px]">
-      {items.map((item) => {
-        const isActive = item.id === selectedStatus;
-        return (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => handleSelect(item.id as CompanyOrderTabStatus)}
-            className={`rounded-[40px] px-6 py-2 text-[16px] font-semibold transition-colors ${
-              isActive ? "bg-white text-secondary" : "text-accent-septenary"
-            }`}
-          >
-            {item.label}
-          </button>
-        );
-      })}
-    </div>
+    <>
+      <div className="relative lg:hidden">
+        <button
+          type="button"
+          className="flex cursor-pointer items-center gap-2"
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
+          {selectedItem.label}
+          <span className={`transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}>
+            <SortIcon />
+          </span>
+        </button>
+        {isOpen && (
+          <FilterMenu
+            items={menuItems}
+            selectedId={selectedMenuId}
+            className="right-0 left-auto lg:left-0 lg:right-auto"
+            onSelect={handleMenuSelect}
+          />
+        )}
+      </div>
+
+      <div className="hidden lg:inline-flex flex-wrap rounded-[40px]">
+        {items.map((item) => {
+          const isActive = item.id === selectedStatus;
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => handleSelect(item.id as CompanyOrderTabStatus)}
+              className={`rounded-[40px] px-6 py-2 text-[16px] font-semibold transition-colors ${
+                isActive ? "bg-white text-secondary" : "text-accent-septenary"
+              }`}
+            >
+              {item.label}
+            </button>
+          );
+        })}
+      </div>
+    </>
   );
 };
