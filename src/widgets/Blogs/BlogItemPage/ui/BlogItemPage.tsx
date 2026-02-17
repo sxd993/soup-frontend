@@ -27,7 +27,7 @@ export function BlogItemPage() {
         <div className="flex flex-col lg:flex-row gap-5 mt-20">
           <div className="flex-1 flex flex-col basis-2/3">
             <SectionTitle title="Блоги" className="mb-5" />
-            <div className="mt-6 bg-white p-5 rounded-[20px]">
+            <div className="mt-6 bg-white p-5 rounded-[20px] w-full min-w-0 overflow-hidden">
               <BottomBlogCard blog={blog} />
               <BlogContentBlocks blocks={blog.contentBlocks} />
               {blog.status === "published" && (

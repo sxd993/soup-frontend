@@ -35,8 +35,7 @@ export function AddedBlocksList() {
           >
             <div className="flex flex-wrap items-center gap-2">
               {"text" in block && (
-                <input
-                  type="text"
+                <textarea
                   value={block.text}
                   onChange={(e) =>
                     form.updateBlock(
@@ -49,7 +48,14 @@ export function AddedBlocksList() {
                     )
                   }
                   placeholder={label}
-                  className={`outline-none flex-1 min-w-[200px] placeholder:text-[#c5c2c2] ${getTextBlockStyles(block.type)}`}
+                  rows={1}
+                  className={`outline-none flex-1 w-full min-w-[200px] min-w-0 placeholder:text-[#c5c2c2] break-words resize-none overflow-hidden ${getTextBlockStyles(block.type)}`}
+                  style={{ minHeight: "1.5rem" }}
+                  onInput={(e) => {
+                    const target = e.target as HTMLTextAreaElement;
+                    target.style.height = "auto";
+                    target.style.height = `${target.scrollHeight}px`;
+                  }}
                 />
               )}
               {"url" in block && block.type === "image" && (
@@ -83,8 +89,7 @@ export function AddedBlocksList() {
                         <span className="absolute left-0 text-secondary">
                           •
                         </span>
-                        <input
-                          type="text"
+                        <textarea
                           value={item}
                           onChange={(e) =>
                             form.updateBlock(index, (b) => ({
@@ -97,7 +102,7 @@ export function AddedBlocksList() {
                             }))
                           }
                           onKeyDown={(e) => {
-                            if (e.key === "Enter") {
+                            if (e.key === "Enter" && !e.shiftKey) {
                               e.preventDefault();
                               form.updateBlock(index, (b) => {
                                 const newItems = [
@@ -111,8 +116,8 @@ export function AddedBlocksList() {
                                 ];
                                 setTimeout(() => {
                                   const nextInput = document.querySelector(
-                                    `input[data-block-index="${index}"][data-item-index="${itemIndex + 1}"]`,
-                                  ) as HTMLInputElement;
+                                    `textarea[data-block-index="${index}"][data-item-index="${itemIndex + 1}"]`,
+                                  ) as HTMLTextAreaElement;
                                   nextInput?.focus();
                                 }, 0);
                                 return { ...b, items: newItems };
@@ -132,7 +137,14 @@ export function AddedBlocksList() {
                             }
                           }}
                           placeholder={`Элемент ${itemIndex + 1}`}
-                          className="outline-none flex-1 placeholder:text-[#c5c2c2]"
+                          rows={1}
+                          className="outline-none flex-1 w-full min-w-0 placeholder:text-[#c5c2c2] break-words resize-none overflow-hidden"
+                          style={{ minHeight: "1.5rem" }}
+                          onInput={(e) => {
+                            const target = e.target as HTMLTextAreaElement;
+                            target.style.height = "auto";
+                            target.style.height = `${target.scrollHeight}px`;
+                          }}
                           data-block-index={index}
                           data-item-index={itemIndex}
                         />
@@ -161,8 +173,7 @@ export function AddedBlocksList() {
                         <span className="absolute left-0 text-secondary">
                           {itemIndex + 1}.
                         </span>
-                        <input
-                          type="text"
+                        <textarea
                           value={item}
                           onChange={(e) =>
                             form.updateBlock(index, (b) => ({
@@ -175,7 +186,7 @@ export function AddedBlocksList() {
                             }))
                           }
                           onKeyDown={(e) => {
-                            if (e.key === "Enter") {
+                            if (e.key === "Enter" && !e.shiftKey) {
                               e.preventDefault();
                               form.updateBlock(index, (b) => {
                                 const newItems = [
@@ -195,8 +206,8 @@ export function AddedBlocksList() {
                                 ];
                                 setTimeout(() => {
                                   const nextInput = document.querySelector(
-                                    `input[data-block-index="${index}"][data-item-index="${itemIndex + 1}"]`,
-                                  ) as HTMLInputElement;
+                                    `textarea[data-block-index="${index}"][data-item-index="${itemIndex + 1}"]`,
+                                  ) as HTMLTextAreaElement;
                                   nextInput?.focus();
                                 }, 0);
                                 return { ...b, items: newItems };
@@ -216,7 +227,14 @@ export function AddedBlocksList() {
                             }
                           }}
                           placeholder={`Элемент ${itemIndex + 1}`}
-                          className="outline-none flex-1 placeholder:text-[#c5c2c2]"
+                          rows={1}
+                          className="outline-none flex-1 w-full min-w-0 placeholder:text-[#c5c2c2] break-words resize-none overflow-hidden"
+                          style={{ minHeight: "1.5rem" }}
+                          onInput={(e) => {
+                            const target = e.target as HTMLTextAreaElement;
+                            target.style.height = "auto";
+                            target.style.height = `${target.scrollHeight}px`;
+                          }}
                           data-block-index={index}
                           data-item-index={itemIndex}
                         />

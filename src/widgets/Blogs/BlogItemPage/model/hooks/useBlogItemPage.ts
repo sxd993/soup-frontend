@@ -1,51 +1,54 @@
-"use client"
+"use client";
 
-import { useEffect, useMemo, useState } from "react"
-import { useSearchParams } from "next/navigation"
-import { getBlogById, getTopLikedBlogs } from "@/entities/Blogs"
-import type { Blog } from "@/entities/Blogs"
-import type { SidePanelItem } from "@/shared/ui"
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { getBlogById, getTopLikedBlogs } from "@/entities/Blogs";
+import type { Blog } from "@/entities/Blogs";
+import type { SidePanelItem } from "@/shared/ui";
 
-export type BlogSidePanelItem = SidePanelItem & { blog: Blog }
+export type BlogSidePanelItem = SidePanelItem & { blog: Blog };
 
 export function useBlogItemPage() {
-  const searchParams = useSearchParams()
-  const blogId = searchParams?.get("id") || ""
-  const [blog, setBlog] = useState<Blog | null>(null)
-  const [topLikedBlogs, setTopLikedBlogs] = useState<Blog[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [isError, setIsError] = useState(false)
+  const searchParams = useSearchParams();
+  const blogId = searchParams?.get("id") || "";
+  const [blog, setBlog] = useState<Blog | null>(null);
+  const [topLikedBlogs, setTopLikedBlogs] = useState<Blog[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    let active = true
+    let active = true;
     const load = async () => {
       if (!blogId) {
-        setBlog(null)
-        setTopLikedBlogs([])
-        setIsLoading(false)
-        setIsError(false)
-        return
+        setBlog(null);
+        setTopLikedBlogs([]);
+        setIsLoading(false);
+        setIsError(false);
+        return;
       }
 
-      setIsLoading(true)
-      setIsError(false)
+      setIsLoading(true);
+      setIsError(false);
       try {
-        const [blogData, topBlogsData] = await Promise.all([getBlogById(blogId), getTopLikedBlogs(5)])
-        if (!active) return
-        setBlog(blogData)
-        setTopLikedBlogs(topBlogsData)
+        const [blogData, topBlogsData] = await Promise.all([
+          getBlogById(blogId),
+          getTopLikedBlogs(5),
+        ]);
+        if (!active) return;
+        setBlog(blogData);
+        setTopLikedBlogs(topBlogsData);
       } catch {
-        if (active) setIsError(true)
+        if (active) setIsError(true);
       } finally {
-        if (active) setIsLoading(false)
+        if (active) setIsLoading(false);
       }
-    }
+    };
 
-    void load()
+    void load();
     return () => {
-      active = false
-    }
-  }, [blogId])
+      active = false;
+    };
+  }, [blogId]);
 
   const sidePanelItems: BlogSidePanelItem[] = useMemo(
     () =>
@@ -57,8 +60,8 @@ export function useBlogItemPage() {
           isAds: false,
           blog: item,
         })),
-    [topLikedBlogs, blogId]
-  )
+    [topLikedBlogs, blogId],
+  );
 
   return {
     blog,
@@ -66,5 +69,5 @@ export function useBlogItemPage() {
     isError,
     isEmpty: !isLoading && !isError && !blog,
     sidePanelItems,
-  }
+  };
 }

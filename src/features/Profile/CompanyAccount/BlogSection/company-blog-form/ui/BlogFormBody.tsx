@@ -52,13 +52,19 @@ export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
 
           <BlogImageUpload />
 
-          <div className="h-13.5 flex w-full rounded-[10px] border border-[#c5c2c2] pl-3.75 pt-3.75 pb-4.25 pr-2.5">
-            <input
-              type="text"
+          <div className="h-auto min-h-13.5 flex w-full rounded-[10px] border border-[#c5c2c2] pl-3.75 pt-3.75 pb-4.25 pr-2.5">
+            <textarea
               placeholder="Заголовок"
               value={form.title}
               onChange={(e) => form.setTitle(e.target.value)}
-              className="outline-none flex-1 placeholder:text-[#c5c2c2] text-[22px] font-bold text-secondary leading-[105%]"
+              rows={1}
+              className="outline-none flex-1 w-full min-w-0 placeholder:text-[#c5c2c2] text-[22px] font-bold text-secondary leading-[105%] break-words resize-none overflow-hidden"
+              style={{ minHeight: "1.5rem" }}
+              onInput={(e) => {
+                const target = e.target as HTMLTextAreaElement;
+                target.style.height = "auto";
+                target.style.height = `${target.scrollHeight}px`;
+              }}
             />
           </div>
 
@@ -68,7 +74,7 @@ export function BlogFormBody({ mode, blogId }: BlogFormBodyProps) {
               value={form.description}
               onChange={(e) => form.setDescription(e.target.value)}
               rows={5}
-              className="outline-none flex-1 resize-none placeholder:text-[#c5c2c2] text-[16px] font-semibold leading-[140%] text-secondary"
+              className="outline-none flex-1 w-full min-w-0 resize-none placeholder:text-[#c5c2c2] text-[16px] font-semibold leading-[140%] text-secondary break-words"
             />
           </div>
 

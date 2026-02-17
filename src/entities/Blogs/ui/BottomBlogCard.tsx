@@ -43,7 +43,7 @@ export const BottomBlogCard = ({
   const headerContent = (
     <div className="flex items-center justify-between">
       {blog.companyId ? (
-        <div 
+        <div
           onClick={handleCompanyClick}
           className="flex items-center gap-2 cursor-pointer"
         >
@@ -54,8 +54,8 @@ export const BottomBlogCard = ({
               className="w-10 h-10 rounded-[10px] object-cover"
             />
           )}
-          <div className="flex flex-col justify-between">
-            <h4 className="font-semibold text-base text-secondary">
+          <div className="flex flex-col justify-between min-w-0 flex-1">
+            <h4 className="font-semibold text-base text-secondary break-words whitespace-normal">
               {blog.company?.name}
             </h4>
             <span className="text-sm text-accent-quinary">{date}</span>
@@ -70,8 +70,8 @@ export const BottomBlogCard = ({
               className="w-10 h-10 rounded-[10px] object-cover"
             />
           )}
-          <div className="flex flex-col justify-between">
-            <h4 className="font-semibold text-base text-secondary">
+          <div className="flex flex-col justify-between min-w-0 flex-1">
+            <h4 className="font-semibold text-base text-secondary break-words whitespace-normal">
               {blog.company?.name}
             </h4>
             <span className="text-sm text-accent-quinary">{date}</span>
@@ -88,7 +88,7 @@ export const BottomBlogCard = ({
   );
 
   const content = (
-    <>
+    <div className="w-full min-w-0 flex flex-col gap-4">
       {blog.imageUrl && (
         <div
           className="overflow-hidden rounded-[20px]"
@@ -104,10 +104,16 @@ export const BottomBlogCard = ({
         </div>
       )}
 
-      <h3 className="text-[22px] font-bold text-secondary leading-[105%]">
+      <h3
+        className="text-[22px] font-bold text-secondary leading-[105%] break-words w-full min-w-0 whitespace-normal"
+        style={{ wordBreak: "break-word", overflowWrap: "break-word" }}
+      >
         {blog.title}
       </h3>
-      <p className="text-[16px] font-semibold leading-[140%] text-secondary">
+      <p
+        className="text-[16px] font-semibold leading-[140%] text-secondary break-words w-full min-w-0 whitespace-normal"
+        style={{ wordBreak: "break-word", overflowWrap: "break-word" }}
+      >
         {blog.description}
       </p>
       {showLikes && blog.status === "published" && (
@@ -115,14 +121,14 @@ export const BottomBlogCard = ({
           <BlogLikeButton blogId={blog.id} />
         </div>
       )}
-    </>
+    </div>
   );
 
   return (
-    <article className={`group ${articleClasses}`}>
+    <article className={`group w-full min-w-0 ${articleClasses}`}>
       {headerContent}
       {href ? (
-        <Link href={href} className="contents">
+        <Link href={href} className="block w-full min-w-0">
           {content}
         </Link>
       ) : (

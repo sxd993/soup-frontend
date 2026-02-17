@@ -1,24 +1,30 @@
-"use client"
+"use client";
 
-import { formatDate } from "@/shared/lib"
-import type { Blog } from "../types/blogs.types"
+import { formatDate } from "@/shared/lib";
+import type { Blog } from "../types/blogs.types";
 
 type UseBottomBlogCardOptions = {
-  className?: string
-  imageHeight?: number | null
-}
+  className?: string;
+  imageHeight?: number | null;
+};
 
-export function useBottomBlogCard(blog: Blog, options: UseBottomBlogCardOptions = {}) {
-  const { className, imageHeight = 400 } = options
+export function useBottomBlogCard(
+  blog: Blog,
+  options: UseBottomBlogCardOptions = {},
+) {
+  const { className, imageHeight = 400 } = options;
 
-  const date = formatDate(blog.createdAt)
-  const articleClasses = ["flex-1 rounded-2xl flex flex-col justify-start gap-4", className]
+  const date = formatDate(blog.createdAt);
+  const articleClasses = [
+    "flex-1 rounded-2xl flex flex-col justify-start gap-4 w-full min-w-0",
+    className,
+  ]
     .filter(Boolean)
-    .join(" ")
+    .join(" ");
 
   return {
     date,
     articleClasses,
     imageHeight,
-  }
+  };
 }

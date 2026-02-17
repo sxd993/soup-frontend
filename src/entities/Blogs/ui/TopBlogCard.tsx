@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -16,7 +16,12 @@ type TopBlogCardProps = {
   showLikes?: boolean;
 };
 
-export const TopBlogCard = ({ blog, href, className, showLikes = false }: TopBlogCardProps) => {
+export const TopBlogCard = ({
+  blog,
+  href,
+  className,
+  showLikes = false,
+}: TopBlogCardProps) => {
   const date = formatDate(blog.createdAt);
   const router = useRouter();
   const handleCompanyClick = createCompanyClickHandler(blog.companyId, router);
@@ -40,7 +45,7 @@ export const TopBlogCard = ({ blog, href, className, showLikes = false }: TopBlo
         <article className="flex-1 rounded-2xl flex flex-col justify-start gap-4">
           <div className="flex items-center justify-between">
             {blog.companyId ? (
-              <div 
+              <div
                 onClick={handleCompanyClick}
                 className="flex items-center gap-2 cursor-pointer"
               >
@@ -51,8 +56,8 @@ export const TopBlogCard = ({ blog, href, className, showLikes = false }: TopBlo
                     className="w-10 h-10 rounded-[10px] object-cover"
                   />
                 )}
-                <div className="flex flex-col justify-between">
-                  <h4 className="font-semibold text-base text-secondary">
+                <div className="flex flex-col justify-between min-w-0 flex-1">
+                  <h4 className="font-semibold text-base text-secondary break-words whitespace-normal">
                     {blog.company?.name}
                   </h4>
                   <span className="text-sm text-accent-quinary">{date}</span>
@@ -67,8 +72,8 @@ export const TopBlogCard = ({ blog, href, className, showLikes = false }: TopBlo
                     className="w-10 h-10 rounded-[10px] object-cover"
                   />
                 )}
-                <div className="flex flex-col justify-between">
-                  <h4 className="font-semibold text-base text-secondary">
+                <div className="flex flex-col justify-between min-w-0 flex-1">
+                  <h4 className="font-semibold text-base text-secondary break-words whitespace-normal">
                     {blog.company?.name}
                   </h4>
                   <span className="text-sm text-accent-quinary">{date}</span>
@@ -77,10 +82,10 @@ export const TopBlogCard = ({ blog, href, className, showLikes = false }: TopBlo
             )}
           </div>
 
-          <h3 className="text-[22px] font-bold text-secondary leading-[105%]">
+          <h3 className="text-[22px] font-bold text-secondary leading-[105%] break-words w-full min-w-0 whitespace-normal">
             {blog.title}
           </h3>
-          <p className="text-[16px] font-semibold leading-[140%] text-secondary">
+          <p className="text-[16px] font-semibold leading-[140%] text-secondary break-words w-full min-w-0 whitespace-normal">
             {blog.description}
           </p>
           {showLikes && blog.status === "published" && (
