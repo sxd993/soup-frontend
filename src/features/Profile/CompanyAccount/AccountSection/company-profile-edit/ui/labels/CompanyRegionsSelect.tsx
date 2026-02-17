@@ -7,6 +7,7 @@ export const CompanyRegionsSelect = () => {
         query,
         setQuery,
         inputRef,
+        containerRef,
         isOpen,
         selected,
         removeRegion,
@@ -17,7 +18,7 @@ export const CompanyRegionsSelect = () => {
     } = useCompanyRegionsSelect()
 
     return (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3" ref={containerRef}>
             <div className="rounded-[10px] border border-[#c5c2c2] pl-3.75 pt-3.75 pb-4.25 pr-2.5">
                 <input
                     ref={inputRef}

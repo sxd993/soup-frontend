@@ -22,6 +22,7 @@ export const useCompanyRegionsSelect = () => {
     const { control, setValue, formState } = useFormContext<CompanyAccountFormValues>()
     const [isOpen, setIsOpen] = useState(false)
     const inputRef = useRef<HTMLInputElement | null>(null)
+    const containerRef = useRef<HTMLDivElement | null>(null)
     const rawFormRegions = useWatch({ control, name: "profile.regions" })
     const formRegions = useMemo(() => normalizeRegions(rawFormRegions), [rawFormRegions])
 
@@ -54,6 +55,17 @@ export const useCompanyRegionsSelect = () => {
         inputRef.current?.focus()
     }, [isOpen])
 
+    useEffect(() => {
+        if (!isOpen) return
+        const handleClickOutside = (event: MouseEvent) => {
+            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+                setIsOpen(false)
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => document.removeEventListener("mousedown", handleClickOutside)
+    }, [isOpen])
+
     const handleSelectRegion = (region: Parameters<typeof handleSelect>[0]) => {
         const alreadySelected = selected.some((item) => item.id === region.id)
         const nextSelected = alreadySelected ? selected : [...selected, region]
@@ -82,6 +94,7 @@ export const useCompanyRegionsSelect = () => {
         query,
         setQuery,
         inputRef,
+        containerRef,
         isOpen,
         selected,
         removeRegion: handleRemoveRegion,
