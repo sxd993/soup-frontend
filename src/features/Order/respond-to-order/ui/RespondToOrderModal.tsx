@@ -1,7 +1,8 @@
 "use client";
 
-import { Button } from "@/shared/ui";
+import { Button, CloseIcon } from "@/shared/ui";
 import { useRespondToOrderModalForm } from "../model/hooks/useRespondToOrderModalForm";
+import { RespondToOrderSuccessState } from "./RespondToOrderSuccessState";
 
 type RespondToOrderModalProps = {
   orderId: number;
@@ -14,72 +15,69 @@ export function RespondToOrderModal({ orderId }: RespondToOrderModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-3 sm:px-4"
       onClick={form.handleClose}
     >
       <div
-        className="w-full max-w-[760px] rounded-[32px] bg-white px-8 py-10"
+        className="relative w-full max-w-[720px] rounded-[20px] bg-white px-3 py-4 sm:rounded-[24px] sm:px-6 sm:py-6"
         onClick={(event) => event.stopPropagation()}
       >
+        <button
+          type="button"
+          onClick={form.handleClose}
+          aria-label="Закрыть модальное окно"
+          className="absolute right-3 top-3 text-secondary transition-opacity hover:opacity-80 sm:right-4 sm:top-4"
+        >
+          <CloseIcon className="h-7 w-7 sm:h-9 sm:w-9" />
+        </button>
+
         {form.isSuccess ? (
-          <div className="mx-auto max-w-[600px] py-6 text-center">
-            <h3 className="text-[40px] font-semibold leading-[110%] text-secondary">
-              Ваш отклик и контакты отправлены
-            </h3>
-            <p className="mx-auto mt-4 max-w-[520px] text-[24px] leading-[120%] text-secondary">
-              Заказчик свяжется с вами, если ваше предложение ему понравится
-            </p>
-            <div className="mt-8">
-              <Button className="min-w-[260px]" onClick={form.handleResetAndClose}>
-                Закрыть
-              </Button>
-            </div>
-          </div>
+          <RespondToOrderSuccessState onClose={form.handleResetAndClose} />
         ) : (
-          <div className="mx-auto max-w-[680px]">
-            <h3 className="text-center text-[42px] font-semibold leading-[110%] text-secondary">
+          <div className="mx-auto max-w-[640px] pt-7 sm:pt-10">
+            <h3 className="text-center text-[22px] font-semibold leading-[115%] text-secondary sm:text-[28px] sm:leading-[110%]">
               Отклик на заказ
             </h3>
 
-            <div className="mt-8">
-              <p className="text-[34px] font-semibold leading-[110%] text-secondary">
+            <div className="mt-5 sm:mt-7">
+              <p className="text-[18px] font-semibold leading-[120%] text-secondary sm:text-[22px] sm:leading-[115%]">
                 Стоимость услуг
               </p>
-              <p className="mt-2 text-[20px] font-normal leading-[130%] text-secondary">
+              <p className="mt-2 text-[14px] font-normal leading-[130%] text-secondary">
                 Укажите примерную стоимость. О точной сумме вы можете договориться потом
               </p>
-              <div className="mt-4 grid grid-cols-2 gap-4">
+              <div className="mt-3 grid grid-cols-1 gap-2.5 sm:mt-4 sm:grid-cols-2 sm:gap-4">
                 <input
                   value={form.priceFrom}
                   onChange={(event) => form.setPriceFrom(event.target.value)}
                   placeholder="От"
                   inputMode="numeric"
-                  className="h-[56px] rounded-[999px] border border-[#BDBDBD] px-5 text-[24px] text-secondary outline-none"
+                  className="h-11 rounded-[999px] border border-[#BDBDBD] px-4 text-[16px] leading-[130%] text-secondary outline-none placeholder:text-[16px] placeholder:leading-[140%] sm:h-12"
                 />
                 <input
                   value={form.priceTo}
                   onChange={(event) => form.setPriceTo(event.target.value)}
                   placeholder="До"
                   inputMode="numeric"
-                  className="h-[56px] rounded-[999px] border border-[#BDBDBD] px-5 text-[24px] text-secondary outline-none"
+                  className="h-11 rounded-[999px] border border-[#BDBDBD] px-4 text-[16px] leading-[130%] text-secondary outline-none placeholder:text-[16px] placeholder:leading-[140%] sm:h-12"
                 />
               </div>
             </div>
 
-            <div className="mt-8">
-              <p className="text-[34px] font-semibold leading-[110%] text-secondary">
+            <div className="mt-5 sm:mt-7">
+              <p className="text-[18px] font-semibold leading-[120%] text-secondary sm:text-[22px] sm:leading-[115%]">
                 Ваше предложение или вопрос
               </p>
               <textarea
                 value={form.message}
                 onChange={(event) => form.setMessage(event.target.value)}
                 placeholder="Описание работ"
-                className="mt-4 min-h-[200px] w-full resize-none rounded-[24px] border border-[#BDBDBD] px-5 py-4 text-[24px] text-secondary outline-none"
+                className="mt-3 min-h-[132px] w-full resize-none rounded-[16px] border border-[#BDBDBD] px-4 py-3 text-[16px] leading-[130%] text-secondary outline-none placeholder:text-[16px] placeholder:leading-[140%] sm:mt-4 sm:min-h-[168px] sm:rounded-[20px]"
               />
             </div>
 
-            <div className="mt-8 flex justify-center">
-              <Button className="min-w-[320px]" onClick={form.handleSubmit} disabled={form.isRespondPending}>
+            <div className="mt-5 flex justify-center sm:mt-7">
+              <Button className="w-full sm:min-w-[260px] sm:w-auto" onClick={form.handleSubmit} disabled={form.isRespondPending}>
                 {form.isRespondPending ? "Отправка..." : "Отправить отклик"}
               </Button>
             </div>
