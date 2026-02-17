@@ -47,7 +47,7 @@ export const CompanyCard = ({ item, variant = "catalog" }: CompanyCardProps) => 
 
   if (variant === "favorites") {
     return (
-      <article className="relative flex flex-col rounded-3xl bg-white p-6">
+      <article className="relative flex flex-col rounded-3xl bg-white p-4 md:p-6">
         <Link
           href={companyHref}
           className="absolute inset-0 z-0 rounded-3xl"
@@ -60,31 +60,31 @@ export const CompanyCard = ({ item, variant = "catalog" }: CompanyCardProps) => 
             toggleFavorite.mutate({ companyId, isCurrentlyFavorite: true })
           }}
           disabled={toggleFavorite.isPending}
-          className="pointer-events-auto absolute right-6 top-6 z-10 flex h-10 w-10 shrink-0 items-center justify-center text-accent-quinary outline-none disabled:opacity-60"
+          className="pointer-events-auto absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center text-accent-quinary outline-none disabled:opacity-60 [&_svg]:h-7 [&_svg]:w-7 md:right-6 md:top-6 md:h-10 md:w-10 md:[&_svg]:h-6 md:[&_svg]:w-6"
           aria-label="Убрать из избранного"
         >
           <HeartActive />
         </button>
-        <div className="relative z-10 flex min-h-0 flex-1 flex-col pointer-events-none">
-          <div className="flex gap-3 pr-14 sm:gap-4">
-            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-[10px] bg-white p-1.5 md:h-24 md:w-24 md:p-2">
+        <div className="relative z-10 flex min-h-0 flex-1 flex-col items-center text-center pointer-events-none lg:items-stretch lg:text-left">
+          <div className="flex w-full min-h-0 flex-1 flex-col lg:flex-row lg:gap-4 lg:pr-14">
+            <div className="relative mx-auto h-48 w-48 shrink-0 overflow-hidden rounded-[10px] bg-white p-1.5 md:h-32 md:w-32 md:p-2 lg:mx-0 lg:h-24 lg:w-24">
               {hasLogo ? (
                 <Image
                   src={item.logoUrl!}
                   alt={item.name}
-                  width={96}
-                  height={96}
+                  width={192}
+                  height={192}
                   className="h-full w-full object-cover overflow-hidden rounded-[10px]"
                 />
               ) : (
                 <MainIcon className="h-full w-full" />
               )}
             </div>
-            <span className="min-w-0 flex-1 break-words text-[22px] font-semibold leading-tight text-secondary">
+            <span className="mt-3 min-w-0 flex-1 break-words text-lg font-semibold leading-tight text-secondary md:text-[18px] lg:mt-0 lg:text-[20px] xl:text-[22px]">
               {item.name}
             </span>
           </div>
-          <p className="mt-auto pt-4 line-clamp-5 text-sm text-secondary leading-[150%]">
+          <p className="mt-auto pt-3 line-clamp-5 text-xs text-secondary leading-[150%] md:text-sm md:pt-4">
             {item.description}
           </p>
         </div>

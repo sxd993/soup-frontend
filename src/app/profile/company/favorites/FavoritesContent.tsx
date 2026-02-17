@@ -35,7 +35,7 @@ export function FavoritesContent() {
         isEmpty={isEmpty}
         errorTitle="Не удалось загрузить избранное"
       >
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
           {(companies ?? []).map((item) => (
             <CompanyCard key={item.id} item={item} variant="favorites" />
           ))}
