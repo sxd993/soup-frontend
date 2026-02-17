@@ -18,7 +18,7 @@ export const HeroSection = () => {
         }`}
         aria-hidden="true"
       >
-        <div className="h-full w-full animate-pulse bg-gradient-to-r from-[#2f2f2f] via-[#3a3a3a] to-[#2f2f2f]" />
+        <div className="h-full w-full animate-pulse bg-linear-to-r from-[#2f2f2f] via-[#3a3a3a] to-[#2f2f2f]" />
       </div>
       <Image
         src="https://s3.twcstorage.ru/4b615622-soup/hero/background.webp"

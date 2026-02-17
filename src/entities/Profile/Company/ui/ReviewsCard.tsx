@@ -57,18 +57,18 @@ export const ReviewsCard = ({ review, canReply = true }: ReviewsCardProps) => {
 
         <div className="flex min-w-0 flex-1 -mt-0.5 flex-col gap-2 items-start md:gap-1.75">
           {/* Имя автора */}
-          <h3 className="min-w-0 break-words text-[18px] font-bold leading-[120%] text-secondary md:text-[22px] md:leading-[115%]">
+          <h3 className="min-w-0 wrap-break-word text-[18px] font-bold leading-[120%] text-secondary md:text-[22px] md:leading-[115%]">
             {review.authorName || "Анонимный пользователь"}
           </h3>
           {/* Название услуги/заказа */}
           {review.serviceName && (
-            <span className="min-w-0 break-words text-[12px] font-normal leading-[130%] text-accent-septenary md:text-[14px]">
+            <span className="min-w-0 wrap-break-word text-[12px] font-normal leading-[130%] text-accent-septenary md:text-[14px]">
               {review.serviceName}
             </span>
           )}
 
           {/* Текст отзыва */}
-          <p className="min-w-0 break-words text-[14px] font-medium leading-[140%] text-secondary md:text-[16px]">
+          <p className="min-w-0 wrap-break-word text-[14px] font-medium leading-[140%] text-secondary md:text-[16px]">
             {review.comment || "Без текста отзыва"}
           </p>
 

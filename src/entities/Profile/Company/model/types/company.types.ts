@@ -7,6 +7,8 @@ export type CompanyCardData = {
   rating?: number
   /** Количество отзывов */
   reviewsCount?: number
+  /** Адрес компании */
+  address?: string | null
 }
 
 export type CompanyReview = {

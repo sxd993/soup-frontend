@@ -1,10 +1,13 @@
 "use client"
 
 import Link from "next/link"
+import { StarIcon } from "@/shared/ui"
 import { useSession } from "@/entities/Session"
 import { ReviewsCard } from "@/entities/Profile/Company"
 import { useCompanyPublicReviews } from "../../model/hooks/useCompanyPublicReviews"
 import { WriteReviewForm } from "../WriteReviewForm"
+
+const EMPTY_STAR = "#EEEBE6"
 
 type CompanyReviewsSectionProps = {
   companyId: string
@@ -22,10 +25,26 @@ export const CompanyReviewsSection = ({ companyId, title = "Отзывы" }: Com
   )
 
   const showForm = isClient && !hasOwnReview
+  const noReviews = !isLoading && !isError && reviews.length === 0
 
   return (
     <div className="flex min-w-0 flex-col gap-6">
       <h3 className="text-lg font-semibold text-secondary">{title}</h3>
+
+      {/* Блок «Напишите отзыв первым!» — только когда отзывов ещё нет, самый верхний */}
+      {noReviews && (
+        <div className="rounded-[26px] border border-[#E5E0D6] bg-white px-5 py-8 text-center md:py-10">
+          <h4 className="text-xl font-bold text-secondary">Напишите отзыв первым!</h4>
+          <p className="mx-auto mt-2 max-w-md text-sm leading-[140%] text-accent-quinary">
+            Оцените этого подрядчика. Ваш отзыв поможет другим пользователям принять решение
+          </p>
+          <div className="mt-5 flex justify-center gap-1">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <StarIcon key={i} color={EMPTY_STAR} width={33} height={33} className="shrink-0" />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Неавторизованный пользователь */}
       {!session && (
@@ -55,15 +74,13 @@ export const CompanyReviewsSection = ({ companyId, title = "Отзывы" }: Com
         </div>
       ) : isError ? (
         <p className="text-sm text-accent-quinary">Не удалось загрузить отзывы</p>
-      ) : reviews.length === 0 ? (
-        <p className="text-sm text-accent-quinary">Пока нет отзывов</p>
-      ) : (
+      ) : reviews.length > 0 ? (
         <div className="flex flex-col gap-4">
           {reviews.map((review) => (
             <ReviewsCard key={String(review.id)} review={review} canReply={false} />
           ))}
         </div>
-      )}
+      ) : null}
     </div>
   )
 }

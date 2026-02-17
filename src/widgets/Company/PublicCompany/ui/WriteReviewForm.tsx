@@ -2,22 +2,13 @@
 
 import { useState, useRef, useCallback } from "react"
 import Image from "next/image"
-import { MainIcon, Button, AddPhotoIcon } from "@/shared/ui"
+import { MainIcon, Button, AddPhotoIcon, StarIcon } from "@/shared/ui"
 import { useClientProfile } from "@/entities/Profile/Client"
 import { useCreateCompanyReview } from "@/features/CompanyReview"
 import { showErrorToast, showSuccessToast } from "@/shared/ui/State"
 
 const EMPTY_STAR = "#EEEBE6"
 const FILLED_STAR = "#8BC652"
-
-const StarIcon = ({ fill }: { fill: string }) => (
-  <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-    <path
-      d="M5.05676 0.69121C5.35611 -0.230101 6.65952 -0.2301 6.95887 0.691211L7.69167 2.94653C7.82554 3.35856 8.2095 3.63752 8.64272 3.63752L11.0141 3.63752C11.9828 3.63752 12.3856 4.87713 11.6019 5.44653L9.6834 6.8404C9.33292 7.09504 9.18626 7.54641 9.32013 7.95843L10.0529 10.2138C10.3523 11.1351 9.2978 11.9012 8.51409 11.3318L6.5956 9.93792C6.24511 9.68328 5.77051 9.68328 5.42003 9.93792L3.50154 11.3318C2.71782 11.9012 1.66334 11.1351 1.96269 10.2138L2.69549 7.95843C2.82937 7.54641 2.68271 7.09504 2.33222 6.8404L0.413729 5.44653C-0.369984 4.87713 0.0327914 3.63752 1.00151 3.63752L3.3729 3.63752C3.80613 3.63752 4.19008 3.35856 4.32396 2.94653L5.05676 0.69121Z"
-      fill={fill}
-    />
-  </svg>
-)
 
 const MAX_PHOTOS = 5
 const MAX_COMMENT_LENGTH = 200
@@ -129,7 +120,7 @@ export function WriteReviewForm({ companyId, clientUserId, onSuccess }: WriteRev
                 className="p-0.5 transition-opacity hover:opacity-80"
                 aria-label={`Оценка ${value}`}
               >
-                <StarIcon fill={rating >= value ? FILLED_STAR : EMPTY_STAR} />
+                <StarIcon color={rating >= value ? FILLED_STAR : EMPTY_STAR} width={26} height={26} className="shrink-0" />
               </button>
             ))}
           </div>
@@ -143,7 +134,7 @@ export function WriteReviewForm({ companyId, clientUserId, onSuccess }: WriteRev
             placeholder="Напишите отзыв как можно подробнее. Так вы поможете другим пользователям сделать выбор."
             rows={5}
             maxLength={MAX_COMMENT_LENGTH}
-            className="box-border w-full min-w-0 max-w-full resize-y overflow-x-hidden break-words rounded-xl border border-[#C5C2C2] bg-white px-4 py-3 pb-8 text-sm text-secondary placeholder:text-[#BFBFBF] outline-none focus:border-primary"
+            className="box-border w-full min-w-0 max-w-full resize-y overflow-x-hidden wrap-break-word rounded-xl border border-[#C5C2C2] bg-white px-4 py-3 pb-8 text-sm text-secondary placeholder:text-[#BFBFBF] outline-none focus:border-primary"
           />
           <div className="pointer-events-none absolute bottom-3 right-4 text-sm font-normal leading-[130%] text-[#c5c2c2]">
             {comment.length}/{MAX_COMMENT_LENGTH}
