@@ -7,7 +7,7 @@ export const CompanyOrderTabs = () => {
   const { items, selectedStatus, handleSelect } = useCompanyOrderTabs();
 
   return (
-    <div className="inline-flex rounded-[40px] bg-transparent">
+    <div className="inline-flex flex-wrap rounded-[40px]">
       {items.map((item) => {
         const isActive = item.id === selectedStatus;
         return (
@@ -15,8 +15,8 @@ export const CompanyOrderTabs = () => {
             key={item.id}
             type="button"
             onClick={() => handleSelect(item.id as CompanyOrderTabStatus)}
-            className={`cursor-pointer rounded-[40px] px-5 py-2 text-[18px]! leading-[120%]! font-semibold! transition-colors ${
-              isActive ? "bg-white! text-secondary!" : "text-accent-septenary!"
+            className={`rounded-[40px] px-6 py-2 text-[16px] font-semibold transition-colors ${
+              isActive ? "bg-white text-secondary" : "text-accent-septenary"
             }`}
           >
             {item.label}

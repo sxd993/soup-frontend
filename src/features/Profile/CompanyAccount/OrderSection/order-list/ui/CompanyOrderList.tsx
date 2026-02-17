@@ -22,14 +22,10 @@ export const CompanyOrderList = ({ currentPage }: CompanyOrderListProps) => {
       errorTitle="Не удалось загрузить заказы"
       loadingComponent={<CompanyOrderListSkeleton />}
     >
-      <div className="flex flex-col gap-6">
-        <ul className="flex flex-col gap-4">
-          {orders.map((order) => (
-            <li key={order.id}>
-              <OrderCard order={order} href={`/profile/company/orders/${order.id}`} />
-            </li>
-          ))}
-        </ul>
+      <div className="flex flex-col gap-5">
+        {orders.map((order) => (
+          <OrderCard key={order.id} order={order} href={`/profile/company/orders/${order.id}`} />
+        ))}
         {totalOrders > 0 ? (
           <CompanyOrderPaginationControls
             currentPage={pagination.currentPage}

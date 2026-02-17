@@ -5,6 +5,7 @@ import {
   FavoritesIcon,
   MessagesIcon,
   ProfileIcon,
+  ResponsesIcon,
   ReviewsIcon,
   ServicesIcon,
 } from "@/shared/ui";
@@ -40,7 +41,7 @@ export const COMPANY_NAV_LINKS: CompanyNavLink[] = [
   {
     label: "Отклики",
     href: "/profile/company/orders",
-    Icon: MessagesIcon,
+    Icon: ResponsesIcon,
   },
   {
     label: "Избранное",
