@@ -42,15 +42,15 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
   } = useCompanyPublicPage(companyId);
 
   return (
-    <section className="mt-8 pb-16">
+    <section className="min-w-0 max-w-full mt-8 overflow-x-hidden pb-16">
       <StateProvider
         isLoading={isLoading}
         isError={isError}
         isEmpty={!company}
         errorTitle="Не удалось загрузить компанию"
         loadingComponent={<CompanyPublicPageSkeleton />}>
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_300px]">
-          <div className="flex flex-col gap-6">
+        <div className="grid min-w-0 grid-cols-1 gap-8 lg:grid-cols-[1fr_300px]">
+          <div className="flex min-w-0 flex-col gap-6">
             {company ? (
               <CompanyHeader
                 companyId={companyId}
@@ -72,7 +72,7 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
               <CompanyServicesSection services={services} openSectionIds={openSectionIds} toggleSection={toggleSection} />
             ) : null}
 
-            {activeTab === "reviews" ? <CompanyReviewsSection /> : null}
+            {activeTab === "reviews" ? <CompanyReviewsSection companyId={companyId} /> : null}
             {activeTab === "blog" ? <CompanyBlogSection blogs={blogs} isLoading={isBlogsLoading} isError={isBlogsError} /> : null}
             {activeTab === "contacts" ? <CompanyContactsSection data={contactsData} /> : null}
           </div>

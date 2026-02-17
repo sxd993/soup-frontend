@@ -11,12 +11,16 @@ export type CompanyCardData = {
 
 export type CompanyReview = {
     id: string | number
+    /** Идентификатор пользователя (user_id), чтобы выделять свой отзыв */
+    authorId?: string | null
     authorName?: string | null
     authorAvatarUrl?: string | null
     rating?: number | string | null
     comment?: string | null
     createdAt?: string | null
     serviceName?: string | null
+    /** URL фотографий отзыва (хранилище reviews/{companyId}/{reviewId}/) */
+    imageUrls?: string[] | null
     reply?: {
         id: string | number
         authorId: string
