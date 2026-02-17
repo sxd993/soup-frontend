@@ -33,11 +33,15 @@ export const CompanyResponseCard = ({ response }: CompanyResponseCardProps) => {
             <span className="flex items-center gap-0.5">
               {Array.from({ length: 5 }).map((_, index) => (
                 <span key={index}>
-                  <StarIcon color={rating >= index + 1 ? "#8BC652" : "#C5C2C2"} />
+                  <StarIcon
+                    color={rating >= index + 1 ? "#8BC652" : "#C5C2C2"}
+                  />
                 </span>
               ))}
             </span>
-            <span className="text-[12px] leading-none text-accent-quinary align-middle">•</span>
+            <span className="text-[12px] leading-none text-accent-quinary align-middle">
+              •
+            </span>
             <span className="text-[14px] leading-[130%] text-accent-quinary">
               {reviewsCount} {getReviewWordByCount(reviewsCount)}
             </span>

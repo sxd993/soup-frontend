@@ -4,7 +4,7 @@ import type { OrderDetailsFileItem } from "../model/hooks/useOrderDetailsFiles";
 import { useOrderDetailsFiles } from "../model/hooks/useOrderDetailsFiles";
 
 const OrderDetailsFilesEmpty = () => (
-  <p className="mt-3 text-[16px] font-medium leading-[140%] text-accent-secondary">
+  <p className="mt-2 text-[14px] font-medium leading-[140%] text-accent-secondary md:mt-3 md:text-[16px]">
     Нет файлов
   </p>
 );
@@ -12,7 +12,7 @@ const OrderDetailsFilesEmpty = () => (
 const FileIconSvg = () => (
   <svg
     fill="#6b7280"
-    className="h-14 w-14 shrink-0"
+    className="h-10 w-10 shrink-0 md:h-14 md:w-14"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden
@@ -27,7 +27,7 @@ const OrderDetailsFileItem = ({ item }: { item: OrderDetailsFileItem }) =>
       href={item.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="block aspect-square w-full overflow-hidden rounded-xl border border-[#E5E5E5] bg-accent-septenary/10"
+      className="block aspect-square w-full overflow-hidden rounded-lg border border-[#E5E5E5] bg-accent-septenary/10 md:rounded-xl"
     >
       <img src={item.url} alt="" className="h-full w-full object-cover" />
     </a>
@@ -36,7 +36,7 @@ const OrderDetailsFileItem = ({ item }: { item: OrderDetailsFileItem }) =>
       href={item.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl border border-[#E5E5E5] bg-[#e5e7eb]"
+      className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg border border-[#E5E5E5] bg-[#e5e7eb] md:rounded-xl"
     >
       <FileIconSvg />
     </a>
@@ -47,7 +47,7 @@ const OrderDetailsFilesList = ({
 }: {
   items: OrderDetailsFileItem[];
 }) => (
-  <div className="mt-5 grid grid-cols-4 gap-3">
+  <div className="mt-3 grid grid-cols-3 gap-2 md:mt-5 md:grid-cols-4 md:gap-3">
     {items.map((item) => (
       <OrderDetailsFileItem key={item.key} item={item} />
     ))}

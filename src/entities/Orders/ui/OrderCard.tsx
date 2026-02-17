@@ -11,7 +11,7 @@ type OrderCardProps = {
 };
 
 const cardContentClassName =
-  "flex gap-4 rounded-[20px] bg-white px-5 pb-5 pt-4 min-h-[116px]";
+  "flex gap-3 rounded-[20px] bg-white px-4 pb-4 pt-3 min-h-[100px] md:gap-4 md:px-5 md:pb-5 md:pt-4 md:min-h-[116px]";
 
 export function OrderCard({ order, href }: OrderCardProps) {
   const IconComponent = getOrderIcon(order.category);
@@ -22,20 +22,20 @@ export function OrderCard({ order, href }: OrderCardProps) {
     <article
       className={`${cardContentClassName} ${linkHref != null ? "cursor-pointer" : ""}`}
     >
-      <div className="flex h-[50px] w-[50px] shrink-0 items-center justify-center self-center [&_svg]:h-[50px] [&_svg]:w-[50px] [&_svg]:shrink-0 [&_svg_circle]:hidden! [&_svg_path]:fill-transparent [&_svg_path]:stroke-primary">
+      <div className="flex h-[40px] w-[40px] shrink-0 items-center justify-center self-center [&_svg]:h-[40px] [&_svg]:w-[40px] [&_svg]:shrink-0 [&_svg_circle]:hidden! [&_svg_path]:fill-transparent [&_svg_path]:stroke-primary md:h-[50px] md:w-[50px] [&_svg]:md:h-[50px] [&_svg]:md:w-[50px]">
         <IconComponent />
       </div>
-      <div className="grid min-h-0 min-w-0 flex-1 grid-cols-[1fr_auto] grid-rows-[1fr_auto] items-start gap-x-4 gap-y-1">
-        <h3 className="text-[22px] font-semibold leading-tight text-secondary line-clamp-2">
+      <div className="grid min-h-0 min-w-0 flex-1 grid-cols-[1fr_auto] grid-rows-[1fr_auto] items-start gap-x-3 gap-y-1 md:gap-x-4">
+        <h3 className="text-[18px] font-semibold leading-tight text-secondary line-clamp-2 md:text-[22px]">
           {order.title}
         </h3>
-        <h2 className="text-right text-[28px] font-semibold leading-[110%] tracking-normal text-secondary">
+        <h2 className="text-right text-[20px] font-semibold leading-[110%] tracking-normal text-secondary md:text-[28px]">
           {formatOrderPrice(order.price)}
         </h2>
-        <p className="text-[14px] font-normal leading-[130%] text-accent-septenary">
+        <p className="text-[12px] font-normal leading-[130%] text-accent-septenary md:text-[14px]">
           {order.region}
         </p>
-        <p className="text-right text-[14px] font-normal leading-[130%] text-accent-septenary">
+        <p className="text-right text-[12px] font-normal leading-[130%] text-accent-septenary md:text-[14px]">
           {formatOrderCreatedLabel(order.createdAt)}
         </p>
       </div>

@@ -38,7 +38,7 @@ export const CompanyOrderResponseDetailSection = ({
       loadingComponent={<CompanyOrderResponseDetailSkeleton />}
     >
       {page.order ? (
-        <section className="flex flex-col gap-5">
+        <section className="flex flex-col gap-4 md:gap-5">
           <OrderCard order={page.order} href={null} />
 
           <CompanyOrderResponseDetailTabs
@@ -58,10 +58,10 @@ export const CompanyOrderResponseDetailSection = ({
               {responseQuery.data ? (
                 <>
                   <CompanyResponseCard response={responseQuery.data} />
-                  <div className="flex justify-center pt-4">
+                  <div className="flex justify-center pt-3 md:pt-4">
                     <Button
                       type="button"
-                      className="bg-[#535353]! text-white"
+                      className="w-full bg-[#535353]! text-sm text-white md:w-auto md:text-base"
                       onClick={cancelResponse}
                       disabled={isCancelPending}
                     >
