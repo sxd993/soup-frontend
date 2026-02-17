@@ -4,12 +4,19 @@ import Image from "next/image"
 
 interface AdsBannerProps {
     hasDescription: boolean
+    className?: string
+    /** Компактный размер для hero-секции */
+    variant?: "default" | "hero"
 }
 
+const sizeClasses = {
+    default: "h-[340px] min-w-[280px]",
+    hero: "h-[260px] w-[220px] min-w-0 shrink-0",
+} as const
 
-export const AdsBanner = ({ hasDescription }: AdsBannerProps) => {
+export const AdsBanner = ({ hasDescription, className, variant = "default" }: AdsBannerProps) => {
     return (
-        <div className="h-[420px] min-w-[300px] shrink-0 p-5 bg-primary rounded-[20px] flex flex-col justify-between gap-4">
+        <div className={`${sizeClasses[variant]} shrink-0 overflow-hidden p-4 bg-primary rounded-[20px] flex flex-col justify-between gap-3 ${className ?? ""}`}>
 
             {/* Верхняя часть: метка "Реклама" и кнопка */}
             <div className="flex items-center justify-between">
@@ -30,7 +37,7 @@ export const AdsBanner = ({ hasDescription }: AdsBannerProps) => {
             )}
 
             {/* Изображение */}
-            <div className="relative w-full flex-1 min-h-[120px] overflow-hidden rounded-[10px]">
+            <div className="relative min-h-0 w-full flex-1 overflow-hidden rounded-[10px]">
                 <Image
                     src="https://s3.twcstorage.ru/4b615622-soup/ads-mock.svg"
                     alt="Advertisement"

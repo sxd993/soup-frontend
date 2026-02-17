@@ -52,7 +52,9 @@ export const HeroSection = () => {
         </div>
         {/* Рекламный блок */}
         <div className="hidden md:flex items-center justify-end md:basis-1/3 lg:basis-1/4">
-          <AdsBanner hasDescription={false} />
+          <div className="w-[220px] shrink-0">
+            <AdsBanner hasDescription={false} variant="hero" />
+          </div>
         </div>
       </div>
     </div>

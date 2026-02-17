@@ -13,7 +13,13 @@ const StarIcon = ({ fill }: { fill: string }) => {
   )
 }
 
-export const ReviewsCard = ({ review }: { review: CompanyReview }) => {
+type ReviewsCardProps = {
+  review: CompanyReview
+  /** На публичной странице компании кнопку «Ответить» не показываем */
+  canReply?: boolean
+}
+
+export const ReviewsCard = ({ review, canReply = true }: ReviewsCardProps) => {
 
   const {
     replyDraft,
@@ -29,9 +35,9 @@ export const ReviewsCard = ({ review }: { review: CompanyReview }) => {
   } = useCompanyReviewReply(review)
 
   return (
-    <article className="rounded-[20px] bg-white px-4 py-3 md:p-5">
-      <div className="flex flex-col gap-4 md:flex-row md:gap-6">
-        <div className="mt-1 flex flex-row items-start justify-between gap-3 md:mt-0 md:flex-col md:items-start md:justify-start md:gap-[13px] md:w-32">
+    <article className="min-w-0 overflow-hidden rounded-[20px] bg-white px-4 py-3 md:p-5">
+      <div className="flex min-w-0 flex-col gap-4 md:flex-row md:gap-6">
+        <div className="mt-1 flex shrink-0 flex-row items-start justify-between gap-3 md:mt-0 md:flex-col md:items-start md:justify-start md:gap-[13px] md:w-32">
           {/* Рейтинг (звезды) */}
           <div className="flex items-center gap-1 text-[#7BB34A] shrink-0">
             {Array.from({ length: 5 }).map((_, index) => {
@@ -49,24 +55,41 @@ export const ReviewsCard = ({ review }: { review: CompanyReview }) => {
           </span>
         </div>
 
-        <div className="flex flex-1 -mt-0.5 flex-col gap-2 items-start md:gap-1.75">
+        <div className="flex min-w-0 flex-1 -mt-0.5 flex-col gap-2 items-start md:gap-1.75">
           {/* Имя автора */}
-          <h3 className="text-[18px] font-bold leading-[120%] text-secondary md:text-[22px] md:leading-[115%]">
+          <h3 className="min-w-0 break-words text-[18px] font-bold leading-[120%] text-secondary md:text-[22px] md:leading-[115%]">
             {review.authorName || "Анонимный пользователь"}
           </h3>
           {/* Название услуги/заказа */}
           {review.serviceName && (
-            <span className="text-[12px] font-normal leading-[130%] text-accent-septenary md:text-[14px]">
+            <span className="min-w-0 break-words text-[12px] font-normal leading-[130%] text-accent-septenary md:text-[14px]">
               {review.serviceName}
             </span>
           )}
 
           {/* Текст отзыва */}
-          <p className="text-[14px] font-medium leading-[140%] text-secondary md:text-[16px]">
+          <p className="min-w-0 break-words text-[14px] font-medium leading-[140%] text-secondary md:text-[16px]">
             {review.comment || "Без текста отзыва"}
           </p>
 
-          {!isReplyOpen && !replyText && (
+          {/* Фото отзыва */}
+          {review.imageUrls && review.imageUrls.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-2">
+              {review.imageUrls.map((url, idx) => (
+                <a
+                  key={idx}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-[#E5E0D6]"
+                >
+                  <img src={url} alt="" className="h-full w-full object-cover" />
+                </a>
+              ))}
+            </div>
+          )}
+
+          {canReply && !isReplyOpen && !replyText && (
             <button
               type="button"
               className="mt-4 cursor-pointer text-sm font-semibold text-primary md:mt-6 md:text-base hover:underline"
