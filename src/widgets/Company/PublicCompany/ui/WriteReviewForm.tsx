@@ -134,7 +134,7 @@ export function WriteReviewForm({ companyId, clientUserId, onSuccess }: WriteRev
             placeholder="Напишите отзыв как можно подробнее. Так вы поможете другим пользователям сделать выбор."
             rows={5}
             maxLength={MAX_COMMENT_LENGTH}
-            className="box-border w-full min-w-0 max-w-full resize-y overflow-x-hidden break-words rounded-xl border border-[#C5C2C2] bg-white px-4 py-3 pb-8 text-sm text-secondary placeholder:text-[#BFBFBF] outline-none focus:border-primary"
+            className="box-border w-full min-w-0 max-w-full resize-y overflow-x-hidden wrap-break-word rounded-xl border border-[#C5C2C2] bg-white px-4 py-3 pb-8 text-sm text-secondary placeholder:text-[#BFBFBF] outline-none focus:border-primary"
           />
           <div className="pointer-events-none absolute bottom-3 right-4 text-sm font-normal leading-[130%] text-[#c5c2c2]">
             {comment.length}/{MAX_COMMENT_LENGTH}
