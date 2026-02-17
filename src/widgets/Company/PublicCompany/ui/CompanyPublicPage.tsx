@@ -12,6 +12,7 @@ import {
   CompanyServicesSection,
   CompanyTabs,
 } from "./sections";
+import { SimilarCompaniesBlock } from "./SimilarCompaniesBlock";
 import { CompanyPublicPageSkeleton } from "./CompanyPublicPageSkeleton";
 
 type CompanyPublicPageProps = {
@@ -77,20 +78,7 @@ export const CompanyPublicPage = ({ companyId }: CompanyPublicPageProps) => {
           </div>
 
           <aside className="flex flex-col gap-6">
-            <div className="rounded-[26px] bg-white p-5">
-              <h3 className="text-lg font-semibold text-secondary">Похожие компании</h3>
-              <div className="mt-4 flex flex-col gap-4">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="h-12 w-12 rounded-[12px] bg-[#E5E0D6]" />
-                    <div>
-                      <p className="text-sm font-semibold text-secondary">Название компании</p>
-                      <p className="text-xs text-accent-quinary">Екатеринбург</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <SimilarCompaniesBlock companyId={companyId} services={services} />
 
             <AdsBanner hasDescription={true} />
           </aside>
