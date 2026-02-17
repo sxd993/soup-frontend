@@ -1,6 +1,7 @@
 "use client"
 
 import { CompanyCard } from "@/entities/Profile/Company"
+import { SectionTitle } from "@/shared/ui"
 import { useFavoritesList, useFavoriteCompanies } from "@/entities/Favorites"
 import { useSession } from "@/entities/Session"
 import { StateProvider } from "@/app/providers/State/StateProvider"
@@ -24,15 +25,19 @@ export function FavoritesContent() {
 
   return (
     <section className="flex flex-col gap-6">
+      <SectionTitle
+        className="font-semibold text-[28px]! leading-[110%]!"
+        title="Избранные компании"
+      />
       <StateProvider
         isLoading={isLoading}
         isError={isError}
         isEmpty={isEmpty}
         errorTitle="Не удалось загрузить избранное"
       >
-        <div className="flex flex-col gap-6">
+        <div className="grid grid-cols-2 gap-5">
           {(companies ?? []).map((item) => (
-            <CompanyCard key={item.id} item={item} />
+            <CompanyCard key={item.id} item={item} variant="favorites" />
           ))}
         </div>
       </StateProvider>

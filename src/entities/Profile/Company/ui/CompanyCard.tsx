@@ -20,9 +20,11 @@ const StarIcon = ({ fill }: { fill: string }) => (
 
 type CompanyCardProps = {
   item: CompanyCardData
+  /** Вариант для каталога (полная карточка) или избранного (только лого, название, описание 5 строк) */
+  variant?: "catalog" | "favorites"
 }
 
-export const CompanyCard = ({ item }: CompanyCardProps) => {
+export const CompanyCard = ({ item, variant = "catalog" }: CompanyCardProps) => {
   const hasLogo = Boolean(item.logoUrl)
   const companyId = Number(item.id)
   const rating = item.rating ?? 0
@@ -42,6 +44,53 @@ export const CompanyCard = ({ item }: CompanyCardProps) => {
   }
 
   const companyHref = `/catalog/company?id=${item.id}`
+
+  if (variant === "favorites") {
+    return (
+      <article className="relative flex flex-col rounded-3xl bg-white p-6">
+        <Link
+          href={companyHref}
+          className="absolute inset-0 z-0 rounded-3xl"
+          aria-label={`Перейти на страницу компании ${item.name}`}
+        />
+        <button
+          type="button"
+          onClick={(e) => {
+            e.preventDefault()
+            toggleFavorite.mutate({ companyId, isCurrentlyFavorite: true })
+          }}
+          disabled={toggleFavorite.isPending}
+          className="pointer-events-auto absolute right-6 top-6 z-10 flex h-10 w-10 shrink-0 items-center justify-center text-accent-quinary outline-none disabled:opacity-60"
+          aria-label="Убрать из избранного"
+        >
+          <HeartActive />
+        </button>
+        <div className="relative z-10 flex min-h-0 flex-1 flex-col pointer-events-none">
+          <div className="flex gap-3 pr-14 sm:gap-4">
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-[10px] bg-white p-1.5 md:h-24 md:w-24 md:p-2">
+              {hasLogo ? (
+                <Image
+                  src={item.logoUrl!}
+                  alt={item.name}
+                  width={96}
+                  height={96}
+                  className="h-full w-full object-cover overflow-hidden rounded-[10px]"
+                />
+              ) : (
+                <MainIcon className="h-full w-full" />
+              )}
+            </div>
+            <span className="min-w-0 flex-1 break-words text-[22px] font-semibold leading-tight text-secondary">
+              {item.name}
+            </span>
+          </div>
+          <p className="mt-auto pt-4 line-clamp-5 text-sm text-secondary leading-[150%]">
+            {item.description}
+          </p>
+        </div>
+      </article>
+    )
+  }
 
   return (
     <article className="relative flex h-[240px] flex-col rounded-3xl bg-white p-6 md:h-[250px]">
