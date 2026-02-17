@@ -20,13 +20,11 @@ export const TimeFilter = ({ value, onChange }: TimeFilterProps) => {
             {/* Выпадающий фильтр по времени */}
             <button
                 type="button"
-                className="flex gap-2 items-center cursor-pointer"
+                className="flex cursor-pointer items-center gap-2"
                 aria-expanded={isOpen}
                 onClick={() => setOpen((prev) => !prev)}
             >
-                <p className="text-secondary font-semibold leading-[130%] text-sm">
-                    {selectedBadge.title}
-                </p>
+                {selectedBadge.title}
                 <span className={`transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}>
                     <SortIcon />
                 </span>

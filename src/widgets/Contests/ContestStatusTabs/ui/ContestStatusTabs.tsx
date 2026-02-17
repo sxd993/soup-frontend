@@ -18,13 +18,11 @@ export const ContestStatusTabs = ({ status }: ContestStatusTabsProps) => {
             <div className="relative md:hidden">
                 <button
                     type="button"
-                    className="flex gap-2 items-center cursor-pointer"
+                    className="flex cursor-pointer items-center gap-2"
                     aria-expanded={isOpen}
                     onClick={() => setIsOpen((prev) => !prev)}
                 >
-                    <p className="text-secondary font-semibold leading-[130%] text-sm">
-                        {selectedItem.title}
-                    </p>
+                    {selectedItem.title}
                     <span className={`transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}>
                         <SortIcon />
                     </span>

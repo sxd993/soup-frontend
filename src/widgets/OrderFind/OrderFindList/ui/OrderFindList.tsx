@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { OrderCard } from "@/entities/Orders";
+import { FilterMenu, SortIcon } from "@/shared/ui";
 import { StateProvider } from "@/app/providers/State/StateProvider";
 import { ClientPagination } from "@/features/Pagination";
 import { useOrderFindList } from "../model/hooks/useOrderFindList";
@@ -23,10 +25,42 @@ export function OrderFindList() {
     isLoading,
     isError,
     isEmpty,
+    sortOptions,
+    selectedSortId,
+    selectedSortTitle,
+    selectSort,
   } = useOrderFindList();
+
+  const [isOpen, setOpen] = useState(false);
 
   return (
     <section className="flex flex-col gap-6">
+      <div className="relative flex items-center justify-end">
+        <button
+          type="button"
+          className="flex cursor-pointer items-center gap-2"
+          aria-expanded={isOpen}
+          onClick={() => setOpen((prev) => !prev)}
+        >
+          {selectedSortTitle}
+          <span
+            className={`transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}
+          >
+            <SortIcon />
+          </span>
+        </button>
+        {isOpen && (
+          <FilterMenu
+            items={sortOptions}
+            selectedId={selectedSortId}
+            onSelect={(id) => {
+              selectSort(id);
+              setOpen(false);
+            }}
+          />
+        )}
+      </div>
+
       <StateProvider
         isLoading={isLoading}
         isError={isError}

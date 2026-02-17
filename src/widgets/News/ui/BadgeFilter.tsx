@@ -28,13 +28,11 @@ export const BadgeFilter = () => {
             >
                 <button
                     type="button"
-                    className="flex md:hidden gap-2 items-center cursor-pointer"
+                    className="flex md:hidden cursor-pointer items-center gap-2"
                     aria-expanded={isMenuOpen}
                     onClick={toggleMenu}
                 >
-                    <p className="text-secondary font-semibold leading-[130%] text-sm">
-                        {selectedItem.title}
-                    </p>
+                    {selectedItem.title}
                     <span className={`transition-transform ${isMenuOpen ? "rotate-180" : "rotate-0"}`}>
                         <SortIcon />
                     </span>

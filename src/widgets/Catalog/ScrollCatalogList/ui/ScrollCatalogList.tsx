@@ -29,12 +29,10 @@ export const ScrollCatalogList = () => {
       <div className="relative flex items-center justify-end">
         <button
           type="button"
-          className="flex items-center gap-2 cursor-pointer"
+          className="flex cursor-pointer items-center gap-2"
           aria-expanded={isOpen}
           onClick={() => setOpen((prev) => !prev)}>
-          <p className="text-secondary font-semibold leading-[130%] text-sm">
-            {selectedSortTitle}
-          </p>
+          {selectedSortTitle}
           <span className={`transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}>
             <SortIcon />
           </span>
