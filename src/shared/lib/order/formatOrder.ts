@@ -38,3 +38,22 @@ export const formatOrderPrice = (price: number): string =>
 
 export const formatOrderResponsesCount = (count: number): string =>
   formatRuCountWithWord(count, ["отклик", "отклика", "откликов"]);
+
+export const formatOrderResponsePriceLabel = (
+  priceFrom: number | null,
+  priceTo: number | null,
+): string => {
+  if (priceFrom != null && priceTo != null) {
+    return `Стоимость: ${formatOrderPrice(priceFrom)} - ${formatOrderPrice(priceTo)}`;
+  }
+
+  if (priceFrom != null) {
+    return `Стоимость: от ${formatOrderPrice(priceFrom)}`;
+  }
+
+  if (priceTo != null) {
+    return `Стоимость: до ${formatOrderPrice(priceTo)}`;
+  }
+
+  return "Стоимость не указана";
+};

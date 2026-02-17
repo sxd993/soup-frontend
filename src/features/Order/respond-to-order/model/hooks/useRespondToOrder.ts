@@ -6,8 +6,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { showErrorToast, showSuccessToast } from "@/shared/ui";
 import { getErrorMessage } from "@/shared/lib";
 import { ORDER_DETAILS_QUERY_KEY } from "@/features/Order/get-order-details";
+import { COMPANY_ORDER_RESPONSE_QUERY_KEY } from "@/features/Order/company-order-response";
 import { respondToOrder } from "../../api/respondToOrder";
 import type { RespondToOrderPayload } from "../types/respondToOrder.types";
+
+const COMPANY_ORDERS_QUERY_KEY = ["company-orders"] as const;
 
 export const useRespondToOrder = (orderId: number | null) => {
   const queryClient = useQueryClient();
@@ -20,23 +23,32 @@ export const useRespondToOrder = (orderId: number | null) => {
     },
   });
 
+  const invalidateRelatedQueries = async () => {
+    if (orderId == null) return;
+
+    await Promise.all([
+      queryClient.invalidateQueries({ queryKey: [...ORDER_DETAILS_QUERY_KEY, orderId] }),
+      queryClient.invalidateQueries({
+        queryKey: [...COMPANY_ORDER_RESPONSE_QUERY_KEY, orderId],
+      }),
+      queryClient.invalidateQueries({ queryKey: COMPANY_ORDERS_QUERY_KEY }),
+    ]);
+  };
+
   const submitRespond = async (
     payload: RespondToOrderPayload = {},
   ): Promise<"success" | "already" | "error"> => {
     try {
       await mutation.mutateAsync(payload);
       setIsAlreadyResponded(true);
-      if (orderId != null) {
-        await queryClient.invalidateQueries({
-          queryKey: [...ORDER_DETAILS_QUERY_KEY, orderId],
-        });
-      }
-      showSuccessToast("Отклик отправлен");
+      await invalidateRelatedQueries();
+      
       return "success";
     } catch (error) {
       const status = (error as AxiosError | null)?.response?.status;
       if (status === 409) {
         setIsAlreadyResponded(true);
+        await invalidateRelatedQueries();
         showSuccessToast("Вы уже откликнулись");
         return "already";
       }

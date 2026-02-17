@@ -4,5 +4,6 @@ export {
   formatOrderDeadline,
   formatOrderPrice,
   formatOrderResponsesCount,
+  formatOrderResponsePriceLabel,
 } from "./formatOrder";
 export { getOrderIcon } from "./getOrderIcon";

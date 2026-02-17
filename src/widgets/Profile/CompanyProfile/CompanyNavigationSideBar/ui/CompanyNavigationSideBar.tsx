@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ICONS_BY_LABEL, COMPANY_NAV_LINKS } from '../const'
+import { COMPANY_NAV_LINKS } from '../const'
 
 
 type CompanyNavigationSideBarProps = {
@@ -25,17 +25,15 @@ export const CompanyNavigationSideBar = ({ onNavigate }: CompanyNavigationSideBa
     return (
         <ul className="flex flex-col gap-2">
             {links.map((link) => {
-                const icon = ICONS_BY_LABEL[link.label]
-
                 return (
-                    <li key={link.href}>
+                    <li key={`${link.href}-${link.label}`}>
                         <Link
                             className="group flex h-12 items-center gap-3 rounded-full px-2 transition-colors hover:bg-white"
                             href={link.href}
                             onClick={onNavigate}
                         >
                             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-white transition-colors group-hover:bg-accent-octonary group-hover:text-accent-octonary">
-                                {icon}
+                                <link.Icon className="h-8 w-8" />
                             </span>
                             <span className="text-[16px] font-semibold leading-[140%] text-secondary">
                                 {link.label}

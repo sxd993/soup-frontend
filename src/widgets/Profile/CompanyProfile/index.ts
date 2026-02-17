@@ -12,3 +12,8 @@ export { parseReviewsPageParams } from './ReviewsCompanySection/lib/parseReviews
 
 // Блог компании
 export { BlogCompanySection } from './BlogCompanySection/BlogCompanySection'
+
+// Отклики компании
+export { OrdersCompanySection } from "./OrdersCompanySection/OrdersCompanySection";
+export { parseCompanyOrdersPageParams } from "./OrdersCompanySection/lib/parseCompanyOrdersPageParams";
+export { CompanyOrderResponseDetailSection } from "./OrderResponseDetailSection";
