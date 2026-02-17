@@ -101,14 +101,14 @@ export const CompanyHeader = ({
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Button
-          className="flex h-12 w-full items-center justify-center rounded-full !bg-[#8BC652] !text-accent-senary hover:!bg-[#7DAF4D] active:!bg-[#80D62C] disabled:!bg-[#D3EBBB] sm:w-[180px]"
+          className="flex h-12 w-full items-center justify-center rounded-full bg-primary! text-accent-senary! hover:bg-accent! active:bg-[#80D62C]! disabled:bg-[#D3EBBB]! sm:w-[180px]"
           onClick={onCall}
           disabled={!canCall}
         >
           Позвонить
         </Button>
         <Button
-          className="flex h-12 w-full items-center justify-center whitespace-nowrap rounded-full !bg-[#535353] !text-white hover:!bg-[#2F2F2F] active:!bg-[#201F1F] disabled:!bg-[#C5C2C2] sm:w-[260px]"
+          className="flex h-12 w-full items-center justify-center whitespace-nowrap rounded-full bg-accent-septenary! text-white! hover:bg-secondary! active:bg-[#201F1F]! disabled:bg-[#C5C2C2]! sm:w-[260px]"
         >
           Предложить заказ
         </Button>

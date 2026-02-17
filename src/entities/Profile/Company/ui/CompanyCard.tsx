@@ -80,7 +80,7 @@ export const CompanyCard = ({ item, variant = "catalog" }: CompanyCardProps) => 
                 <MainIcon className="h-full w-full" />
               )}
             </div>
-            <span className="mt-3 min-w-0 flex-1 break-words text-lg font-semibold leading-tight text-secondary md:text-[18px] lg:mt-0 lg:text-[20px] xl:text-[22px]">
+            <span className="mt-3 min-w-0 flex-1 wrap-break-word text-lg font-semibold leading-tight text-secondary md:text-[18px] lg:mt-0 lg:text-[20px] xl:text-[22px]">
               {item.name}
             </span>
           </div>

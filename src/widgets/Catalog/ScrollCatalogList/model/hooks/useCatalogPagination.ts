@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getCatalogCompanies } from "@/entities/Profile/Company/model/api/getCatalogCompanies";
 import { useCatalogFiltersStore } from "@/widgets/Catalog/Filters/model/store/useCatalogFiltersStore";
 
-const ITEMS_PER_PAGE = 4;
+const ITEMS_PER_PAGE = 6;
 const SORT_OPTIONS = [
   { id: 1, title: "По умолчанию", value: "default" as const },
   { id: 2, title: "По рейтингу", value: "rating" as const },

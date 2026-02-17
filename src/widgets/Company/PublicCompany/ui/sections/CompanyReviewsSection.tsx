@@ -1,13 +1,17 @@
 "use client"
 
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 import { StarIcon } from "@/shared/ui"
+import { ClientPagination } from "@/features/Pagination"
 import { useSession } from "@/entities/Session"
 import { ReviewsCard } from "@/entities/Profile/Company"
 import { useCompanyPublicReviews } from "../../model/hooks/useCompanyPublicReviews"
 import { WriteReviewForm } from "../WriteReviewForm"
 
 const EMPTY_STAR = "#EEEBE6"
+const REVIEWS_PER_PAGE = 5
+const REVIEWS_PAGE_PARAM = "reviewsPage"
 
 type CompanyReviewsSectionProps = {
   companyId: string
@@ -15,6 +19,7 @@ type CompanyReviewsSectionProps = {
 }
 
 export const CompanyReviewsSection = ({ companyId, title = "Отзывы" }: CompanyReviewsSectionProps) => {
+  const searchParams = useSearchParams()
   const { data: session } = useSession()
   const currentUserId = session?.user?.id ?? null
   const isClient = session?.user?.role === "client"
@@ -22,6 +27,16 @@ export const CompanyReviewsSection = ({ companyId, title = "Отзывы" }: Com
   const { reviews, isLoading, isError, hasOwnReview, refetch } = useCompanyPublicReviews(
     companyId,
     currentUserId,
+  )
+
+  const totalPages = Math.max(1, Math.ceil(reviews.length / REVIEWS_PER_PAGE))
+  const rawPage = Number(searchParams?.get(REVIEWS_PAGE_PARAM) ?? 1)
+  const currentPage = Number.isFinite(rawPage)
+    ? Math.min(Math.max(rawPage, 1), totalPages)
+    : 1
+  const paginatedReviews = reviews.slice(
+    (currentPage - 1) * REVIEWS_PER_PAGE,
+    currentPage * REVIEWS_PER_PAGE,
   )
 
   const showForm = isClient && !hasOwnReview
@@ -76,9 +91,16 @@ export const CompanyReviewsSection = ({ companyId, title = "Отзывы" }: Com
         <p className="text-sm text-accent-quinary">Не удалось загрузить отзывы</p>
       ) : reviews.length > 0 ? (
         <div className="flex flex-col gap-4">
-          {reviews.map((review) => (
+          {paginatedReviews.map((review) => (
             <ReviewsCard key={String(review.id)} review={review} canReply={false} />
           ))}
+          {totalPages > 1 && (
+            <ClientPagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              pageParam={REVIEWS_PAGE_PARAM}
+            />
+          )}
         </div>
       ) : null}
     </div>
