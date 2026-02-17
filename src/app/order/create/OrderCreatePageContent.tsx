@@ -2,8 +2,9 @@
 
 import { useSession } from "@/entities/Session";
 import { StateProvider } from "@/app/providers/State/StateProvider";
-import { Button } from "@/shared/ui";
+import { Button, LoadingState } from "@/shared/ui";
 import Link from "next/link";
+import { Suspense } from "react";
 import { CreateOrderForm } from "@/features/Order/CreateOrderForm";
 
 const ACCESS_DENIED_MESSAGE =
@@ -33,7 +34,9 @@ export function OrderCreatePageContent() {
     >
       <main className="mt-[34px] pb-20">
         <div className="mx-auto flex w-full max-w-[700px] flex-col gap-6">
-          <CreateOrderForm />
+          <Suspense fallback={<LoadingState />}>
+            <CreateOrderForm />
+          </Suspense>
         </div>
       </main>
     </StateProvider>
