@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { OrderFindPageContent } from "./OrderFindPageContent";
+import { Suspense } from "react";
+import { LoadingState } from "@/shared/ui";
 
 export const metadata: Metadata = {
   title: "Найти заказ",
@@ -7,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function OrderFindPage() {
-  return <OrderFindPageContent />;
+  return (
+  <Suspense fallback={<LoadingState />}>
+    <OrderFindPageContent />
+  </Suspense>
+  )
 }
