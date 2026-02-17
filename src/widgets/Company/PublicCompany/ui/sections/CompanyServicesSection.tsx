@@ -1,11 +1,11 @@
-import { ArrowDown, ArrowUp, MockLogo } from "@/shared/ui"
-import type { CompanyServiceCategory } from "@/entities/Profile/Company/model/types/company-services.types"
+import { ArrowDown, ArrowUp, MockLogo } from "@/shared/ui";
+import type { CompanyServiceCategory } from "@/entities/Profile/Company/model/types/company-services.types";
 
 type CompanyServicesSectionProps = {
-  services: CompanyServiceCategory[]
-  openSectionIds: Set<string>
-  toggleSection: (id: string) => void
-}
+  services: CompanyServiceCategory[];
+  openSectionIds: Set<string>;
+  toggleSection: (id: string) => void;
+};
 
 export const CompanyServicesSection = ({
   services,
@@ -15,7 +15,7 @@ export const CompanyServicesSection = ({
   return (
     <div className="flex flex-col gap-4">
       {services.map((section) => {
-        const isOpen = openSectionIds.has(section.category)
+        const isOpen = openSectionIds.has(section.category);
         return (
           <div key={section.category} className="rounded-[26px] bg-white p-5">
             <button
@@ -31,7 +31,9 @@ export const CompanyServicesSection = ({
                   {section.category}
                 </span>
               </span>
-              <span className="shrink-0">{isOpen ? <ArrowUp /> : <ArrowDown />}</span>
+              <span className="shrink-0">
+                {isOpen ? <ArrowUp /> : <ArrowDown />}
+              </span>
             </button>
 
             <div
@@ -39,14 +41,21 @@ export const CompanyServicesSection = ({
                 isOpen ? "opacity-100" : "opacity-0"
               }`}
               style={{
-                maxHeight: isOpen ? (section.services.length > 0 ? "520px" : "80px") : "0px",
+                maxHeight: isOpen
+                  ? section.services.length > 0
+                    ? "520px"
+                    : "80px"
+                  : "0px",
               }}
             >
               <div className="mt-4">
                 {section.services.length > 0 ? (
                   <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     {section.services.map((item, index) => (
-                      <div key={`${item.name}-${index}`} className="flex flex-col gap-2">
+                      <div
+                        key={`${item.name}-${index}`}
+                        className="flex flex-col gap-2"
+                      >
                         <div className="overflow-hidden rounded-[18px] border border-[#E5E0D6] bg-white">
                           {item.imageUrl ? (
                             <img
@@ -60,18 +69,22 @@ export const CompanyServicesSection = ({
                             </div>
                           )}
                         </div>
-                        <span className="text-sm text-secondary">{item.name}</span>
+                        <span className="text-sm text-secondary">
+                          {item.name}
+                        </span>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="mt-3 text-sm text-accent-quinary">Услуги пока не добавлены</p>
+                  <p className="mt-3 text-sm text-accent-quinary">
+                    Услуги пока не добавлены
+                  </p>
                 )}
               </div>
             </div>
           </div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};

@@ -1,20 +1,24 @@
-"use client"
+"use client";
 
-import { Button, MockLogo, SectionTitle } from "@/shared/ui"
-import { StateProvider } from "@/app/providers/State/StateProvider"
-import { useCompanyServices } from "../model/hooks/useCompanyServices"
-import { CompanyServicesSkeleton } from "./CompanyServicesSkeleton"
+import {
+  Button,
+  BlackButton,
+  MockLogo,
+  SectionTitle,
+  DeleteIcon,
+  ChevronUpIcon,
+  PlusIcon,
+} from "@/shared/ui";
+import { StateProvider } from "@/app/providers/State/StateProvider";
+import { useCompanyServices } from "../model/hooks/useCompanyServices";
+import { CompanyServicesSkeleton } from "./CompanyServicesSkeleton";
 
 export const CompanyServices = () => {
-  const {
-    request,
-    categoryMenu,
-    categoryServices,
-    serviceModal,
-  } = useCompanyServices()
+  const { request, categoryMenu, categoryServices, serviceModal } =
+    useCompanyServices();
 
-  const isLoading = request.isLoading
-  const isError = request.isError
+  const isLoading = request.isLoading;
+  const isError = request.isError;
 
   return (
     <StateProvider
@@ -24,80 +28,119 @@ export const CompanyServices = () => {
       loadingComponent={<CompanyServicesSkeleton />}
       errorTitle="Не удалось загрузить услуги"
     >
-      <section className="flex flex-col gap-6">
-        <SectionTitle
-          className="font-semibold text-[28px]! leading-[110%]!"
-          title="Услуги"
-        />
-
-        {categoryServices.selectedCategories.map((category) => (
-          <div key={category.id} className="rounded-[30px] bg-white p-6">
-            <SectionTitle
-              className="text-[26px] font-semibold text-secondary"
-              title={category.title}
-            />
-
-            <div className="mt-6 flex flex-col gap-4">
-              <p className="text-[20px] font-semibold text-secondary">Услуги</p>
-
-              <div className="flex flex-col divide-y divide-[#E5E0D6] border-t border-[#E5E0D6]">
-                {category.services.map((service, index) => (
-                  // индекс только для списка, как в других местах
-                  <div key={`${service.name}-${index}`} className="flex items-center justify-between py-4">
-                    <div className="flex min-w-0 items-center gap-4">
-                      <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-[14px] border border-[#DADADA] bg-[#F6F3EE]">
-                        {service.imageUrl ? (
-                          <img
-                            src={service.imageUrl}
-                            alt={service.name}
-                            className="h-full w-full object-cover"
-                          />
-                        ) : (
-                          <MockLogo className="h-10 w-10" />
-                        )}
-                      </div>
-                      <span className="min-w-0 flex-1 text-[18px] text-secondary wrap-break-word">
-                        {service.name}
-                      </span>
-                    </div>
-                    <button
-                      type="button"
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-[#EDE8DE]"
-                      onClick={() => categoryServices.removeServiceFromCategory(category.id, index)}
-                      aria-label="Удалить услугу"
-                    >
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                        <path
-                          d="M5 7H19M9 7V5C9 4.44772 9.44772 4 10 4H14C14.5523 4 15 4.44772 15 5V7M8 7L9 20H15L16 7"
-                          stroke="#2F2F2F"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                ))}
+      <section className="flex flex-col gap-4 md:gap-6">
+        {categoryServices.selectedCategories.map((category) => {
+          const isCollapsed = categoryServices.collapsedCategories.has(
+            category.id,
+          );
+          return (
+            <div
+              key={category.id}
+              className="rounded-[20px] bg-white px-4 py-3 md:px-6 md:py-4"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <SectionTitle
+                  className="text-[20px] md:text-[28px] font-semibold leading-[110%] text-secondary"
+                  title={category.title}
+                />
+                <button
+                  type="button"
+                  onClick={() =>
+                    categoryServices.toggleCategoryCollapse(category.id)
+                  }
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-[#F5F5F5] md:h-15 md:w-15"
+                  aria-label={
+                    isCollapsed ? "Развернуть категорию" : "Свернуть категорию"
+                  }
+                >
+                  <ChevronUpIcon
+                    className={`transition-transform duration-200 ${
+                      isCollapsed ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
               </div>
 
-              <Button
-                className="mt-2 w-fit rounded-full bg-accent-septenary! px-8 text-white! hover:bg-secondary! active:bg-[#201F1F]! disabled:bg-[#C5C2C2]!"
-                onClick={() => categoryServices.openServiceModal(category.id)}
-              >
-                Добавить услугу
-              </Button>
+              {!isCollapsed && (
+                <div className="mt-4 flex flex-col gap-3 md:mt-6 md:gap-4">
+                  <textarea
+                    placeholder="Описание"
+                    value={category.description || ""}
+                    onChange={(e) =>
+                      categoryServices.updateCategoryDescription(
+                        category.id,
+                        e.target.value,
+                      )
+                    }
+                    maxLength={500}
+                    className="h-[100px] w-full rounded-[10px] border border-[#C5C2C2] px-4 py-3 text-sm text-secondary outline-none placeholder:text-[#C5C2C2] resize-none md:px-5 md:py-4 md:text-base"
+                  />
+                  <p className="text-[18px] font-bold leading-[115%] text-secondary md:text-[22px]">
+                    Услуги
+                  </p>
+
+                  <div className="flex flex-col divide-y divide-[#C5C2C2] border-t border-b border-[#C5C2C2]">
+                    {category.services.map((service, index) => (
+                      // индекс только для списка, как в других местах
+                      <div
+                        key={`${service.name}-${index}`}
+                        className="flex items-center justify-between gap-2 py-3 md:py-4"
+                      >
+                        <div className="flex min-w-0 items-center gap-3 md:gap-4">
+                          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-[14px] border border-[#DADADA] bg-[#F6F3EE] md:h-14 md:w-14">
+                            {service.imageUrl ? (
+                              <img
+                                src={service.imageUrl}
+                                alt={service.name}
+                                className="h-full w-full object-cover"
+                              />
+                            ) : (
+                              <MockLogo className="h-8 w-8 md:h-10 md:w-10" />
+                            )}
+                          </div>
+                          <span className="min-w-0 flex-1 text-[16px] text-secondary wrap-break-word md:text-[18px]">
+                            {service.name}
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EDE8DE] md:h-10 md:w-10"
+                          onClick={() =>
+                            categoryServices.removeServiceFromCategory(
+                              category.id,
+                              index,
+                            )
+                          }
+                          aria-label="Удалить услугу"
+                        >
+                          <DeleteIcon className="h-4 w-4 md:h-auto md:w-auto" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+
+                  <BlackButton
+                    className="mt-2 w-full rounded-full px-6 text-sm md:w-fit md:px-8 md:text-base"
+                    onClick={() =>
+                      categoryServices.openServiceModal(category.id)
+                    }
+                  >
+                    Добавить услугу
+                  </BlackButton>
+                </div>
+              )}
             </div>
-          </div>
-        ))}
+          );
+        })}
 
         <div ref={categoryMenu.ref} className="relative">
           <Button
-            className="flex h-16 w-full items-center justify-between rounded-[30px] bg-accent-septenary! px-6 text-left text-[20px] font-semibold text-white! hover:bg-secondary! active:bg-[#201F1F]! disabled:bg-[#C5C2C2]!"
+            className="flex h-14 w-full items-center justify-between rounded-[20px]! bg-accent-septenary! px-4 text-left text-[16px] font-semibold text-white! hover:bg-secondary! active:bg-[#201F1F]! disabled:bg-[#C5C2C2]! md:h-16 md:px-6 md:text-[20px]"
             onClick={categoryMenu.toggle}
             disabled={categoryMenu.availableCategories.length === 0}
           >
             <span>Добавить категорию</span>
-            <span className="text-[28px] leading-none">+</span>
+            <PlusIcon className="h-4 w-4 shrink-0 md:h-auto md:w-auto" />
           </Button>
 
           {categoryMenu.isOpen ? (
@@ -118,25 +161,35 @@ export const CompanyServices = () => {
           ) : null}
         </div>
 
+        <Button
+          type="button"
+          onClick={() => categoryServices.saveAndSendToModeration()}
+          disabled={categoryServices.isSavePending}
+          className="w-full cursor-pointer disabled:cursor-not-allowed px-1! text-sm md:text-[16px]"
+          aria-disabled={categoryServices.isSavePending}
+        >
+          Сохранить и отправить на модерацию
+        </Button>
+
         {serviceModal.isOpen ? (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-            <div className="w-full max-w-[760px] rounded-[30px] bg-white p-8">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 md:px-4">
+            <div className="w-full max-w-[760px] rounded-[20px] bg-white p-5 md:rounded-[30px] md:p-8">
               <SectionTitle
-                className="text-[30px] font-semibold text-secondary"
+                className="text-[24px] font-semibold text-secondary md:text-[30px]"
                 title="Новая услуга"
               />
 
-              <div className="mt-6 grid gap-4 md:grid-cols-[140px_1fr]">
-                <label className="flex h-32 w-32 cursor-pointer items-center justify-center overflow-hidden rounded-[20px] border border-[#DADADA] bg-[#F6F6F6] text-center text-sm text-[#C5C2C2]">
+              <div className="mt-4 flex flex-col gap-4 md:mt-6 md:grid md:grid-cols-[140px_1fr]">
+                <label className="flex h-24 w-24 cursor-pointer items-center justify-center overflow-hidden rounded-[15px] border border-[#DADADA] bg-[#F6F6F6] text-center text-xs text-[#C5C2C2] md:h-32 md:w-32 md:rounded-[20px] md:text-sm">
                   <input
                     type="file"
                     className="sr-only"
                     accept="image/png,image/jpeg,image/webp"
                     onChange={(event) => {
-                      const file = event.target.files?.[0]
+                      const file = event.target.files?.[0];
                       if (file) {
-                        serviceModal.handleServiceImageUpload(file)
-                        event.currentTarget.value = ""
+                        serviceModal.handleServiceImageUpload(file);
+                        event.currentTarget.value = "";
                       }
                     }}
                     disabled={serviceModal.isImageUploading}
@@ -148,17 +201,19 @@ export const CompanyServices = () => {
                       className="h-full w-full object-cover"
                     />
                   ) : (
-                    <span>Загрузите фотографию</span>
+                    <span className="px-2">Загрузите фотографию</span>
                   )}
                 </label>
-                <div className="flex h-32 w-full flex-col gap-2">
+                <div className="flex h-24 w-full flex-col gap-2 md:h-32">
                   <input
                     type="text"
                     placeholder="Название услуги"
                     value={serviceModal.serviceName}
-                    onChange={(event) => serviceModal.setServiceName(event.target.value)}
+                    onChange={(event) =>
+                      serviceModal.setServiceName(event.target.value)
+                    }
                     maxLength={100}
-                    className="h-full w-full rounded-[20px] border border-[#DADADA] px-5 text-base text-secondary outline-none placeholder:text-[#C5C2C2]"
+                    className="h-full w-full rounded-[15px] border border-[#DADADA] px-4 text-sm text-secondary outline-none placeholder:text-[#C5C2C2] md:rounded-[20px] md:px-5 md:text-base"
                   />
                   <span className="text-xs text-accent-quinary">
                     {serviceModal.serviceName.length}/100
@@ -166,29 +221,31 @@ export const CompanyServices = () => {
                 </div>
               </div>
 
-              <div className="mt-5">
+              <div className="mt-4 md:mt-5">
                 <button
                   type="button"
-                  className="flex w-full items-center justify-between rounded-[18px] border border-[#DADADA] px-5 py-4 text-base text-secondary"
+                  className="flex w-full items-center justify-between rounded-[15px] border border-[#DADADA] px-4 py-3 text-sm text-secondary md:rounded-[18px] md:px-5 md:py-4 md:text-base"
                   onClick={serviceModal.toggleSelect}
                 >
-                  <span>{serviceModal.selectedService ?? "Выберите категорию"}</span>
-                  <span className="text-lg">⌄</span>
+                  <span className="truncate">
+                    {serviceModal.selectedService ?? "Выберите категорию"}
+                  </span>
+                  <span className="ml-2 shrink-0 text-base md:text-lg">⌄</span>
                 </button>
                 {serviceModal.isSelectOpen ? (
-                  <div className="mt-2 max-h-48 overflow-auto rounded-[18px] border border-[#E5E5E5] bg-white">
+                  <div className="mt-2 max-h-48 overflow-auto rounded-[15px] border border-[#E5E5E5] bg-white md:rounded-[18px]">
                     {serviceModal.services.map((service) => (
                       <button
                         key={service}
                         type="button"
-                        className="flex w-full items-center px-5 py-3 text-left text-sm text-secondary hover:bg-[#F5F5F5]"
+                        className="flex w-full items-center px-4 py-2.5 text-left text-sm text-secondary hover:bg-[#F5F5F5] md:px-5 md:py-3"
                         onClick={() => serviceModal.selectService(service)}
                       >
                         {service}
                       </button>
                     ))}
                     {serviceModal.services.length === 0 ? (
-                      <div className="px-5 py-3 text-sm text-accent-quinary">
+                      <div className="px-4 py-2.5 text-sm text-accent-quinary md:px-5 md:py-3">
                         Нет доступных подкатегорий
                       </div>
                     ) : null}
@@ -196,15 +253,15 @@ export const CompanyServices = () => {
                 ) : null}
               </div>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="mt-6 flex flex-col gap-3 md:mt-8 sm:flex-row sm:items-center sm:justify-between">
                 <Button
-                  className="h-12 w-full rounded-full bg-accent-septenary! text-white! hover:bg-secondary! active:bg-[#201F1F]! disabled:bg-[#C5C2C2]! sm:w-[240px]"
+                  className="h-11 w-full rounded-full bg-accent-septenary! text-sm text-white! hover:bg-secondary! active:bg-[#201F1F]! disabled:bg-[#C5C2C2]! sm:h-12 sm:w-[240px] sm:text-base"
                   onClick={serviceModal.close}
                 >
                   Отменить
                 </Button>
                 <Button
-                  className="h-12 w-full rounded-full bg-primary! text-accent-senary! hover:bg-accent! active:bg-[#80D62C]! disabled:bg-[#D3EBBB]! sm:w-[240px]"
+                  className="h-11 w-full rounded-full bg-primary! text-sm text-accent-senary! hover:bg-accent! active:bg-[#80D62C]! disabled:bg-[#D3EBBB]! sm:h-12 sm:w-[240px] sm:text-base"
                   onClick={serviceModal.addService}
                   disabled={serviceModal.isAddDisabled}
                 >
@@ -216,5 +273,5 @@ export const CompanyServices = () => {
         ) : null}
       </section>
     </StateProvider>
-  )
-}
+  );
+};
