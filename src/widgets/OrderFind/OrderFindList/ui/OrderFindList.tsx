@@ -4,7 +4,7 @@ import { useState } from "react";
 import { OrderCard } from "@/entities/Orders";
 import { FilterMenu, SortIcon } from "@/shared/ui";
 import { StateProvider } from "@/app/providers/State/StateProvider";
-import { ClientPagination } from "@/features/Pagination";
+import { ClientPaginationControls } from "@/features/Pagination";
 import { useOrderFindList } from "../model/hooks/useOrderFindList";
 
 function OrderFindListSkeleton() {
@@ -80,8 +80,8 @@ export function OrderFindList() {
         </div>
       </StateProvider>
       {totalPages > 1 && (
-        <div className="mt-6 flex justify-center">
-          <ClientPagination currentPage={currentPage} totalPages={totalPages} />
+        <div className="mt-6 w-full">
+          <ClientPaginationControls currentPage={currentPage} totalPages={totalPages} />
         </div>
       )}
     </section>

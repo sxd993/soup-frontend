@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { AdsBanner, Button, Search, SectionTitle } from "@/shared/ui";
+import { Button, Search, SectionTitle } from "@/shared/ui";
 import { CatalogFilters } from "@/widgets/Catalog/Filters/ui/CatalogFilters";
 import { ScrollCatalogList } from "@/widgets/Catalog/ScrollCatalogList/ui/ScrollCatalogList";
 
@@ -7,26 +7,24 @@ export default function CatalogPage() {
   return (
     <div className="mt-15 pb-20">
       <SectionTitle title="Каталог" className="mb-5 text-[40px] leading-[110%] font-bold text-secondary" />
-      <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-center">
-        <label className="relative flex-1">
-          <span className="sr-only">Поиск по названию или услуге</span>
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2" />
-          <input
-            type="text"
-            placeholder="поиск по названию или услуге"
-            className="w-full rounded-full bg-white py-4 pl-12 pr-5 text-base font-medium text-secondary outline-none"
-          />
-        </label>
-        <Button className="h-14 rounded-full px-10 text-base">Найти</Button>
+      <div className="mt-8 flex items-center gap-4">
+        <div className="flex-1 hidden md:block">
+          <div className="relative">
+            <Search className="absolute w-4 h-4 left-3 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              placeholder="поиск по названию или услуге"
+              className="w-full pl-10 pr-4 py-2.5 rounded-[20px] bg-white focus:outline-none font-semibold text-sm placeholder:text-accent-septenary placeholder:font-normal"
+            />
+          </div>
+        </div>
+        <Button className="hidden md:block cursor-pointer">Найти</Button>
       </div>
-      <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[260px_1fr_280px]">
+      <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[260px_1fr] lg:gap-x-12">
         <CatalogFilters />
         <Suspense fallback={null}>
           <ScrollCatalogList />
         </Suspense>
-        <aside className="flex flex-col gap-6">
-          <AdsBanner hasDescription={true} />
-        </aside>
       </div>
     </div>
   );

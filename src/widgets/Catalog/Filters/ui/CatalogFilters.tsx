@@ -1,16 +1,18 @@
-'use client'
+"use client";
 
 import {
   Button,
   Search,
   CheckIcon,
   ScrollContainer,
-} from "@/shared/ui"
-import { StateProvider } from "@/app/providers/State/StateProvider"
-import { CATALOG_FILTERS_MESSAGES } from "../const/filters"
-import { useCatalogFilters } from "../model/hooks/useCatalogFilters"
-import { CatalogFiltersSkeleton } from "./CatalogFiltersSkeleton"
-import { RegionsListSkeleton } from "./RegionsListSkeleton"
+  LogoImage,
+  CollapsibleFiltersAside,
+} from "@/shared/ui";
+import { StateProvider } from "@/app/providers/State/StateProvider";
+import { CATALOG_FILTERS_MESSAGES } from "../const/filters";
+import { useCatalogFilters } from "../model/hooks/useCatalogFilters";
+import { CatalogFiltersSkeleton } from "./CatalogFiltersSkeleton";
+import { RegionsListSkeleton } from "./RegionsListSkeleton";
 
 export const CatalogFilters = () => {
   const {
@@ -31,13 +33,13 @@ export const CatalogFilters = () => {
     resetAll,
     isResetDisabled,
     getSectionMaxHeight,
-  } = useCatalogFilters()
+  } = useCatalogFilters();
 
   return (
-    <aside className="flex flex-col gap-8">
+    <CollapsibleFiltersAside>
       <div className="flex flex-col gap-2">
-        <p className="text-lg font-semibold text-secondary">Регион</p>
-        <label className="relative">
+        <p className="text-lg font-semibold text-secondary mb-2">Регион</p>
+        <label className="relative mb-2">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#C5C2C2]" />
           <input
             type="text"
@@ -56,7 +58,10 @@ export const CatalogFilters = () => {
         >
           <ScrollContainer className="flex h-[180px] flex-col gap-3 pl-4 pr-1">
             {filteredRegions.map((region) => (
-              <label key={region.id} className="flex items-center gap-3 text-sm text-secondary">
+              <label
+                key={region.id}
+                className="flex items-center gap-3 text-sm text-secondary"
+              >
                 <span className="relative h-5 w-5">
                   <input
                     type="checkbox"
@@ -76,7 +81,9 @@ export const CatalogFilters = () => {
       </div>
 
       <div className="flex flex-col gap-4">
-        <p className="text-lg font-semibold text-secondary">Сфера деятельности</p>
+        <p className="text-lg font-semibold text-secondary">
+          Сфера деятельности
+        </p>
         <StateProvider
           isLoading={isLoading}
           isError={isError}
@@ -86,23 +93,26 @@ export const CatalogFilters = () => {
         >
           <div className="flex flex-col gap-3">
             {sections.map((section) => {
-              const isOpen = openSectionIds.has(section.id)
+              const isOpen = openSectionIds.has(section.id);
               return (
                 <div key={section.id} className="flex flex-col gap-3">
                   <button
                     type="button"
                     onClick={() => toggleSection(section.id)}
-                    className={`group flex h-12 items-center justify-between rounded-full pl-1.5 pr-4 text-[16px] font-semibold leading-[140%] text-secondary ${
+                    className={`group flex h-12 items-center justify-between rounded-full px-3 text-[16px] font-semibold leading-[140%] text-secondary ${
                       isOpen ? "bg-white hover:bg-white" : "bg-transparent"
                     }`}
                   >
                     <span className="flex items-center gap-3">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full">
+                      <span
+                        className={`flex h-9 w-9 items-center justify-center rounded-full ${
+                          isOpen ? "bg-background" : "bg-white"
+                        }`}
+                      >
                         {section.logoUrl ? (
-                          <img
+                          <LogoImage
                             src={section.logoUrl}
                             alt={section.label}
-                            className="h-9 w-9 rounded-full object-cover"
                           />
                         ) : (
                           section.label[0]
@@ -149,13 +159,21 @@ export const CatalogFilters = () => {
                   </button>
 
                   <div
-                    style={{ maxHeight: getSectionMaxHeight(section.items.length, isOpen) }}
+                    style={{
+                      maxHeight: getSectionMaxHeight(
+                        section.items.length,
+                        isOpen,
+                      ),
+                    }}
                     className={`flex flex-col gap-3 overflow-hidden pl-4 transition-[max-height,opacity] duration-500 ease-in-out ${
                       isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
                     }`}
                   >
                     {section.items.map((item) => (
-                      <label key={item.id} className="flex items-center gap-3 text-sm text-secondary">
+                      <label
+                        key={item.id}
+                        className="flex items-center gap-3 text-sm text-secondary"
+                      >
                         <span className="relative h-5 w-5">
                           <input
                             type="checkbox"
@@ -172,7 +190,7 @@ export const CatalogFilters = () => {
                     ))}
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         </StateProvider>
@@ -184,6 +202,6 @@ export const CatalogFilters = () => {
           Сбросить все
         </Button>
       </div>
-    </aside>
-  )
-}
+    </CollapsibleFiltersAside>
+  );
+};

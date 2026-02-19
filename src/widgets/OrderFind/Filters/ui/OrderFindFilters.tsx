@@ -5,6 +5,8 @@ import {
   Search,
   CheckIcon,
   ScrollContainer,
+  LogoImage,
+  CollapsibleFiltersAside,
 } from "@/shared/ui";
 import { StateProvider } from "@/app/providers/State/StateProvider";
 import { useOrderFindFilters } from "../model/hooks/useOrderFindFilters";
@@ -33,10 +35,10 @@ export const OrderFindFilters = () => {
   } = useOrderFindFilters();
 
   return (
-    <aside className="flex flex-col gap-8">
+    <CollapsibleFiltersAside>
       <div className="flex flex-col gap-2">
-        <p className="text-lg font-semibold text-secondary">Регион</p>
-        <label className="relative">
+        <p className="text-lg font-semibold text-secondary mb-2">Регион</p>
+        <label className="relative mb-2">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#C5C2C2]" />
           <input
             type="text"
@@ -55,7 +57,10 @@ export const OrderFindFilters = () => {
         >
           <ScrollContainer className="flex h-[180px] flex-col gap-3 pl-4 pr-1">
             {filteredRegions.map((region) => (
-              <label key={region.id} className="flex cursor-pointer items-center gap-3 text-sm text-secondary">
+              <label
+                key={region.id}
+                className="flex cursor-pointer items-center gap-3 text-sm text-secondary"
+              >
                 <span className="relative h-5 w-5">
                   <input
                     type="checkbox"
@@ -75,7 +80,9 @@ export const OrderFindFilters = () => {
       </div>
 
       <div className="flex flex-col gap-4">
-        <p className="text-lg font-semibold text-secondary">Сфера деятельности</p>
+        <p className="text-lg font-semibold text-secondary">
+          Сфера деятельности
+        </p>
         <StateProvider
           isLoading={isLoading}
           isError={isError}
@@ -91,17 +98,20 @@ export const OrderFindFilters = () => {
                   <button
                     type="button"
                     onClick={() => toggleSection(section.id)}
-                    className={`group flex h-12 w-full items-center justify-between rounded-full px-4 text-[16px] font-semibold leading-[140%] text-secondary ${
+                    className={`group flex h-12 w-full items-center justify-between rounded-full px-3 text-[16px] font-semibold leading-[140%] text-secondary ${
                       isOpen ? "bg-white hover:bg-white" : "bg-transparent"
                     }`}
                   >
                     <span className="flex items-center gap-3">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full">
+                      <span
+                        className={`flex h-9 w-9 items-center justify-center rounded-full ${
+                          isOpen ? "bg-background" : "bg-white"
+                        }`}
+                      >
                         {section.logoUrl ? (
-                          <img
+                          <LogoImage
                             src={section.logoUrl}
                             alt={section.label}
-                            className="h-9 w-9 rounded-full object-cover"
                           />
                         ) : (
                           section.label[0]
@@ -119,7 +129,13 @@ export const OrderFindFilters = () => {
                         xmlns="http://www.w3.org/2000/svg"
                         aria-hidden
                       >
-                        <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path
+                          d="M1 1L6 6L11 1"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                       <svg
                         className={`absolute inset-0 h-4 w-4 transition-opacity duration-200 ${
@@ -130,18 +146,32 @@ export const OrderFindFilters = () => {
                         xmlns="http://www.w3.org/2000/svg"
                         aria-hidden
                       >
-                        <path d="M1 7L6 2L11 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path
+                          d="M1 7L6 2L11 7"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </span>
                   </button>
                   <div
-                    style={{ maxHeight: getSectionMaxHeight(section.items.length, isOpen) }}
+                    style={{
+                      maxHeight: getSectionMaxHeight(
+                        section.items.length,
+                        isOpen,
+                      ),
+                    }}
                     className={`flex flex-col gap-3 overflow-hidden pl-4 transition-[max-height,opacity] duration-500 ease-in-out ${
                       isOpen ? "opacity-100" : "pointer-events-none opacity-0"
                     }`}
                   >
                     {section.items.map((item) => (
-                      <label key={item.id} className="flex cursor-pointer items-center gap-3 text-sm text-secondary">
+                      <label
+                        key={item.id}
+                        className="flex cursor-pointer items-center gap-3 text-sm text-secondary"
+                      >
                         <span className="relative h-5 w-5">
                           <input
                             type="checkbox"
@@ -170,6 +200,6 @@ export const OrderFindFilters = () => {
           Сбросить все
         </Button>
       </div>
-    </aside>
+    </CollapsibleFiltersAside>
   );
 };

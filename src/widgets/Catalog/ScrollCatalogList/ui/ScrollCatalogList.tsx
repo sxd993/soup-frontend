@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { CompanyCard } from "@/entities/Profile/Company/ui/CompanyCard";
 import { FilterMenu, SortIcon } from "@/shared/ui";
-import { ClientPagination } from "@/features/Pagination";
+import { ClientPaginationControls } from "@/features/Pagination";
 import { StateProvider } from "@/app/providers/State/StateProvider";
 import { useCatalogPagination } from "../model/hooks/useCatalogPagination";
 import { ScrollCatalogListSkeleton } from "./ScrollCatalogListSkeleton";
@@ -63,8 +63,8 @@ export const ScrollCatalogList = () => {
       </StateProvider>
 
       {totalPages > 1 && (
-        <div className="mt-6 flex items-center justify-center">
-          <ClientPagination currentPage={currentPage} totalPages={totalPages} />
+        <div className="mt-6 w-full">
+          <ClientPaginationControls currentPage={currentPage} totalPages={totalPages} />
         </div>
       )}
     </section>

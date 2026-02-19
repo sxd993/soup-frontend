@@ -2,7 +2,7 @@
 
 import { useSession } from "@/entities/Session";
 import { StateProvider } from "@/app/providers/State/StateProvider";
-import { SectionTitle, AdsBanner, Button } from "@/shared/ui";
+import { SectionTitle, Button, Search } from "@/shared/ui";
 import Link from "next/link";
 import { OrderFindPageSkeleton } from "@/widgets/OrderFind/OrderFindPage/skeletons/OrderFindPageSkeleton";
 import { OrderFindFilters } from "@/widgets/OrderFind/Filters/ui/OrderFindFilters";
@@ -52,14 +52,22 @@ export function OrderFindPageContent() {
           title="Найти заказ"
           className="mb-8 text-[40px] font-bold leading-[110%] text-secondary"
         />
-        <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[260px_1fr_280px]">
+        <div className="mt-8 flex items-center gap-4">
+          <div className="flex-1 hidden md:block">
+            <div className="relative">
+              <Search className="absolute w-4 h-4 left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                placeholder="поиск по названию"
+                className="w-full pl-10 pr-4 py-2.5 rounded-[20px] bg-white focus:outline-none font-semibold text-sm placeholder:text-accent-septenary placeholder:font-normal"
+              />
+            </div>
+          </div>
+          <Button className="hidden md:block cursor-pointer">Найти</Button>
+        </div>
+        <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[260px_1fr] lg:gap-x-12">
           <OrderFindFilters />
           <OrderFindList />
-          <aside className="flex flex-col gap-6">
-            <div className="h-[370px] w-[280px] shrink-0">
-              <AdsBanner hasDescription />
-            </div>
-          </aside>
         </div>
       </div>
     </StateProvider>

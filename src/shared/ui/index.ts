@@ -37,3 +37,9 @@ export * from "./ScrollContainer";
 
 // Order form icons
 export * from "./Order";
+
+// Logo (filter/catalog icons from server)
+export { LogoImage } from "./LogoImage/LogoImage";
+
+// Collapsible filters (catalog / order find)
+export { CollapsibleFiltersAside } from "./CollapsibleFiltersAside/CollapsibleFiltersAside";
