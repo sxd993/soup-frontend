@@ -97,11 +97,11 @@ export const CompanyContactsSection = ({
         <div className="pt-2">
           <p className="text-base font-semibold text-secondary">Адрес</p>
           {data.address ? (
-            <div className="mt-3 flex items-start gap-3 text-sm text-secondary">
-              <span className="mt-1 flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#BFBFBF] [&_path]:fill-[#BFBFBF]">
+            <div className="mt-3 flex items-center gap-3 text-sm text-secondary">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-[#BFBFBF] [&_path]:fill-[#BFBFBF]">
                 <AddressIcon />
               </span>
-              <span className="break-words">{data.address}</span>
+              <span className="min-w-0 break-words">{data.address}</span>
             </div>
           ) : (
             <p className="mt-2 text-sm text-accent-quinary">Адрес не указан</p>
