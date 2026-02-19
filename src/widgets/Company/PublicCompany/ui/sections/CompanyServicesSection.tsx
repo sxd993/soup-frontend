@@ -49,29 +49,34 @@ export const CompanyServicesSection = ({
               }}
             >
               <div className="mt-4">
+                {section.description?.trim() ? (
+                  <p className="mb-4 text-sm leading-[150%] text-secondary">
+                    {section.description}
+                  </p>
+                ) : null}
                 {section.services.length > 0 ? (
-                  <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  <div className="mt-4 flex flex-col gap-4">
                     {section.services.map((item, index) => (
                       <div
                         key={`${item.name}-${index}`}
                         className="flex flex-col gap-2"
                       >
-                        <div className="overflow-hidden rounded-[18px] border border-[#E5E0D6] bg-white">
+                        <span className="text-sm font-semibold text-secondary">
+                          {item.name}
+                        </span>
+                        <div className="h-32 w-32 shrink-0 overflow-hidden rounded-[18px] border border-[#E5E0D6] bg-white">
                           {item.imageUrl ? (
                             <img
                               src={item.imageUrl}
                               alt={item.name}
-                              className="h-[120px] w-full object-cover"
+                              className="h-full w-full object-cover"
                             />
                           ) : (
-                            <div className="flex h-[120px] w-full items-center justify-center bg-[#F6F3EE]">
+                            <div className="flex h-full w-full items-center justify-center bg-[#F6F3EE]">
                               <MockLogo className="h-10 w-10" />
                             </div>
                           )}
                         </div>
-                        <span className="text-sm text-secondary">
-                          {item.name}
-                        </span>
                       </div>
                     ))}
                   </div>
