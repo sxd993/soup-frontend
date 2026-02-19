@@ -11,8 +11,12 @@ type CatalogFiltersStoreState = {
   selectedService: SelectedCatalogService | null
   selectedFilters: SelectedCatalogService[]
   selectedRegions: string[]
+  /** Id секций фильтров, которые нужно раскрыть при загрузке каталога (например после перехода с карточки подрядчика) */
+  sectionIdsToExpandOnLoad: string[]
   setSelectedService: (value: SelectedCatalogService | null) => void
+  setSelectedFilters: (value: SelectedCatalogService[], sectionIdsToExpand?: string[]) => void
   clearSelectedService: () => void
+  clearSectionIdsToExpandOnLoad: () => void
   addSelectedFilter: (value: SelectedCatalogService) => void
   removeSelectedFilter: (value: SelectedCatalogService) => void
   toggleSelectedFilter: (value: SelectedCatalogService) => void
@@ -27,8 +31,15 @@ export const useCatalogFiltersStore = create<CatalogFiltersStoreState>((set) => 
   selectedService: null,
   selectedFilters: [],
   selectedRegions: [],
+  sectionIdsToExpandOnLoad: [],
   setSelectedService: (value) => set(() => ({ selectedService: value })),
+  setSelectedFilters: (value, sectionIdsToExpand) =>
+    set(() => ({
+      selectedFilters: value,
+      sectionIdsToExpandOnLoad: sectionIdsToExpand ?? [],
+    })),
   clearSelectedService: () => set(() => ({ selectedService: null })),
+  clearSectionIdsToExpandOnLoad: () => set(() => ({ sectionIdsToExpandOnLoad: [] })),
   addSelectedFilter: (value) =>
     set((state) => {
       const exists = state.selectedFilters.some(

@@ -22,6 +22,12 @@ export const useCatalogFilters = () => {
   const selectedService = useCatalogFiltersStore((state) => state.selectedService)
   const clearSelectedService = useCatalogFiltersStore((state) => state.clearSelectedService)
   const selectedFilters = useCatalogFiltersStore((state) => state.selectedFilters)
+  const sectionIdsToExpandOnLoad = useCatalogFiltersStore(
+    (state) => state.sectionIdsToExpandOnLoad,
+  )
+  const clearSectionIdsToExpandOnLoad = useCatalogFiltersStore(
+    (state) => state.clearSectionIdsToExpandOnLoad,
+  )
   const toggleSelectedFilter = useCatalogFiltersStore((state) => state.toggleSelectedFilter)
   const addSelectedFilter = useCatalogFiltersStore((state) => state.addSelectedFilter)
   const clearSelectedFilters = useCatalogFiltersStore((state) => state.clearSelectedFilters)
@@ -102,6 +108,16 @@ export const useCatalogFilters = () => {
     })
     clearSelectedService()
   }, [sections, selectedService, clearSelectedService])
+
+  useEffect(() => {
+    if (sections.length === 0 || sectionIdsToExpandOnLoad.length === 0) return
+    setOpenSectionIds((prev) => {
+      const next = new Set(prev)
+      sectionIdsToExpandOnLoad.forEach((id) => next.add(id))
+      return next
+    })
+    clearSectionIdsToExpandOnLoad()
+  }, [sections.length, sectionIdsToExpandOnLoad, clearSectionIdsToExpandOnLoad])
 
   const getSectionMaxHeight = (itemsCount: number, isOpen: boolean) => {
     if (!isOpen) return "0px"
