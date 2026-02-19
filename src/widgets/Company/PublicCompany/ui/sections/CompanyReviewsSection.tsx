@@ -15,10 +15,9 @@ const REVIEWS_PAGE_PARAM = "reviewsPage"
 
 type CompanyReviewsSectionProps = {
   companyId: string
-  title?: string
 }
 
-export const CompanyReviewsSection = ({ companyId, title = "Отзывы" }: CompanyReviewsSectionProps) => {
+export const CompanyReviewsSection = ({ companyId }: CompanyReviewsSectionProps) => {
   const searchParams = useSearchParams()
   const { data: session } = useSession()
   const currentUserId = session?.user?.id ?? null
@@ -44,8 +43,6 @@ export const CompanyReviewsSection = ({ companyId, title = "Отзывы" }: Com
 
   return (
     <div className="flex min-w-0 flex-col gap-6">
-      <h3 className="text-lg font-semibold text-secondary">{title}</h3>
-
       {/* Блок «Напишите отзыв первым!» — только когда отзывов ещё нет, самый верхний */}
       {noReviews && (
         <div className="rounded-[26px] border border-[#E5E0D6] bg-white px-5 py-8 text-center md:py-10">
